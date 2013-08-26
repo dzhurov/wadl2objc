@@ -57,6 +57,20 @@
             ReferencedContainer = "container:wadl2objc.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "--output-dir: /Users/dmitry/Development/wad2lobjc/wadl2objc/output"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--wadl: /Users/dmitry/Development/wad2lobjc/wadl2objc/wadl/application.wadl"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--xsd: /Users/dmitry/Development/wad2lobjc/wadl2objc/wadl/xsd0.xsd"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

@@ -11,6 +11,12 @@
 		0A2810A617C9F733001C7306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810A517C9F733001C7306 /* main.m */; };
 		0A2810AA17C9F733001C7306 /* wadl2objc.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A2810A917C9F733001C7306 /* wadl2objc.1 */; };
 		0A2810D917C9F8C1001C7306 /* TBXML+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */; };
+		0A964DC317CB531C003655C4 /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DC217CB531C003655C4 /* SettingsManager.m */; };
+		0A964DC817CB6313003655C4 /* XSDDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DC717CB6313003655C4 /* XSDDocument.m */; };
+		0A964DCB17CB6BFD003655C4 /* XSDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DCA17CB6BFD003655C4 /* XSDObject.m */; };
+		0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DCD17CB9054003655C4 /* XSDObjectProperty.m */; };
+		0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */; };
+		0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD317CBA663003655C4 /* XSDTypes.m */; };
 		84701B3DA72D4371BA44F380 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4173097DCA4D03B1FB0810 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +41,20 @@
 		0A2810A917C9F733001C7306 /* wadl2objc.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = wadl2objc.1; sourceTree = "<group>"; };
 		0A2810D717C9F8C1001C7306 /* TBXML+NSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+NSDictionary.h"; sourceTree = "<group>"; };
 		0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+NSDictionary.m"; sourceTree = "<group>"; };
+		0A2810DB17C9FA96001C7306 /* example.wadl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.wadl; sourceTree = "<group>"; };
+		0A964DC117CB531C003655C4 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
+		0A964DC217CB531C003655C4 /* SettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsManager.m; sourceTree = "<group>"; };
+		0A964DC517CB58CD003655C4 /* CWLSynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLSynthesizeSingleton.h; sourceTree = "<group>"; };
+		0A964DC617CB6313003655C4 /* XSDDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDDocument.h; sourceTree = "<group>"; };
+		0A964DC717CB6313003655C4 /* XSDDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDDocument.m; sourceTree = "<group>"; };
+		0A964DC917CB6BFD003655C4 /* XSDObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDObject.h; sourceTree = "<group>"; };
+		0A964DCA17CB6BFD003655C4 /* XSDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDObject.m; sourceTree = "<group>"; };
+		0A964DCC17CB9054003655C4 /* XSDObjectProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDObjectProperty.h; sourceTree = "<group>"; };
+		0A964DCD17CB9054003655C4 /* XSDObjectProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDObjectProperty.m; sourceTree = "<group>"; };
+		0A964DCF17CBA3F9003655C4 /* XSDSimpleType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDSimpleType.h; sourceTree = "<group>"; };
+		0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDSimpleType.m; sourceTree = "<group>"; };
+		0A964DD217CBA663003655C4 /* XSDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDTypes.h; sourceTree = "<group>"; };
+		0A964DD317CBA663003655C4 /* XSDTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDTypes.m; sourceTree = "<group>"; };
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7F4173097DCA4D03B1FB0810 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -56,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				0A2810A417C9F733001C7306 /* wadl2objc */,
+				0A2810DA17C9FA96001C7306 /* Resources */,
 				0A2810A117C9F733001C7306 /* Frameworks */,
 				0A2810A017C9F733001C7306 /* Products */,
 				299F2A9C49544AAD86124F87 /* Pods.xcconfig */,
@@ -84,6 +105,7 @@
 			children = (
 				0A2810A517C9F733001C7306 /* main.m */,
 				0A2810A917C9F733001C7306 /* wadl2objc.1 */,
+				0A964DC017CB52C2003655C4 /* Model */,
 				0A2810D517C9F8C1001C7306 /* ThirdParty */,
 				0A2810A717C9F733001C7306 /* Supporting Files */,
 			);
@@ -101,6 +123,7 @@
 		0A2810D517C9F8C1001C7306 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				0A964DC517CB58CD003655C4 /* CWLSynthesizeSingleton.h */,
 				0A2810D617C9F8C1001C7306 /* TBXML+NSDictionary */,
 			);
 			path = ThirdParty;
@@ -113,6 +136,34 @@
 				0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */,
 			);
 			path = "TBXML+NSDictionary";
+			sourceTree = "<group>";
+		};
+		0A2810DA17C9FA96001C7306 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0A2810DB17C9FA96001C7306 /* example.wadl */,
+			);
+			name = Resources;
+			path = wadl2objc/Resources;
+			sourceTree = "<group>";
+		};
+		0A964DC017CB52C2003655C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A964DC117CB531C003655C4 /* SettingsManager.h */,
+				0A964DC217CB531C003655C4 /* SettingsManager.m */,
+				0A964DC617CB6313003655C4 /* XSDDocument.h */,
+				0A964DC717CB6313003655C4 /* XSDDocument.m */,
+				0A964DD217CBA663003655C4 /* XSDTypes.h */,
+				0A964DD317CBA663003655C4 /* XSDTypes.m */,
+				0A964DC917CB6BFD003655C4 /* XSDObject.h */,
+				0A964DCA17CB6BFD003655C4 /* XSDObject.m */,
+				0A964DCC17CB9054003655C4 /* XSDObjectProperty.h */,
+				0A964DCD17CB9054003655C4 /* XSDObjectProperty.m */,
+				0A964DCF17CBA3F9003655C4 /* XSDSimpleType.h */,
+				0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +254,12 @@
 			files = (
 				0A2810A617C9F733001C7306 /* main.m in Sources */,
 				0A2810D917C9F8C1001C7306 /* TBXML+NSDictionary.m in Sources */,
+				0A964DC317CB531C003655C4 /* SettingsManager.m in Sources */,
+				0A964DC817CB6313003655C4 /* XSDDocument.m in Sources */,
+				0A964DCB17CB6BFD003655C4 /* XSDObject.m in Sources */,
+				0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */,
+				0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */,
+				0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,770 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<application xmlns="http://wadl.dev.java.net/2009/02">
+<doc xmlns:jersey="http://jersey.java.net/" jersey:generatedBy="Jersey: 1.17.1 02/28/2013 12:47 PM"/>
+<grammars>
+<include href="application.wadl/xsd0.xsd">
+<doc title="Generated" xml:lang="en"/>
+</include>
+</grammars>
+<resources base="http://localhost:8080/tailoring-rest-app/tmw/">
+<resource path="/alteration">
+<resource path="/find">
+<method id="find" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="garment" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderType" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alteration" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/monitoring">
+<resource path="/lastMonitoring">
+<method id="getLastMonitoring" name="GET">
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/tests">
+<method id="getTests" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/start">
+<method id="startTest" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="testId" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/version">
+<resource path="/server">
+<method id="getServerVersion" name="GET">
+<response>
+<representation mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/client">
+<method id="getClientVersion" name="GET">
+<response>
+<representation mediaType="application/json"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/item">
+<resource path="/all">
+<method id="getAll" name="GET">
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="garmentDivision" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/get">
+<method id="getItemByItemId" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="itemId" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="productItem" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/print">
+<resource path="/order/{token}">
+<method id="printOrder" name="POST">
+<request>
+<representation mediaType="application/json"/>
+</request>
+</method>
+</resource>
+</resource>
+<resource path="/store">
+<resource path="/get">
+<method id="getStoreByToken" name="GET">
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="store" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/sendDailySchedule/{token}">
+<method id="sendDailySchedule" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="emailInfo" mediaType="application/json"/>
+</request>
+</method>
+</resource>
+<resource path="/getOrderScheduleInfo">
+<method id="getOrderScheduleInfo" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="fromDate" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="toDate" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loadStore" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/getOrderDueDateInfo">
+<method id="getOrderDueDateInfo" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="fromDate" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="toDate" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loadStore" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/getWorkingTime">
+<method id="getWorkingTime" name="GET">
+<response>
+<representation mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/getDailyLoad">
+<method id="getDailyLoad" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="date" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="dailyLoad" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/getStores">
+<method id="getStores" name="GET">
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="store" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/order">
+<resource path="/get">
+<method id="get" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="query" type="xs:long"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderId" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alterationOrder" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/delete">
+<method id="delete" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="query" type="xs:long"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alterationOrder" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/search/{token}">
+<method id="search" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="searchCriteria" mediaType="application/json"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="orderSummary" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/create/{token}">
+<method id="create" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="createOrderInfo" mediaType="*/*"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alterationOrder" mediaType="*/*"/>
+</response>
+</method>
+</resource>
+<resource path="/update/{token}">
+<method id="update" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alterationOrder" mediaType="application/json"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alterationOrder" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/schedule">
+<method id="schedule" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="query" type="xs:long"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alterationOrder" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/virtualRack">
+<method id="getVirtualRackSummary" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="date" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="virtualRackSummary" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/garment/getStatus">
+<method id="getGarmentStatus" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="garmentId" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/updateDueDate/{token}">
+<method id="updateDueDate" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="updateDueDateRequest" mediaType="application/json"/>
+</request>
+</method>
+</resource>
+<resource path="/updateNote/{token}">
+<method id="updateNote" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="updateNotesRequest" mediaType="application/json"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alteredGarment" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/status/{token}">
+<method id="changeStatus" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="changeStatusRequest" mediaType="application/json"/>
+</request>
+</method>
+</resource>
+<resource path="/assignTo">
+<method id="assignTo" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="garmentId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="userId" style="query" type="xs:long"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alteredGarment" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/getDueDate/{token}">
+<method id="getDueDate" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="alterationOrder" mediaType="application/json"/>
+</request>
+<response>
+<representation mediaType="application/json"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/storeInfo">
+<resource path="/order/{orderId}">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderId" style="template" type="xs:string"/>
+<method id="getOrder" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="withHistory" style="query" type="xs:boolean" default="false"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/usersScheduleInfo">
+<method id="getUsersScheduleInfo" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/storePrinters">
+<method id="getStorePrinters" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/alteredGarmentInfo">
+<method id="getAlteredGarmentInfo" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/orderSearch">
+<method id="getOrderSearch" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/userManagement">
+<method id="getUserManagement" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/orderStatusReport">
+<method id="getOrderStatusReportInfo" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/dailyScheduleInfo">
+<method id="getDailyScheduleInfo" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+<method id="getDailyScheduleInfoForPrinting" name="POST">
+<request>
+<representation mediaType="application/x-www-form-urlencoded">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+</representation>
+</request>
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/getAlterationPriceInfo">
+<method id="getAlterationPriceInfo" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/alterationPriceInfo">
+<method id="getAlterationPriceInfo" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/deleteSchedule">
+<method id="deleteSchedule" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="userId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="week" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/addEditSchedule">
+<method id="addEditSchedule" name="POST">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+<representation mediaType="application/x-www-form-urlencoded">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="action" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="week" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="userId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="sunday" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="monday" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="tuesday" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="wednesday" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="thursday" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="friday" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="saturday" style="query" type="xs:string"/>
+</representation>
+</request>
+</method>
+</resource>
+<resource path="/addEditPrinter">
+<method id="addEditPrinter" name="POST">
+<request>
+<representation mediaType="application/x-www-form-urlencoded">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="action" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="logicalName" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="visibleName" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="hostName" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="port" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="status" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+</representation>
+</request>
+</method>
+</resource>
+<resource path="/deletePrinter">
+<method id="deletePrinter" name="DELETE">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="printerId" style="query" type="xs:string"/>
+</request>
+</method>
+</resource>
+<resource path="/editScheduleDate">
+<method id="editScheduleDate" name="POST">
+<request>
+<representation mediaType="application/x-www-form-urlencoded">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="garmentId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="scheduledDate" style="query" type="xs:string"/>
+</representation>
+</request>
+</method>
+</resource>
+<resource path="/changeDueDate">
+<method id="changeDueDate" name="POST">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="dueDate" style="query" type="xs:long"/>
+</request>
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/changeOrderStatus">
+<method id="changeOrderStatus" name="POST">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="status" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="note" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/orderStatus">
+<method id="getOrderStatus" name="POST">
+<request>
+<representation mediaType="application/x-www-form-urlencoded">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="startDate" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="endDate" style="query" type="xs:string"/>
+</representation>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/schedule">
+<method id="getScheduleForTailors" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/scheduleAll">
+<method id="getScheduleForAllUsers" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/printers">
+<method id="getAllPrinters" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/updateCustomer">
+<method id="updateCustomer" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="customer" mediaType="application/json"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/statusHistory">
+<method id="getStatusHistory" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderId" style="query" type="xs:long"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/getOrderInfo">
+<method id="getOrderInfo" name="POST">
+<request>
+<representation mediaType="application/x-www-form-urlencoded">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="startDate" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="endDate" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="includeDeleted" style="query" type="xs:boolean" default="false"/>
+</representation>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/orderInfo">
+<method id="getOrderInfo" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/printerList">
+<method id="getPrinters" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="hostName" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="port" style="query" type="xs:int"/>
+</request>
+<response>
+<representation mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/garments">
+<method id="getGarments" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderId" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/user">
+<method id="getUser" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="uniqueId" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/deleteOrder">
+<method id="deleteOrder" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="note" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/saveUser">
+<method id="saveUser" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="user" mediaType="application/json"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/addNewTailor">
+<method id="addNewTailor" name="POST">
+<request>
+<representation mediaType="application/x-www-form-urlencoded">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="tailorId" style="query" type="xs:string"/>
+</representation>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+<resource path="/print/order/{orderId}">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderId" style="template" type="xs:string"/>
+<method id="printOrder" name="POST">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reportType" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/plain"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/auth">
+<resource path="/login">
+<method id="login" name="POST">
+<request>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginRequest" mediaType="application/json"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginResponse" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/logout">
+<method id="logout" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="token" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="*/*"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/log">
+<resource path="/search">
+<method id="search" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/lastErrors">
+<method id="getLastErrors" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/findLogs">
+<method id="getFilteredLogs" name="POST">
+<request>
+<representation mediaType="application/x-www-form-urlencoded">
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="query" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="orderBy" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="order" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="resultSize" style="query" type="xs:int"/>
+</representation>
+</request>
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/">
+<resource path="/status">
+<method id="getStatusInfo" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/login">
+<method id="loginGet" name="GET">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+<method id="loginPost" name="POST">
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+<resource path="/startJob">
+<method id="startJob" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="key" style="query" type="xs:string"/>
+</request>
+<response>
+<representation mediaType="text/html"/>
+</response>
+</method>
+</resource>
+</resource>
+<resource path="/user">
+<resource path="/getUsers">
+<method id="getUsers" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:long"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="user" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/getUsersInRegion">
+<method id="getUsersInRegion" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeId" style="query" type="xs:long"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="user" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/tailorSchedule">
+<method id="getUserSchedule" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="date" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="userSchedule" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/tailoringAllocation">
+<method id="getTailoringAllocation" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="from" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="to" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="tailoringAllocation" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/performanceInfo">
+<method id="getPerformanceInfo" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="from" style="query" type="xs:string"/>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="to" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="tailorPerformanceInfo" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+<resource path="/tailorScheduleForPrint">
+<method id="tailorScheduleForPrint" name="GET">
+<request>
+<param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="date" style="query" type="xs:string"/>
+</request>
+<response>
+<ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="userDailySchedule" mediaType="application/json"/>
+</response>
+</method>
+</resource>
+</resource>
+</resources>
+</application>
