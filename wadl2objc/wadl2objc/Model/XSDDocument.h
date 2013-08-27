@@ -20,4 +20,6 @@
 - (void)setXSDDictionary: (NSDictionary*)dictionary;
 
 
+- (void)writeObjectsToPath:(NSString*)path;
+
 @end

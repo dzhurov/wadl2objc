@@ -12,7 +12,8 @@
 #import "XSDObjectProperty.h"
 #import "XSDSimpleType.h"
 #import "XSDTypes.h"
-    
+
+#define kDefaultMachineFolderName   @"machine"
 #define kRootElementKey             @"xs:schema"
 #define kObjectsDescriptionKey      @"xs:complexType"
 #define kSimpleTypesKey             @"xs:simpleType"
@@ -111,6 +112,42 @@
     
     self.objects = [xsdObjects allValues];
     self.simpleTypes = [xsdSimpleTypes allValues];
+}
+
+- (void)writeObjectsToPath:(NSString *)path
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    // machine files
+    NSString *machineFilesPath = [path stringByAppendingPathComponent:kDefaultMachineFolderName];
+    NSError *error = nil;
+    if ( ![fileManager fileExistsAtPath:machineFilesPath] ){
+        [fileManager createDirectoryAtPath:machineFilesPath withIntermediateDirectories:YES attributes:nil error: &error];
+        if ( error ){
+            NSLog(@"Error: %@",error);
+            return;
+        }
+    }
+    
+    for (XSDObject *object in _objects) {
+        BOOL needForSimpleTypes = NO;
+        NSString *className = [@"_" stringByAppendingString:object.name];
+        NSString *filePath = [machineFilesPath stringByAppendingPathComponent:className]
+        if ( [fileManager fileExistsAtPath:filePath] ){
+            NSError *error = nil;
+            [fileManager removeItemAtPath:fileManager error: &error]
+            if (error){
+                NSLog(@"Error: %@",error);
+                return;
+            }
+        }
+        NSMutableString *includes = [NSMutableString string];
+        for (id *dependency in object.dependencies) {
+            if ( [dependency isKindOfClass: [XSDObject class]] ){
+                [includes ]
+            }
+        }
+    }
 }
 
 @end

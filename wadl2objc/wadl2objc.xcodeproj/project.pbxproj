@@ -17,19 +17,27 @@
 		0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DCD17CB9054003655C4 /* XSDObjectProperty.m */; };
 		0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */; };
 		0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD317CBA663003655C4 /* XSDTypes.m */; };
+		7E5F6E2D17CCDCF20068D508 /* _ExampleEntity_m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F6E2C17CCDCF20068D508 /* _ExampleEntity_m */; };
+		7E5F6E3017CCDEEB0068D508 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F6E2F17CCDEEB0068D508 /* BaseEntity.m */; };
+		7E5F6E3117CCEB320068D508 /* _ExampleEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2B17CCDCF20068D508 /* _ExampleEntity_h */; };
+		7E5F6E3217CCEB320068D508 /* _ExampleEntity_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2C17CCDCF20068D508 /* _ExampleEntity_m */; };
+		7E5F6E3317CCEB320068D508 /* libPods.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7F4173097DCA4D03B1FB0810 /* libPods.a */; };
 		84701B3DA72D4371BA44F380 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4173097DCA4D03B1FB0810 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0A28109D17C9F733001C7306 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			buildActionMask = 12;
+			dstPath = usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
+				7E5F6E3117CCEB320068D508 /* _ExampleEntity_h in CopyFiles */,
+				7E5F6E3217CCEB320068D508 /* _ExampleEntity_m in CopyFiles */,
+				7E5F6E3317CCEB320068D508 /* libPods.a in CopyFiles */,
 				0A2810AA17C9F733001C7306 /* wadl2objc.1 in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -56,6 +64,10 @@
 		0A964DD217CBA663003655C4 /* XSDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDTypes.h; sourceTree = "<group>"; };
 		0A964DD317CBA663003655C4 /* XSDTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDTypes.m; sourceTree = "<group>"; };
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		7E5F6E2B17CCDCF20068D508 /* _ExampleEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _ExampleEntity_h; sourceTree = "<group>"; };
+		7E5F6E2C17CCDCF20068D508 /* _ExampleEntity_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _ExampleEntity_m; sourceTree = "<group>"; };
+		7E5F6E2E17CCDEEB0068D508 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseEntity.h; sourceTree = "<group>"; };
+		7E5F6E2F17CCDEEB0068D508 /* BaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseEntity.m; sourceTree = "<group>"; };
 		7F4173097DCA4D03B1FB0810 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -142,6 +154,10 @@
 			isa = PBXGroup;
 			children = (
 				0A2810DB17C9FA96001C7306 /* example.wadl */,
+				7E5F6E2B17CCDCF20068D508 /* _ExampleEntity_h */,
+				7E5F6E2C17CCDCF20068D508 /* _ExampleEntity_m */,
+				7E5F6E2E17CCDEEB0068D508 /* BaseEntity.h */,
+				7E5F6E2F17CCDEEB0068D508 /* BaseEntity.m */,
 			);
 			name = Resources;
 			path = wadl2objc/Resources;
@@ -260,6 +276,8 @@
 				0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */,
 				0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */,
 				0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */,
+				7E5F6E2D17CCDCF20068D508 /* _ExampleEntity_m in Sources */,
+				7E5F6E3017CCDEEB0068D508 /* BaseEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
