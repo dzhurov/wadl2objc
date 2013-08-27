@@ -13,8 +13,11 @@
 @interface XSDDocument : NSObject
 
 @property (nonatomic, strong) NSString *version; 
+@property (nonatomic, strong) NSArray *objects;
+@property (nonatomic, strong) NSArray *simpleTypes;
 
 - (id)initWithData:(NSData*)data;
 - (void)setXSDDictionary: (NSDictionary*)dictionary;
+
 
 @end

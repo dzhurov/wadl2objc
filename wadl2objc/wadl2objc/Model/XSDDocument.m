@@ -108,6 +108,9 @@
             }
         }
     }
+    
+    self.objects = [xsdObjects allValues];
+    self.simpleTypes = [xsdSimpleTypes allValues];
 }
 
 @end
