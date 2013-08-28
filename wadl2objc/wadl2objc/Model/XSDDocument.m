@@ -14,6 +14,8 @@
 #import "XSDTypes.h"
 
 #define kDefaultMachineFolderName   @"machine"
+#define kDefaultSimpleTypesFileName @"XSDSimpleTypes"
+
 #define kRootElementKey             @"xs:schema"
 #define kObjectsDescriptionKey      @"xs:complexType"
 #define kSimpleTypesKey             @"xs:simpleType"
@@ -130,24 +132,43 @@
     }
     
     for (XSDObject *object in _objects) {
-        BOOL needForSimpleTypes = NO;
-        NSString *className = [@"_" stringByAppendingString:object.name];
-        NSString *filePath = [machineFilesPath stringByAppendingPathComponent:className]
-        if ( [fileManager fileExistsAtPath:filePath] ){
-            NSError *error = nil;
-            [fileManager removeItemAtPath:fileManager error: &error]
-            if (error){
-                NSLog(@"Error: %@",error);
-                return;
-            }
-        }
-        NSMutableString *includes = [NSMutableString string];
-        for (id *dependency in object.dependencies) {
-            if ( [dependency isKindOfClass: [XSDObject class]] ){
-                [includes ]
-            }
+                
+    }
+}
+
+- (void)writeMachineHFileObject:(XSDObject*)object toPath:(NSString*)path
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL needForSimpleTypes = NO;
+    NSString *className = [@"_" stringByAppendingString:object.name];
+    NSString *filePath = path;
+    if ( [fileManager fileExistsAtPath:filePath] ){
+        NSError *error = nil;
+        [fileManager removeItemAtPath:filePath error: &error];
+        if (error){
+            NSLog(@"Error: %@",error);
+            return;
         }
     }
+    NSMutableString *includes = [NSMutableString string];
+    for (NSObject *dependency in object.dependencies) {
+        if ( [dependency isKindOfClass: [XSDObject class]] ){
+            [includes appendFormat:@"\n#include \"%@.h\"", ((XSDObject*)dependency).name];
+        }
+        else if ( [dependency isKindOfClass:[XSDSimpleType class]] )
+        {
+            needForSimpleTypes = YES;
+        }
+    }
+    if ( needForSimpleTypes )
+        [includes appendFormat:@"\n#include \"%@.h\"", kDefaultSimpleTypesFileName];
+    // Properties list
+    NSMutableString *propertiesList = [NSMutableString string];
+    for (XSDObjectProperty *property in object.properties) {
+        NSString *typeString = property.isCollection ? @"NSArray" : property.type;
+        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@ *%@", typeString, property.name];
+    }
+
 }
 
 @end
