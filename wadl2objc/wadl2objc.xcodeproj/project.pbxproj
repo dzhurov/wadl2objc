@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A2810A317C9F733001C7306 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2810A217C9F733001C7306 /* Foundation.framework */; };
 		0A2810A617C9F733001C7306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810A517C9F733001C7306 /* main.m */; };
-		0A2810AA17C9F733001C7306 /* wadl2objc.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A2810A917C9F733001C7306 /* wadl2objc.1 */; };
 		0A2810D917C9F8C1001C7306 /* TBXML+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */; };
 		0A964DC317CB531C003655C4 /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DC217CB531C003655C4 /* SettingsManager.m */; };
 		0A964DC817CB6313003655C4 /* XSDDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DC717CB6313003655C4 /* XSDDocument.m */; };
@@ -17,11 +16,7 @@
 		0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DCD17CB9054003655C4 /* XSDObjectProperty.m */; };
 		0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */; };
 		0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD317CBA663003655C4 /* XSDTypes.m */; };
-		7E5F6E2D17CCDCF20068D508 /* _ExampleEntity_m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F6E2C17CCDCF20068D508 /* _ExampleEntity_m */; };
 		7E5F6E3017CCDEEB0068D508 /* BaseEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F6E2F17CCDEEB0068D508 /* BaseEntity.m */; };
-		7E5F6E3117CCEB320068D508 /* _ExampleEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2B17CCDCF20068D508 /* _ExampleEntity_h */; };
-		7E5F6E3217CCEB320068D508 /* _ExampleEntity_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2C17CCDCF20068D508 /* _ExampleEntity_m */; };
-		7E5F6E3317CCEB320068D508 /* libPods.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7F4173097DCA4D03B1FB0810 /* libPods.a */; };
 		84701B3DA72D4371BA44F380 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4173097DCA4D03B1FB0810 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -32,10 +27,6 @@
 			dstPath = usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
-				7E5F6E3117CCEB320068D508 /* _ExampleEntity_h in CopyFiles */,
-				7E5F6E3217CCEB320068D508 /* _ExampleEntity_m in CopyFiles */,
-				7E5F6E3317CCEB320068D508 /* libPods.a in CopyFiles */,
-				0A2810AA17C9F733001C7306 /* wadl2objc.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +267,6 @@
 				0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */,
 				0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */,
 				0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */,
-				7E5F6E2D17CCDCF20068D508 /* _ExampleEntity_m in Sources */,
 				7E5F6E3017CCDEEB0068D508 /* BaseEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

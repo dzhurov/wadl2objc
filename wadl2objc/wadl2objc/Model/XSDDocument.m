@@ -132,7 +132,10 @@
     }
     
     for (XSDObject *object in _objects) {
-                
+        NSString *fileName = [NSString stringWithFormat:@"_%@.h", object];
+        NSString *filePath = [path stringByAppendingPathComponent:fileName];
+        
+        [self writeMachineHFileObject:object toPath:filePath];
     }
 }
 
@@ -153,7 +156,7 @@
     NSMutableString *includes = [NSMutableString string];
     for (NSObject *dependency in object.dependencies) {
         if ( [dependency isKindOfClass: [XSDObject class]] ){
-            [includes appendFormat:@"\n#include \"%@.h\"", ((XSDObject*)dependency).name];
+            [includes appendFormat:@"#include \"%@.h\"\n", ((XSDObject*)dependency).name];
         }
         else if ( [dependency isKindOfClass:[XSDSimpleType class]] )
         {
@@ -161,14 +164,26 @@
         }
     }
     if ( needForSimpleTypes )
-        [includes appendFormat:@"\n#include \"%@.h\"", kDefaultSimpleTypesFileName];
+        [includes appendFormat:@"\n#import \"%@.h\"", kDefaultSimpleTypesFileName];
     // Properties list
     NSMutableString *propertiesList = [NSMutableString string];
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = property.isCollection ? @"NSArray" : property.type;
         [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@ *%@", typeString, property.name];
     }
-
+    
+    //Write To File
+    NSString *_hFilePath = [@"/Users/dzhurov/Development/wadl2objc/wadl2objc/wadl2objc/Resources" stringByAppendingPathComponent:@"_ExampleEntity_h"];
+    NSError *error = nil;
+    NSString *_hFileFormat = [NSString stringWithContentsOfFile:_hFilePath encoding:NSUTF8StringEncoding error: &error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+    }
+    NSString *contentString = [NSString stringWithFormat:_hFileFormat, self.version, includes, className, propertiesList];
+    [contentString writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error: &error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+    }
 }
 
 @end
