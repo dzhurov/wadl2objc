@@ -88,27 +88,32 @@
                 XSDObject *refObject = xsdObjects[refString];
                 if (refObject){
                     [xsdObj.dependencies addObject:refObject];
+                    xsdProperty.type = [refObject.name stringByAppendingString:@" *"];
                 }
                 else{
                     NSLog(@"unexpected reference '%@' of object '%@'", refString, name);
                 }
             }
             else if ([typeString hasPrefix:@"xs:"]){
-                xsdProperty.type = classNameForXSDType(typeString);
+                xsdProperty.type = [classNameForXSDType(typeString) stringByAppendingString:@" *"];
             }
             else{
                 XSDSimpleType *simpleType = xsdSimpleTypes[typeString];
                 if (simpleType){
                     [xsdObj.dependencies addObject:simpleType];
+                    xsdProperty.type = simpleType.name;
                 }
                 else{
                     XSDObject *refObject = xsdObjects[typeString];
-                    if (refObject)
+                    if (refObject){
                         [xsdObj.dependencies addObject:refObject];
+                        xsdProperty.type = [refObject.name stringByAppendingString:@" *"];
+                    }
                     else
                         NSLog(@"unexpected property '%@' of object '%@'", typeString, name);
                 }
             }
+            [xsdObj.properties addObject:xsdProperty];
         }
     }
     
@@ -132,7 +137,7 @@
     }
     
     for (XSDObject *object in _objects) {
-        NSString *fileName = [NSString stringWithFormat:@"_%@.h", object];
+        NSString *fileName = [NSString stringWithFormat:@"_%@.h", object.name];
         NSString *filePath = [path stringByAppendingPathComponent:fileName];
         
         [self writeMachineHFileObject:object toPath:filePath];
@@ -156,7 +161,7 @@
     NSMutableString *includes = [NSMutableString string];
     for (NSObject *dependency in object.dependencies) {
         if ( [dependency isKindOfClass: [XSDObject class]] ){
-            [includes appendFormat:@"#include \"%@.h\"\n", ((XSDObject*)dependency).name];
+            [includes appendFormat:@"#import \"%@.h\"\n", ((XSDObject*)dependency).name];
         }
         else if ( [dependency isKindOfClass:[XSDSimpleType class]] )
         {
@@ -164,16 +169,16 @@
         }
     }
     if ( needForSimpleTypes )
-        [includes appendFormat:@"\n#import \"%@.h\"", kDefaultSimpleTypesFileName];
+        [includes appendFormat:@"#import \"%@.h\"\n", kDefaultSimpleTypesFileName];
     // Properties list
     NSMutableString *propertiesList = [NSMutableString string];
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = property.isCollection ? @"NSArray" : property.type;
-        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@ *%@", typeString, property.name];
+        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@%@", typeString, property.name];
     }
     
     //Write To File
-    NSString *_hFilePath = [@"/Users/dzhurov/Development/wadl2objc/wadl2objc/wadl2objc/Resources" stringByAppendingPathComponent:@"_ExampleEntity_h"];
+    NSString *_hFilePath = [@"./Resources" stringByAppendingPathComponent:@"_ExampleEntity_h"];
     NSError *error = nil;
     NSString *_hFileFormat = [NSString stringWithContentsOfFile:_hFilePath encoding:NSUTF8StringEncoding error: &error];
     if (error){
@@ -183,6 +188,9 @@
     [contentString writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
         NSLog(@"ERROR: %@", error);
+    }
+    else{
+        NSLog(@"generated: %@", path);
     }
 }
 

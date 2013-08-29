@@ -21,7 +21,7 @@ int main(int argc, const char * argv[])
         NSLog(@"Hello, World!");
         if ( argc <= 1 ){
             showHelp();
-            return EXIT_FAILURE;
+            return EXIT_SUCCESS;
         }
         NSMutableArray *args = [NSMutableArray arrayWithCapacity:argc];
         for (int i = 0; i < argc; i++) {
