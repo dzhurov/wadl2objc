@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseEntity.h"
-#include "User.h"
 
-@interface _LoginResponse : BaseEntity
+@interface _LoginRequest : BaseEntity
 
+@property(nonatomic, strong) NSString * password
+@property(nonatomic, strong) NSString * userId
 
 @end

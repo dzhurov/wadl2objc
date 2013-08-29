@@ -13,7 +13,11 @@
 @interface XSDSimpleType : NSObject
 
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *enumType;
 @property (nonatomic, strong) NSString *baseType;
 @property (nonatomic, strong) NSMutableArray *options;
+
+- (NSString *)nameOfMappingMethod;          //fromString
+- (NSString *)nameOfInverseMappingMethod;   //toStrong
 
 @end

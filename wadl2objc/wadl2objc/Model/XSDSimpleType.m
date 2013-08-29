@@ -10,5 +10,16 @@
 
 @implementation XSDSimpleType
 
+- (NSString *)nameOfInverseMappingMethod
+{
+    NSString *result = [NSString stringWithFormat:@"%@to%@", _name, _baseType];
+    return result;
+}
+
+- (NSString *)nameOfMappingMethod
+{
+    NSString *result = [NSString stringWithFormat:@"%@to%@", _baseType, _name];
+    return result;
+}
 
 @end

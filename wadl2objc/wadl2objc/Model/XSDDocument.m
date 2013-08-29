@@ -15,12 +15,16 @@
 
 #define kDefaultMachineFolderName   @"machine"
 #define kDefaultSimpleTypesFileName @"XSDSimpleTypes"
+#define kDefaultEnumManagerClassname @"XSDEnums"
 
 #define kRootElementKey             @"xs:schema"
 #define kObjectsDescriptionKey      @"xs:complexType"
 #define kSimpleTypesKey             @"xs:simpleType"
 #define kSimpleTypeRestrictionKey   @"xs:restriction"
 #define kObjectSummaryKey           @"xs:element"
+
+#define kEnumFormat @"typedef NS_ENUM(NSUInteger, %@) { \n\t  %@ = 1, \n\t  %@ \n};"
+#define kCheckForTextFieldFormat @"\tif ([fieldName isEqualToString:@\"%@\"]) return @\"%@\";\n"
 
 @implementation XSDDocument
 
@@ -89,6 +93,7 @@
                 if (refObject){
                     [xsdObj.dependencies addObject:refObject];
                     xsdProperty.type = [refObject.name stringByAppendingString:@" *"];
+                    xsdProperty.name = refString;
                 }
                 else{
                     NSLog(@"unexpected reference '%@' of object '%@'", refString, name);
@@ -102,6 +107,7 @@
                 if (simpleType){
                     [xsdObj.dependencies addObject:simpleType];
                     xsdProperty.type = simpleType.name;
+                    xsdProperty.simpleType = simpleType;
                 }
                 else{
                     XSDObject *refObject = xsdObjects[typeString];
@@ -137,19 +143,20 @@
     }
     
     for (XSDObject *object in _objects) {
-        NSString *fileName = [NSString stringWithFormat:@"_%@.h", object.name];
-        NSString *filePath = [path stringByAppendingPathComponent:fileName];
-        
-        [self writeMachineHFileObject:object toPath:filePath];
+        [self writeMachineHFileObject:object toPath:path];
+        [self writeMachineMFileObject:object toPath:path];
     }
 }
+
+// TODO: Implement simple types parser + translators
 
 - (void)writeMachineHFileObject:(XSDObject*)object toPath:(NSString*)path
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL needForSimpleTypes = NO;
     NSString *className = [@"_" stringByAppendingString:object.name];
-    NSString *filePath = path;
+    NSString *fileName = [NSString stringWithFormat:@"%@.h", className];
+    NSString *filePath = [[path stringByAppendingPathComponent:kDefaultMachineFolderName] stringByAppendingPathComponent:fileName];
     if ( [fileManager fileExistsAtPath:filePath] ){
         NSError *error = nil;
         [fileManager removeItemAtPath:filePath error: &error];
@@ -174,7 +181,7 @@
     NSMutableString *propertiesList = [NSMutableString string];
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = property.isCollection ? @"NSArray" : property.type;
-        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@%@", typeString, property.name];
+        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@ %@", typeString, property.name];
     }
     
     //Write To File
@@ -185,13 +192,71 @@
         NSLog(@"ERROR: %@", error);
     }
     NSString *contentString = [NSString stringWithFormat:_hFileFormat, self.version, includes, className, propertiesList];
-    [contentString writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error: &error];
+    [contentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
         NSLog(@"ERROR: %@", error);
     }
     else{
-        NSLog(@"generated: %@", path);
+        NSLog(@"generated: %@", filePath);
     }
 }
+
+- (void)writeMachineMFileObject:(XSDObject*)object toPath:(NSString*)path
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *className = [@"_" stringByAppendingString:object.name];
+    NSString *fileName = [NSString stringWithFormat:@"%@.m", className];
+    NSString *filePath = [[path stringByAppendingPathComponent:kDefaultMachineFolderName] stringByAppendingPathComponent:fileName];
+    if ( [fileManager fileExistsAtPath:filePath] ){
+        NSError *error = nil;
+        [fileManager removeItemAtPath:filePath error: &error];
+        if (error){
+            NSLog(@"Error: %@",error);
+            return;
+        }
+    }
+    
+    // Mapped properties
+        // Complex types
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"simpleType == nil AND isCollection == NO", [XSDObjectProperty class]];
+    NSArray *fieldsKindOfObjects = [object.properties filteredArrayUsingPredicate:predicate];
+    NSArray *fieldsNamesKindOfObjects = [fieldsKindOfObjects valueForKey:@"name"];
+    NSMutableString *fieldsNamesStringKindOfObjects = [NSMutableString string];
+    for (NSString *field in fieldsNamesKindOfObjects) {
+        [fieldsNamesStringKindOfObjects appendFormat:@"@\"%@\", ", field];
+    }
+        // Simple types
+    predicate = [NSPredicate predicateWithFormat:@"simpleType != NIL"];
+    NSArray *simpleTypes = [object.properties filteredArrayUsingPredicate:predicate];
+    NSMutableString *enumsConditionsList = [NSMutableString string];
+    for (XSDObjectProperty *oneSimpleTypeProperty in simpleTypes) {
+        [enumsConditionsList appendFormat:kCheckForTextFieldFormat, oneSimpleTypeProperty.name, oneSimpleTypeProperty.type];
+    }
+        // Arrays
+    predicate = [NSPredicate predicateWithFormat:@"isCollection == YES"];
+    NSArray *collectionTypes = [object.properties filteredArrayUsingPredicate:predicate];
+    NSMutableString *collectionsConditionsList = [NSMutableString string];
+    for (XSDObjectProperty *property in collectionTypes) {
+        [collectionsConditionsList appendFormat:kCheckForTextFieldFormat, property.name, property.type];
+    }
+    
+    //Write To File
+    NSString *_mFilePath = [@"./Resources" stringByAppendingPathComponent:@"_ExampleEntity_m"];
+    NSError *error = nil;
+    NSString *_mFileFormat = [NSString stringWithContentsOfFile:_mFilePath encoding:NSUTF8StringEncoding error: &error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+    }
+    NSString *contentString = [NSString stringWithFormat:_mFileFormat, self.version, className, className,fieldsNamesStringKindOfObjects, fieldsNamesStringKindOfObjects, enumsConditionsList, collectionsConditionsList];
+    [contentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+    }
+    else{
+        NSLog(@"generated: %@", filePath);
+    }
+    
+}
+
 
 @end

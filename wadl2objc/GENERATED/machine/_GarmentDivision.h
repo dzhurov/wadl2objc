@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseEntity.h"
 
-#include "XSDSimpleTypes.h"
-@interface _AlterationOrderSummary : BaseEntity
+@interface _GarmentDivision : BaseEntity
 
 
 @end

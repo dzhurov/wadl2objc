@@ -266,4 +266,16 @@ __strong static NSDateFormatter const *dateFormatter = nil;
     }];
 }
 
+#pragma mark - Setting/Get value for key
+
+- (NSString *)entityNameForMappedField:(NSString*)fieldName
+{
+    return nil;
+}
+
+- (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
+{
+    return nil;
+}
+
 @end

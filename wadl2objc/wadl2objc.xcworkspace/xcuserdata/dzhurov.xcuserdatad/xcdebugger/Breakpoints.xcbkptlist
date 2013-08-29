@@ -8,11 +8,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "wadl2objc/Model/XSDDocument.m"
-         timestampString = "399392936.305177"
+         timestampString = "399487416.481331"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "175"
-         endingLineNumber = "175"
+         startingLineNumber = "140"
+         endingLineNumber = "140"
+         landmarkName = "-writeObjectsToPath:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "wadl2objc/Model/XSDDocument.m"
+         timestampString = "399487416.481331"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "192"
+         endingLineNumber = "192"
          landmarkName = "-writeMachineHFileObject:toPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,12 +34,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "wadl2objc/Model/XSDDocument.m"
-         timestampString = "399392988.422358"
+         timestampString = "399487416.481331"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "121"
-         endingLineNumber = "121"
-         landmarkName = "-writeObjectsToPath:"
+         startingLineNumber = "197"
+         endingLineNumber = "197"
+         landmarkName = "-writeMachineHFileObject:toPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -34,12 +47,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "wadl2objc/Model/XSDDocument.m"
-         timestampString = "399393000.892834"
+         timestampString = "399487656.455573"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
-         landmarkName = "-writeObjectsToPath:"
+         startingLineNumber = "248"
+         endingLineNumber = "248"
+         landmarkName = "-writeMachineMFileObject:toPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -47,12 +60,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "wadl2objc/Model/XSDDocument.m"
-         timestampString = "399393003.390883"
+         timestampString = "399487656.455573"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "134"
-         endingLineNumber = "134"
-         landmarkName = "-writeObjectsToPath:"
+         startingLineNumber = "253"
+         endingLineNumber = "253"
+         landmarkName = "-writeMachineMFileObject:toPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XSDSimpleType.h"
 
 @interface XSDObjectProperty : NSObject
 
@@ -14,5 +15,5 @@
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic) BOOL isCollection;
 @property (nonatomic, strong) NSDictionary *methadata; // used for arrays;
-
+@property (nonatomic, strong) XSDSimpleType *simpleType;
 @end
