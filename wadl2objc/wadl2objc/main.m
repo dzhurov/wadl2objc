@@ -5,6 +5,7 @@
 //  Created by Dmitry on 8/25/13.
 //  Copyright (c) 2013 zimCo. All rights reserved.
 //
+//
 
 #import <Foundation/Foundation.h>
 #import "SettingsManager.h"
