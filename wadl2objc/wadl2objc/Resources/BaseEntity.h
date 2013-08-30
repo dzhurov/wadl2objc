@@ -33,7 +33,7 @@ static NSString *const PeriodScheduleViewControllerPeriodStrings[] = {kUndefined
 - (void)setDictionaryInfo:(NSDictionary *)JSONDictionary;
 - (NSMutableDictionary*)dictionaryInfo;
 
-- (NSString *)classNameForMappedField:(NSString*)fieldName;
 - (NSString *)entityNameForMappedField:(NSString*)fieldName;
+- (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName;
 
 @end
