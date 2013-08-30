@@ -143,26 +143,46 @@ __strong static NSDateFormatter const *dateFormatter = nil;
 - (NSMutableDictionary *)dictionaryInfoForKeys:(NSString*)firstObject, ... NS_REQUIRES_NIL_TERMINATION
 {
     NSMutableDictionary *dictInfo = nil;
-    NSString* eachObject;
+    NSString* key;
     va_list argumentList;
     if (firstObject)
     {
         dictInfo = [NSMutableDictionary dictionary];
         va_start(argumentList, firstObject);
-        eachObject = firstObject;
+        key = firstObject;
         do {
-            id valueForKey = [self valueForKey:eachObject];
+            id valueForKey = [self valueForKey:key];
+            objc_property_t property = class_getProperty([self class], [key UTF8String]);
+            const char *propertyAttributes = property_getAttributes(property);
+            NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
+            NSString *propertyTypeStr = attributes[0];
+            BOOL isPrimitive = [propertyTypeStr characterAtIndex:1] != '@'; // is it class
             
-            if ([valueForKey isKindOfClass:[BaseEntity class]]){
+            if (isPrimitive){
+                NSString *enumName = [self entityNameForMappedField:key];
+                NSUInteger enumValue = [(NSNumber*)valueForKey unsignedIntegerValue];
+                id enumObj = [XSDEnums objectForEnumValue:enumValue enumName:enumName];
+                valueForKey = enumObj;
+            }
+            else if ([valueForKey isKindOfClass:[BaseEntity class]]){
                 valueForKey = [(BaseEntity*)valueForKey dictionaryInfo];
-            }else if ([valueForKey isKindOfClass:[NSDate class]]){
+            }
+            else if ([valueForKey isKindOfClass:[NSDate class]]){
                 valueForKey = [dateFormatter stringFromDate:valueForKey];
             }
-            if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]]){
-                [dictInfo setObject:valueForKey forKey:eachObject];
+            else if ([valueForKey isKindOfClass:[NSArray class]]){
+                NSString *memberClassName = [self classNameOfMembersForMappedField:key];
+                Class memberClass = NSClassFromString(memberClassName);
+                if ( [memberClass isSubclassOfClass:[BaseEntity class]] ){
+                    NSArray *array = [(NSArray*)valueForKey valueForKey:@"dictionaryInfo"];
+                    valueForKey = array;
+                }
             }
-            eachObject = va_arg(argumentList, NSString*);
-        } while (eachObject);
+            if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]]){
+                [dictInfo setObject:valueForKey forKey:key];
+            }
+            key = va_arg(argumentList, NSString*);
+        } while (key);
         va_end(argumentList);
     }
     
@@ -171,7 +191,7 @@ __strong static NSDateFormatter const *dateFormatter = nil;
 
 - (void)setDictionaryInfo:(NSDictionary *)dictInfo forKeys:(NSString*)firstObject, ... NS_REQUIRES_NIL_TERMINATION
 {
-    NSString* eachObject;
+    NSString* key;
     va_list argumentList;
     if (firstObject)
     {
@@ -181,31 +201,48 @@ __strong static NSDateFormatter const *dateFormatter = nil;
         }
         va_start(argumentList, firstObject);
         do {
-            eachObject = va_arg(argumentList, NSString*);
-            id valueForKey = [dictInfo objectForKey:eachObject];
+            key = va_arg(argumentList, NSString*);
+            id valueForKey = [dictInfo objectForKey:key];
             if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]])
             {
-                objc_property_t property = class_getProperty([self class], [eachObject UTF8String]);
+                objc_property_t property = class_getProperty([self class], [key UTF8String]);
                 const char *propertyAttributes = property_getAttributes(property);
                 NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
                 NSString *propertyTypeStr = attributes[0];
+                BOOL isPrimitive = [propertyTypeStr characterAtIndex:1] != '@'; // is it class
                 NSString *className = [propertyTypeStr substringFromIndex:2]; // 2 is length of "T@""
                 className = [className stringByReplacingOccurrencesOfString:@"\"" withString:@""];
                 Class propClass = NSClassFromString(className);
                 
+                if (isPrimitive){ // isEnum
+                    NSString *enumName = [self entityNameForMappedField:key];
+                    NSUInteger enumValue = [XSDEnums enumValueForObject:valueForKey enumName:enumName];
+                    [self setValue:@(enumValue) forKey:key];
+                }
                 if ([propClass isSubclassOfClass:[BaseEntity class]]){
                     BaseEntity *entity = [[propClass alloc] initWithDictionaryInfo:valueForKey];
-                    [self setValue:entity forKey: eachObject];
+                    [self setValue:entity forKey: key];
                 }
                 else if ([propClass isSubclassOfClass:[NSDate class]]){
                     NSDate *date = [dateFormatter dateFromString:valueForKey];
-                    [self setValue:date forKey: eachObject];
+                    [self setValue:date forKey: key];
+                }
+                else if ([propClass isSubclassOfClass:[NSArray class]]){
+                    NSString *memberClassName = [self classNameOfMembersForMappedField:key];
+                    Class memberClass = NSClassFromString(memberClassName);
+                    if ( [memberClass isSubclassOfClass:[BaseEntity class]] ){
+                        NSArray *array = [memberClass objectsWithDictionariesInfoArray:valueForKey];
+                        [self setValue:array forKey:key];
+                    }
+                    else{
+                        [self setValue:valueForKey forKey:key];
+                    }
                 }
                 else{
-                    [self setValue:valueForKey forKey:eachObject];
+                    [self setValue:valueForKey forKey:key];
                 }
             }
-        } while (eachObject);
+        } while (key);
         va_end(argumentList);
     }
 }

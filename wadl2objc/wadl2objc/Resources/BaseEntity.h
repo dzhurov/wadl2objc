@@ -8,18 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, PeriodScheduleViewControllerPeriod) {
-    PeriodScheduleViewControllerPeriodWeek = 1,
-    PeriodScheduleViewControllerPeriodMonth = 2,
-};
-
-#define kUndefined                                      @""
-#define kPeriodScheduleViewControllerPeriodWeekString   @"lol"
-#define kPeriodScheduleViewControllerPeriodMonthString  @"ok"
-
-static unsigned const PeriodScheduleViewControllerPeriodStringsCount = 3;
-static NSString *const PeriodScheduleViewControllerPeriodStrings[] = {kUndefined, kPeriodScheduleViewControllerPeriodWeekString, kPeriodScheduleViewControllerPeriodMonthString};
-
 @interface BaseEntity : NSObject <NSCopying, NSCoding>
 
 + (void)setDateFormatter:(NSDateFormatter*)dateFormatter;
@@ -33,7 +21,7 @@ static NSString *const PeriodScheduleViewControllerPeriodStrings[] = {kUndefined
 - (void)setDictionaryInfo:(NSDictionary *)JSONDictionary;
 - (NSMutableDictionary*)dictionaryInfo;
 
-- (NSString *)classNameForMappedField:(NSString*)fieldName;
 - (NSString *)entityNameForMappedField:(NSString*)fieldName;
+- (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName;
 
 @end
