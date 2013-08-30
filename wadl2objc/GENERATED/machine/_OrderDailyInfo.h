@@ -12,12 +12,12 @@
 
 @interface _OrderDailyInfo : BaseEntity
 
-@property(nonatomic, strong) NSString * firstName
-@property(nonatomic, strong) NSString * lastName
-@property(nonatomic, strong) NSNumber * minutes
-@property(nonatomic, strong) NSString * orderId
+@property(nonatomic, strong) NSString *firstName
+@property(nonatomic, strong) NSString *lastName
+@property(nonatomic, strong) NSNumber *minutes
+@property(nonatomic, strong) NSString *orderId
 @property(nonatomic, strong) OrderType orderType
-@property(nonatomic, strong) NSNumber * orderUniqueId
+@property(nonatomic, strong) NSNumber *orderUniqueId
 @property(nonatomic, strong) Status status
 
 @end

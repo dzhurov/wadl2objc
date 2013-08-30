@@ -12,11 +12,11 @@
 
 @interface _AlteredGarmentInfo : BaseEntity
 
-@property(nonatomic, strong) NSString * garmentId
+@property(nonatomic, strong) NSString *garmentId
 @property(nonatomic, strong) GarmentType garmentType
-@property(nonatomic, strong) NSNumber * minutes
-@property(nonatomic, strong) NSString * orderId
-@property(nonatomic, strong) NSNumber * orderUniqueId
-@property(nonatomic, strong) NSNumber * priority
+@property(nonatomic, strong) NSNumber *minutes
+@property(nonatomic, strong) NSString *orderId
+@property(nonatomic, strong) NSNumber *orderUniqueId
+@property(nonatomic, strong) NSNumber *priority
 
 @end

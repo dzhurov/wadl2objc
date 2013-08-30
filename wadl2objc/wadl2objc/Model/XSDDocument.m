@@ -92,7 +92,7 @@
                 XSDObject *refObject = xsdObjects[refString];
                 if (refObject){
                     [xsdObj.dependencies addObject:refObject];
-                    xsdProperty.type = [refObject.name stringByAppendingString:@" *"];
+                    xsdProperty.type = refObject.name;
                     xsdProperty.name = refString;
                 }
                 else{
@@ -100,7 +100,7 @@
                 }
             }
             else if ([typeString hasPrefix:@"xs:"]){
-                xsdProperty.type = [classNameForXSDType(typeString) stringByAppendingString:@" *"];
+                xsdProperty.type = classNameForXSDType(typeString);
             }
             else{
                 XSDSimpleType *simpleType = xsdSimpleTypes[typeString];
@@ -113,7 +113,7 @@
                     XSDObject *refObject = xsdObjects[typeString];
                     if (refObject){
                         [xsdObj.dependencies addObject:refObject];
-                        xsdProperty.type = [refObject.name stringByAppendingString:@" *"];
+                        xsdProperty.type = refObject.name ;
                     }
                     else
                         NSLog(@"unexpected property '%@' of object '%@'", typeString, name);
@@ -180,8 +180,15 @@
     // Properties list
     NSMutableString *propertiesList = [NSMutableString string];
     for (XSDObjectProperty *property in object.properties) {
-        NSString *typeString = property.isCollection ? @"NSArray" : property.type;
-        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@ %@", typeString, property.name];
+        NSString *typeString = nil;
+        if (property.isCollection)
+            typeString = property.isCollection ? @"NSArray *" : property.type;
+        else if (property.simpleType)
+            typeString = [property.type stringByAppendingString:@" "];
+        else
+            typeString = [property.type stringByAppendingString:@" *"];
+        
+        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@%@", typeString, property.name];
     }
     
     //Write To File

@@ -12,7 +12,7 @@
 
 @interface _OrderSummary : BaseEntity
 
-@property(nonatomic, strong) NSArray orderSummary
-@property(nonatomic, strong) NSNumber * totalCount
+@property(nonatomic, strong) NSArray *orderSummary
+@property(nonatomic, strong) NSNumber *totalCount
 
 @end

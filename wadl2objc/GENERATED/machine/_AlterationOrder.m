@@ -32,7 +32,7 @@
 
 - (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"garments"]) return @"AlteredGarment *";
+	if ([fieldName isEqualToString:@"garments"]) return @"AlteredGarment";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

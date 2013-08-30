@@ -16,24 +16,24 @@
 
 @interface _AlteredGarment : BaseEntity
 
-@property(nonatomic, strong) User * assignedTo
-@property(nonatomic, strong) NSNumber * childSize
-@property(nonatomic, strong) DivisionColor * color
-@property(nonatomic, strong) NSNumber * formal
-@property(nonatomic, strong) NSString * garmentId
+@property(nonatomic, strong) User *assignedTo
+@property(nonatomic, strong) NSNumber *childSize
+@property(nonatomic, strong) DivisionColor *color
+@property(nonatomic, strong) NSNumber *formal
+@property(nonatomic, strong) NSString *garmentId
 @property(nonatomic, strong) GarmentType garmentType
-@property(nonatomic, strong) NSString * groupId
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) ProductItem * item
-@property(nonatomic, strong) NSString * itemCode
-@property(nonatomic, strong) NSNumber * new
-@property(nonatomic, strong) NSString * note
-@property(nonatomic, strong) NSNumber * orderId
-@property(nonatomic, strong) NSArray orderedAlterations
-@property(nonatomic, strong) NSNumber * parentGarmentId
-@property(nonatomic, strong) NSNumber * purchasedAtTMW
-@property(nonatomic, strong) NSNumber * rfaRelated
-@property(nonatomic, strong) NSDate * scheduledDateTime
+@property(nonatomic, strong) NSString *groupId
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) ProductItem *item
+@property(nonatomic, strong) NSString *itemCode
+@property(nonatomic, strong) NSNumber *new
+@property(nonatomic, strong) NSString *note
+@property(nonatomic, strong) NSNumber *orderId
+@property(nonatomic, strong) NSArray *orderedAlterations
+@property(nonatomic, strong) NSNumber *parentGarmentId
+@property(nonatomic, strong) NSNumber *purchasedAtTMW
+@property(nonatomic, strong) NSNumber *rfaRelated
+@property(nonatomic, strong) NSDate *scheduledDateTime
 @property(nonatomic, strong) Status status
 
 @end

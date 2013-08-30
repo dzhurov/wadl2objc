@@ -12,9 +12,9 @@
 
 @interface _UserDailySchedule : BaseEntity
 
-@property(nonatomic, strong) NSString * firstName
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * lastName
-@property(nonatomic, strong) NSArray orders
+@property(nonatomic, strong) NSString *firstName
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *lastName
+@property(nonatomic, strong) NSArray *orders
 
 @end

@@ -11,7 +11,7 @@
 
 @interface _UpdateNotesRequest : BaseEntity
 
-@property(nonatomic, strong) NSString * garmentId
-@property(nonatomic, strong) NSString * notes
+@property(nonatomic, strong) NSString *garmentId
+@property(nonatomic, strong) NSString *notes
 
 @end

@@ -12,8 +12,8 @@
 
 @interface _LoginResponse : BaseEntity
 
-@property(nonatomic, strong) NSDate * expirationDate
-@property(nonatomic, strong) NSString * token
-@property(nonatomic, strong) User * user
+@property(nonatomic, strong) NSDate *expirationDate
+@property(nonatomic, strong) NSString *token
+@property(nonatomic, strong) User *user
 
 @end

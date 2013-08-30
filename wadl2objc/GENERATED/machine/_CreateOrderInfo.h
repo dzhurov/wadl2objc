@@ -12,7 +12,7 @@
 
 @interface _CreateOrderInfo : BaseEntity
 
-@property(nonatomic, strong) Customer * customer
-@property(nonatomic, strong) NSString * orderType
+@property(nonatomic, strong) Customer *customer
+@property(nonatomic, strong) NSString *orderType
 
 @end

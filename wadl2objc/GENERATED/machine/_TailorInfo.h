@@ -11,11 +11,11 @@
 
 @interface _TailorInfo : BaseEntity
 
-@property(nonatomic, strong) NSNumber * bookedTime
-@property(nonatomic, strong) NSString * firstName
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * lastName
-@property(nonatomic, strong) NSNumber * totalMinutes
-@property(nonatomic, strong) NSString * uniqueId
+@property(nonatomic, strong) NSNumber *bookedTime
+@property(nonatomic, strong) NSString *firstName
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *lastName
+@property(nonatomic, strong) NSNumber *totalMinutes
+@property(nonatomic, strong) NSString *uniqueId
 
 @end

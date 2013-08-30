@@ -11,8 +11,8 @@
 
 @interface _LoadStore : BaseEntity
 
-@property(nonatomic, strong) NSDate * date
-@property(nonatomic, strong) NSNumber * minutes
-@property(nonatomic, strong) NSNumber * totalMinutes
+@property(nonatomic, strong) NSDate *date
+@property(nonatomic, strong) NSNumber *minutes
+@property(nonatomic, strong) NSNumber *totalMinutes
 
 @end

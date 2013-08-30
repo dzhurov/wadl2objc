@@ -11,10 +11,10 @@
 
 @interface _SearchCriteria : BaseEntity
 
-@property(nonatomic, strong) NSNumber * length
-@property(nonatomic, strong) NSString * nameOrNumber
-@property(nonatomic, strong) NSNumber * offset
-@property(nonatomic, strong) NSArray orderStatuses
-@property(nonatomic, strong) NSNumber * priority
+@property(nonatomic, strong) NSNumber *length
+@property(nonatomic, strong) NSString *nameOrNumber
+@property(nonatomic, strong) NSNumber *offset
+@property(nonatomic, strong) NSArray *orderStatuses
+@property(nonatomic, strong) NSNumber *priority
 
 @end

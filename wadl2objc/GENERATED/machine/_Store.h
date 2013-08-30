@@ -11,17 +11,17 @@
 
 @interface _Store : BaseEntity
 
-@property(nonatomic, strong) NSNumber * active
-@property(nonatomic, strong) NSString * address
-@property(nonatomic, strong) NSString * city
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * name
-@property(nonatomic, strong) NSNumber * orderExecutionLimit
-@property(nonatomic, strong) NSString * phone
-@property(nonatomic, strong) NSString * regionCode
-@property(nonatomic, strong) NSString * state
-@property(nonatomic, strong) NSString * timeZone
-@property(nonatomic, strong) NSNumber * uniqueId
-@property(nonatomic, strong) NSString * zip
+@property(nonatomic, strong) NSNumber *active
+@property(nonatomic, strong) NSString *address
+@property(nonatomic, strong) NSString *city
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *name
+@property(nonatomic, strong) NSNumber *orderExecutionLimit
+@property(nonatomic, strong) NSString *phone
+@property(nonatomic, strong) NSString *regionCode
+@property(nonatomic, strong) NSString *state
+@property(nonatomic, strong) NSString *timeZone
+@property(nonatomic, strong) NSNumber *uniqueId
+@property(nonatomic, strong) NSString *zip
 
 @end

@@ -17,22 +17,22 @@
 
 @interface _AlterationOrder : BaseEntity
 
-@property(nonatomic, strong) NSDate * completeDateTime
-@property(nonatomic, strong) User * createdBy
-@property(nonatomic, strong) NSDate * createdDateTime
-@property(nonatomic, strong) Customer * customer
-@property(nonatomic, strong) NSDate * dueDateTime
-@property(nonatomic, strong) NSArray garments
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * note
-@property(nonatomic, strong) NSString * orderId
+@property(nonatomic, strong) NSDate *completeDateTime
+@property(nonatomic, strong) User *createdBy
+@property(nonatomic, strong) NSDate *createdDateTime
+@property(nonatomic, strong) Customer *customer
+@property(nonatomic, strong) NSDate *dueDateTime
+@property(nonatomic, strong) NSArray *garments
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *note
+@property(nonatomic, strong) NSString *orderId
 @property(nonatomic, strong) OrderType orderType
-@property(nonatomic, strong) NSDate * pickupDateTime
+@property(nonatomic, strong) NSDate *pickupDateTime
 @property(nonatomic, strong) Status status
-@property(nonatomic, strong) Store * store
-@property(nonatomic, strong) NSNumber * totalPrice
-@property(nonatomic, strong) User * updatedBy
-@property(nonatomic, strong) NSDate * updatedDateTime
-@property(nonatomic, strong) NSNumber * version
+@property(nonatomic, strong) Store *store
+@property(nonatomic, strong) NSNumber *totalPrice
+@property(nonatomic, strong) User *updatedBy
+@property(nonatomic, strong) NSDate *updatedDateTime
+@property(nonatomic, strong) NSNumber *version
 
 @end

@@ -11,7 +11,7 @@
 
 @interface _LoginRequest : BaseEntity
 
-@property(nonatomic, strong) NSString * password
-@property(nonatomic, strong) NSString * userId
+@property(nonatomic, strong) NSString *password
+@property(nonatomic, strong) NSString *userId
 
 @end

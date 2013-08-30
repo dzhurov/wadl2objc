@@ -30,7 +30,7 @@
 
 - (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"priceByStores"]) return @"StoreItemPrice *";
+	if ([fieldName isEqualToString:@"priceByStores"]) return @"StoreItemPrice";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

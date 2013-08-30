@@ -11,6 +11,6 @@
 
 @interface _EmailInfo : BaseEntity
 
-@property(nonatomic, strong) NSArray users
+@property(nonatomic, strong) NSArray *users
 
 @end

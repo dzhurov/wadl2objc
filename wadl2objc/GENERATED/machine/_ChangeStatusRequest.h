@@ -12,9 +12,9 @@
 
 @interface _ChangeStatusRequest : BaseEntity
 
-@property(nonatomic, strong) NSArray garmentIds
-@property(nonatomic, strong) NSNumber * setOrderStatus
-@property(nonatomic, strong) NSString * signature
+@property(nonatomic, strong) NSArray *garmentIds
+@property(nonatomic, strong) NSNumber *setOrderStatus
+@property(nonatomic, strong) NSString *signature
 @property(nonatomic, strong) Status status
 
 @end

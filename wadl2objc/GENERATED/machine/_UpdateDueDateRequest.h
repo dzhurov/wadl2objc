@@ -11,7 +11,7 @@
 
 @interface _UpdateDueDateRequest : BaseEntity
 
-@property(nonatomic, strong) NSString * dueDate
-@property(nonatomic, strong) NSNumber * orderId
+@property(nonatomic, strong) NSString *dueDate
+@property(nonatomic, strong) NSNumber *orderId
 
 @end

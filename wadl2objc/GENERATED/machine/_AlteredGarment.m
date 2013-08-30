@@ -32,7 +32,7 @@
 
 - (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"orderedAlterations"]) return @"OrderedAlteration *";
+	if ([fieldName isEqualToString:@"orderedAlterations"]) return @"OrderedAlteration";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

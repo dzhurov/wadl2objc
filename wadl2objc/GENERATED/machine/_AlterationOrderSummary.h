@@ -12,15 +12,15 @@
 
 @interface _AlterationOrderSummary : BaseEntity
 
-@property(nonatomic, strong) NSDate * dueDateTime
-@property(nonatomic, strong) NSString * firstName
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSNumber * itemsRemain
-@property(nonatomic, strong) NSNumber * itemsSize
-@property(nonatomic, strong) NSString * lastName
-@property(nonatomic, strong) NSString * orderId
+@property(nonatomic, strong) NSDate *dueDateTime
+@property(nonatomic, strong) NSString *firstName
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSNumber *itemsRemain
+@property(nonatomic, strong) NSNumber *itemsSize
+@property(nonatomic, strong) NSString *lastName
+@property(nonatomic, strong) NSString *orderId
 @property(nonatomic, strong) OrderType orderType
 @property(nonatomic, strong) Status status
-@property(nonatomic, strong) NSNumber * totalPrice
+@property(nonatomic, strong) NSNumber *totalPrice
 
 @end

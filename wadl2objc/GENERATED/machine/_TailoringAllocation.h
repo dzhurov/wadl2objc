@@ -12,7 +12,7 @@
 
 @interface _TailoringAllocation : BaseEntity
 
-@property(nonatomic, strong) NSDate * dateTime
-@property(nonatomic, strong) NSArray tailorInfo
+@property(nonatomic, strong) NSDate *dateTime
+@property(nonatomic, strong) NSArray *tailorInfo
 
 @end

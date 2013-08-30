@@ -13,11 +13,11 @@
 
 @interface _OrderedAlteration : BaseEntity
 
-@property(nonatomic, strong) Alteration * alteration
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSNumber * inwards
-@property(nonatomic, strong) NSNumber * minutes
-@property(nonatomic, strong) NSNumber * quantity
+@property(nonatomic, strong) Alteration *alteration
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSNumber *inwards
+@property(nonatomic, strong) NSNumber *minutes
+@property(nonatomic, strong) NSNumber *quantity
 @property(nonatomic, strong) AlterationStatus status
 
 @end

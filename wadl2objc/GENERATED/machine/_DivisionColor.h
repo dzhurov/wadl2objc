@@ -11,10 +11,10 @@
 
 @interface _DivisionColor : BaseEntity
 
-@property(nonatomic, strong) NSString * colorCode
-@property(nonatomic, strong) NSString * colorDescription
-@property(nonatomic, strong) NSString * colorFamily
-@property(nonatomic, strong) NSString * divisionCode
-@property(nonatomic, strong) NSNumber * id
+@property(nonatomic, strong) NSString *colorCode
+@property(nonatomic, strong) NSString *colorDescription
+@property(nonatomic, strong) NSString *colorFamily
+@property(nonatomic, strong) NSString *divisionCode
+@property(nonatomic, strong) NSNumber *id
 
 @end

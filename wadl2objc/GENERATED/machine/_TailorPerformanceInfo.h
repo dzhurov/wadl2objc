@@ -11,8 +11,8 @@
 
 @interface _TailorPerformanceInfo : BaseEntity
 
-@property(nonatomic, strong) NSNumber * allocated
-@property(nonatomic, strong) NSNumber * archived
-@property(nonatomic, strong) NSString * uniqueId
+@property(nonatomic, strong) NSNumber *allocated
+@property(nonatomic, strong) NSNumber *archived
+@property(nonatomic, strong) NSString *uniqueId
 
 @end

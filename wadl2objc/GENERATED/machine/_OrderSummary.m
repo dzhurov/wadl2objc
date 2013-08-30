@@ -30,7 +30,7 @@
 
 - (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"orderSummary"]) return @"AlterationOrderSummary *";
+	if ([fieldName isEqualToString:@"orderSummary"]) return @"AlterationOrderSummary";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

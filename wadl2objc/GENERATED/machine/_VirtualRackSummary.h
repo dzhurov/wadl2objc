@@ -12,12 +12,12 @@
 
 @interface _VirtualRackSummary : BaseEntity
 
-@property(nonatomic, strong) NSString * firstName
-@property(nonatomic, strong) NSNumber * garmentSize
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * lastName
-@property(nonatomic, strong) NSString * orderId
-@property(nonatomic, strong) NSNumber * priority
+@property(nonatomic, strong) NSString *firstName
+@property(nonatomic, strong) NSNumber *garmentSize
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *lastName
+@property(nonatomic, strong) NSString *orderId
+@property(nonatomic, strong) NSNumber *priority
 @property(nonatomic, strong) Status status
 
 @end

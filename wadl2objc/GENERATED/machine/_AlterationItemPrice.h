@@ -12,9 +12,9 @@
 
 @interface _AlterationItemPrice : BaseEntity
 
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * outsideSecondaryItemCode
-@property(nonatomic, strong) NSArray priceByStores
-@property(nonatomic, strong) NSString * secondaryItemCode
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *outsideSecondaryItemCode
+@property(nonatomic, strong) NSArray *priceByStores
+@property(nonatomic, strong) NSString *secondaryItemCode
 
 @end

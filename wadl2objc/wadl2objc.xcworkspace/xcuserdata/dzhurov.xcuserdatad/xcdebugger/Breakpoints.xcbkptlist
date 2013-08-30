@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "wadl2objc/Model/XSDDocument.m"
-         timestampString = "399487416.481331"
+         timestampString = "399545445.344186"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "192"
-         endingLineNumber = "192"
+         startingLineNumber = "199"
+         endingLineNumber = "199"
          landmarkName = "-writeMachineHFileObject:toPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "wadl2objc/Model/XSDDocument.m"
-         timestampString = "399487416.481331"
+         timestampString = "399545445.344186"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "197"
-         endingLineNumber = "197"
+         startingLineNumber = "204"
+         endingLineNumber = "204"
          landmarkName = "-writeMachineHFileObject:toPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "wadl2objc/Model/XSDDocument.m"
-         timestampString = "399487656.455573"
+         timestampString = "399545445.344186"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "248"
-         endingLineNumber = "248"
+         startingLineNumber = "255"
+         endingLineNumber = "255"
          landmarkName = "-writeMachineMFileObject:toPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "wadl2objc/Model/XSDDocument.m"
-         timestampString = "399487656.455573"
+         timestampString = "399545445.344186"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "253"
-         endingLineNumber = "253"
+         startingLineNumber = "260"
+         endingLineNumber = "260"
          landmarkName = "-writeMachineMFileObject:toPath:"
          landmarkType = "5">
       </FileBreakpoint>

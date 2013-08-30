@@ -12,8 +12,8 @@
 
 @interface _Role : BaseEntity
 
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * roleName
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *roleName
 @property(nonatomic, strong) RoleType type
 
 @end

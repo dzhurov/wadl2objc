@@ -14,11 +14,11 @@
 @interface _Alteration : BaseEntity
 
 @property(nonatomic, strong) GarmentType garmentType
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSNumber * inwards
-@property(nonatomic, strong) AlterationItemPrice * item
-@property(nonatomic, strong) NSNumber * maxQuantity
-@property(nonatomic, strong) NSString * name
-@property(nonatomic, strong) NSNumber * rank
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSNumber *inwards
+@property(nonatomic, strong) AlterationItemPrice *item
+@property(nonatomic, strong) NSNumber *maxQuantity
+@property(nonatomic, strong) NSString *name
+@property(nonatomic, strong) NSNumber *rank
 
 @end

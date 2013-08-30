@@ -13,14 +13,14 @@
 
 @interface _User : BaseEntity
 
-@property(nonatomic, strong) NSNumber * active
-@property(nonatomic, strong) NSString * firstName
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * lastName
-@property(nonatomic, strong) NSString * password
-@property(nonatomic, strong) NSArray roles
-@property(nonatomic, strong) Store * store
-@property(nonatomic, strong) NSNumber * tailor
-@property(nonatomic, strong) NSString * uniqueId
+@property(nonatomic, strong) NSNumber *active
+@property(nonatomic, strong) NSString *firstName
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *lastName
+@property(nonatomic, strong) NSString *password
+@property(nonatomic, strong) NSArray *roles
+@property(nonatomic, strong) Store *store
+@property(nonatomic, strong) NSNumber *tailor
+@property(nonatomic, strong) NSString *uniqueId
 
 @end

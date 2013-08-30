@@ -13,12 +13,12 @@
 @interface _Customer : BaseEntity
 
 @property(nonatomic, strong) ContactPreferences contactPreferences
-@property(nonatomic, strong) NSString * email
-@property(nonatomic, strong) NSString * firstName
+@property(nonatomic, strong) NSString *email
+@property(nonatomic, strong) NSString *firstName
 @property(nonatomic, strong) Gender gender
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSString * lastName
-@property(nonatomic, strong) NSString * phoneNumber
-@property(nonatomic, strong) NSNumber * regularWearer
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSString *lastName
+@property(nonatomic, strong) NSString *phoneNumber
+@property(nonatomic, strong) NSNumber *regularWearer
 
 @end

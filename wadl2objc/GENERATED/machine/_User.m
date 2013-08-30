@@ -30,7 +30,7 @@
 
 - (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"roles"]) return @"Role *";
+	if ([fieldName isEqualToString:@"roles"]) return @"Role";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

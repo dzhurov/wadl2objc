@@ -12,8 +12,8 @@
 
 @interface _DailyLoad : BaseEntity
 
-@property(nonatomic, strong) NSNumber * assignedMinutes
-@property(nonatomic, strong) NSNumber * availableMinutes
-@property(nonatomic, strong) NSArray dailyInfo
+@property(nonatomic, strong) NSNumber *assignedMinutes
+@property(nonatomic, strong) NSNumber *availableMinutes
+@property(nonatomic, strong) NSArray *dailyInfo
 
 @end

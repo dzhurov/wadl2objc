@@ -13,11 +13,11 @@
 
 @interface _StoreWorkingDay : BaseEntity
 
-@property(nonatomic, strong) NSDate * closeHour
+@property(nonatomic, strong) NSDate *closeHour
 @property(nonatomic, strong) DayOfWeek dayOfWeek
-@property(nonatomic, strong) NSDate * defaultDueTime
-@property(nonatomic, strong) NSNumber * id
-@property(nonatomic, strong) NSDate * openHour
-@property(nonatomic, strong) Store * store
+@property(nonatomic, strong) NSDate *defaultDueTime
+@property(nonatomic, strong) NSNumber *id
+@property(nonatomic, strong) NSDate *openHour
+@property(nonatomic, strong) Store *store
 
 @end
