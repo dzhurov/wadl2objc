@@ -13,6 +13,8 @@ __strong static NSDateFormatter const *dateFormatter = nil;
 
 @implementation BaseEntity
 
+#pragma mark - Static methods
+
 + (void)load
 {
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -22,15 +24,6 @@ __strong static NSDateFormatter const *dateFormatter = nil;
 + (void)setDateFormatter:(NSDateFormatter *)aDateFormatter
 {
     dateFormatter = aDateFormatter;
-}
-
-- (id)initWithDictionaryInfo:(NSDictionary *)dictionary
-{
-    self = [super init];
-    if (self){
-        self.dictionaryInfo = dictionary;
-    }
-    return self;
 }
 
 + (NSMutableArray *)objectsWithDictionariesInfoArray:(NSArray *)array
@@ -45,6 +38,23 @@ __strong static NSDateFormatter const *dateFormatter = nil;
     }
     return nil;
 }
+
++ (NSArray*)mappedKays
+{
+    return nil;
+}
+
+#pragma mark -
+
+- (id)initWithDictionaryInfo:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self){
+        self.dictionaryInfo = dictionary;
+    }
+    return self;
+}
+
 
 - (NSString *)description
 {
@@ -140,177 +150,108 @@ __strong static NSDateFormatter const *dateFormatter = nil;
 
 #pragma mark - Dictionary Info
 
-- (NSMutableDictionary *)dictionaryInfoForKeys:(NSString*)firstObject, ... NS_REQUIRES_NIL_TERMINATION
+- (NSMutableDictionary*)dictionaryInfoForKeys:(NSArray*)keys
 {
-    NSMutableDictionary *dictInfo = nil;
-    NSString* key;
-    va_list argumentList;
-    if (firstObject)
-    {
-        dictInfo = [NSMutableDictionary dictionary];
-        va_start(argumentList, firstObject);
-        key = firstObject;
-        do {
-            id valueForKey = [self valueForKey:key];
+    NSMutableDictionary *dictInfo = [NSMutableDictionary dictionary];
+    for(NSString *key in keys){
+        id valueForKey = [self valueForKey:key];
+        objc_property_t property = class_getProperty([self class], [key UTF8String]);
+        const char *propertyAttributes = property_getAttributes(property);
+        NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
+        NSString *propertyTypeStr = attributes[0];
+        BOOL isPrimitive = [propertyTypeStr characterAtIndex:1] != '@'; // is it class
+        if (isPrimitive){
+            NSString *enumName = [BaseEntity entityNameForMappedField:key];
+            NSUInteger enumValue = [(NSNumber*)valueForKey unsignedIntegerValue];
+            id enumObj = [XSDEnums objectForEnumValue:enumValue enumName:enumName];
+            valueForKey = enumObj;
+        }
+        else if ([valueForKey isKindOfClass:[BaseEntity class]]){
+            valueForKey = [(BaseEntity*)valueForKey dictionaryInfo];
+        }
+        else if ([valueForKey isKindOfClass:[NSDate class]]){
+            valueForKey = [dateFormatter stringFromDate:valueForKey];
+        }
+        else if ([valueForKey isKindOfClass:[NSArray class]]){
+            NSString *memberClassName = [BaseEntity classNameOfMembersForMappedField:key];
+            Class memberClass = NSClassFromString(memberClassName);
+            if ( [memberClass isSubclassOfClass:[BaseEntity class]] ){
+                NSArray *array = [(NSArray*)valueForKey valueForKey:@"dictionaryInfo"];
+                valueForKey = array;
+            }
+        }
+        
+        if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]]){
+            [dictInfo setObject:valueForKey forKey:key];
+        }
+    }
+    return dictInfo;
+}
+
+- (void) setDictionaryInfo:(NSDictionary*)dictInfo forKeys:(NSArray*)keys
+{
+    for(NSString *key in keys){
+        id valueForKey = [dictInfo objectForKey:key];
+        if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]])
+        {
             objc_property_t property = class_getProperty([self class], [key UTF8String]);
             const char *propertyAttributes = property_getAttributes(property);
             NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
             NSString *propertyTypeStr = attributes[0];
             BOOL isPrimitive = [propertyTypeStr characterAtIndex:1] != '@'; // is it class
+            NSString *className = [propertyTypeStr substringFromIndex:2]; // 2 is length of "T@""
+            className = [className stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+            Class propClass = NSClassFromString(className);
             
-            if (isPrimitive){
-                NSString *enumName = [self entityNameForMappedField:key];
-                NSUInteger enumValue = [(NSNumber*)valueForKey unsignedIntegerValue];
-                id enumObj = [XSDEnums objectForEnumValue:enumValue enumName:enumName];
-                valueForKey = enumObj;
+            if (isPrimitive){ // isEnum
+                NSString *enumName = [BaseEntity entityNameForMappedField:key];
+                NSUInteger enumValue = [XSDEnums enumValueForObject:valueForKey enumName:enumName];
+                [self setValue:@(enumValue) forKey:key];
             }
-            else if ([valueForKey isKindOfClass:[BaseEntity class]]){
-                valueForKey = [(BaseEntity*)valueForKey dictionaryInfo];
+            if ([propClass isSubclassOfClass:[BaseEntity class]]){
+                BaseEntity *entity = [[propClass alloc] initWithDictionaryInfo:valueForKey];
+                [self setValue:entity forKey: key];
             }
-            else if ([valueForKey isKindOfClass:[NSDate class]]){
-                valueForKey = [dateFormatter stringFromDate:valueForKey];
+            else if ([propClass isSubclassOfClass:[NSDate class]]){
+                NSDate *date = [dateFormatter dateFromString:valueForKey];
+                [self setValue:date forKey: key];
             }
-            else if ([valueForKey isKindOfClass:[NSArray class]]){
-                NSString *memberClassName = [self classNameOfMembersForMappedField:key];
+            else if ([propClass isSubclassOfClass:[NSArray class]]){
+                NSString *memberClassName = [BaseEntity classNameOfMembersForMappedField:key];
                 Class memberClass = NSClassFromString(memberClassName);
                 if ( [memberClass isSubclassOfClass:[BaseEntity class]] ){
-                    NSArray *array = [(NSArray*)valueForKey valueForKey:@"dictionaryInfo"];
-                    valueForKey = array;
-                }
-            }
-            if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]]){
-                [dictInfo setObject:valueForKey forKey:key];
-            }
-            key = va_arg(argumentList, NSString*);
-        } while (key);
-        va_end(argumentList);
-    }
-    
-    return dictInfo;
-}
-
-- (void)setDictionaryInfo:(NSDictionary *)dictInfo forKeys:(NSString*)firstObject, ... NS_REQUIRES_NIL_TERMINATION
-{
-    NSString* key;
-    va_list argumentList;
-    if (firstObject)
-    {
-        id valueForKey = [dictInfo objectForKey:firstObject];
-        if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]]){
-            [self setValue:valueForKey forKey:firstObject];
-        }
-        va_start(argumentList, firstObject);
-        do {
-            key = va_arg(argumentList, NSString*);
-            id valueForKey = [dictInfo objectForKey:key];
-            if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]])
-            {
-                objc_property_t property = class_getProperty([self class], [key UTF8String]);
-                const char *propertyAttributes = property_getAttributes(property);
-                NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
-                NSString *propertyTypeStr = attributes[0];
-                BOOL isPrimitive = [propertyTypeStr characterAtIndex:1] != '@'; // is it class
-                NSString *className = [propertyTypeStr substringFromIndex:2]; // 2 is length of "T@""
-                className = [className stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-                Class propClass = NSClassFromString(className);
-                
-                if (isPrimitive){ // isEnum
-                    NSString *enumName = [self entityNameForMappedField:key];
-                    NSUInteger enumValue = [XSDEnums enumValueForObject:valueForKey enumName:enumName];
-                    [self setValue:@(enumValue) forKey:key];
-                }
-                if ([propClass isSubclassOfClass:[BaseEntity class]]){
-                    BaseEntity *entity = [[propClass alloc] initWithDictionaryInfo:valueForKey];
-                    [self setValue:entity forKey: key];
-                }
-                else if ([propClass isSubclassOfClass:[NSDate class]]){
-                    NSDate *date = [dateFormatter dateFromString:valueForKey];
-                    [self setValue:date forKey: key];
-                }
-                else if ([propClass isSubclassOfClass:[NSArray class]]){
-                    NSString *memberClassName = [self classNameOfMembersForMappedField:key];
-                    Class memberClass = NSClassFromString(memberClassName);
-                    if ( [memberClass isSubclassOfClass:[BaseEntity class]] ){
-                        NSArray *array = [memberClass objectsWithDictionariesInfoArray:valueForKey];
-                        [self setValue:array forKey:key];
-                    }
-                    else{
-                        [self setValue:valueForKey forKey:key];
-                    }
+                    NSArray *array = [memberClass objectsWithDictionariesInfoArray:valueForKey];
+                    [self setValue:array forKey:key];
                 }
                 else{
                     [self setValue:valueForKey forKey:key];
                 }
             }
-        } while (key);
-        va_end(argumentList);
+            else{
+                [self setValue:valueForKey forKey:key];
+            }
+        }
     }
 }
 
 - (NSMutableDictionary*)dictionaryInfo
 {
-    NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
-    [self propertiesEnumeration:^(NSString *propertyName, NSArray *attributes) {
-        BOOL isReadOnly = [attributes containsObject:@"R"];
-        if (!isReadOnly){
-            id object = [self valueForKey:propertyName];
-            id value = object;
-            if ([object isKindOfClass:[BaseEntity class]]){
-                value = [(BaseEntity*)object dictionaryInfo];
-            }
-            [jsonDict setObject:value forKey:propertyName];
-        }
-    }];
-    return jsonDict;
+    [self dictionaryInfoForKeys:[BaseEntity mappedKays]];
 }
 
 - (void)setDictionaryInfo:(NSDictionary *)dictionaryInfo
 {
-    [self propertiesEnumeration:^(NSString *propertyName, NSArray *attributes) {
-        BOOL isReadOnly = [attributes containsObject:@"R"];
-        
-        if ( !isReadOnly ){
-            NSString *propertyTypeStr = attributes[0];
-            BOOL isPrimitive = [propertyTypeStr characterAtIndex:1] != '@'; // is it class
-            NSString *className = nil;
-            id object = [dictionaryInfo objectForKey:propertyName];
-            while ( !isPrimitive){
-                className = [propertyTypeStr substringFromIndex:2]; // 2 is length of "T@""
-                className = [className stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-                Class propClass = NSClassFromString(className);
-                if ( propClass == Nil ){
-                    return;
-                }
-                if ( [propClass isSubclassOfClass:[BaseEntity class]] ){
-                    // initialize an object
-                    NSDictionary *dictObj = object;
-                    BaseEntity *entity = [[propClass alloc] initWithDictionaryInfo:dictObj];
-                    [self setValue:entity forKey: propertyName];
-                    return;
-                }
-                else if ([propClass isSubclassOfClass:[NSDate class]]){
-                    object = [dateFormatter dateFromString:object];
-                    break;
-                }
-                else if ( [propClass isSubclassOfClass:[NSArray class]] ){
-                    // do something with it
-                    break;
-                }
-                break;
-            }
-            [self setValue:object forKey: propertyName];
-        }
-    }];
+    [self setDictionaryInfo:dictionaryInfo forKeys:[BaseEntity mappedKays]];
 }
 
 #pragma mark - Setting/Get value for key
 
-- (NSString *)entityNameForMappedField:(NSString*)fieldName
++ (NSString *)entityNameForMappedField:(NSString*)fieldName
 {
     return nil;
 }
 
-- (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
++ (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
     return nil;
 }

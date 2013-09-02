@@ -12,11 +12,12 @@
 
 + (void)setDateFormatter:(NSDateFormatter*)dateFormatter;
 + (NSMutableArray*)objectsWithDictionariesInfoArray:(NSArray*)array;
++ (NSArray *)mappedKeys;
 
 - (id)initWithDictionaryInfo:(NSDictionary*)dictionary;
 
-- (NSMutableDictionary*)dictionaryInfoForKeys: (id) firstObject, ... NS_REQUIRES_NIL_TERMINATION;
-- (void) setDictionaryInfo:(NSDictionary*)dictInfo forKeys: (id) firstObject, ... NS_REQUIRES_NIL_TERMINATION;
+- (NSMutableDictionary*)dictionaryInfoForKeys:(NSArray*)keys;
+- (void) setDictionaryInfo:(NSDictionary*)dictInfo forKeys:(NSArray*)keys;
 
 - (void)setDictionaryInfo:(NSDictionary *)JSONDictionary;
 - (NSMutableDictionary*)dictionaryInfo;

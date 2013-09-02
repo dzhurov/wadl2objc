@@ -241,15 +241,15 @@
     
     // Mapped properties
         // Complex types
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"simpleType == nil AND isCollection == NO", [XSDObjectProperty class]];
-    NSArray *fieldsKindOfObjects = [object.properties filteredArrayUsingPredicate:predicate];
-    NSArray *fieldsNamesKindOfObjects = [fieldsKindOfObjects valueForKey:@"name"];
+    NSArray *fieldsNamesKindOfObjects = [object.properties valueForKey:@"name"];
     NSMutableString *fieldsNamesStringKindOfObjects = [NSMutableString string];
     for (NSString *field in fieldsNamesKindOfObjects) {
         [fieldsNamesStringKindOfObjects appendFormat:@"@\"%@\", ", field];
     }
+    if (fieldsNamesStringKindOfObjects.length > 2) // remove last ", "
+        [fieldsNamesStringKindOfObjects deleteCharactersInRange:NSMakeRange(fieldsNamesStringKindOfObjects.length - 2, 2)];
         // Simple types
-    predicate = [NSPredicate predicateWithFormat:@"simpleType != NIL"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"simpleType != NIL"];
     NSArray *simpleTypes = [object.properties filteredArrayUsingPredicate:predicate];
     NSMutableString *enumsConditionsList = [NSMutableString string];
     for (XSDObjectProperty *oneSimpleTypeProperty in simpleTypes) {
@@ -270,7 +270,7 @@
     if (error){
         NSLog(@"ERROR: %@", error);
     }
-    NSString *contentString = [NSString stringWithFormat:_mFileFormat, className, _currentFormattedDate, self.version, className, className,fieldsNamesStringKindOfObjects, fieldsNamesStringKindOfObjects, enumsConditionsList, collectionsConditionsList];
+    NSString *contentString = [NSString stringWithFormat:_mFileFormat, className, _currentFormattedDate, self.version, className, className,fieldsNamesStringKindOfObjects, enumsConditionsList, collectionsConditionsList];
     [contentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
         NSLog(@"ERROR: %@", error);
