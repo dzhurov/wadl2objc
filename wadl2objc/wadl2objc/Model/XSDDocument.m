@@ -36,6 +36,8 @@
 
 - (id)initWithData:(NSData *)data
 {
+    
+    
     self = [super init];
     if ( self ){
         NSError *error = nil;

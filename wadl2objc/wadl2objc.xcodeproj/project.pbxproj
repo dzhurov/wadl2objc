@@ -16,6 +16,7 @@
 		0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DCD17CB9054003655C4 /* XSDObjectProperty.m */; };
 		0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */; };
 		0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD317CBA663003655C4 /* XSDTypes.m */; };
+		0AA94D0B17F883B0000DE3B6 /* WADLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */; };
 		7EC7DCBD17D096ED003CE122 /* TemplateEntity_m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7DCBC17D096ED003CE122 /* TemplateEntity_m */; };
 		7EC7DCBF17D0BCB6003CE122 /* XSDEnums_m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B156317CF5AE600C96204 /* XSDEnums_m */; };
 		84701B3DA72D4371BA44F380 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4173097DCA4D03B1FB0810 /* libPods.a */; };
@@ -55,6 +56,8 @@
 		0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDSimpleType.m; sourceTree = "<group>"; };
 		0A964DD217CBA663003655C4 /* XSDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDTypes.h; sourceTree = "<group>"; };
 		0A964DD317CBA663003655C4 /* XSDTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDTypes.m; sourceTree = "<group>"; };
+		0AA94D0917F883B0000DE3B6 /* WADLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLDocument.h; sourceTree = "<group>"; };
+		0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLDocument.m; sourceTree = "<group>"; };
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7E1B156217CF5AE600C96204 /* XSDEnums_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_h; sourceTree = "<group>"; };
 		7E1B156317CF5AE600C96204 /* XSDEnums_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_m; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 				0A964DCD17CB9054003655C4 /* XSDObjectProperty.m */,
 				0A964DCF17CBA3F9003655C4 /* XSDSimpleType.h */,
 				0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */,
+				0AA94D0917F883B0000DE3B6 /* WADLDocument.h */,
+				0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				0A964DCB17CB6BFD003655C4 /* XSDObject.m in Sources */,
 				0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */,
 				0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */,
+				0AA94D0B17F883B0000DE3B6 /* WADLDocument.m in Sources */,
 				0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */,
 				7EC7DCBD17D096ED003CE122 /* TemplateEntity_m in Sources */,
 				7EC7DCBF17D0BCB6003CE122 /* XSDEnums_m in Sources */,

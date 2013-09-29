@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "SettingsManager.h"
 #import "XSDDocument.h"
+#import "WADLDocument.h"
 
 void showHelp();
 
@@ -35,10 +36,12 @@ int main(int argc, const char * argv[])
             return EXIT_FAILURE;
         }
         
-        NSData *xsdData = [NSData dataWithContentsOfFile:settingMgr.xsdPath];
-        XSDDocument *xsdDoc = [[XSDDocument alloc] initWithData: xsdData];
-        [xsdDoc writeObjectsToPath:settingMgr.outputPath];
+//        NSData *xsdData = [NSData dataWithContentsOfFile:settingMgr.xsdPath];
+//        XSDDocument *xsdDoc = [[XSDDocument alloc] initWithData: xsdData];
+//        [xsdDoc writeObjectsToPath:settingMgr.outputPath];
         
+        NSData *wadlData = [NSData dataWithContentsOfFile:settingMgr.wadlPath];
+        WADLDocument *wadlDoc = [[WADLDocument alloc] initWithData:wadlData];
     }
     return 0;
 }
