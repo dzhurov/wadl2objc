@@ -42,7 +42,6 @@
     if ( self ){
         NSError *error = nil;
         NSDictionary *xsdDictionary = [TBXML dictionaryWithXMLData:data error: &error];
-        NSLog(@"\n\nXSD: \n%@", xsdDictionary);
         
         [self setXSDDictionary:xsdDictionary];
     }
@@ -194,19 +193,21 @@
         }
     }
     if ( needForSimpleTypes )
-        [includes appendFormat:@"#import \"%@.h\"\n", kDefaultSimpleTypesFileName];
+        [includes appendFormat:@"#import \"%@.h\"\n", kDefaultEnumManagerClassname];
     // Properties list
     NSMutableString *propertiesList = [NSMutableString string];
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = nil;
         if (property.isCollection)
-            typeString = property.isCollection ? @"NSArray *" : property.type;
-        else if (property.simpleType)
-            typeString = [property.type stringByAppendingString:@" "];
+            typeString = property.isCollection ? @"NSArray" : property.type;
+        else if (property.simpleType){
+            [propertiesList appendFormat:@"\n@property(nonatomic) %@ %@;", property.type, property.name];
+            continue;
+        }
         else
-            typeString = [property.type stringByAppendingString:@" *"];
+            typeString = property.type;
         
-        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@%@", typeString, property.name];
+        [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@ *%@;", typeString, property.name];
     }
     
     //Write To File

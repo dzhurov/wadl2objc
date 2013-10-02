@@ -19,8 +19,6 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
         
-        // insert code here...
-        NSLog(@"Hello, World!");
         if ( argc <= 1 ){
             showHelp();
             return EXIT_SUCCESS;
@@ -49,7 +47,7 @@ int main(int argc, const char * argv[])
 
 void showHelp()
 {
-    NSLog(@"Hello, my dear friend!");
-    NSLog(@"to use this stuff you have to have .wadl and .xsd files");
-    NSLog(@"Run this app with parameters --wadl: <wadl_file_path> --xsd: <xsd_file_path> --output-dir: <output_dir>");
+    printf("Hello, my dear friend!\n");
+    printf("to use this stuff you have to have .wadl and .xsd files\n");
+    printf("Run this app with parameters --wadl: <wadl_file_path> --xsd: <xsd_file_path> --output-dir: <output_dir>\n");
 }

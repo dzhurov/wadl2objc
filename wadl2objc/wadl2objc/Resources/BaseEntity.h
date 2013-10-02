@@ -22,7 +22,7 @@
 - (void)setDictionaryInfo:(NSDictionary *)JSONDictionary;
 - (NSMutableDictionary*)dictionaryInfo;
 
-- (NSString *)entityNameForMappedField:(NSString*)fieldName;
-- (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName;
++ (NSString *)entityNameForMappedField:(NSString*)fieldName;
++ (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName;
 
 @end

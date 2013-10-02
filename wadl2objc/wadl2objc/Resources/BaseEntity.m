@@ -8,6 +8,7 @@
 
 #import "BaseEntity.h"
 #import <objc/runtime.h>
+#import "XSDEnums.h"
 
 __strong static NSDateFormatter const *dateFormatter = nil;
 
@@ -39,7 +40,7 @@ __strong static NSDateFormatter const *dateFormatter = nil;
     return nil;
 }
 
-+ (NSArray*)mappedKays
++ (NSArray*)mappedKeys;
 {
     return nil;
 }
@@ -217,7 +218,7 @@ __strong static NSDateFormatter const *dateFormatter = nil;
                 [self setValue:date forKey: key];
             }
             else if ([propClass isSubclassOfClass:[NSArray class]]){
-                NSString *memberClassName = [BaseEntity classNameOfMembersForMappedField:key];
+                NSString *memberClassName = [[self class] classNameOfMembersForMappedField:key];
                 Class memberClass = NSClassFromString(memberClassName);
                 if ( [memberClass isSubclassOfClass:[BaseEntity class]] ){
                     NSArray *array = [memberClass objectsWithDictionariesInfoArray:valueForKey];
@@ -236,12 +237,12 @@ __strong static NSDateFormatter const *dateFormatter = nil;
 
 - (NSMutableDictionary*)dictionaryInfo
 {
-    [self dictionaryInfoForKeys:[BaseEntity mappedKays]];
+    return [self dictionaryInfoForKeys:[[self class] mappedKeys]];
 }
 
 - (void)setDictionaryInfo:(NSDictionary *)dictionaryInfo
 {
-    [self setDictionaryInfo:dictionaryInfo forKeys:[BaseEntity mappedKays]];
+    [self setDictionaryInfo:dictionaryInfo forKeys:[[self class] mappedKeys]];
 }
 
 #pragma mark - Setting/Get value for key

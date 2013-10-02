@@ -12,7 +12,7 @@
 
 #pragma mark - Mapping
 
-+ (NSArray*)mappedKays
++ (NSArray*)mappedKeys
 {
     static NSArray *keys = nil;
     if ( !keys ){
