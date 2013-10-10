@@ -10,8 +10,9 @@
 
 @interface WADLDocument : NSObject
 
-
 - (id)initWithData:(NSData*)data;
 - (void)setWADLDictionary: (NSDictionary*)dictionary;
+
+@property (nonatomic, strong) NSMutableArray *wadlServiceSections;
 
 @end

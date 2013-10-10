@@ -1,422 +1,76 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
-<xs:element name="alteration" type="alteration"/>
-<xs:element name="alterationOrder" type="alterationOrder"/>
-<xs:element name="alteredGarment" type="alteredGarment"/>
-<xs:element name="changeStatusRequest" type="changeStatusRequest"/>
-<xs:element name="createOrderInfo" type="createOrderInfo"/>
-<xs:element name="customer" type="customer"/>
-<xs:element name="dailyLoad" type="dailyLoad"/>
-<xs:element name="emailInfo" type="emailInfo"/>
-<xs:element name="garmentDivision" type="garmentDivision"/>
-<xs:element name="loadStore" type="loadStore"/>
-<xs:element name="loginRequest" type="loginRequest"/>
-<xs:element name="loginResponse" type="loginResponse"/>
-<xs:element name="orderSummary" type="orderSummary"/>
-<xs:element name="productItem" type="productItem"/>
-<xs:element name="searchCriteria" type="searchCriteria"/>
-<xs:element name="store" type="store"/>
-<xs:element name="tailorPerformanceInfo" type="tailorPerformanceInfo"/>
-<xs:element name="tailoringAllocation" type="tailoringAllocation"/>
-<xs:element name="updateDueDateRequest" type="updateDueDateRequest"/>
-<xs:element name="updateNotesRequest" type="updateNotesRequest"/>
-<xs:element name="user" type="user"/>
-<xs:element name="userDailySchedule" type="userDailySchedule"/>
-<xs:element name="userSchedule" type="userSchedule"/>
-<xs:element name="virtualRackSummary" type="virtualRackSummary"/>
-<xs:complexType name="loginResponse">
-<xs:sequence>
-<xs:element name="expirationDate" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="token" type="xs:string" minOccurs="0"/>
-<xs:element ref="user" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="user">
-<xs:sequence>
-<xs:element name="active" type="xs:boolean"/>
-<xs:element name="firstName" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="lastName" type="xs:string" minOccurs="0"/>
-<xs:element name="password" type="xs:string" minOccurs="0"/>
-<xs:element name="roles" type="role" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element ref="store" minOccurs="0"/>
-<xs:element name="tailor" type="xs:boolean"/>
-<xs:element name="uniqueId" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="role">
-<xs:sequence>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="roleName" type="xs:string" minOccurs="0"/>
-<xs:element name="type" type="roleType" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="store">
-<xs:sequence>
-<xs:element name="active" type="xs:boolean"/>
-<xs:element name="address" type="xs:string" minOccurs="0"/>
-<xs:element name="city" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
-<xs:element name="orderExecutionLimit" type="xs:int" minOccurs="0"/>
-<xs:element name="phone" type="xs:string" minOccurs="0"/>
-<xs:element name="regionCode" type="xs:string" minOccurs="0"/>
-<xs:element name="state" type="xs:string" minOccurs="0"/>
-<xs:element name="timeZone" type="xs:string" minOccurs="0"/>
-<xs:element name="uniqueId" type="xs:int" minOccurs="0"/>
-<xs:element name="zip" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="userSchedule">
-<xs:complexContent>
-<xs:extension base="tailorInfo">
-<xs:sequence>
-<xs:element name="garmentsInfo" type="alteredGarmentInfo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-<xs:complexType name="tailorInfo">
-<xs:sequence>
-<xs:element name="bookedTime" type="xs:int" minOccurs="0"/>
-<xs:element name="firstName" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="lastName" type="xs:string" minOccurs="0"/>
-<xs:element name="totalMinutes" type="xs:int" minOccurs="0"/>
-<xs:element name="uniqueId" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="alteredGarmentInfo">
-<xs:sequence>
-<xs:element name="garmentId" type="xs:string" minOccurs="0"/>
-<xs:element name="garmentType" type="garmentType" minOccurs="0"/>
-<xs:element name="minutes" type="xs:int" minOccurs="0"/>
-<xs:element name="orderId" type="xs:string" minOccurs="0"/>
-<xs:element name="orderUniqueId" type="xs:long" minOccurs="0"/>
-<xs:element name="priority" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="searchCriteria">
-<xs:sequence>
-<xs:element name="length" type="xs:int" minOccurs="0"/>
-<xs:element name="nameOrNumber" type="xs:string" minOccurs="0"/>
-<xs:element name="offset" type="xs:int" minOccurs="0"/>
-<xs:element name="orderStatuses" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="priority" type="xs:boolean" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="updateNotesRequest">
-<xs:sequence>
-<xs:element name="garmentId" type="xs:string" minOccurs="0"/>
-<xs:element name="notes" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="productItem">
-<xs:sequence>
-<xs:element name="defaultQuantity" type="xs:long" minOccurs="0"/>
-<xs:element name="division" type="xs:string" minOccurs="0"/>
-<xs:element name="garmentTypes" type="garmentType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="itemDescription" type="xs:string" minOccurs="0"/>
-<xs:element name="itemId" type="xs:string" minOccurs="0"/>
-<xs:element name="retailPrice" type="xs:decimal" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="tailorPerformanceInfo">
-<xs:sequence>
-<xs:element name="allocated" type="xs:int" minOccurs="0"/>
-<xs:element name="archived" type="xs:int" minOccurs="0"/>
-<xs:element name="uniqueId" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="changeStatusRequest">
-<xs:sequence>
-<xs:element name="garmentIds" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="setOrderStatus" type="xs:boolean"/>
-<xs:element name="signature" type="xs:string" minOccurs="0"/>
-<xs:element name="status" type="status" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="customer">
-<xs:sequence>
-<xs:element name="contactPreferences" type="contactPreferences" minOccurs="0"/>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-<xs:element name="firstName" type="xs:string" minOccurs="0"/>
-<xs:element name="gender" type="gender" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="lastName" type="xs:string" minOccurs="0"/>
-<xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
-<xs:element name="regularWearer" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="dailyLoad">
-<xs:sequence>
-<xs:element name="assignedMinutes" type="xs:int" minOccurs="0"/>
-<xs:element name="availableMinutes" type="xs:int" minOccurs="0"/>
-<xs:element name="dailyInfo" type="orderDailyInfo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="orderDailyInfo">
-<xs:sequence>
-<xs:element name="firstName" type="xs:string" minOccurs="0"/>
-<xs:element name="lastName" type="xs:string" minOccurs="0"/>
-<xs:element name="minutes" type="xs:int" minOccurs="0"/>
-<xs:element name="orderId" type="xs:string" minOccurs="0"/>
-<xs:element name="orderType" type="orderType" minOccurs="0"/>
-<xs:element name="orderUniqueId" type="xs:long" minOccurs="0"/>
-<xs:element name="status" type="status" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="alteredGarment">
-<xs:sequence>
-<xs:element name="assignedTo" type="user" minOccurs="0"/>
-<xs:element name="childSize" type="xs:boolean"/>
-<xs:element name="color" type="divisionColor" minOccurs="0"/>
-<xs:element name="formal" type="xs:boolean"/>
-<xs:element name="garmentId" type="xs:string" minOccurs="0"/>
-<xs:element name="garmentType" type="garmentType" minOccurs="0"/>
-<xs:element name="groupId" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="item" type="productItem" minOccurs="0"/>
-<xs:element name="itemCode" type="xs:string" minOccurs="0"/>
-<xs:element name="new" type="xs:boolean"/>
-<xs:element name="note" type="xs:string" minOccurs="0"/>
-<xs:element name="orderId" type="xs:long" minOccurs="0"/>
-<xs:element name="orderedAlterations" type="orderedAlteration" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="parentGarmentId" type="xs:long" minOccurs="0"/>
-<xs:element name="purchasedAtTMW" type="xs:boolean"/>
-<xs:element name="rfaRelated" type="xs:boolean"/>
-<xs:element name="scheduledDateTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="status" type="status" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="divisionColor">
-<xs:sequence>
-<xs:element name="colorCode" type="xs:string" minOccurs="0"/>
-<xs:element name="colorDescription" type="xs:string" minOccurs="0"/>
-<xs:element name="colorFamily" type="xs:string" minOccurs="0"/>
-<xs:element name="divisionCode" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="orderedAlteration">
-<xs:sequence>
-<xs:element ref="alteration" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="inwards" type="xs:boolean" minOccurs="0"/>
-<xs:element name="minutes" type="xs:int" minOccurs="0"/>
-<xs:element name="quantity" type="xs:int" minOccurs="0"/>
-<xs:element name="status" type="alterationStatus" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="alteration">
-<xs:sequence>
-<xs:element name="garmentType" type="garmentType" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="inwards" type="xs:boolean" minOccurs="0"/>
-<xs:element name="item" type="alterationItemPrice" minOccurs="0"/>
-<xs:element name="maxQuantity" type="xs:int" minOccurs="0"/>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
-<xs:element name="rank" type="xs:int" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="alterationItemPrice">
-<xs:sequence>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="outsideSecondaryItemCode" type="xs:string" minOccurs="0"/>
-<xs:element name="priceByStores" type="storeItemPrice" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="secondaryItemCode" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="storeItemPrice">
-<xs:sequence>
-<xs:element name="costExternal" type="xs:double" minOccurs="0"/>
-<xs:element name="costIfPurchasedAtTMW" type="xs:double" minOccurs="0"/>
-<xs:element name="description" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="itemId" type="xs:long" minOccurs="0"/>
-<xs:element name="minutes" type="xs:int" minOccurs="0"/>
-<xs:element ref="store" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="garmentDivision">
-<xs:sequence/>
-</xs:complexType>
-<xs:complexType name="orderSummary">
-<xs:sequence>
-<xs:element name="orderSummary" type="alterationOrderSummary" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="totalCount" type="xs:long"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="alterationOrderSummary">
-<xs:sequence>
-<xs:element name="dueDateTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="firstName" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="itemsRemain" type="xs:int" minOccurs="0"/>
-<xs:element name="itemsSize" type="xs:int" minOccurs="0"/>
-<xs:element name="lastName" type="xs:string" minOccurs="0"/>
-<xs:element name="orderId" type="xs:string" minOccurs="0"/>
-<xs:element name="orderType" type="orderType" minOccurs="0"/>
-<xs:element name="status" type="status" minOccurs="0"/>
-<xs:element name="totalPrice" type="xs:double"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="updateDueDateRequest">
-<xs:sequence>
-<xs:element name="dueDate" type="xs:string" minOccurs="0"/>
-<xs:element name="orderId" type="xs:long" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="createOrderInfo">
-<xs:sequence>
-<xs:element ref="customer" minOccurs="0"/>
-<xs:element name="orderType" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="emailInfo">
-<xs:sequence>
-<xs:element name="users" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="virtualRackSummary">
-<xs:sequence>
-<xs:element name="firstName" type="xs:string" minOccurs="0"/>
-<xs:element name="garmentSize" type="xs:int"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="lastName" type="xs:string" minOccurs="0"/>
-<xs:element name="orderId" type="xs:string" minOccurs="0"/>
-<xs:element name="priority" type="xs:boolean"/>
-<xs:element name="status" type="status" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="userDailySchedule">
-<xs:sequence>
-<xs:element name="firstName" type="xs:string" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="lastName" type="xs:string" minOccurs="0"/>
-<xs:element name="orders" type="alterationOrder" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="alterationOrder">
-<xs:sequence>
-<xs:element name="completeDateTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="createdBy" type="user" minOccurs="0"/>
-<xs:element name="createdDateTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element ref="customer" minOccurs="0"/>
-<xs:element name="dueDateTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="garments" type="alteredGarment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="note" type="xs:string" minOccurs="0"/>
-<xs:element name="orderId" type="xs:string" minOccurs="0"/>
-<xs:element name="orderType" type="orderType" minOccurs="0"/>
-<xs:element name="pickupDateTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="status" type="status" minOccurs="0"/>
-<xs:element ref="store" minOccurs="0"/>
-<xs:element name="totalPrice" type="xs:double"/>
-<xs:element name="updatedBy" type="user" minOccurs="0"/>
-<xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="version" type="xs:long" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="tailoringAllocation">
-<xs:sequence>
-<xs:element name="dateTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="tailorInfo" type="tailorInfo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="loginRequest">
-<xs:sequence>
-<xs:element name="password" type="xs:string" minOccurs="0"/>
-<xs:element name="userId" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="storeWorkingDay">
-<xs:sequence>
-<xs:element name="closeHour" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="dayOfWeek" type="dayOfWeek" minOccurs="0"/>
-<xs:element name="defaultDueTime" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-<xs:element name="openHour" type="xs:dateTime" minOccurs="0"/>
-<xs:element ref="store" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="loadStore">
-<xs:sequence>
-<xs:element name="date" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="minutes" type="xs:int" minOccurs="0"/>
-<xs:element name="totalMinutes" type="xs:int" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-<xs:simpleType name="roleType">
-<xs:restriction base="xs:string">
-<xs:enumeration value="TAILOR"/>
-<xs:enumeration value="STORE_ADMIN"/>
-<xs:enumeration value="REGIONAL_ADMIN"/>
-<xs:enumeration value="SYSTEM_ADMIN"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="garmentType">
-<xs:restriction base="xs:string">
-<xs:enumeration value="COAT"/>
-<xs:enumeration value="PANTS"/>
-<xs:enumeration value="VEST"/>
-<xs:enumeration value="SHIRT"/>
-<xs:enumeration value="OVERCOAT"/>
-<xs:enumeration value="LEATHER"/>
-<xs:enumeration value="SHORTS"/>
-<xs:enumeration value="SKIRT"/>
-<xs:enumeration value="SKORT"/>
-<xs:enumeration value="DRESS"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="status">
-<xs:restriction base="xs:string">
-<xs:enumeration value="SAVED"/>
-<xs:enumeration value="ACTIVE"/>
-<xs:enumeration value="SCHEDULED"/>
-<xs:enumeration value="COMPLETED"/>
-<xs:enumeration value="PICKED_UP"/>
-<xs:enumeration value="DELETED"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="contactPreferences">
-<xs:restriction base="xs:string">
-<xs:enumeration value="PHONE"/>
-<xs:enumeration value="EMAIL"/>
-<xs:enumeration value="NONE"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="gender">
-<xs:restriction base="xs:string">
-<xs:enumeration value="MAN"/>
-<xs:enumeration value="FEMALE"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="orderType">
-<xs:restriction base="xs:string">
-<xs:enumeration value="NORMAL"/>
-<xs:enumeration value="RFA"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="alterationStatus">
-<xs:restriction base="xs:string">
-<xs:enumeration value="DELETED"/>
-<xs:enumeration value="NEW"/>
-<xs:enumeration value="PAID"/>
-<xs:enumeration value="PAIDFREE"/>
-<xs:enumeration value="COMPLETE"/>
-<xs:enumeration value="VOID"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="dayOfWeek">
-<xs:restriction base="xs:string">
-<xs:enumeration value="SUNDAY"/>
-<xs:enumeration value="MONDAY"/>
-<xs:enumeration value="TUESDAY"/>
-<xs:enumeration value="WEDNESDAY"/>
-<xs:enumeration value="THURSDAY"/>
-<xs:enumeration value="FRIDAY"/>
-<xs:enumeration value="SATURDAY"/>
-</xs:restriction>
-</xs:simpleType>
+<?xml version="1.0" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="AuthUserDto" type="authUserDto"/>
+
+  <xs:element name="ReservationLogisticDto" type="reservationLogisticDto"/>
+
+  <xs:element name="ReservationMeasurementDto" type="reservationMeasurementDto"/>
+
+  <xs:element name="ReservationOffersDto" type="reservationOffersDto"/>
+
+  <xs:element name="ReservationSummaryDto" type="reservationSummaryDto"/>
+
+  <xs:element name="SchoolDto" type="schoolDto"/>
+
+  <xs:complexType name="schoolDto">
+    <xs:sequence>
+      <xs:element name="schoolNo" type="xs:int" minOccurs="0"/>
+      <xs:element name="schoolName" type="xs:string" minOccurs="0"/>
+      <xs:element name="schoolAddr1" type="xs:string" minOccurs="0"/>
+      <xs:element name="schoolCity" type="xs:string" minOccurs="0"/>
+      <xs:element name="schoolSt" type="xs:string" minOccurs="0"/>
+      <xs:element name="schoolZip" type="xs:string" minOccurs="0"/>
+      <xs:element name="schoolPhone" type="xs:string" minOccurs="0"/>
+      <xs:element name="storeNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationMeasurementDto">
+    <xs:sequence>
+      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="height" type="xs:int" minOccurs="0"/>
+      <xs:element name="weight" type="xs:int" minOccurs="0"/>
+      <xs:element name="measuredBy" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="authUserDto">
+    <xs:sequence>
+      <xs:element name="userId" type="xs:string" minOccurs="0"/>
+      <xs:element name="userPassword" type="xs:string" minOccurs="0"/>
+      <xs:element name="token" type="xs:string" minOccurs="0"/>
+      <xs:element name="tokenExpire" type="xs:long" minOccurs="0"/>
+      <xs:element name="deviceId" type="xs:string" minOccurs="0"/>
+      <xs:element name="storeId" type="xs:string" minOccurs="0"/>
+      <xs:element name="isStoreOpen" type="xs:boolean"/>
+      <xs:element name="registerNum" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationSummaryDto">
+    <xs:sequence>
+      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="groupId" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationOffersDto">
+    <xs:sequence>
+      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="discountCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationLogisticDto">
+    <xs:sequence>
+      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="expectedPickupDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="actualPickupDate" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
+

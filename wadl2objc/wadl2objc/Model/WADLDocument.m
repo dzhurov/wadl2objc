@@ -8,6 +8,8 @@
 
 #import "WADLDocument.h"
 #import "TBXML+NSDictionary.h"
+#import "XMLDictionary.h"
+#import "WADLServiceSection.h"
 
 @implementation WADLDocument
 
@@ -16,8 +18,12 @@
     self = [super init];
     if ( self ){
         NSError *error = nil;
+        NSDictionary *xmlDicti = [NSDictionary dictionaryWithXMLData:data];
+        NSLog(@"\n\nWADL: \n%@",xmlDicti);
+        
+        
         NSDictionary *wadlDictionary = [TBXML dictionaryWithXMLData:data error: &error];
-        NSLog(@"\n\nXSD: \n%@", wadlDictionary);
+        NSLog(@"\n\nWADL: \n%@", wadlDictionary);
         [self setWADLDictionary:wadlDictionary];
     }
     return self;
@@ -25,7 +31,10 @@
 
 - (void)setWADLDictionary:(NSDictionary *)dictionary
 {
-    
+    NSArray *parantServiceSectionsDicts = [dictionary valueForKeyPath:@"resources.resource"];
+    for (NSDictionary *sectionDict in parantServiceSectionsDicts) {
+        WADLServiceSection *section = [[WADLServiceSection alloc] initWithDictionary:sectionDict];
+    }
 }
 
 @end
