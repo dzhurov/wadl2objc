@@ -35,7 +35,12 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
     // Path
     NSString *path = dictionary[@"_path"];
     NSMutableArray *pathComponents = [[path componentsSeparatedByString:@"/"] mutableCopy];
-    NSDictionary *params = dictionary[@"param"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.length > 0"];
+    [pathComponents filterUsingPredicate:predicate];
+    NSArray *params = dictionary[@"param"];
+    if ( [params isKindOfClass:[NSDictionary class]] ){
+        params = @[params];
+    }
     if ( params.count ){
         for (NSDictionary *paramDict in params) {
             WADLServicePathParameter *parameter = [WADLServicePathParameter new];
@@ -52,7 +57,7 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
                     NSRange range = [onePathComponent rangeOfString:parameter.name];
                     if ( range.location != NSNotFound ){
                         NSString *regexSeparator = @": ";
-                        if ( onePathComponent.length > parameter.name.length + 2/*breckets*/ ){
+                        if ( onePathComponent.length > parameter.name.length + 2/*breckets*/ ){ //has regex
                             NSRange regexRange = NSMakeRange(range.length + range.location + regexSeparator.length, onePathComponent.length - (range.length + range.location + regexSeparator.length) - 1);
                             NSString *regex = [onePathComponent substringWithRange:regexRange];
                             parameter.regex = regex;
@@ -68,6 +73,9 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
 
     // Child sections
     NSArray *subsectionsArray = dictionary[@"resource"];
+    if ( [subsectionsArray isKindOfClass:[NSDictionary class]] ){
+        subsectionsArray = @[subsectionsArray];
+    }
     for (NSDictionary *subsectionDict in subsectionsArray) {
         WADLServiceSection *section = [[WADLServiceSection alloc] initWithDictionary:subsectionDict parantSection:self];
         [self.childSections addObject:section];
@@ -75,6 +83,9 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
     
     // Methods
     NSArray *methodsArray = dictionary[@"method"];
+    if ( [methodsArray isKindOfClass:[NSDictionary class]] ){
+        methodsArray = @[methodsArray];
+    }
     for (NSDictionary *methodDict in methodsArray) {
         NSString *httpMethod = methodDict[@"_name"];
         if ( [kSupportedHTTPMethodsArray containsObject:httpMethod] ){
@@ -84,4 +95,60 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
     }
 }
 
+- (NSString *)fullPath
+{
+    NSString *fullPath = self.path;
+    if ( self.parantServiceSection ){
+        fullPath = [self.parantServiceSection.fullPath stringByAppendingPathComponent:self.path];
+    }
+    return fullPath;
+}
+
+- (NSArray *)allMethods
+{
+    NSMutableArray *allMethods = [NSMutableArray arrayWithArray:_services];
+    for (WADLServiceSection *childSection in _childSections) {
+        [allMethods addObjectsFromArray:childSection.allMethods];
+    }
+    return allMethods;
+}
+
+- (NSArray *)urlPathAndMethods
+{
+    NSMutableArray *allUrlsToMethods = [NSMutableArray array];
+    // self methods
+    NSDictionary *selfMethods = @{[self fullPath]: _services};
+    [allUrlsToMethods addObject:selfMethods];
+    for (WADLServiceSection *child in _childSections) {
+        NSArray *childUrlsToMethods = [child urlPathAndMethods];
+        [allUrlsToMethods addObjectsFromArray:childUrlsToMethods];
+    }
+    return allUrlsToMethods;
+}
+
+-(NSString *)pathName
+{
+    NSMutableArray *pathComponents = [[_path componentsSeparatedByString:@"/"] mutableCopy];
+    int changedPathComponentIndex = 0;
+    for (int i = 0; i < pathComponents.count; i++) {
+        if ( [pathComponents[i] isEqualToString:@"%@"] ){
+            WADLServicePathParameter *parameter = _pathParameters[changedPathComponentIndex];
+            [pathComponents replaceObjectAtIndex:i withObject:parameter.name];
+        }
+        NSString *pathComponent = pathComponents[i];
+        pathComponent = [[[pathComponent substringToIndex:1] uppercaseString] stringByAppendingString:[pathComponent substringFromIndex:1]];
+        [pathComponents replaceObjectAtIndex:i withObject:pathComponent];
+    }
+    NSString *pathName = [pathComponents componentsJoinedByString:@""];
+    return pathName;
+}
+
+- (NSDictionary *)allPathNamesToPaths
+{
+    NSMutableDictionary *pathNamesToPaths = [NSMutableDictionary dictionaryWithObjectsAndKeys: self.fullPath, self.pathName, nil];
+    for (WADLServiceSection *child in _childSections) {
+        [pathNamesToPaths addEntriesFromDictionary:[child allPathNamesToPaths]];
+    }
+    return pathNamesToPaths;
+}
 @end

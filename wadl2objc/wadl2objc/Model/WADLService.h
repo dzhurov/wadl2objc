@@ -19,4 +19,9 @@
 @property (nonatomic, strong) NSString *requestObjectClass;
 @property (nonatomic, strong) NSString *responseObjectClass;
 
+- (NSArray *)allQueryParameters;
+- (NSArray *)allPathParameters;
+- (NSString*)fullPath;
+
+
 @end

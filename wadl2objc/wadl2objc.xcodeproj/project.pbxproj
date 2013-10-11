@@ -32,6 +32,9 @@
 		7ECDDEEF1806ECA800987FDE /* WADLService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDDEEE1806ECA800987FDE /* WADLService.m */; };
 		7ECDDEF21806ED3D00987FDE /* WADLServicePathParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDDEF11806ED3D00987FDE /* WADLServicePathParameter.m */; };
 		7ECDDEF81806FE4F00987FDE /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDDEF71806FE4F00987FDE /* Utilities.m */; };
+		7ECDDF0118082D0D00987FDE /* APIConsts.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECDDF001807ECE000987FDE /* APIConsts.h */; };
+		7ECDDF0218082D0D00987FDE /* ServerInteractionManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECDDEFD1807E97300987FDE /* ServerInteractionManager.h */; };
+		7ECDDF0318082D0D00987FDE /* ServerInteractionManager.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7ECDDEFE1807E97300987FDE /* ServerInteractionManager.m */; };
 		84701B3DA72D4371BA44F380 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4173097DCA4D03B1FB0810 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,9 @@
 			dstPath = Resources;
 			dstSubfolderSpec = 16;
 			files = (
+				7ECDDF0118082D0D00987FDE /* APIConsts.h in CopyFiles */,
+				7ECDDF0218082D0D00987FDE /* ServerInteractionManager.h in CopyFiles */,
+				7ECDDF0318082D0D00987FDE /* ServerInteractionManager.m in CopyFiles */,
 				7E3CF89A17FC242400ECCC95 /* example.wadl in CopyFiles */,
 				7E3CF89B17FC242400ECCC95 /* _TemplateEntity_h in CopyFiles */,
 				7E3CF89C17FC242400ECCC95 /* _TemplateEntity_m in CopyFiles */,
@@ -97,6 +103,9 @@
 		7ECDDEF11806ED3D00987FDE /* WADLServicePathParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLServicePathParameter.m; sourceTree = "<group>"; };
 		7ECDDEF61806FE4F00987FDE /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		7ECDDEF71806FE4F00987FDE /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		7ECDDEFD1807E97300987FDE /* ServerInteractionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerInteractionManager.h; sourceTree = "<group>"; };
+		7ECDDEFE1807E97300987FDE /* ServerInteractionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerInteractionManager.m; sourceTree = "<group>"; };
+		7ECDDF001807ECE000987FDE /* APIConsts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIConsts.h; sourceTree = "<group>"; };
 		7F4173097DCA4D03B1FB0810 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -191,6 +200,9 @@
 				7E1B156317CF5AE600C96204 /* XSDEnums_m */,
 				7E3E00F117F1D0A7003A9BB0 /* BaseEntity.h */,
 				7E3E00F217F1D0A7003A9BB0 /* BaseEntity.m */,
+				7ECDDF001807ECE000987FDE /* APIConsts.h */,
+				7ECDDEFD1807E97300987FDE /* ServerInteractionManager.h */,
+				7ECDDEFE1807E97300987FDE /* ServerInteractionManager.m */,
 			);
 			name = Resources;
 			path = wadl2objc/Resources;
@@ -199,8 +211,34 @@
 		0A964DC017CB52C2003655C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7ECDDEFC1807D53F00987FDE /* XSD */,
+				7ECDDEF91807D52A00987FDE /* WADL */,
 				0A964DC117CB531C003655C4 /* SettingsManager.h */,
 				0A964DC217CB531C003655C4 /* SettingsManager.m */,
+				7ECDDEF61806FE4F00987FDE /* Utilities.h */,
+				7ECDDEF71806FE4F00987FDE /* Utilities.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7ECDDEF91807D52A00987FDE /* WADL */ = {
+			isa = PBXGroup;
+			children = (
+				0AA94D0917F883B0000DE3B6 /* WADLDocument.h */,
+				0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */,
+				7ECDDEEA1806E91E00987FDE /* WADLServiceSection.h */,
+				7ECDDEEB1806E91E00987FDE /* WADLServiceSection.m */,
+				7ECDDEF01806ED3D00987FDE /* WADLServicePathParameter.h */,
+				7ECDDEF11806ED3D00987FDE /* WADLServicePathParameter.m */,
+				7ECDDEED1806ECA800987FDE /* WADLService.h */,
+				7ECDDEEE1806ECA800987FDE /* WADLService.m */,
+			);
+			name = WADL;
+			sourceTree = "<group>";
+		};
+		7ECDDEFC1807D53F00987FDE /* XSD */ = {
+			isa = PBXGroup;
+			children = (
 				0A964DC617CB6313003655C4 /* XSDDocument.h */,
 				0A964DC717CB6313003655C4 /* XSDDocument.m */,
 				0A964DD217CBA663003655C4 /* XSDTypes.h */,
@@ -211,18 +249,8 @@
 				0A964DCD17CB9054003655C4 /* XSDObjectProperty.m */,
 				0A964DCF17CBA3F9003655C4 /* XSDSimpleType.h */,
 				0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */,
-				0AA94D0917F883B0000DE3B6 /* WADLDocument.h */,
-				0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */,
-				7ECDDEEA1806E91E00987FDE /* WADLServiceSection.h */,
-				7ECDDEEB1806E91E00987FDE /* WADLServiceSection.m */,
-				7ECDDEF01806ED3D00987FDE /* WADLServicePathParameter.h */,
-				7ECDDEF11806ED3D00987FDE /* WADLServicePathParameter.m */,
-				7ECDDEED1806ECA800987FDE /* WADLService.h */,
-				7ECDDEEE1806ECA800987FDE /* WADLService.m */,
-				7ECDDEF61806FE4F00987FDE /* Utilities.h */,
-				7ECDDEF71806FE4F00987FDE /* Utilities.m */,
 			);
-			path = Model;
+			name = XSD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

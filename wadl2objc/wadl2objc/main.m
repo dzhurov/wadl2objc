@@ -40,6 +40,8 @@ int main(int argc, const char * argv[])
         
         NSData *wadlData = [NSData dataWithContentsOfFile:settingMgr.wadlPath];
         WADLDocument *wadlDoc = [[WADLDocument alloc] initWithData:wadlData];
+        wadlDoc.xsdDocument = xsdDoc;
+        [wadlDoc writeObjectsToPath:settingMgr.outputPath];
     }
     return 0;
 }
