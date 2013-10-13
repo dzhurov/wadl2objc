@@ -38,6 +38,7 @@ typedef void(^ResponseBlock)(id responseObject, NSError *error);
 #pragma mark - Generated Services
 
 // Inventory
+
 - (NSOperation*)inventorySearchAllWithResponseBlock:(void(^)(id response, NSError *error))responseBlock;
 - (NSOperation*)inventorySearchByStateAndCityWithSchoolCity:(NSString*)schoolCity schoolSt:(NSString*)schoolSt responseBlock:(void(^)(id response, NSError *error))responseBlock;
 - (NSOperation*)inventoryFindBySchoolNoWithSchoolNo:(NSNumber*)schoolNo responseBlock:(void(^)(SchoolDto *response, NSError *error))responseBlock;
@@ -45,6 +46,7 @@ typedef void(^ResponseBlock)(id responseObject, NSError *error);
 - (NSOperation*)inventorySearchAllWithResponseBlock:(void(^)(id response, NSError *error))responseBlock;
 
 // Reservation
+
 - (NSOperation*)reservationUpdateLogistic:(ReservationLogisticDto*)reservationLogisticDto responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock;
 - (NSOperation*)reservationUpdateMeasurement:(ReservationMeasurementDto*)reservationMeasurementDto responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock;
 - (NSOperation*)reservationUpdateSummary:(ReservationSummaryDto*)reservationSummaryDto responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock;
@@ -56,9 +58,11 @@ typedef void(^ResponseBlock)(id responseObject, NSError *error);
 - (NSOperation*)reservationFindMeasurementByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock;
 
 // Auth
+
 - (NSOperation*)authAuthenticateUser:(AuthUserDto*)authUserDto responseBlock:(void(^)(AuthUserDto *response, NSError *error))responseBlock;
 
 // ApplicationWadl
+
 - (NSOperation*)applicationWadlGetWadlWithResponseBlock:(void(^)(id response, NSError *error))responseBlock;
 - (NSOperation*)applicationWadlGeExternalGrammarWithPath:(NSString*)path responseBlock:(void(^)(id response, NSError *error))responseBlock;
 
