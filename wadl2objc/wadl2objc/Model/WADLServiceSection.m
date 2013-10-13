@@ -128,7 +128,9 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
 
 -(NSString *)pathName
 {
-    NSMutableArray *pathComponents = [[_path componentsSeparatedByString:@"/"] mutableCopy];
+    NSMutableCharacterSet *separateChars = [[[NSCharacterSet alphanumericCharacterSet] invertedSet] mutableCopy];
+    [separateChars removeCharactersInString:@"_%@"];
+    NSMutableArray *pathComponents = [[_path componentsSeparatedByCharactersInSet:separateChars] mutableCopy];
     int changedPathComponentIndex = 0;
     for (int i = 0; i < pathComponents.count; i++) {
         if ( [pathComponents[i] isEqualToString:@"%@"] ){
@@ -136,7 +138,7 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
             [pathComponents replaceObjectAtIndex:i withObject:parameter.name];
         }
         NSString *pathComponent = pathComponents[i];
-        pathComponent = [[[pathComponent substringToIndex:1] uppercaseString] stringByAppendingString:[pathComponent substringFromIndex:1]];
+        pathComponent = [pathComponent uppercaseFirstCharacterString];
         [pathComponents replaceObjectAtIndex:i withObject:pathComponent];
     }
     NSString *pathName = [pathComponents componentsJoinedByString:@""];

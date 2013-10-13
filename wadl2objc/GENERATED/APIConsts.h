@@ -33,9 +33,9 @@
 #define kWADLServiceUserURLPath @"auth/user"
 #define kWADLServiceAuthURLPath @"auth"
 
-// Application.wadl
-#define kWADLServiceApplication.wadlURLPath @"application.wadl"
+// ApplicationWadl
 #define kWADLServicePathURLPath @"application.wadl/%@"
+#define kWADLServiceApplicationWadlURLPath @"application.wadl"
 
 #pragma mark -
 

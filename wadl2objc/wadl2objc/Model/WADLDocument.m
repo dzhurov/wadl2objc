@@ -102,23 +102,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         [methodsDeclaration appendFormat:@"\n// %@\n", rootSection.pathName];
         NSArray *services = [rootSection allMethods];
         for (WADLService *oneService in services) {
-            NSMutableString *oneMethodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation*)%@%@",rootSection.pathName, oneService.name];
-            if ( oneService.requestObjectClass ){
-                [oneMethodDeclaration appendFormat:@":(%@*)%@ ",oneService.requestObjectClass, [oneService.requestObjectClass lowercaseString]];
-            }
-            else{
-                [oneMethodDeclaration appendString:@"With"];
-            }
-            for (WADLServicePathParameter *pathParam in [oneService allPathParameters]) {
-                [oneMethodDeclaration appendFormat:@"%@:(%@*)%@ ", pathParam.name, pathParam.type, pathParam.name];
-            }
-            for (WADLServicePathParameter *pathParam in [oneService allQueryParameters]) {
-                [oneMethodDeclaration appendFormat:@"%@:(%@*)%@ ", pathParam.name, pathParam.type, pathParam.name];
-            }
-            NSString *responseObject = oneService.responseObjectClass ? [oneService.responseObjectClass stringByAppendingString:@" *"] : @"NSObject";
-
-            [oneMethodDeclaration appendFormat:@"responseBlock:(void(^)(%@ *response, NSError *error))responseBlock;\n", responseObject];
-            
+            NSString *oneMethodDeclaration = [[oneService objcMethodName] stringByAppendingFormat:@";\n"];
             [methodsDeclaration appendString: oneMethodDeclaration];
         }
     }

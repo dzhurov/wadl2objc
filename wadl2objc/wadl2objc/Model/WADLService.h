@@ -22,6 +22,6 @@
 - (NSArray *)allQueryParameters;
 - (NSArray *)allPathParameters;
 - (NSString*)fullPath;
-
+- (NSString*)objcMethodName;
 
 @end

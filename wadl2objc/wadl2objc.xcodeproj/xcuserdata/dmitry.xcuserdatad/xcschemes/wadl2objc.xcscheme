@@ -59,7 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--output-dir: /Users/dmitry/Development/wad2lobjc/wadl2objc/output"
+            argument = "--output-dir: /Users/dmitry/Development/wad2lobjc/wadl2objc/GENERATED"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

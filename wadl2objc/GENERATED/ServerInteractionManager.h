@@ -38,29 +38,29 @@ typedef void(^ResponseBlock)(id responseObject, NSError *error);
 #pragma mark - Generated Services
 
 // Inventory
-- (NSOperation*)InventorysearchAllWithresponseBlock:(void(^)(NSObject *response, NSError *error))responseBlock;
-- (NSOperation*)InventorysearchByStateAndCityWithschoolCity:(NSString*)schoolCity schoolSt:(NSString*)schoolSt responseBlock:(void(^)(NSObject *response, NSError *error))responseBlock;
-- (NSOperation*)InventoryfindBySchoolNoWithschoolNo:(NSNumber*)schoolNo responseBlock:(void(^)(SchoolDto * *response, NSError *error))responseBlock;
-- (NSOperation*)InventorysearchByStateWithschoolSt:(NSString*)schoolSt responseBlock:(void(^)(NSObject *response, NSError *error))responseBlock;
-- (NSOperation*)InventorysearchAllWithresponseBlock:(void(^)(NSObject *response, NSError *error))responseBlock;
+- (NSOperation*)inventorySearchAllWithResponseBlock:(void(^)(id response, NSError *error))responseBlock;
+- (NSOperation*)inventorySearchByStateAndCityWithSchoolCity:(NSString*)schoolCity schoolSt:(NSString*)schoolSt responseBlock:(void(^)(id response, NSError *error))responseBlock;
+- (NSOperation*)inventoryFindBySchoolNoWithSchoolNo:(NSNumber*)schoolNo responseBlock:(void(^)(SchoolDto *response, NSError *error))responseBlock;
+- (NSOperation*)inventorySearchByStateWithSchoolSt:(NSString*)schoolSt responseBlock:(void(^)(id response, NSError *error))responseBlock;
+- (NSOperation*)inventorySearchAllWithResponseBlock:(void(^)(id response, NSError *error))responseBlock;
 
 // Reservation
-- (NSOperation*)ReservationupdateLogistic:(ReservationLogisticDto*)reservationlogisticdto responseBlock:(void(^)(ReservationLogisticDto * *response, NSError *error))responseBlock;
-- (NSOperation*)ReservationupdateMeasurement:(ReservationMeasurementDto*)reservationmeasurementdto responseBlock:(void(^)(ReservationMeasurementDto * *response, NSError *error))responseBlock;
-- (NSOperation*)ReservationupdateSummary:(ReservationSummaryDto*)reservationsummarydto responseBlock:(void(^)(ReservationSummaryDto * *response, NSError *error))responseBlock;
-- (NSOperation*)ReservationcreateReservation:(ReservationSummaryDto*)reservationsummarydto responseBlock:(void(^)(ReservationSummaryDto * *response, NSError *error))responseBlock;
-- (NSOperation*)ReservationfindLogisticByNoWithreservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationLogisticDto * *response, NSError *error))responseBlock;
-- (NSOperation*)ReservationfindOffersByNoWithreservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationOffersDto * *response, NSError *error))responseBlock;
-- (NSOperation*)ReservationupdateOffers:(ReservationOffersDto*)reservationoffersdto responseBlock:(void(^)(ReservationOffersDto * *response, NSError *error))responseBlock;
-- (NSOperation*)ReservationfindSummaryByNoWithreservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationSummaryDto * *response, NSError *error))responseBlock;
-- (NSOperation*)ReservationfindMeasurementByNoWithreservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationMeasurementDto * *response, NSError *error))responseBlock;
+- (NSOperation*)reservationUpdateLogistic:(ReservationLogisticDto*)reservationLogisticDto responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock;
+- (NSOperation*)reservationUpdateMeasurement:(ReservationMeasurementDto*)reservationMeasurementDto responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock;
+- (NSOperation*)reservationUpdateSummary:(ReservationSummaryDto*)reservationSummaryDto responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock;
+- (NSOperation*)reservationCreateReservation:(ReservationSummaryDto*)reservationSummaryDto responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock;
+- (NSOperation*)reservationFindLogisticByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock;
+- (NSOperation*)reservationFindOffersByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock;
+- (NSOperation*)reservationUpdateOffers:(ReservationOffersDto*)reservationOffersDto responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock;
+- (NSOperation*)reservationFindSummaryByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock;
+- (NSOperation*)reservationFindMeasurementByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock;
 
 // Auth
-- (NSOperation*)AuthauthenticateUser:(AuthUserDto*)authuserdto responseBlock:(void(^)(AuthUserDto * *response, NSError *error))responseBlock;
+- (NSOperation*)authAuthenticateUser:(AuthUserDto*)authUserDto responseBlock:(void(^)(AuthUserDto *response, NSError *error))responseBlock;
 
-// Application.wadl
-- (NSOperation*)Application.wadlgetWadlWithresponseBlock:(void(^)(NSObject *response, NSError *error))responseBlock;
-- (NSOperation*)Application.wadlgeExternalGrammarWithpath:(NSString*)path responseBlock:(void(^)(NSObject *response, NSError *error))responseBlock;
+// ApplicationWadl
+- (NSOperation*)applicationWadlGetWadlWithResponseBlock:(void(^)(id response, NSError *error))responseBlock;
+- (NSOperation*)applicationWadlGeExternalGrammarWithPath:(NSString*)path responseBlock:(void(^)(id response, NSError *error))responseBlock;
 
 #pragma mark -
 // end of generated services methods

@@ -8,6 +8,7 @@
 
 #import "WADLService.h"
 #import "WADLServiceSection.h"
+#import "WADLServicePathParameter.h"
 
 @implementation WADLService
 
@@ -71,5 +72,40 @@
     
     return fullPath;
 }
+
+- (NSString *)objcMethodName
+{
+    WADLServiceSection *rootSection = self.parantServiceSection;
+    while (rootSection.parantServiceSection) {
+        rootSection = rootSection.parantServiceSection;
+    }
+    
+    BOOL needCapitalize = NO;
+    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation*)%@%@",[rootSection.pathName lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
+    if ( self.requestObjectClass ){
+        NSString *parameterName = self.requestObjectClass;
+        parameterName = [parameterName lowercaseFirstCharacterString];
+        [methodDeclaration appendFormat:@":(%@*)%@ ",self.requestObjectClass, parameterName];
+    }
+    else{
+        [methodDeclaration appendString:@"With"];
+        needCapitalize = YES;
+    }
+    for (NSArray *parameters in @[ [self allPathParameters], [self allQueryParameters] ]) {
+        for (WADLServicePathParameter *pathParam in parameters) {
+            NSString *methodPart = needCapitalize ? [pathParam.name uppercaseFirstCharacterString] : pathParam.name;
+            [methodDeclaration appendFormat:@"%@:(%@*)%@ ", methodPart, pathParam.type, pathParam.name];
+            needCapitalize = NO;
+        }
+    }
+    NSString *responseObject = self.responseObjectClass ? [self.responseObjectClass stringByAppendingString:@" *"] : @"id ";
+    if (needCapitalize)
+        [methodDeclaration appendFormat:@"ResponseBlock:(void(^)(%@response, NSError *error))responseBlock", responseObject];
+    else
+        [methodDeclaration appendFormat:@"responseBlock:(void(^)(%@response, NSError *error))responseBlock", responseObject];
+    
+    return methodDeclaration;
+}
+
 
 @end
