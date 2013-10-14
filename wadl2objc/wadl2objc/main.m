@@ -36,7 +36,7 @@ int main(int argc, const char * argv[])
         
         NSData *xsdData = [NSData dataWithContentsOfFile:settingMgr.xsdPath];
         XSDDocument *xsdDoc = [[XSDDocument alloc] initWithData: xsdData];
-        [xsdDoc writeObjectsToPath:settingMgr.outputPath];
+        [xsdDoc writeObjectsToPath:[settingMgr.outputPath stringByAppendingPathComponent:@"XSDObjects"]];
         
         NSData *wadlData = [NSData dataWithContentsOfFile:settingMgr.wadlPath];
         WADLDocument *wadlDoc = [[WADLDocument alloc] initWithData:wadlData];

@@ -130,7 +130,7 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
 {
     NSMutableCharacterSet *separateChars = [[[NSCharacterSet alphanumericCharacterSet] invertedSet] mutableCopy];
     [separateChars removeCharactersInString:@"_%@"];
-    NSMutableArray *pathComponents = [[_path componentsSeparatedByCharactersInSet:separateChars] mutableCopy];
+    NSMutableArray *pathComponents = [[[self fullPath] componentsSeparatedByCharactersInSet:separateChars] mutableCopy];
     int changedPathComponentIndex = 0;
     for (int i = 0; i < pathComponents.count; i++) {
         if ( [pathComponents[i] isEqualToString:@"%@"] ){

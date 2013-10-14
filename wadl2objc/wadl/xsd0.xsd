@@ -3,15 +3,35 @@
 
   <xs:element name="AuthUserDto" type="authUserDto"/>
 
+  <xs:element name="EventDatesDto" type="eventDatesDto"/>
+
   <xs:element name="ReservationLogisticDto" type="reservationLogisticDto"/>
 
   <xs:element name="ReservationMeasurementDto" type="reservationMeasurementDto"/>
 
   <xs:element name="ReservationOffersDto" type="reservationOffersDto"/>
 
+  <xs:element name="ReservationStyleDto" type="reservationStyleDto"/>
+
   <xs:element name="ReservationSummaryDto" type="reservationSummaryDto"/>
 
   <xs:element name="SchoolDto" type="schoolDto"/>
+
+  <xs:complexType name="reservationStyleDto">
+    <xs:sequence>
+      <xs:element name="reservationNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="sequence" type="xs:int"/>
+      <xs:element name="rentalPrice" type="xs:string" minOccurs="0"/>
+      <xs:element name="quantity" type="xs:int"/>
+      <xs:element name="style" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="xs:string" minOccurs="0"/>
+      <xs:element name="notes" type="xs:string" minOccurs="0"/>
+      <xs:element name="itemTypeDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="styleDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="sizeCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="isInPackage" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
 
   <xs:complexType name="schoolDto">
     <xs:sequence>
@@ -27,12 +47,33 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="reservationMeasurementDto">
+  <xs:complexType name="reservationOffersDto">
     <xs:sequence>
       <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
-      <xs:element name="height" type="xs:int" minOccurs="0"/>
-      <xs:element name="weight" type="xs:int" minOccurs="0"/>
-      <xs:element name="measuredBy" type="xs:string" minOccurs="0"/>
+      <xs:element name="discountCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationSummaryDto">
+    <xs:sequence>
+      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="groupId" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="groupName" type="xs:string" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="eventType" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="role" type="xs:string" minOccurs="0"/>
+      <xs:element name="comment" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="eventDatesDto">
+    <xs:sequence>
+      <xs:element name="eventDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="returnDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="pickupDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="fitByDate" type="xs:dateTime" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -49,18 +90,12 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="reservationSummaryDto">
+  <xs:complexType name="reservationMeasurementDto">
     <xs:sequence>
       <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
-      <xs:element name="groupId" type="xs:decimal" minOccurs="0"/>
-      <xs:element name="eventDate" type="xs:dateTime" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="reservationOffersDto">
-    <xs:sequence>
-      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
-      <xs:element name="discountCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="height" type="xs:int" minOccurs="0"/>
+      <xs:element name="weight" type="xs:int" minOccurs="0"/>
+      <xs:element name="measuredBy" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 

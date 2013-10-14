@@ -75,13 +75,10 @@
 
 - (NSString *)objcMethodName
 {
-    WADLServiceSection *rootSection = self.parantServiceSection;
-    while (rootSection.parantServiceSection) {
-        rootSection = rootSection.parantServiceSection;
-    }
+    WADLServiceSection *parantSection = self.parantServiceSection;
     
     BOOL needCapitalize = NO;
-    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation*)%@%@",[rootSection.pathName lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
+    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation*)%@%@",[parantSection.pathName lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
     if ( self.requestObjectClass ){
         NSString *parameterName = self.requestObjectClass;
         parameterName = [parameterName lowercaseFirstCharacterString];

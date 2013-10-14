@@ -200,111 +200,111 @@
 #pragma mark - Generated Services
 
 #pragma mark Inventory
-- (NSOperation*)inventorySearchAllWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation*)inventorySchoolsSearchAllWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceSchoolsURLPath];
+	NSString *path = [NSString stringWithFormat: kWADLServiceInventorySchoolsURLPath];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:nil responseBlock:responseBlock];
 }
 
-- (NSOperation*)inventorySearchByStateAndCityWithSchoolCity:(NSString*)schoolCity schoolSt:(NSString*)schoolSt responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation*)inventorySchoolsSchoolCitySchoolCitySearchByStateAndCityWithSchoolCity:(NSString*)schoolCity schoolSt:(NSString*)schoolSt responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceSchoolsSchoolCitySchoolCityURLPath, schoolCity, schoolSt];
+	NSString *path = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolCitySchoolCityURLPath, schoolCity, schoolSt];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:nil responseBlock:responseBlock];
 }
 
-- (NSOperation*)inventoryFindBySchoolNoWithSchoolNo:(NSNumber*)schoolNo responseBlock:(void(^)(SchoolDto *response, NSError *error))responseBlock
+- (NSOperation*)inventorySchoolsSchoolNoFindBySchoolNoWithSchoolNo:(NSNumber*)schoolNo responseBlock:(void(^)(SchoolDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceSchoolsSchoolNoURLPath, schoolNo];
+	NSString *path = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolNoURLPath, schoolNo];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:SchoolDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)inventorySearchByStateWithSchoolSt:(NSString*)schoolSt responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation*)inventorySchoolsSchoolStSearchByStateWithSchoolSt:(NSString*)schoolSt responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceSchoolsSchoolStURLPath, schoolSt];
+	NSString *path = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolStURLPath, schoolSt];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:nil responseBlock:responseBlock];
 }
 
-- (NSOperation*)inventorySearchAllWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation*)inventoryStylesSearchAllWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceStylesURLPath];
+	NSString *path = [NSString stringWithFormat: kWADLServiceInventoryStylesURLPath];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:nil responseBlock:responseBlock];
 }
 
 
 #pragma mark Reservation
-- (NSOperation*)reservationUpdateLogistic:(ReservationLogisticDto*)reservationLogisticDto responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationLogisticUpdateLogistic:(ReservationLogisticDto*)reservationLogisticDto responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceLogisticURLPath];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationLogisticURLPath];
 	NSDictionary *inputParameters = [reservationLogisticDto dictionaryInfo];
 	return [self makePUTRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationLogisticDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)reservationUpdateMeasurement:(ReservationMeasurementDto*)reservationMeasurementDto responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationMeasurementUpdateMeasurement:(ReservationMeasurementDto*)reservationMeasurementDto responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceMeasurementURLPath];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationMeasurementURLPath];
 	NSDictionary *inputParameters = [reservationMeasurementDto dictionaryInfo];
 	return [self makePUTRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationMeasurementDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)reservationUpdateSummary:(ReservationSummaryDto*)reservationSummaryDto responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationSummaryUpdateSummary:(ReservationSummaryDto*)reservationSummaryDto responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceSummaryURLPath];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationSummaryURLPath];
 	NSDictionary *inputParameters = [reservationSummaryDto dictionaryInfo];
 	return [self makePUTRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationSummaryDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)reservationCreateReservation:(ReservationSummaryDto*)reservationSummaryDto responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationSummaryCreateReservation:(ReservationSummaryDto*)reservationSummaryDto responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceSummaryURLPath];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationSummaryURLPath];
 	NSDictionary *inputParameters = [reservationSummaryDto dictionaryInfo];
 	return [self makePOSTRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationSummaryDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)reservationFindLogisticByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationReservationNoLogisticFindLogisticByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceReservationNoLogisticURLPath, reservationNo];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationReservationNoLogisticURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationLogisticDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)reservationFindOffersByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationReservationNoOffersFindOffersByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceReservationNoOffersURLPath, reservationNo];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationReservationNoOffersURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationOffersDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)reservationUpdateOffers:(ReservationOffersDto*)reservationOffersDto responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationOffersUpdateOffers:(ReservationOffersDto*)reservationOffersDto responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceOffersURLPath];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationOffersURLPath];
 	NSDictionary *inputParameters = [reservationOffersDto dictionaryInfo];
 	return [self makePUTRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationOffersDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)reservationFindSummaryByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationReservationNoSummaryFindSummaryByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceReservationNoSummaryURLPath, reservationNo];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationReservationNoSummaryURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationSummaryDto responseBlock:responseBlock];
 }
 
-- (NSOperation*)reservationFindMeasurementByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock
+- (NSOperation*)reservationReservationNoMeasurementFindMeasurementByNoWithReservationNo:(NSString*)reservationNo responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceReservationNoMeasurementURLPath, reservationNo];
+	NSString *path = [NSString stringWithFormat: kWADLServiceReservationReservationNoMeasurementURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:ReservationMeasurementDto responseBlock:responseBlock];
 }
 
 
 #pragma mark Auth
-- (NSOperation*)authAuthenticateUser:(AuthUserDto*)authUserDto responseBlock:(void(^)(AuthUserDto *response, NSError *error))responseBlock
+- (NSOperation*)authUserAuthenticateUser:(AuthUserDto*)authUserDto responseBlock:(void(^)(AuthUserDto *response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServiceUserURLPath];
+	NSString *path = [NSString stringWithFormat: kWADLServiceAuthUserURLPath];
 	NSDictionary *inputParameters = [authUserDto dictionaryInfo];
 	return [self makePOSTRequestForURLPath:path useToken:NO inputParameters:inputParameters outputClass:AuthUserDto responseBlock:responseBlock];
 }
@@ -318,9 +318,9 @@
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:nil responseBlock:responseBlock];
 }
 
-- (NSOperation*)applicationWadlGeExternalGrammarWithPath:(NSString*)path responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation*)applicationWadlPathGeExternalGrammarWithPath:(NSString*)path responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *path = [NSString stringWithFormat: kWADLServicePathURLPath, path];
+	NSString *path = [NSString stringWithFormat: kWADLServiceApplicationWadlPathURLPath, path];
 	NSDictionary *inputParameters = nil;
 	return [self makeGETRequestForURLPath:path useToken:YES inputParameters:inputParameters outputClass:nil responseBlock:responseBlock];
 }

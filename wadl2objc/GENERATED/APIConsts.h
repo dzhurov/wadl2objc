@@ -10,31 +10,31 @@
 #pragma mark - Generated Services
 
 // Inventory
-#define kWADLServiceSchoolsSchoolCitySchoolCityURLPath @"inventory/schools/%@/%@"
+#define kWADLServiceInventorySchoolsURLPath @"inventory/schools"
 #define kWADLServiceInventoryURLPath @"inventory"
-#define kWADLServiceSchoolsSchoolNoURLPath @"inventory/schools/%@"
-#define kWADLServiceSchoolsURLPath @"inventory/schools"
-#define kWADLServiceStylesURLPath @"inventory/styles"
-#define kWADLServiceSchoolsSchoolStURLPath @"inventory/schools/%@"
+#define kWADLServiceInventorySchoolsSchoolStURLPath @"inventory/schools/%@"
+#define kWADLServiceInventorySchoolsSchoolCitySchoolCityURLPath @"inventory/schools/%@/%@"
+#define kWADLServiceInventorySchoolsSchoolNoURLPath @"inventory/schools/%@"
+#define kWADLServiceInventoryStylesURLPath @"inventory/styles"
 
 // Reservation
-#define kWADLServiceOffersURLPath @"reservation/offers"
 #define kWADLServiceReservationURLPath @"reservation"
-#define kWADLServiceReservationNoOffersURLPath @"reservation/%@/offers"
-#define kWADLServiceLogisticURLPath @"reservation/logistic"
-#define kWADLServiceReservationNoURLPath @"reservation/%@"
-#define kWADLServiceSummaryURLPath @"reservation/summary"
-#define kWADLServiceReservationNoLogisticURLPath @"reservation/%@/logistic"
-#define kWADLServiceMeasurementURLPath @"reservation/measurement"
-#define kWADLServiceReservationNoMeasurementURLPath @"reservation/%@/measurement"
-#define kWADLServiceReservationNoSummaryURLPath @"reservation/%@/summary"
+#define kWADLServiceReservationReservationNoLogisticURLPath @"reservation/%@/logistic"
+#define kWADLServiceReservationReservationNoOffersURLPath @"reservation/%@/offers"
+#define kWADLServiceReservationReservationNoURLPath @"reservation/%@"
+#define kWADLServiceReservationOffersURLPath @"reservation/offers"
+#define kWADLServiceReservationSummaryURLPath @"reservation/summary"
+#define kWADLServiceReservationMeasurementURLPath @"reservation/measurement"
+#define kWADLServiceReservationReservationNoSummaryURLPath @"reservation/%@/summary"
+#define kWADLServiceReservationLogisticURLPath @"reservation/logistic"
+#define kWADLServiceReservationReservationNoMeasurementURLPath @"reservation/%@/measurement"
 
 // Auth
-#define kWADLServiceUserURLPath @"auth/user"
+#define kWADLServiceAuthUserURLPath @"auth/user"
 #define kWADLServiceAuthURLPath @"auth"
 
 // ApplicationWadl
-#define kWADLServicePathURLPath @"application.wadl/%@"
+#define kWADLServiceApplicationWadlPathURLPath @"application.wadl/%@"
 #define kWADLServiceApplicationWadlURLPath @"application.wadl"
 
 #pragma mark -

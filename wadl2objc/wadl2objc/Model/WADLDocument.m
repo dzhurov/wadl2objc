@@ -142,7 +142,13 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             }
 
             //requestMethod
-            NSString *outputClass = oneService.responseObjectClass ? oneService.responseObjectClass : @"nil";
+            NSString *outputClass = oneService.responseObjectClass;
+            if (outputClass){
+                outputClass = [NSString stringWithFormat:@"[%@ class]", outputClass];
+            }
+            else{
+                outputClass = @"Nil";
+            }
             [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:path useToken:%@ inputParameters:inputParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
             [methodsImplementation appendString:oneMethodImplementation];
         }
