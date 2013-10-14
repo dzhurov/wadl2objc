@@ -119,7 +119,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
            
             // path parameters
             NSString *pathConstName = [NSString stringWithFormat:@"kWADLService%@URLPath", [oneService.parantServiceSection pathName]];
-            [oneMethodImplementation appendFormat:@"\n{\n\tNSString *path = [NSString stringWithFormat: %@", pathConstName];
+            [oneMethodImplementation appendFormat:@"\n{\n\tNSString *thePath = [NSString stringWithFormat: %@", pathConstName];
             NSArray *pathParameters = oneService.allPathParameters;
             for (WADLServicePathParameter *parameter in pathParameters) {
                 [oneMethodImplementation appendFormat:@", %@", parameter.name];
@@ -149,7 +149,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             else{
                 outputClass = @"Nil";
             }
-            [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:path useToken:%@ inputParameters:inputParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
+            [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:thePath useToken:%@ inputParameters:inputParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
             [methodsImplementation appendString:oneMethodImplementation];
         }
     }

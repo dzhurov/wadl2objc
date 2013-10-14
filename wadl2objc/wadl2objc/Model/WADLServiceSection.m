@@ -54,7 +54,7 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
                 [self.pathParameters addObject:parameter];
                 for (int i = 0; i < pathComponents.count; i++) {
                     NSString *onePathComponent = pathComponents[i];
-                    NSRange range = [onePathComponent rangeOfString:parameter.name];
+                    NSRange range = [onePathComponent rangeOfString:[@"{" stringByAppendingString:parameter.name]];
                     if ( range.location != NSNotFound ){
                         NSString *regexSeparator = @": ";
                         if ( onePathComponent.length > parameter.name.length + 2/*breckets*/ ){ //has regex
