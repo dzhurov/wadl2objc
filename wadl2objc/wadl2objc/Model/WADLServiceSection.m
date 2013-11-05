@@ -11,7 +11,7 @@
 #import "XSDTypes.h"
 #import "WADLService.h"
 
-#define kSupportedHTTPMethodsArray @[@"GET", @"POST", @"PUT", @"DELTE"]
+#define kSupportedHTTPMethodsArray @[@"GET", @"POST", @"PUT", @"DELETE"]
 
 @implementation WADLServiceSection
 
@@ -136,6 +136,7 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
         if ( [pathComponents[i] isEqualToString:@"%@"] ){
             WADLServicePathParameter *parameter = _pathParameters[changedPathComponentIndex];
             [pathComponents replaceObjectAtIndex:i withObject:parameter.name];
+            changedPathComponentIndex ++;
         }
         NSString *pathComponent = pathComponents[i];
         pathComponent = [pathComponent uppercaseFirstCharacterString];

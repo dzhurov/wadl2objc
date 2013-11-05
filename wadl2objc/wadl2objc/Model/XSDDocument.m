@@ -55,6 +55,9 @@
     
     // Simple Types (enums)
     NSArray *simpleTypes = dict[kSimpleTypesKey];
+    if ([simpleTypes isKindOfClass:[NSDictionary class]]){
+        simpleTypes = @[simpleTypes];
+    }
     NSMutableDictionary *xsdSimpleTypes = [NSMutableDictionary dictionaryWithCapacity:simpleTypes.count];
     for (NSDictionary *oneSimpleType in simpleTypes) {
         XSDSimpleType *xsdSimple = [XSDSimpleType new];
@@ -108,6 +111,7 @@
             }
             else if ([typeString hasPrefix:@"xs:"]){
                 xsdProperty.type = classNameForXSDType(typeString);
+                xsdProperty.dockComment = dockCommentForXSDType(typeString);
             }
             else{
                 XSDSimpleType *simpleType = xsdSimpleTypes[typeString];
@@ -206,6 +210,9 @@
         }
         else
             typeString = property.type;
+        
+        if (property.dockComment)
+            [propertiesList appendFormat:@"\n%@", property.dockComment];
         
         [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@ *%@;", typeString, property.name];
     }
@@ -310,7 +317,7 @@
         }
     }
     // .m file
-    if ( ![fileManager fileExistsAtPath:mFileName] ){
+    if ( ![fileManager fileExistsAtPath:mFilePath] ){
         NSString *mTemplateFilePath = [@"./Resources" stringByAppendingPathComponent:@"TemplateEntity_m"];
         NSError *error = nil;
         NSString *mFileFormat = [NSString stringWithContentsOfFile:mTemplateFilePath encoding:NSUTF8StringEncoding error: &error];

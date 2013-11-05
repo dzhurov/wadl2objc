@@ -162,7 +162,7 @@ __strong static NSDateFormatter const *dateFormatter = nil;
         NSString *propertyTypeStr = attributes[0];
         BOOL isPrimitive = [propertyTypeStr characterAtIndex:1] != '@'; // is it class
         if (isPrimitive){
-            NSString *enumName = [BaseEntity entityNameForMappedField:key];
+            NSString *enumName = [BaseEntity enumNameForMappedField:key];
             NSUInteger enumValue = [(NSNumber*)valueForKey unsignedIntegerValue];
             id enumObj = [XSDEnums objectForEnumValue:enumValue enumName:enumName];
             valueForKey = enumObj;
@@ -205,7 +205,7 @@ __strong static NSDateFormatter const *dateFormatter = nil;
             Class propClass = NSClassFromString(className);
             
             if (isPrimitive){ // isEnum
-                NSString *enumName = [BaseEntity entityNameForMappedField:key];
+                NSString *enumName = [BaseEntity enumNameForMappedField:key];
                 NSUInteger enumValue = [XSDEnums enumValueForObject:valueForKey enumName:enumName];
                 [self setValue:@(enumValue) forKey:key];
             }
@@ -247,7 +247,7 @@ __strong static NSDateFormatter const *dateFormatter = nil;
 
 #pragma mark - Setting/Get value for key
 
-+ (NSString *)entityNameForMappedField:(NSString*)fieldName
++ (NSString *)enumNameForMappedField:(NSString*)fieldName
 {
     return nil;
 }

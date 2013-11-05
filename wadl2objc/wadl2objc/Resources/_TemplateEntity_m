@@ -21,10 +21,10 @@
     return keys;
 }
 
-+ (NSString *)entityNameForMappedField:(NSString*)fieldName
++ (NSString *)enumNameForMappedField:(NSString*)fieldName
 {
 %@
-    return [super entityNameForMappedField:fieldName];
+    return [super enumNameForMappedField:fieldName];
 }
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName

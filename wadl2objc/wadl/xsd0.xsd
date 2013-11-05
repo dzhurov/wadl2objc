@@ -1,9 +1,43 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+  <xs:element name="AuthStoreDto" type="authStoreDto"/>
+
+  <xs:element name="AuthStoreStateDto" type="authStoreStateDto"/>
+
   <xs:element name="AuthUserDto" type="authUserDto"/>
 
+  <xs:element name="CustomerCreateDto" type="customerCreateDto"/>
+
+  <xs:element name="CustomerDto" type="customerDto"/>
+
+  <xs:element name="CustomerSearchCriteriaDto" type="customerSearchCriteriaDto"/>
+
+  <xs:element name="CustomerSearchResultDto" type="customerSearchResultDto"/>
+
   <xs:element name="EventDatesDto" type="eventDatesDto"/>
+
+  <xs:element name="GroupCreationDto" type="groupCreationDto"/>
+
+  <xs:element name="GroupDto" type="groupDto"/>
+
+  <xs:element name="GroupLogisticDto" type="groupLogisticDto"/>
+
+  <xs:element name="GroupOffersDto" type="groupOffersDto"/>
+
+  <xs:element name="GroupRepresentativeDto" type="groupRepresentativeDto"/>
+
+  <xs:element name="GroupReservationsDto" type="groupReservationsDto"/>
+
+  <xs:element name="GroupSummaryDto" type="groupSummaryDto"/>
+
+  <xs:element name="OrderDto" type="orderDto"/>
+
+  <xs:element name="PointDto" type="pointDto"/>
+
+  <xs:element name="ReservationCreationDto" type="reservationCreationDto"/>
+
+  <xs:element name="ReservationDto" type="reservationDto"/>
 
   <xs:element name="ReservationLogisticDto" type="reservationLogisticDto"/>
 
@@ -13,23 +47,202 @@
 
   <xs:element name="ReservationStyleDto" type="reservationStyleDto"/>
 
+  <xs:element name="ReservationStyleListDto" type="reservationStyleListDto"/>
+
   <xs:element name="ReservationSummaryDto" type="reservationSummaryDto"/>
 
   <xs:element name="SchoolDto" type="schoolDto"/>
 
+  <xs:element name="SchoolListDto" type="schoolListDto"/>
+
+  <xs:element name="SearchCriteriaDto" type="searchCriteriaDto"/>
+
+  <xs:element name="SearchResultDto" type="searchResultDto"/>
+
+  <xs:element name="SignatureDto" type="signatureDto"/>
+
+  <xs:element name="StoreDto" type="storeDto"/>
+
+  <xs:element name="StoresDto" type="storesDto"/>
+
+  <xs:element name="StyleInformationDto" nillable="true" type="xs:anyType"/>
+
+  <xs:element name="StyleInformationListDto" type="styleInformationListDto"/>
+
+  <xs:complexType name="customerSearchCriteriaDto">
+    <xs:sequence>
+      <xs:element name="perfectFitId" type="xs:string" minOccurs="0"/>
+      <xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="zip" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="groupCreationDto">
+    <xs:sequence>
+      <xs:element name="groupId" type="xs:long" minOccurs="0"/>
+      <xs:element name="groupType" type="groupType" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="pickupDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="returnDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="salesPerson" type="xs:string" minOccurs="0"/>
+      <xs:element name="promRep" type="xs:string" minOccurs="0"/>
+      <xs:element name="repGender" type="genderType" minOccurs="0"/>
+      <xs:element name="leadId" type="xs:string" minOccurs="0"/>
+      <xs:element name="representative1" type="groupRepresentativeDto" minOccurs="0"/>
+      <xs:element name="representative2" type="groupRepresentativeDto" minOccurs="0"/>
+      <xs:element name="schoolNo" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="localDate" final="extension restriction">
+    <xs:complexContent>
+      <xs:extension base="baseLocal">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="baseLocal" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="abstractPartial">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="abstractPartial" abstract="true">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="groupRepresentativeDto">
+    <xs:sequence>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="phone" type="xs:string" minOccurs="0"/>
+      <xs:element name="address1" type="xs:string" minOccurs="0"/>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="state" type="xs:string" minOccurs="0"/>
+      <xs:element name="zip" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="role" type="representativeRole" minOccurs="0"/>
+      <xs:element name="gradeLevel" type="gradeLevelType" minOccurs="0"/>
+      <xs:element name="phoneExt" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="groupDto">
+    <xs:sequence>
+      <xs:element name="summary" type="groupSummaryDto" minOccurs="0"/>
+      <xs:element name="logistic" type="groupLogisticDto" minOccurs="0"/>
+      <xs:element name="offers" type="groupOffersDto" minOccurs="0"/>
+      <xs:element name="reservations" type="groupReservationsDto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="groupSummaryDto">
+    <xs:sequence>
+      <xs:element name="groupId" type="xs:long" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="groupType" type="groupType" minOccurs="0"/>
+      <xs:element name="eventType" type="eventType" minOccurs="0"/>
+      <xs:element name="schoolNo" type="xs:long" minOccurs="0"/>
+      <xs:element name="representative1" type="groupRepresentativeDto" minOccurs="0"/>
+      <xs:element name="representative2" type="groupRepresentativeDto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="groupLogisticDto">
+    <xs:sequence>
+      <xs:element name="groupId" type="xs:long" minOccurs="0"/>
+      <xs:element name="createDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="bookingStore" type="xs:string" minOccurs="0"/>
+      <xs:element name="fitByDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="pickupDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="returnDate" type="xs:date" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="groupOffersDto">
+    <xs:sequence>
+      <xs:element name="groupId" type="xs:long" minOccurs="0"/>
+      <xs:element name="discountCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="requiredItems" type="styleItemType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="promotionCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="groupReservationsDto">
+    <xs:sequence>
+      <xs:element name="reservations" type="reservationDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationDto">
+    <xs:sequence>
+      <xs:element name="summary" type="reservationSummaryDto" minOccurs="0"/>
+      <xs:element name="styles" type="reservationStyleDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationSummaryDto">
+    <xs:sequence>
+      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="groupId" type="xs:long" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="role" type="reservationRole" minOccurs="0"/>
+      <xs:element name="phone" type="xs:string" minOccurs="0"/>
+      <xs:element name="custEmail" type="xs:string" minOccurs="0"/>
+      <xs:element name="groupComment" type="xs:string" minOccurs="0"/>
+      <xs:element name="storeComment" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="xs:string" minOccurs="0"/>
+      <xs:element name="auditedBy" type="xs:string" minOccurs="0"/>
+      <xs:element name="groupName" type="xs:string" minOccurs="0"/>
+      <xs:element name="eventType" type="eventType" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="salesPerson" type="xs:string" minOccurs="0"/>
+      <xs:element name="shipToStore" type="xs:string" minOccurs="0"/>
+      <xs:element name="location" type="xs:string" minOccurs="0"/>
+      <xs:element name="source" type="xs:string" minOccurs="0"/>
+      <xs:element name="posStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="amountDue" type="xs:float" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="reservationStyleDto">
     <xs:sequence>
-      <xs:element name="reservationNumber" type="xs:string" minOccurs="0"/>
-      <xs:element name="sequence" type="xs:int"/>
+      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="lineNo" type="xs:int"/>
       <xs:element name="rentalPrice" type="xs:string" minOccurs="0"/>
       <xs:element name="quantity" type="xs:int"/>
       <xs:element name="style" type="xs:string" minOccurs="0"/>
       <xs:element name="status" type="xs:string" minOccurs="0"/>
       <xs:element name="notes" type="xs:string" minOccurs="0"/>
-      <xs:element name="itemTypeDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="itemType" type="styleItemType" minOccurs="0"/>
       <xs:element name="styleDescription" type="xs:string" minOccurs="0"/>
       <xs:element name="sizeCode" type="xs:string" minOccurs="0"/>
       <xs:element name="isInPackage" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationOffersDto">
+    <xs:sequence>
+      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="discountCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="eventDatesDto">
+    <xs:sequence>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="returnDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="pickupDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="fitByDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="rushFeeAlert" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -47,33 +260,161 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="reservationOffersDto">
+  <xs:complexType name="storeDto">
     <xs:sequence>
-      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
-      <xs:element name="discountCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="storeNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="phone" type="xs:string" minOccurs="0"/>
+      <xs:element name="address" type="xs:string" minOccurs="0"/>
+      <xs:element name="address2" type="xs:string" minOccurs="0"/>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="zip" type="xs:string" minOccurs="0"/>
+      <xs:element name="state" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="xs:string" minOccurs="0"/>
+      <xs:element name="storeType" type="xs:string" minOccurs="0"/>
+      <xs:element name="hub" type="xs:string" minOccurs="0"/>
+      <xs:element name="company" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="reservationSummaryDto">
+  <xs:complexType name="authStoreStateDto">
+    <xs:sequence>
+      <xs:element name="storeNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="registerId" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastTxNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="storeProcessDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="lastTxDateTime" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="deviceId" type="xs:string" minOccurs="0"/>
+      <xs:element name="open" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="dateTime" final="extension restriction">
+    <xs:complexContent>
+      <xs:extension base="baseDateTime">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="baseDateTime" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="abstractDateTime">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="abstractDateTime" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="abstractInstant">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="abstractInstant" abstract="true">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="authStoreDto">
+    <xs:sequence>
+      <xs:element name="userId" type="xs:string" minOccurs="0"/>
+      <xs:element name="userPassword" type="xs:string" minOccurs="0"/>
+      <xs:element name="storeId" type="xs:string" minOccurs="0"/>
+      <xs:element name="storePassword" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationLogisticDto">
     <xs:sequence>
       <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
-      <xs:element name="groupId" type="xs:decimal" minOccurs="0"/>
-      <xs:element name="groupName" type="xs:string" minOccurs="0"/>
-      <xs:element name="eventDate" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="eventType" type="xs:string" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="fitByDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="expectedPickupDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="expectedReturnDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="bookingStore" type="xs:string" minOccurs="0"/>
+      <xs:element name="pickupStore" type="xs:string" minOccurs="0"/>
+      <xs:element name="returnStore" type="xs:string" minOccurs="0"/>
+      <xs:element name="salesPerson" type="xs:string" minOccurs="0"/>
+      <xs:element name="createDate" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationStyleListDto">
+    <xs:sequence>
+      <xs:element name="reservationStyleDtoList" type="reservationStyleDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="searchCriteriaDto">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
       <xs:element name="firstName" type="xs:string" minOccurs="0"/>
       <xs:element name="lastName" type="xs:string" minOccurs="0"/>
-      <xs:element name="role" type="xs:string" minOccurs="0"/>
-      <xs:element name="comment" type="xs:string" minOccurs="0"/>
+      <xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="bookingStore" type="xs:string" minOccurs="0"/>
+      <xs:element name="schoolNo" type="xs:long" minOccurs="0"/>
+      <xs:element name="salesperson" type="xs:string" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="eventType" type="eventType" minOccurs="0"/>
+      <xs:element name="groupName" type="xs:string" minOccurs="0"/>
+      <xs:element name="groupType" type="groupType" minOccurs="0"/>
+      <xs:element name="coRegistrantFirstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="coRegistrantLastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="coRegistrantPhoneNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="coRegistrantZipCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="commitMin" type="xs:int" minOccurs="0"/>
+      <xs:element name="commitMax" type="xs:int" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="fromDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="toDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="firstResultNumber" type="xs:int" minOccurs="0"/>
+      <xs:element name="maxResultNumber" type="xs:int" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="eventDatesDto">
+  <xs:complexType name="customerDto">
     <xs:sequence>
-      <xs:element name="eventDate" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="returnDate" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="pickupDate" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="fitByDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
+      <xs:element name="perfectFitId" type="xs:string" minOccurs="0"/>
+      <xs:element name="partyId" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="address" type="xs:string" minOccurs="0"/>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="stateCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="zip" type="xs:string" minOccurs="0"/>
+      <xs:element name="birthday" type="xs:date" minOccurs="0"/>
+      <xs:element name="usageCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="doNotContactModes" type="preferredContactMode" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="styleInformationDto">
+    <xs:sequence>
+      <xs:element name="itemType" type="styleItemType" minOccurs="0"/>
+      <xs:element name="styleNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="styleDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="rentalPrice" type="xs:string" minOccurs="0"/>
+      <xs:element name="blockedSizes" type="styleSizeDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="styleSizeDto">
+    <xs:sequence>
+      <xs:element name="styleNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="eventType" type="xs:string" minOccurs="0"/>
+      <xs:element name="startDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="endDate" type="xs:date" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="storesDto">
+    <xs:sequence>
+      <xs:element name="stores" type="storeDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -87,25 +428,220 @@
       <xs:element name="storeId" type="xs:string" minOccurs="0"/>
       <xs:element name="isStoreOpen" type="xs:boolean"/>
       <xs:element name="registerNum" type="xs:string" minOccurs="0"/>
+      <xs:element name="storeProcessDate" type="xs:date" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="styleInformationListDto">
+    <xs:sequence>
+      <xs:element name="styleInformationDtoList" type="styleInformationDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="reservationMeasurementDto">
     <xs:sequence>
       <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
-      <xs:element name="height" type="xs:int" minOccurs="0"/>
-      <xs:element name="weight" type="xs:int" minOccurs="0"/>
+      <xs:element name="chest" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="overarm" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="coatSleeve" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="waist" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="hip" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="outSeam" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="neck" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="shirtSleeve" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="height" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="weight" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="shoes" type="xs:decimal" minOccurs="0"/>
       <xs:element name="measuredBy" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="reservationLogisticDto">
+  <xs:complexType name="schoolListDto">
     <xs:sequence>
-      <xs:element name="reservationNo" type="xs:string" minOccurs="0"/>
-      <xs:element name="eventDate" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="expectedPickupDate" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="actualPickupDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="schoolDtoList" type="schoolDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
+
+  <xs:complexType name="searchResultDto">
+    <xs:sequence>
+      <xs:element name="orders" type="orderDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="firstResultNumber" type="xs:int" minOccurs="0"/>
+      <xs:element name="resultsNumber" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="orderDto">
+    <xs:sequence>
+      <xs:element name="reservationNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="groupName" type="xs:string" minOccurs="0"/>
+      <xs:element name="phone" type="xs:string" minOccurs="0"/>
+      <xs:element name="zipCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="eventType" type="eventType" minOccurs="0"/>
+      <xs:element name="bookingStore" type="xs:string" minOccurs="0"/>
+      <xs:element name="schoolNum" type="xs:long" minOccurs="0"/>
+      <xs:element name="salesperson" type="xs:string" minOccurs="0"/>
+      <xs:element name="groupId" type="xs:long" minOccurs="0"/>
+      <xs:element name="leadId" type="xs:string" minOccurs="0"/>
+      <xs:element name="coRegistrantFirstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="coRegistrantLastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="coRegistrantPhoneNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="coRegistrantZipCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="discountCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="numReservations" type="xs:long" minOccurs="0"/>
+      <xs:element name="numCommitted" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customerSearchResultDto">
+    <xs:sequence>
+      <xs:element name="customers" type="customerDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customerCreateDto">
+    <xs:sequence>
+      <xs:element name="customer" type="customerDto" minOccurs="0"/>
+      <xs:element name="signature" type="signatureDto" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="signatureDto">
+    <xs:sequence>
+      <xs:element name="image" type="xs:base64Binary" minOccurs="0"/>
+      <xs:element name="points" type="pointDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="sequenceNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="stringPNGImage" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pointDto">
+    <xs:sequence>
+      <xs:element name="x" type="xs:int"/>
+      <xs:element name="y" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reservationCreationDto">
+    <xs:sequence>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="phone" type="xs:string" minOccurs="0"/>
+      <xs:element name="custEmail" type="xs:string" minOccurs="0"/>
+      <xs:element name="eventDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="gradeLevel" type="xs:string" minOccurs="0"/>
+      <xs:element name="expectedPickupDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="expectedReturnDate" type="xs:date" minOccurs="0"/>
+      <xs:element name="schoolNumber" type="xs:long" minOccurs="0"/>
+      <xs:element name="eventType" type="eventType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="groupType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WED"/>
+      <xs:enumeration value="PROM"/>
+      <xs:enumeration value="SCHOOL"/>
+      <xs:enumeration value="BUS"/>
+      <xs:enumeration value="QUINCE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="genderType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="F"/>
+      <xs:enumeration value="M"/>
+      <xs:enumeration value="X"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="representativeRole">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BRI"/>
+      <xs:enumeration value="GRO"/>
+      <xs:enumeration value="REP"/>
+      <xs:enumeration value="Q"/>
+      <xs:enumeration value="D"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="O"/>
+      <xs:enumeration value="L"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="gradeLevelType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FRESHMAN"/>
+      <xs:enumeration value="JUNIOR"/>
+      <xs:enumeration value="SENIOR"/>
+      <xs:enumeration value="SOPHOMORE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="eventType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WED"/>
+      <xs:enumeration value="BUS"/>
+      <xs:enumeration value="PROM"/>
+      <xs:enumeration value="QUINCE"/>
+      <xs:enumeration value="IND"/>
+      <xs:enumeration value="HOME"/>
+      <xs:enumeration value="GRAD"/>
+      <xs:enumeration value="OTHER"/>
+      <xs:enumeration value="FASH"/>
+      <xs:enumeration value="PHOTO_SHOOT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="styleItemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="COAT"/>
+      <xs:enumeration value="PANTS"/>
+      <xs:enumeration value="SHIRT"/>
+      <xs:enumeration value="SUSPENDERS"/>
+      <xs:enumeration value="SHOES"/>
+      <xs:enumeration value="NECKWEAR"/>
+      <xs:enumeration value="CUMMERBUND"/>
+      <xs:enumeration value="JEWELRY"/>
+      <xs:enumeration value="VEST"/>
+      <xs:enumeration value="CONVERSION"/>
+      <xs:enumeration value="BELT"/>
+      <xs:enumeration value="ACCESSORY"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="reservationRole">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GR"/>
+      <xs:enumeration value="BM"/>
+      <xs:enumeration value="GM"/>
+      <xs:enumeration value="FOB"/>
+      <xs:enumeration value="FOG"/>
+      <xs:enumeration value="GFB"/>
+      <xs:enumeration value="GFG"/>
+      <xs:enumeration value="JGM"/>
+      <xs:enumeration value="RB"/>
+      <xs:enumeration value="SFB"/>
+      <xs:enumeration value="SFG"/>
+      <xs:enumeration value="UNC"/>
+      <xs:enumeration value="USH"/>
+      <xs:enumeration value="NA"/>
+      <xs:enumeration value="NA2"/>
+      <xs:enumeration value="AT"/>
+      <xs:enumeration value="REP"/>
+      <xs:enumeration value="MEM"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="preferredContactMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ALL_FORMS"/>
+      <xs:enumeration value="PHONE"/>
+      <xs:enumeration value="EMAIL"/>
+      <xs:enumeration value="MAIL_WITHOUT_REWARD_CERTS"/>
+      <xs:enumeration value="MAIL"/>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
 

@@ -1,17 +1,246 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <application xmlns="http://wadl.dev.java.net/2009/02">
-    <doc xmlns:jersey="http://jersey.java.net/" jersey:generatedBy="Jersey: 2.2 2013-08-14 08:51:58"/>
+    <doc xmlns:jersey="http://jersey.java.net/" jersey:generatedBy="Jersey: 2.3.1 2013-09-27 07:50:09"/>
     <grammars>
         <include href="application.wadl/xsd0.xsd">
             <doc title="Generated" xml:lang="en"/>
         </include>
     </grammars>
-    <resources base="http://engagedevapp01:8080/tuxmobile-war/services/">
+    <resources base="http://engagedevapp01:8080/tuxmobile-war-dev/services/">
+        <resource path="search">
+            <resource path="/events">
+                <method id="searchEvents" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SearchCriteriaDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SearchResultDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/reservations">
+                <method id="searchReservations" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SearchCriteriaDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SearchResultDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/groups">
+                <method id="searchGroups" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SearchCriteriaDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SearchResultDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
         <resource path="inventory">
-            <resource path="styles">
+            <resource path="stores/return">
+                <method id="searchReturnStores" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="StoresDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="stores/pickup">
+                <method id="searchPickupStores" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="StoresDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="stores/{storeNo: \d{1,4}}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="storeNo" style="template" type="xs:string"/>
+                <method id="findByStoreNo" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="StoreDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="stores">
+                <method id="searchAllStores" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="StoresDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="schools">
                 <method id="searchAll" name="GET">
                     <response>
-                        <representation mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SchoolListDto" mediaType="application/json"/>
                     </response>
                 </method>
                 <method id="apply" name="OPTIONS">
@@ -43,38 +272,7 @@
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="schoolSt" style="template" type="xs:string"/>
                 <method id="searchByState" name="GET">
                     <response>
-                        <representation mediaType="application/json"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="application/vnd.sun.wadl+xml"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="text/plain"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="*/*"/>
-                    </response>
-                </method>
-            </resource>
-            <resource path="schools">
-                <method id="searchAll" name="GET">
-                    <response>
-                        <representation mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SchoolListDto" mediaType="application/json"/>
                     </response>
                 </method>
                 <method id="apply" name="OPTIONS">
@@ -107,7 +305,7 @@
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="schoolSt" style="template" type="xs:string"/>
                 <method id="searchByStateAndCity" name="GET">
                     <response>
-                        <representation mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="SchoolListDto" mediaType="application/json"/>
                     </response>
                 </method>
                 <method id="apply" name="OPTIONS">
@@ -135,7 +333,7 @@
                     </response>
                 </method>
             </resource>
-            <resource path="schools/{schoolNo: \d{1,9}}">
+            <resource path="schools/{schoolNo: \d{1,8}}">
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="schoolNo" style="template" type="xs:int"/>
                 <method id="findBySchoolNo" name="GET">
                     <response>
@@ -167,18 +365,87 @@
                     </response>
                 </method>
             </resource>
+            <resource path="styles">
+                <method id="searchAll" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="StyleInformationListDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="styles/{styleNo: \d{1,15}}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="styleNo" style="template" type="xs:string"/>
+                <method id="findByStyleNumber" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="StyleInformationDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
         </resource>
         <resource path="reservation">
-            <resource path="/{reservationNo: \d{1,14}}/style">
-                <method id="createStyle" name="POST">
-                    <request>
+            <resource path="/{reservationNo: \d{1,14}}/styles/{lineNo: \d{1,14}}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="lineNo" style="template" type="xs:int"/>
+                <method id="findReservationStyle" name="GET">
+                    <response>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationStyleDto" mediaType="application/json"/>
-                    </request>
+                    </response>
                 </method>
+                <method id="removeStyle" name="DELETE"/>
                 <method id="updateStyle" name="PUT">
                     <request>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationStyleDto" mediaType="application/json"/>
                     </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationStyleDto" mediaType="application/json"/>
+                    </response>
                 </method>
                 <method id="apply" name="OPTIONS">
                     <request>
@@ -207,42 +474,17 @@
             </resource>
             <resource path="/{reservationNo: \d{1,14}}/styles">
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
-                <method id="findReservationStyles" name="GET">
-                    <response>
-                        <representation mediaType="application/json"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
+                <method id="createStyle" name="POST">
                     <request>
-                        <representation mediaType="*/*"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationStyleDto" mediaType="application/json"/>
                     </request>
-                    <response>
-                        <representation mediaType="application/vnd.sun.wadl+xml"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="text/plain"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="*/*"/>
-                    </response>
-                </method>
-            </resource>
-            <resource path="/{reservationNo: \d{1,14}}/style/{sequence: \d{1,14}}">
-                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="sequence" style="template" type="xs:int"/>
-                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
-                <method id="findReservationStyle" name="GET">
                     <response>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationStyleDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="findReservationStyles" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationStyleListDto" mediaType="application/json"/>
                     </response>
                 </method>
                 <method id="apply" name="OPTIONS">
@@ -277,32 +519,6 @@
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationLogisticDto" mediaType="application/json"/>
                     </response>
                 </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="application/vnd.sun.wadl+xml"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="text/plain"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="*/*"/>
-                    </response>
-                </method>
-            </resource>
-            <resource path="/logistic">
                 <method id="updateLogistic" name="PUT">
                     <request>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationLogisticDto" mediaType="application/json"/>
@@ -336,53 +552,19 @@
                     </response>
                 </method>
             </resource>
-            <resource path="/summary">
+            <resource path="/{reservationNo: \d{1,14}}/summary">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
+                <method id="findSummaryByNo" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationSummaryDto" mediaType="application/json"/>
+                    </response>
+                </method>
                 <method id="updateSummary" name="PUT">
                     <request>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationSummaryDto" mediaType="application/json"/>
                     </request>
                     <response>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationSummaryDto" mediaType="application/json"/>
-                    </response>
-                </method>
-                <method id="createReservation" name="POST">
-                    <request>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationSummaryDto" mediaType="application/json"/>
-                    </request>
-                    <response>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationSummaryDto" mediaType="application/json"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="application/vnd.sun.wadl+xml"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="text/plain"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="*/*"/>
-                    </response>
-                </method>
-            </resource>
-            <resource path="/{reservationNo: \d{1,14}}/measurement">
-                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
-                <method id="findMeasurementByNo" name="GET">
-                    <response>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationMeasurementDto" mediaType="application/json"/>
                     </response>
                 </method>
                 <method id="apply" name="OPTIONS">
@@ -438,43 +620,11 @@
                     </response>
                 </method>
             </resource>
-            <resource path="/measurement">
-                <method id="updateMeasurement" name="PUT">
+            <resource path="/">
+                <method id="createReservation" name="POST">
                     <request>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationMeasurementDto" mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationCreationDto" mediaType="application/json"/>
                     </request>
-                    <response>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationMeasurementDto" mediaType="application/json"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="application/vnd.sun.wadl+xml"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="text/plain"/>
-                    </response>
-                </method>
-                <method id="apply" name="OPTIONS">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="*/*"/>
-                    </response>
-                </method>
-            </resource>
-            <resource path="/{reservationNo: \d{1,14}}/summary">
-                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
-                <method id="findSummaryByNo" name="GET">
                     <response>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationSummaryDto" mediaType="application/json"/>
                     </response>
@@ -504,7 +654,13 @@
                     </response>
                 </method>
             </resource>
-            <resource path="/offers">
+            <resource path="/{reservationNo: \d{1,14}}/offers">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
+                <method id="findOffersByNo" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationOffersDto" mediaType="application/json"/>
+                    </response>
+                </method>
                 <method id="updateOffers" name="PUT">
                     <request>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationOffersDto" mediaType="application/json"/>
@@ -538,11 +694,420 @@
                     </response>
                 </method>
             </resource>
-            <resource path="/{reservationNo: \d{1,14}}/offers">
+            <resource path="/{reservationNo: \d{1,14}}/measurement">
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
-                <method id="findOffersByNo" name="GET">
+                <method id="updateMeasurement" name="PUT">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationMeasurementDto" mediaType="application/json"/>
+                    </request>
                     <response>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationOffersDto" mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationMeasurementDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="findMeasurementByNo" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationMeasurementDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="customer">
+            <resource path="/search">
+                <method id="searchCustomers" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerSearchCriteriaDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerSearchResultDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/pf">
+                <method id="enrollPfCustomer" name="PUT">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="createPfCustomer" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerCreateDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{partyId: \d{1,20}}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="partyId" style="template" type="xs:string"/>
+                <method id="getCustomer" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/">
+                <method id="updateCustomer" name="PUT">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="CustomerDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="groups">
+            <resource path="/{groupId: \d{1,14}}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="groupId" style="template" type="xs:long"/>
+                <method id="getGroup" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{groupId: \d{1,14}}/reservations">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="groupId" style="template" type="xs:long"/>
+                <method id="addReservation" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationCreationDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="ReservationSummaryDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="getReservations" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupReservationsDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/">
+                <method id="createGroup" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupCreationDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupSummaryDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{groupId: \d{1,14}}/offers">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="groupId" style="template" type="xs:long"/>
+                <method id="updateOffers" name="PUT">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupOffersDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupOffersDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="getOffers" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupOffersDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{groupId: \d{1,14}}/logistic">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="groupId" style="template" type="xs:long"/>
+                <method id="getLogistics" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupLogisticDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="updateLogistic" name="PUT">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupLogisticDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupLogisticDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{groupId: \d{1,14}}/reservations/{reservationNo: \d{1,14}}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="groupId" style="template" type="xs:long"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="reservationNo" style="template" type="xs:string"/>
+                <method id="removeReservation" name="DELETE"/>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{groupId: \d{1,14}}/summary">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="groupId" style="template" type="xs:long"/>
+                <method id="getSummaryGroup" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupSummaryDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="updateSummary" name="PUT">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupSummaryDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="GroupSummaryDto" mediaType="application/json"/>
                     </response>
                 </method>
                 <method id="apply" name="OPTIONS">
@@ -606,11 +1171,84 @@
                     </response>
                 </method>
             </resource>
+            <resource path="store">
+                <method id="getRegisterSession" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="AuthStoreStateDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="openRegisterSession" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="AuthStoreDto" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="AuthStoreStateDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="closeRegisterSession" name="DELETE"/>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
         </resource>
         <resource path="rules">
             <resource path="/eventDates/{eventDate: \d{4}-\d{2}-\d{2}}">
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="eventDate" style="template" type="xs:string"/>
-                <method id="findReservationStyles" name="GET">
+                <method id="calculateEventDays" name="GET">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="EventDatesDto" mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/vnd.sun.wadl+xml"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+                <method id="apply" name="OPTIONS">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/eventDates/{eventDate: \d{4}-\d{2}-\d{2}}/{eventType: \w{1,12}}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="eventDate" style="template" type="xs:string"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="eventType" style="template" type="xs:string"/>
+                <method id="calculateEventDaysForEventType" name="GET">
                     <response>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="EventDatesDto" mediaType="application/json"/>
                     </response>
