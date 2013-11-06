@@ -351,6 +351,7 @@
         NSMutableString *keyValueString = [NSMutableString string];
         NSMutableString *constStringsDeclaration = [NSMutableString string];
         
+        [constStringsDeclaration appendFormat:@"static const NSUInteger k%@Count = %lu;\n", oneSimpleType.name, (unsigned long)oneSimpleType.options.count];
         for (int i = 0; i < oneSimpleType.options.count; i++) {
             NSString *enumOptionName = [oneSimpleType.name stringByAppendingString:oneSimpleType.options[i]];
             NSString *stringConstName = [NSString stringWithFormat:@"k%@String", enumOptionName];
