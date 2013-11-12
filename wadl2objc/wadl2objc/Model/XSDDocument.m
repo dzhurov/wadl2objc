@@ -65,7 +65,10 @@
         xsdSimple.name = formattedType(name);
         NSDictionary *restriction = oneSimpleType[kSimpleTypeRestrictionKey];
         xsdSimple.baseType = classNameForXSDType(restriction[@"base"]);
-        xsdSimple.options = [restriction valueForKeyPath:@"xs:enumeration.value"];
+        NSMutableArray *options = [restriction valueForKeyPath:@"xs:enumeration.value"];
+        if (![options isKindOfClass:[NSArray class]])
+            options = [NSMutableArray arrayWithObject:options];
+        xsdSimple.options = options;
         [xsdSimpleTypes setObject:xsdSimple forKey:name];
     }
     
