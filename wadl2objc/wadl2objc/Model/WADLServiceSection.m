@@ -68,6 +68,10 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
                 }//for (int i = 0; i < pathComponents.count; i++)
             }
         }//for (NSDictionary *paramDict in params)
+        [self.pathParameters sortUsingComparator:^NSComparisonResult(WADLServicePathParameter *obj1, WADLServicePathParameter *obj2) {
+            return [@([path rangeOfString:obj1.name].location) compare:@([path rangeOfString:obj2.name].location)];
+        }];
+        
     }//else if ([parameterStyle isEqualToString:@"template"])
     self.path = [pathComponents componentsJoinedByString:@"/"];
 

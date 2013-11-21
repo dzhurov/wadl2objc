@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E7D0470D-80C9-4CAC-9F30-8D9468C165FC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>wadl2objc</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F4278E7D-7B53-44F6-BF01-50FBD43EA5BC</key>
+		<string>https://github.com/dzhurov/wadl2objc</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>wadl2objc/wadl2objc.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F4278E7D-7B53-44F6-BF01-50FBD43EA5BC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/dzhurov/wadl2objc</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F4278E7D-7B53-44F6-BF01-50FBD43EA5BC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F4278E7D-7B53-44F6-BF01-50FBD43EA5BC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>wadl2objc</string>
+		</dict>
+	</array>
+</dict>
+</plist>

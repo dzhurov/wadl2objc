@@ -9,27 +9,79 @@
 
 #pragma mark - Generated Services
 
+// Search
+#define kWADLServiceSearchGroupsURLPath @"search/groups"
+#define kWADLServiceSearchReservationsURLPath @"search/reservations"
+#define kWADLServiceSearchEventsURLPath @"search/events"
+#define kWADLServiceSearchURLPath @"search"
+
+// Transaction
+#define kWADLServiceTransactionPostTuxDepositURLPath @"transaction/postTuxDeposit"
+#define kWADLServiceTransactionURLPath @"transaction"
+#define kWADLServiceTransactionAddFeeURLPath @"transaction/addFee"
+#define kWADLServiceTransactionFillLineItemsURLPath @"transaction/fillLineItems"
+#define kWADLServiceTransactionAddMarkdownURLPath @"transaction/addMarkdown"
+#define kWADLServiceTransactionPostvoidURLPath @"transaction/postvoid"
+#define kWADLServiceTransactionApplyCouponURLPath @"transaction/applyCoupon"
+
 // Inventory
-#define kWADLServiceInventorySchoolsURLPath @"inventory/schools"
-#define kWADLServiceInventoryURLPath @"inventory"
+#define kWADLServiceInventoryStylesStyleNoURLPath @"inventory/styles/%@"
 #define kWADLServiceInventorySchoolsSchoolStURLPath @"inventory/schools/%@"
-#define kWADLServiceInventorySchoolsSchoolCitySchoolCityURLPath @"inventory/schools/%@/%@"
-#define kWADLServiceInventorySchoolsSchoolNoURLPath @"inventory/schools/%@"
+#define kWADLServiceInventoryStoresURLPath @"inventory/stores"
 #define kWADLServiceInventoryStylesURLPath @"inventory/styles"
+#define kWADLServiceInventorySchoolsURLPath @"inventory/schools"
+#define kWADLServiceInventorySchoolsSchoolCitySchoolStURLPath @"inventory/schools/%@/%@"
+#define kWADLServiceInventoryStoresReturnURLPath @"inventory/stores/return"
+#define kWADLServiceInventorySchoolsSchoolNoURLPath @"inventory/schools/%@"
+#define kWADLServiceInventoryStoresPickupURLPath @"inventory/stores/pickup"
+#define kWADLServiceInventorySizesURLPath @"inventory/sizes"
+#define kWADLServiceInventoryURLPath @"inventory"
+#define kWADLServiceInventoryStoresStoreNoURLPath @"inventory/stores/%@"
+#define kWADLServiceInventoryPrintersStoreNoURLPath @"inventory/printers/%@"
 
 // Reservation
-#define kWADLServiceReservationURLPath @"reservation"
 #define kWADLServiceReservationReservationNoLogisticURLPath @"reservation/%@/logistic"
+#define kWADLServiceReservationURLPath @"reservation"
 #define kWADLServiceReservationReservationNoOffersURLPath @"reservation/%@/offers"
 #define kWADLServiceReservationReservationNoURLPath @"reservation/%@"
-#define kWADLServiceReservationOffersURLPath @"reservation/offers"
-#define kWADLServiceReservationSummaryURLPath @"reservation/summary"
-#define kWADLServiceReservationMeasurementURLPath @"reservation/measurement"
+#define kWADLServiceReservationStyleSizesReservationNoURLPath @"reservation/%@/sizes/%@"
+#define kWADLServiceReservationReservationNoCommitURLPath @"reservation/%@/commit"
 #define kWADLServiceReservationReservationNoSummaryURLPath @"reservation/%@/summary"
-#define kWADLServiceReservationLogisticURLPath @"reservation/logistic"
+#define kWADLServiceReservationReservationNoStylesLineNoURLPath @"reservation/%@/styles/%@"
+#define kWADLServiceReservationReservationNoCopyStylesToURLPath @"reservation/%@/copyStylesTo"
 #define kWADLServiceReservationReservationNoMeasurementURLPath @"reservation/%@/measurement"
+#define kWADLServiceReservationReservationNoStylesURLPath @"reservation/%@/styles"
+
+// Receipts
+#define kWADLServiceReceiptsURLPath @"receipts"
+
+// Tender
+#define kWADLServiceTenderLookupURLPath @"tender/lookup"
+#define kWADLServiceTenderURLPath @"tender"
+#define kWADLServiceTenderAuthorizeURLPath @"tender/authorize"
+
+// Customer
+#define kWADLServiceCustomerPartyIdURLPath @"customer/%@"
+#define kWADLServiceCustomerSearchURLPath @"customer/search"
+#define kWADLServiceCustomerPfURLPath @"customer/pf"
+#define kWADLServiceCustomerURLPath @"customer"
+
+// Rules
+#define kWADLServiceRulesURLPath @"rules"
+#define kWADLServiceRulesEventDatesEventDateEventTypeURLPath @"rules/eventDates/%@/%@"
+#define kWADLServiceRulesEventDatesEventDateURLPath @"rules/eventDates/%@"
+
+// Groups
+#define kWADLServiceGroupsURLPath @"groups"
+#define kWADLServiceGroupsGroupIdLogisticURLPath @"groups/%@/logistic"
+#define kWADLServiceGroupsGroupIdURLPath @"groups/%@"
+#define kWADLServiceGroupsGroupIdReservationsURLPath @"groups/%@/reservations"
+#define kWADLServiceGroupsGroupIdOffersURLPath @"groups/%@/offers"
+#define kWADLServiceGroupsGroupIdReservationsReservationNoURLPath @"groups/%@/reservations/%@"
+#define kWADLServiceGroupsGroupIdSummaryURLPath @"groups/%@/summary"
 
 // Auth
+#define kWADLServiceAuthStoreURLPath @"auth/store"
 #define kWADLServiceAuthUserURLPath @"auth/user"
 #define kWADLServiceAuthURLPath @"auth"
 
