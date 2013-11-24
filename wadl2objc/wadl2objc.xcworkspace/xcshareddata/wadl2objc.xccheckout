@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>54CB16EF-DC17-4349-A642-40443F76ABDE</string>
+	<string>588FF102-B091-4F36-8938-57F8142D9E59</string>
 	<key>IDESourceControlProjectName</key>
 	<string>wadl2objc</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>CA5378F0-15FB-4AD9-B5AB-54F68F93582D</key>
+		<key>CDA11EC5-EC34-4327-859A-F9E36C8B97D3</key>
 		<string>https://github.com/dzhurov/wadl2objc</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>wadl2objc/wadl2objc.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>CA5378F0-15FB-4AD9-B5AB-54F68F93582D</key>
+		<key>CDA11EC5-EC34-4327-859A-F9E36C8B97D3</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,16 +25,16 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>CA5378F0-15FB-4AD9-B5AB-54F68F93582D</string>
+	<string>CDA11EC5-EC34-4327-859A-F9E36C8B97D3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CA5378F0-15FB-4AD9-B5AB-54F68F93582D</string>
+			<string>CDA11EC5-EC34-4327-859A-F9E36C8B97D3</string>
 			<key>IDESourceControlWCCName</key>
-			<string>wadl2objc</string>
+			<string>wad2lobjc</string>
 		</dict>
 	</array>
 </dict>

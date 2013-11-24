@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XSDTypes.h"
+#import "XSDEnums.h" 
 
 @interface BaseEntity : NSObject <NSCopying, NSCoding>
 
 + (void)setDateFormatter:(NSDateFormatter*)dateFormatter;
++ (void)setDateTimeFormatter:(NSDateFormatter*)dateTimeFormatter;
 + (NSMutableArray*)objectsWithDictionariesInfoArray:(NSArray*)array;
 + (NSArray *)mappedKeys;
 
@@ -22,7 +25,13 @@
 - (void)setDictionaryInfo:(NSDictionary *)JSONDictionary;
 - (NSMutableDictionary*)dictionaryInfo;
 
-+ (NSString *)entityNameForMappedField:(NSString*)fieldName;
+- (void)setMappedFieldsDictionary:(NSDictionary *)dict;
+
++ (NSString *)enumNameForMappedField:(NSString*)fieldName;
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName;
 
+- (void)setValue:(id)value forKeyPath:(NSString*)keyPath createIntermediateEntities:(BOOL)createIntermediateEntities;
+
 @end
+
+

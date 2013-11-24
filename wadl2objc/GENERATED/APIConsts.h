@@ -10,28 +10,35 @@
 #pragma mark - Generated Services
 
 // Inventory
-#define kWADLServiceInventorySchoolsURLPath @"inventory/schools"
-#define kWADLServiceInventoryURLPath @"inventory"
 #define kWADLServiceInventorySchoolsSchoolStURLPath @"inventory/schools/%@"
+#define kWADLServiceInventoryURLPath @"inventory"
+#define kWADLServiceInventorySchoolsURLPath @"inventory/schools"
 #define kWADLServiceInventorySchoolsSchoolCitySchoolCityURLPath @"inventory/schools/%@/%@"
 #define kWADLServiceInventorySchoolsSchoolNoURLPath @"inventory/schools/%@"
 #define kWADLServiceInventoryStylesURLPath @"inventory/styles"
 
 // Reservation
+#define kWADLServiceReservationMeasurementURLPath @"reservation/measurement"
+#define kWADLServiceReservationReservationNoURLPath @"reservation/%@"
 #define kWADLServiceReservationURLPath @"reservation"
 #define kWADLServiceReservationReservationNoLogisticURLPath @"reservation/%@/logistic"
-#define kWADLServiceReservationReservationNoOffersURLPath @"reservation/%@/offers"
-#define kWADLServiceReservationReservationNoURLPath @"reservation/%@"
 #define kWADLServiceReservationOffersURLPath @"reservation/offers"
+#define kWADLServiceReservationSequenceStyleSequenceURLPath @"reservation/%@/style/%@"
 #define kWADLServiceReservationSummaryURLPath @"reservation/summary"
-#define kWADLServiceReservationMeasurementURLPath @"reservation/measurement"
-#define kWADLServiceReservationReservationNoSummaryURLPath @"reservation/%@/summary"
-#define kWADLServiceReservationLogisticURLPath @"reservation/logistic"
+#define kWADLServiceReservationReservationNoOffersURLPath @"reservation/%@/offers"
 #define kWADLServiceReservationReservationNoMeasurementURLPath @"reservation/%@/measurement"
+#define kWADLServiceReservationReservationNoD114StyleURLPath @"reservation/{reservationNo: \d{1,14}}/style"
+#define kWADLServiceReservationLogisticURLPath @"reservation/logistic"
+#define kWADLServiceReservationReservationNoStylesURLPath @"reservation/%@/styles"
+#define kWADLServiceReservationReservationNoSummaryURLPath @"reservation/%@/summary"
 
 // Auth
 #define kWADLServiceAuthUserURLPath @"auth/user"
 #define kWADLServiceAuthURLPath @"auth"
+
+// Rules
+#define kWADLServiceRulesURLPath @"rules"
+#define kWADLServiceRulesEventDateEventDateD4D2D2URLPath @"rules/%@/{eventDate: \d{4}-\d{2}-\d{2}}"
 
 // ApplicationWadl
 #define kWADLServiceApplicationWadlPathURLPath @"application.wadl/%@"
