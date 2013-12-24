@@ -205,8 +205,10 @@
     NSMutableString *propertiesList = [NSMutableString string];
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = nil;
-        if (property.isCollection)
+        if (property.isCollection){
             typeString = property.isCollection ? @"NSArray" : property.type;
+            property.dockComment = [NSString stringWithFormat:@"/*![%@]*/", property.type];
+        }
         else if (property.simpleType){
             [propertiesList appendFormat:@"\n@property(nonatomic) %@ %@;", property.type, property.name];
             continue;
