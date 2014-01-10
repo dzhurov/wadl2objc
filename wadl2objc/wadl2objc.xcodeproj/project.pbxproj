@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A22831B1880281D003CC315 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A22831A1880281D003CC315 /* XSDTypes.m */; };
+		0A22831C188028DB003CC315 /* ServerInteractionManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A8B6D9418425AA800A10D87 /* ServerInteractionManager.h */; };
+		0A22831E1880290C003CC315 /* XSDBaseEntity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A228317188027FE003CC315 /* XSDBaseEntity.h */; };
+		0A2283201880290C003CC315 /* XSDTypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A2283191880281D003CC315 /* XSDTypes.h */; };
 		0A2810A317C9F733001C7306 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2810A217C9F733001C7306 /* Foundation.framework */; };
 		0A2810A617C9F733001C7306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810A517C9F733001C7306 /* main.m */; };
 		0A2810D917C9F8C1001C7306 /* TBXML+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */; };
@@ -41,6 +45,9 @@
 			dstPath = Resources;
 			dstSubfolderSpec = 16;
 			files = (
+				0A22831E1880290C003CC315 /* XSDBaseEntity.h in CopyFiles */,
+				0A2283201880290C003CC315 /* XSDTypes.h in CopyFiles */,
+				0A22831C188028DB003CC315 /* ServerInteractionManager.h in CopyFiles */,
 				7ECDDF0118082D0D00987FDE /* APIConsts.h in CopyFiles */,
 				7E3CF89B17FC242400ECCC95 /* _TemplateEntity_h in CopyFiles */,
 				7E3CF89C17FC242400ECCC95 /* _TemplateEntity_m in CopyFiles */,
@@ -54,6 +61,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A228317188027FE003CC315 /* XSDBaseEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XSDBaseEntity.h; sourceTree = "<group>"; };
+		0A228318188027FE003CC315 /* XSDBaseEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XSDBaseEntity.m; sourceTree = "<group>"; };
+		0A2283191880281D003CC315 /* XSDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDTypes.h; sourceTree = "<group>"; };
+		0A22831A1880281D003CC315 /* XSDTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDTypes.m; sourceTree = "<group>"; };
 		0A28109F17C9F733001C7306 /* wadl2objc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wadl2objc; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A2810A217C9F733001C7306 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0A2810A517C9F733001C7306 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,9 +75,7 @@
 		0A2B108D180A991A00E5E19E /* NSString+FirstCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FirstCharacter.h"; sourceTree = "<group>"; };
 		0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FirstCharacter.m"; sourceTree = "<group>"; };
 		0A8B6D9418425AA800A10D87 /* ServerInteractionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerInteractionManager.h; sourceTree = "<group>"; };
-		0A8B6D9518425AA800A10D87 /* ServerInteractionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServerInteractionManager.m; sourceTree = "<group>"; };
-		0A8B6D9618425AE800A10D87 /* BaseEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseEntity.h; sourceTree = "<group>"; };
-		0A8B6D9718425AE800A10D87 /* BaseEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseEntity.m; sourceTree = "<group>"; };
+		0A8B6D9518425AA800A10D87 /* ServerInteractionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ServerInteractionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0A964DC117CB531C003655C4 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
 		0A964DC217CB531C003655C4 /* SettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsManager.m; sourceTree = "<group>"; };
 		0A964DC517CB58CD003655C4 /* CWLSynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLSynthesizeSingleton.h; sourceTree = "<group>"; };
@@ -85,7 +94,7 @@
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7E1B156217CF5AE600C96204 /* XSDEnums_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_h; sourceTree = "<group>"; };
 		7E1B156317CF5AE600C96204 /* XSDEnums_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_m; sourceTree = "<group>"; };
-		7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _TemplateEntity_h; sourceTree = "<group>"; };
+		7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = _TemplateEntity_h; sourceTree = "<group>"; };
 		7E5F6E2C17CCDCF20068D508 /* _TemplateEntity_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _TemplateEntity_m; sourceTree = "<group>"; };
 		7EC7DCBB17D096ED003CE122 /* TemplateEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TemplateEntity_h; sourceTree = "<group>"; };
 		7EC7DCBC17D096ED003CE122 /* TemplateEntity_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TemplateEntity_m; sourceTree = "<group>"; };
@@ -194,8 +203,10 @@
 				7ECDDF001807ECE000987FDE /* APIConsts.h */,
 				0A8B6D9418425AA800A10D87 /* ServerInteractionManager.h */,
 				0A8B6D9518425AA800A10D87 /* ServerInteractionManager.m */,
-				0A8B6D9618425AE800A10D87 /* BaseEntity.h */,
-				0A8B6D9718425AE800A10D87 /* BaseEntity.m */,
+				0A228317188027FE003CC315 /* XSDBaseEntity.h */,
+				0A228318188027FE003CC315 /* XSDBaseEntity.m */,
+				0A2283191880281D003CC315 /* XSDTypes.h */,
+				0A22831A1880281D003CC315 /* XSDTypes.m */,
 			);
 			name = Resources;
 			path = wadl2objc/Resources;
@@ -332,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A22831B1880281D003CC315 /* XSDTypes.m in Sources */,
 				0A2810A617C9F733001C7306 /* main.m in Sources */,
 				7ECDDEEF1806ECA800987FDE /* WADLService.m in Sources */,
 				7ECDDEEC1806E91E00987FDE /* WADLServiceSection.m in Sources */,

@@ -55,20 +55,26 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 {
     //APIConsts.h
     static NSString *const kApiConstsFile = @"APIConsts.h";
-    NSString *apiConstsFilePath = [path stringByAppendingPathComponent:kApiConstsFile];
-    [self copyFileFromResourses:kApiConstsFile toPath:path];
-    [self writeAPIConstToPath:apiConstsFilePath];
-
+    
     //ServerInteractionManager.h
     static NSString *const kSIMHeader = @"ServerInteractionManager.h";
-    NSString *simHeaderFilePath = [path stringByAppendingPathComponent:kSIMHeader];
-    [self copyFileFromResourses:kSIMHeader toPath:path];
-    [self writeServerInteractionManagerHeaderFileToPath:simHeaderFilePath];
     
     //ServerInteractionManager.m
     static NSString *const kSIMMethod = @"ServerInteractionManager.m";
+    
+    // Copy resources
+    NSArray *fileNames = @[kApiConstsFile, kSIMHeader, kSIMMethod, @"XSDBaseEntity.h", @"XSDBaseEntity.m", @"XSDTypes.h", @"XSDTypes.m"];
+    
+    for (NSString *fName in fileNames) {
+        [self copyFileFromResourses:fName toPath:path];
+    }
+    
+    NSString *apiConstsFilePath = [path stringByAppendingPathComponent:kApiConstsFile];
+    [self writeAPIConstToPath:apiConstsFilePath];
+    
+    NSString *simHeaderFilePath = [path stringByAppendingPathComponent:kSIMHeader];
+    [self writeServerInteractionManagerHeaderFileToPath:simHeaderFilePath];
     NSString *simMethodFilePath = [path stringByAppendingPathComponent:kSIMMethod];
-    [self copyFileFromResourses:kSIMMethod toPath:path];
     [self writeServerInteractionManagerMethodFileToPath:simMethodFilePath];
 }
 

@@ -10,4 +10,12 @@
 @end
 
 @interface XSDDateTime : NSDate
+
+@end
+
+@interface NSDate (XSDDate)
+
+- (XSDDate*)xsdDate;
+- (XSDDateTime*)xsdDateTime;
+
 @end

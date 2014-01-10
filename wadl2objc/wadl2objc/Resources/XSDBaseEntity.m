@@ -1,52 +1,42 @@
 //
-//  MWEntity.m
-//  Tailoring
+//  XSDBaseEntity
 //
 //  Created by Dmitry Zhurov on 26.10.12.
 //  Copyright (c) 2012 Dmitry Zhurov. All rights reserved.
 //
 
-#import "BaseEntity.h"
+#import "XSDBaseEntity.h"
 #import <objc/runtime.h>
 
-__strong static NSDateFormatter const *sBaseEntityDateFormatter = nil;
-__strong static NSDateFormatter const *sBaseEntityDateTimeFormatter = nil;
+__strong static NSDateFormatter const *sXSDBaseEntityDateFormatter = nil;
+__strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
 
-void Swizz(Class c, SEL orig, SEL replace)
+@interface XSDBaseEntity ()
 {
-    Method origMethod = class_getInstanceMethod(c, orig);
-    Method newMethod = class_getInstanceMethod(c, replace);
-//    if(class_addMethod(c, orig, method_getImplementation(newMethod), method_getTypeEncoding(newMethod)))
-//        class_replaceMethod(c, replace, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
-//    else
-    method_exchangeImplementations(origMethod, newMethod);
+    BOOL _isDirty;
 }
-
-
-@interface BaseEntity ()
-
 @end
 
-@implementation BaseEntity
+@implementation XSDBaseEntity
 
 #pragma mark - Static methods
 
 + (void)load
 {
-    sBaseEntityDateTimeFormatter = [[NSDateFormatter alloc] init];
-    sBaseEntityDateTimeFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-    sBaseEntityDateFormatter = [[NSDateFormatter alloc] init];
-    sBaseEntityDateFormatter.dateFormat = @"yyyy-MM-dd";
+    sXSDBaseEntityDateTimeFormatter = [[NSDateFormatter alloc] init];
+    sXSDBaseEntityDateTimeFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    sXSDBaseEntityDateFormatter = [[NSDateFormatter alloc] init];
+    sXSDBaseEntityDateFormatter.dateFormat = @"yyyy-MM-dd";
 }
 
 + (void)setDateFormatter:(NSDateFormatter *)aDateFormatter
 {
-    sBaseEntityDateFormatter = aDateFormatter;
+    sXSDBaseEntityDateFormatter = aDateFormatter;
 }
 
 + (void)setDateTimeFormatter:(NSDateFormatter *)dateTimeFormatter
 {
-    sBaseEntityDateTimeFormatter = dateTimeFormatter;
+    sXSDBaseEntityDateTimeFormatter = dateTimeFormatter;
 }
 
 + (NSMutableArray *)objectsWithDictionariesInfoArray:(NSArray *)array
@@ -54,7 +44,7 @@ void Swizz(Class c, SEL orig, SEL replace)
     if (array.count){
         NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:array.count];
         for (NSDictionary *dictionary in array) {
-            BaseEntity *entity = [[self alloc] initWithDictionaryInfo:dictionary];
+            XSDBaseEntity *entity = [[self alloc] initWithDictionaryInfo:dictionary];
             [resultArray addObject:entity];
         }
         return resultArray;
@@ -121,7 +111,7 @@ void Swizz(Class c, SEL orig, SEL replace)
         return;
     }
     Class aClass = [self class];
-    while ([aClass isSubclassOfClass:[BaseEntity class]]) {
+    while ([aClass isSubclassOfClass:[XSDBaseEntity class]]) {
         unsigned int outCount, i;
         objc_property_t *properties = class_copyPropertyList(aClass, &outCount);
         for(i = 0; i < outCount; i++) {
@@ -197,10 +187,19 @@ void Swizz(Class c, SEL orig, SEL replace)
 
 - (id)copyWithZone:(NSZone*)zone
 {
-	BaseEntity* copy = [[[self class] allocWithZone:zone] init];
+	XSDBaseEntity* copy = [[[self class] allocWithZone:zone] init];
     for (NSString *key in [[self class] mappedKeys]) {
-        id value = [self valueForKey:key];
-        [copy setValue:value forKey:key];
+        
+        id sourceValue = [self valueForKey:key];
+        id resultValue = nil;
+        
+        if ([sourceValue isKindOfClass:[NSArray class]]) {
+            resultValue = [[NSArray alloc] initWithArray:sourceValue copyItems:YES];
+        } else {
+            resultValue = [sourceValue copy];
+        }
+        
+        [copy setValue:resultValue forKey:key];
     }
     return copy;
 }
@@ -230,19 +229,19 @@ void Swizz(Class c, SEL orig, SEL replace)
                 valueForKey = enumObj;
             }
         }
-        else if ([propClass isSubclassOfClass:[BaseEntity class]]){
-            valueForKey = [(BaseEntity*)valueForKey dictionaryInfo];
+        else if ([propClass isSubclassOfClass:[XSDBaseEntity class]]){
+            valueForKey = [(XSDBaseEntity*)valueForKey dictionaryInfo];
         }
         else if ([propClass isSubclassOfClass:[XSDDate class]]){
-            valueForKey = [sBaseEntityDateFormatter stringFromDate:valueForKey];
+            valueForKey = [sXSDBaseEntityDateFormatter stringFromDate:valueForKey];
         }
         else if ([propClass isSubclassOfClass:[XSDDateTime class]]){
-            valueForKey = [sBaseEntityDateTimeFormatter stringFromDate:valueForKey];
+            valueForKey = [sXSDBaseEntityDateTimeFormatter stringFromDate:valueForKey];
         }
         else if ([propClass isSubclassOfClass:[NSArray class]]){
             NSString *memberClassName = [[self class] classNameOfMembersForMappedField:key];
             Class memberClass = NSClassFromString(memberClassName);
-            if ( [memberClass isSubclassOfClass:[BaseEntity class]] ){
+            if ( [memberClass isSubclassOfClass:[XSDBaseEntity class]] ){
                 NSArray *array = [(NSArray*)valueForKey valueForKey:@"dictionaryInfo"];
                 valueForKey = array;
             }
@@ -280,22 +279,22 @@ void Swizz(Class c, SEL orig, SEL replace)
                     [self setValue:valueForKey forKey:key];
                 }
             }
-            else if ([propClass isSubclassOfClass:[BaseEntity class]]){
-                BaseEntity *entity = [[propClass alloc] initWithDictionaryInfo:valueForKey];
+            else if ([propClass isSubclassOfClass:[XSDBaseEntity class]]){
+                XSDBaseEntity *entity = [[propClass alloc] initWithDictionaryInfo:valueForKey];
                 [self setValue:entity forKey: key];
             }
             else if ([propClass isSubclassOfClass:[XSDDate class]]){
-                NSDate *date = [sBaseEntityDateFormatter dateFromString:valueForKey];
+                NSDate *date = [sXSDBaseEntityDateFormatter dateFromString:valueForKey];
                 [self setValue:date forKey: key];
             }
             else if ([propClass isSubclassOfClass:[XSDDateTime class]]){
-                NSDate *date = [sBaseEntityDateTimeFormatter dateFromString:valueForKey];
+                NSDate *date = [sXSDBaseEntityDateTimeFormatter dateFromString:valueForKey];
                 [self setValue:date forKey:key];
             }
             else if ([propClass isSubclassOfClass:[NSArray class]]){
                 NSString *memberClassName = [[self class] classNameOfMembersForMappedField:key];
                 Class memberClass = NSClassFromString(memberClassName);
-                if ( [memberClass isSubclassOfClass:[BaseEntity class]] ){
+                if ( [memberClass isSubclassOfClass:[XSDBaseEntity class]] ){
                     NSArray *array = [memberClass objectsWithDictionariesInfoArray:valueForKey];
                     [self setValue:array forKey:key];
                 }
@@ -328,7 +327,7 @@ void Swizz(Class c, SEL orig, SEL replace)
         id value = dict[key];
         NSArray *keyComponents = [key componentsSeparatedByString:@"."];
         if ( keyComponents.count > 1 ){
-            BaseEntity *subObject = [self valueForKey:keyComponents[0]];
+            XSDBaseEntity *subObject = [self valueForKey:keyComponents[0]];
             if ( !subObject ){
                 objc_property_t property = class_getProperty([self class], [keyComponents[0] UTF8String]);
                 const char *propertyAttributes = property_getAttributes(property);
@@ -362,28 +361,37 @@ void Swizz(Class c, SEL orig, SEL replace)
 
 - (void)setValue:(id)value forKeyPath:(NSString *)keyPath createIntermediateEntities:(BOOL)createIntermediateEntities
 {
+    NSArray *keyComponents = [keyPath componentsSeparatedByString:@"."];
+    objc_property_t property = class_getProperty([self class], [keyComponents[0] UTF8String]);
+    const char *propertyAttributes = property_getAttributes(property);
+    NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
+    NSString *propertyTypeStr = attributes[0];
+    NSString *className = [propertyTypeStr substringFromIndex:2]; // 2 is length of "T@""
+    BOOL isPrimitive = [propertyTypeStr characterAtIndex:1] != '@'; // is it class
+    className = [className stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    Class propClass = NSClassFromString(className);
+    
     if ( !createIntermediateEntities){
-        [self setValue:value forKeyPath:keyPath];
+        if (isPrimitive && !value)
+            [self setValue:@0 forKey:keyPath];
+        else
+            [self setValue:value forKeyPath:keyPath];
     }
     else{
-        NSArray *keyComponents = [keyPath componentsSeparatedByString:@"."];
         if ( keyComponents.count <= 1 ){
-            [self setValue:value forKey:keyPath];
+            if (isPrimitive && !value)
+                [self setValue:@0 forKey:keyPath];
+            else
+                [self setValue:value forKeyPath:keyPath];
         }
         else{
-            BaseEntity *subObject = [self valueForKey:keyComponents[0]];
-            objc_property_t property = class_getProperty([self class], [keyComponents[0] UTF8String]);
-            const char *propertyAttributes = property_getAttributes(property);
-            NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
-            NSString *propertyTypeStr = attributes[0];
-            NSString *className = [propertyTypeStr substringFromIndex:2]; // 2 is length of "T@""
-            className = [className stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-            Class propClass = NSClassFromString(className);
+            XSDBaseEntity *subObject = [self valueForKey:keyComponents[0]];
+            
             if ( !subObject ){
                 subObject = [propClass new];
             }
             NSString *newKeyPath = [[keyComponents subarrayWithRange:NSMakeRange(1, keyComponents.count - 1)] componentsJoinedByString:@"."];
-            if ( [propClass isSubclassOfClass:[BaseEntity class]] ){
+            if ( [propClass isSubclassOfClass:[XSDBaseEntity class]] ){
                 [subObject setValue:value forKeyPath:newKeyPath createIntermediateEntities:YES];
             }
             else{
@@ -392,5 +400,17 @@ void Swizz(Class c, SEL orig, SEL replace)
         }
     }
 }
+
+- (void)setEntityForMappedFields:(XSDBaseEntity*)entity
+{
+    if ([self isKindOfClass:[entity class]])
+        NSLog(@"%s Classes doesn't match", __PRETTY_FUNCTION__);
+    
+    for (NSString *fieldName in [[self class] mappedKeys]) {
+        id value = [entity valueForKey:fieldName];
+        [self setValue:value forKey:fieldName];
+    }
+}
+
 
 @end

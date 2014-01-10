@@ -160,7 +160,7 @@
     ///TODO: handle errors
     if ( responseBlock ){
         id outputObject = responseObject;
-        if ( outputClass && [outputClass isSubclassOfClass:[BaseEntity class]]  ){
+        if ( outputClass && [outputClass isSubclassOfClass:[XSDBaseEntity class]]  ){
             outputObject = [[outputClass alloc] initWithDictionaryInfo:responseObject];
         }
         responseBlock(outputObject, nil);
