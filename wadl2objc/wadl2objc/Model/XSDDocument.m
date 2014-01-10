@@ -55,6 +55,9 @@
     
     // Simple Types (enums)
     NSArray *simpleTypes = dict[kSimpleTypesKey];
+    if ([simpleTypes isKindOfClass:[NSDictionary class]]){
+        simpleTypes = @[simpleTypes];
+    }
     NSMutableDictionary *xsdSimpleTypes = [NSMutableDictionary dictionaryWithCapacity:simpleTypes.count];
     for (NSDictionary *oneSimpleType in simpleTypes) {
         XSDSimpleType *xsdSimple = [XSDSimpleType new];
@@ -62,7 +65,10 @@
         xsdSimple.name = formattedType(name);
         NSDictionary *restriction = oneSimpleType[kSimpleTypeRestrictionKey];
         xsdSimple.baseType = classNameForXSDType(restriction[@"base"]);
-        xsdSimple.options = [restriction valueForKeyPath:@"xs:enumeration.value"];
+        NSMutableArray *options = [restriction valueForKeyPath:@"xs:enumeration.value"];
+        if (![options isKindOfClass:[NSArray class]])
+            options = [NSMutableArray arrayWithObject:options];
+        xsdSimple.options = options;
         [xsdSimpleTypes setObject:xsdSimple forKey:name];
     }
     
@@ -108,6 +114,7 @@
             }
             else if ([typeString hasPrefix:@"xs:"]){
                 xsdProperty.type = classNameForXSDType(typeString);
+                xsdProperty.dockComment = dockCommentForXSDType(typeString);
             }
             else{
                 XSDSimpleType *simpleType = xsdSimpleTypes[typeString];
@@ -198,14 +205,19 @@
     NSMutableString *propertiesList = [NSMutableString string];
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = nil;
-        if (property.isCollection)
+        if (property.isCollection){
             typeString = property.isCollection ? @"NSArray" : property.type;
+            property.dockComment = [NSString stringWithFormat:@"/*![%@]*/", property.type];
+        }
         else if (property.simpleType){
             [propertiesList appendFormat:@"\n@property(nonatomic) %@ %@;", property.type, property.name];
             continue;
         }
         else
             typeString = property.type;
+        
+        if (property.dockComment)
+            [propertiesList appendFormat:@"\n%@", property.dockComment];
         
         [propertiesList appendFormat:@"\n@property(nonatomic, strong) %@ *%@;", typeString, property.name];
     }
@@ -310,7 +322,7 @@
         }
     }
     // .m file
-    if ( ![fileManager fileExistsAtPath:mFileName] ){
+    if ( ![fileManager fileExistsAtPath:mFilePath] ){
         NSString *mTemplateFilePath = [@"./Resources" stringByAppendingPathComponent:@"TemplateEntity_m"];
         NSError *error = nil;
         NSString *mFileFormat = [NSString stringWithContentsOfFile:mTemplateFilePath encoding:NSUTF8StringEncoding error: &error];
@@ -344,6 +356,7 @@
         NSMutableString *keyValueString = [NSMutableString string];
         NSMutableString *constStringsDeclaration = [NSMutableString string];
         
+        [constStringsDeclaration appendFormat:@"static const NSUInteger k%@Count = %lu;\n", oneSimpleType.name, (unsigned long)oneSimpleType.options.count];
         for (int i = 0; i < oneSimpleType.options.count; i++) {
             NSString *enumOptionName = [oneSimpleType.name stringByAppendingString:oneSimpleType.options[i]];
             NSString *stringConstName = [NSString stringWithFormat:@"k%@String", enumOptionName];

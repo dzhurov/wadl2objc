@@ -12,6 +12,7 @@
 #import "WADLServiceSection.h"
 #import "WADLService.h"
 #import "WADLServicePathParameter.h"
+#import "XSDObject.h"
 
 #define kPragmaGeneratedPartMarker @"#pragma mark - Generated Services"
 #define kPragmaEndGeneratedPartMarker @"#pragma mark -"
@@ -32,8 +33,6 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     self = [super init];
     if ( self ){
         NSDictionary *xmlDicti = [NSDictionary dictionaryWithXMLData:data];
-        NSLog(@"\n\nWADL: \n%@",xmlDicti);
-        
         [self setWADLDictionary:xmlDicti];
     }
     return self;
@@ -95,6 +94,26 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         }
     }
     [self replaceGeneratedContentOfFile:path withString:methodsDeclaration];
+    NSError *error = nil;
+    NSString *contentOfFile = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+        return;
+    }
+    NSRange lastImportRange = [contentOfFile rangeOfString:@"#import" options:NSBackwardsSearch];
+    NSRange endOfImports = [contentOfFile rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet] options:0 range:NSMakeRange(lastImportRange.location, contentOfFile.length - lastImportRange.location)];
+    NSRange allImportsRange = NSMakeRange(0, endOfImports.length + endOfImports.location);
+    NSMutableString *importsNeedToAppend = [NSMutableString stringWithCapacity:1024];
+    for (XSDObject *object in _xsdDocument.objects) {
+        NSString *importObjectString = [NSString stringWithFormat:@"#import \"%@.h\"", object.name];
+        if ( [contentOfFile rangeOfString:importObjectString options:0 range:allImportsRange].location == NSNotFound ){
+            [importsNeedToAppend appendFormat:@"%@\n", importObjectString];
+        }
+    }
+    contentOfFile = [contentOfFile stringByReplacingCharactersInRange:NSMakeRange(allImportsRange.location + allImportsRange.length, 0) withString:importsNeedToAppend];
+    [contentOfFile writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (error)
+        NSLog(@"ERROR: %@", error);
 }
 
 - (void)writeServerInteractionManagerMethodFileToPath:(NSString*)path
@@ -119,7 +138,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
            
             // path parameters
             NSString *pathConstName = [NSString stringWithFormat:@"kWADLService%@URLPath", [oneService.parantServiceSection pathName]];
-            [oneMethodImplementation appendFormat:@"\n{\n\tNSString *path = [NSString stringWithFormat: %@", pathConstName];
+            [oneMethodImplementation appendFormat:@"\n{\n\tNSString *thePath = [NSString stringWithFormat: %@", pathConstName];
             NSArray *pathParameters = oneService.allPathParameters;
             for (WADLServicePathParameter *parameter in pathParameters) {
                 [oneMethodImplementation appendFormat:@", %@", parameter.name];
@@ -149,7 +168,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             else{
                 outputClass = @"Nil";
             }
-            [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:path useToken:%@ inputParameters:inputParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
+            [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:thePath useToken:%@ inputParameters:inputParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
             [methodsImplementation appendString:oneMethodImplementation];
         }
     }

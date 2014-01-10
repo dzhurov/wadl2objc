@@ -10,22 +10,49 @@
 
 NSString * classNameForXSDType(NSString* xsdType)
 {
+// NSString
     if ( [xsdType isEqualToString:kXSDString] )
         return @"NSString";
-    
-    BOOL isNumber = [xsdType isEqualToString:kXSDInt] ||
-                    [xsdType isEqualToString:kXSDLong] ||
-                    [xsdType isEqualToString:kXSDDouble] ||
-                    [xsdType isEqualToString:kXSDBool] ||
-                    [xsdType isEqualToString:kXSDDecimal];
-    if ( isNumber )
+    if ( [xsdType isEqualToString:kXSDBase64String] )
+        return @"NSString/*base64*/";
+
+// NSNumber
+    /// @description int
+    if ( [xsdType isEqualToString:kXSDInt] ||
+        [xsdType isEqualToString:kXSDLong] ||
+        [xsdType isEqualToString:kXSDDouble] ||
+        [xsdType isEqualToString:kXSDBool] ||
+        [xsdType isEqualToString:kXSDDecimal] ||
+        [xsdType isEqualToString:kXSDFload] )
         return @"NSNumber";
+
+// NSDate
     if ( [xsdType isEqualToString:kXSDDateTime] )
-        return @"NSDate";
+        return @"XSDDateTime";
+    if ( [xsdType isEqualToString:kXSDDate] )
+        return @"XSDDate";
+        
+    return xsdType;
+}
+
+NSString * dockCommentForXSDType(NSString* xsdType)
+{
+    if ( [xsdType isEqualToString:kXSDInt] )
+        return @"/*! int */";
+    if ( [xsdType isEqualToString:kXSDLong] )
+        return @"/*! long */";
+    if ( [xsdType isEqualToString:kXSDDouble] )
+        return @"/*! double */";
+    if ( [xsdType isEqualToString:kXSDBool] )
+        return @"/*! BOOL */";
+    if ( [xsdType isEqualToString:kXSDDecimal] )
+        return @"/*! xs:decimal */";
+    if ( [xsdType isEqualToString:kXSDFload] )
+        return @"/*! float */";
+    if ( [xsdType isEqualToString:kXSDBase64String] )
+        return @"/*! Base64 string */";
     
-    assert(nil);
-    
-    return @"WAT??";
+    return nil;
 }
 
 NSString * formattedType(NSString *type)

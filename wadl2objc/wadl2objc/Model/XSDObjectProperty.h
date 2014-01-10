@@ -16,4 +16,5 @@
 @property (nonatomic) BOOL isCollection;
 @property (nonatomic, strong) NSDictionary *methadata; // used for arrays;
 @property (nonatomic, strong) XSDSimpleType *simpleType;
+@property (nonatomic, strong) NSString *dockComment;
 @end

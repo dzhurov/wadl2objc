@@ -11,7 +11,7 @@
 #import "XSDTypes.h"
 #import "WADLService.h"
 
-#define kSupportedHTTPMethodsArray @[@"GET", @"POST", @"PUT", @"DELTE"]
+#define kSupportedHTTPMethodsArray @[@"GET", @"POST", @"PUT", @"DELETE"]
 
 @implementation WADLServiceSection
 
@@ -54,7 +54,7 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
                 [self.pathParameters addObject:parameter];
                 for (int i = 0; i < pathComponents.count; i++) {
                     NSString *onePathComponent = pathComponents[i];
-                    NSRange range = [onePathComponent rangeOfString:parameter.name];
+                    NSRange range = [onePathComponent rangeOfString:[@"{" stringByAppendingString:parameter.name]];
                     if ( range.location != NSNotFound ){
                         NSString *regexSeparator = @": ";
                         if ( onePathComponent.length > parameter.name.length + 2/*breckets*/ ){ //has regex
@@ -68,6 +68,10 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
                 }//for (int i = 0; i < pathComponents.count; i++)
             }
         }//for (NSDictionary *paramDict in params)
+        [self.pathParameters sortUsingComparator:^NSComparisonResult(WADLServicePathParameter *obj1, WADLServicePathParameter *obj2) {
+            return [@([path rangeOfString:obj1.name].location) compare:@([path rangeOfString:obj2.name].location)];
+        }];
+        
     }//else if ([parameterStyle isEqualToString:@"template"])
     self.path = [pathComponents componentsJoinedByString:@"/"];
 
@@ -136,6 +140,7 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
         if ( [pathComponents[i] isEqualToString:@"%@"] ){
             WADLServicePathParameter *parameter = _pathParameters[changedPathComponentIndex];
             [pathComponents replaceObjectAtIndex:i withObject:parameter.name];
+            changedPathComponentIndex ++;
         }
         NSString *pathComponent = pathComponents[i];
         pathComponent = [pathComponent uppercaseFirstCharacterString];
