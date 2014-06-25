@@ -229,7 +229,7 @@
     if (error){
         NSLog(@"ERROR: %@", error);
     }
-    NSString *contentString = [NSString stringWithFormat:_hFileFormat, className, _currentFormattedDate, self.version, includes, className, propertiesList];
+    NSString *contentString = [NSString stringWithFormat:_hFileFormat, className, self.version, includes, className, propertiesList];
     [contentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
         NSLog(@"ERROR: %@", error);
@@ -285,7 +285,7 @@
     if (error){
         NSLog(@"ERROR: %@", error);
     }
-    NSString *contentString = [NSString stringWithFormat:_mFileFormat, className, _currentFormattedDate, self.version, className, className,fieldsNamesStringKindOfObjects, enumsConditionsList, collectionsConditionsList];
+    NSString *contentString = [NSString stringWithFormat:_mFileFormat, className, self.version, className, className,fieldsNamesStringKindOfObjects, enumsConditionsList, collectionsConditionsList];
     [contentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
         NSLog(@"ERROR: %@", error);
