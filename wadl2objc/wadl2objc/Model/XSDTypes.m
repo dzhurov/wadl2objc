@@ -22,10 +22,12 @@ NSString * classNameForXSDType(NSString* xsdType)
         [xsdType isEqualToString:kXSDLong] ||
         [xsdType isEqualToString:kXSDDouble] ||
         [xsdType isEqualToString:kXSDBool] ||
-        [xsdType isEqualToString:kXSDDecimal] ||
         [xsdType isEqualToString:kXSDFload] )
         return @"NSNumber";
-
+    
+    if ( [xsdType isEqualToString:kXSDDecimal] )
+        return @"NSDecimalNumber";
+    
 // NSDate
     if ( [xsdType isEqualToString:kXSDDateTime] )
         return @"XSDDateTime";
