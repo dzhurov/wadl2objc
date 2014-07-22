@@ -156,7 +156,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             if ( queryParametes.count ){
                 [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *inputParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)queryParametes.count];
                 for (WADLServicePathParameter *parameter in queryParametes) {
-                    [oneMethodImplementation appendFormat:@"\t[inputParameters setObject:%@ forKey:@\"%@\"];\n", parameter.name, parameter.name];
+                    [oneMethodImplementation appendFormat:@"\t[inputParameters setValue:%@ forKey:@\"%@\"];\n", parameter.name, parameter.name];
                 }
             }
             else if (oneService.requestObjectClass){
@@ -172,7 +172,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
                 [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)headParametes.count];
                 for (WADLServicePathParameter *parameter in headParametes) {
                     NSString *fixedName = [[parameter.name lowercaseFirstCharacterString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
-                    [oneMethodImplementation appendFormat:@"\t[headParameters setObject:%@ forKey:@\"%@\"];\n", fixedName, parameter.name];
+                    [oneMethodImplementation appendFormat:@"\t[headParameters setValue:%@ forKey:@\"%@\"];\n", fixedName, parameter.name];
                 }
             }
             else {
