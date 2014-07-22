@@ -92,7 +92,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 {
     NSMutableString * methodsDeclaration = [NSMutableString stringWithCapacity:1024 * 4];
     for (WADLServiceSection *rootSection in _wadlServiceSections) {
-        [methodsDeclaration appendFormat:@"\n// %@\n\n", rootSection.pathName];
+        [methodsDeclaration appendFormat:@"\n// %@\n\n", [rootSection shortPathName]];
         NSArray *services = [rootSection allMethods];
         for (WADLService *oneService in services) {
             NSString *oneMethodDeclaration = [[oneService objcMethodName] stringByAppendingFormat:@";\n"];
@@ -126,7 +126,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 {
     NSMutableString *methodsImplementation = [NSMutableString stringWithCapacity:1024 * 16];
     for (WADLServiceSection *rootSection in _wadlServiceSections) {
-        [methodsImplementation appendFormat:@"\n#pragma mark %@\n", rootSection.pathName];
+        [methodsImplementation appendFormat:@"\n#pragma mark %@\n", [rootSection shortPathName]];
         NSArray *services = [rootSection allMethods];
         for (WADLService *oneService in services) {
             NSMutableString *oneMethodImplementation =[[oneService objcMethodName] mutableCopy];
@@ -143,7 +143,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             }
            
             // path parameters
-            NSString *pathConstName = [NSString stringWithFormat:@"kWADLService%@URLPath", [oneService.parantServiceSection pathName]];
+            NSString *pathConstName = [NSString stringWithFormat:@"kWADLService%@URLPath", [oneService.parentServiceSection pathName]];
             [oneMethodImplementation appendFormat:@"\n{\n\tNSString *thePath = [NSString stringWithFormat: %@", pathConstName];
             NSArray *pathParameters = oneService.allPathParameters;
             for (WADLServicePathParameter *parameter in pathParameters) {
@@ -165,7 +165,20 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             else{
                 [oneMethodImplementation appendFormat:@"\tNSDictionary *inputParameters = nil;\n"];
             }
-
+            
+            // head parameters
+            NSArray *headParametes = oneService.allHeadParameters;
+            if ( headParametes.count ){
+                [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)headParametes.count];
+                for (WADLServicePathParameter *parameter in headParametes) {
+                    NSString *fixedName = [[parameter.name lowercaseFirstCharacterString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                    [oneMethodImplementation appendFormat:@"\t[headParameters setObject:%@ forKey:@\"%@\"];\n", fixedName, parameter.name];
+                }
+            }
+            else {
+                [oneMethodImplementation appendFormat:@"\tNSDictionary *headParameters = nil;\n"];
+            }
+            
             //requestMethod
             NSString *outputClass = oneService.responseObjectClass;
             if (outputClass){
@@ -174,7 +187,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             else{
                 outputClass = @"Nil";
             }
-            [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:thePath useToken:%@ inputParameters:inputParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
+            [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:thePath useToken:%@ inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
             [methodsImplementation appendString:oneMethodImplementation];
         }
     }
@@ -186,7 +199,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 {
     NSMutableString *definesPaths = [NSMutableString string];
     for (WADLServiceSection *section in _wadlServiceSections) {
-        [definesPaths appendFormat:@"\n// %@\n", section.pathName];
+        NSString *pathName = [section pathName];
+        [definesPaths appendFormat:@"\n// %@\n", pathName];
         NSDictionary * pathNamesToPaths = [section allPathNamesToPaths];
         for (NSString *onePathName in [pathNamesToPaths allKeys]) {
             [definesPaths appendFormat:@"#define kWADLService%@URLPath @\"%@\"\n", onePathName, pathNamesToPaths[onePathName]];

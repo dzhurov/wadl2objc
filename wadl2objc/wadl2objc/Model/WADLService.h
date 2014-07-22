@@ -11,9 +11,9 @@
 @class WADLServiceSection;
 @interface WADLService : NSObject
 
-- (id)initWithDictionary:(NSDictionary*)dictionary parantSection:(WADLServiceSection*)parantSection;
+- (id)initWithDictionary:(NSDictionary*)dictionary parentSection:(WADLServiceSection*)parantSection;
 
-@property (nonatomic, strong) WADLServiceSection *parantServiceSection;
+@property (nonatomic, strong) WADLServiceSection *parentServiceSection;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *method; // GET, PUT, POST, DELETE
 @property (nonatomic, strong) NSString *requestObjectClass;
@@ -21,6 +21,7 @@
 
 - (NSArray *)allQueryParameters;
 - (NSArray *)allPathParameters;
+- (NSArray *)allHeadParameters;
 - (NSString*)fullPath;
 - (NSString*)objcMethodName;
 

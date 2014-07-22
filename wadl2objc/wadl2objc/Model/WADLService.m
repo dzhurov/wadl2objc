@@ -12,11 +12,11 @@
 
 @implementation WADLService
 
-- (id)initWithDictionary:(NSDictionary*)dictionary parantSection:(WADLServiceSection*)parantSection
+- (id)initWithDictionary:(NSDictionary*)dictionary parentSection:(WADLServiceSection*)parentSection
 {
     self = [super init];
     if (self){
-        self.parantServiceSection = parantSection;
+        self.parentServiceSection = parentSection;
         [self setDictionary:dictionary];
     }
     return self;
@@ -45,7 +45,7 @@
 - (NSArray *)allQueryParameters
 {
     NSMutableArray *queryParams = [NSMutableArray array];
-    WADLServiceSection *section = self.parantServiceSection;
+    WADLServiceSection *section = self.parentServiceSection;
     while (section) {
         NSArray *nextParameters = section.queryParameters;
         [queryParams insertObjects:nextParameters atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nextParameters.count)]];
@@ -57,7 +57,7 @@
 - (NSArray *)allPathParameters
 {
     NSMutableArray *pathParams = [NSMutableArray array];
-    WADLServiceSection *section = self.parantServiceSection;
+    WADLServiceSection *section = self.parentServiceSection;
     while (section) {
         NSArray *nextParameters = section.pathParameters;
         [pathParams insertObjects:nextParameters atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nextParameters.count)]];
@@ -66,32 +66,44 @@
     return pathParams;
 }
 
+- (NSArray *)allHeadParameters
+{
+    NSMutableArray *pathParams = [NSMutableArray array];
+    WADLServiceSection *section = self.parentServiceSection;
+    while (section) {
+        NSArray *nextParameters = section.headParameters;
+        [pathParams insertObjects:nextParameters atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nextParameters.count)]];
+        section = section.parantServiceSection;
+    }
+    return pathParams;
+}
+
 - (NSString *)fullPath
 {
-    NSString *fullPath = self.parantServiceSection.fullPath;
+    NSString *fullPath = [self.parentServiceSection fullPath];
     
     return fullPath;
 }
 
 - (NSString *)objcMethodName
 {
-    WADLServiceSection *parantSection = self.parantServiceSection;
-    
+    WADLServiceSection *parentSection = self.parentServiceSection;
     BOOL needCapitalize = NO;
-    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation*)%@%@",[parantSection.pathName lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
+    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation *)%@%@",[[parentSection shortPathName] lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
     if ( self.requestObjectClass ){
         NSString *parameterName = self.requestObjectClass;
         parameterName = [parameterName lowercaseFirstCharacterString];
-        [methodDeclaration appendFormat:@":(%@*)%@ ",self.requestObjectClass, parameterName];
+        [methodDeclaration appendFormat:@":(%@ *)%@ ",self.requestObjectClass, parameterName];
     }
     else{
         [methodDeclaration appendString:@"With"];
         needCapitalize = YES;
     }
-    for (NSArray *parameters in @[ [self allPathParameters], [self allQueryParameters] ]) {
+    for (NSArray *parameters in @[ [self allPathParameters], [self allQueryParameters], [self allHeadParameters] ]) {
         for (WADLServicePathParameter *pathParam in parameters) {
-            NSString *methodPart = needCapitalize ? [pathParam.name uppercaseFirstCharacterString] : pathParam.name;
-            [methodDeclaration appendFormat:@"%@:(%@*)%@ ", methodPart, pathParam.type, pathParam.name];
+            NSString *name = [[pathParam.name lowercaseFirstCharacterString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+            NSString *methodPart = needCapitalize ? [name uppercaseFirstCharacterString] : name;
+            [methodDeclaration appendFormat:@"%@:(%@ *)%@ ", methodPart, pathParam.type, name];
             needCapitalize = NO;
         }
     }

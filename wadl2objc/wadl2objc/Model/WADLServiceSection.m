@@ -19,6 +19,7 @@ synthesizeLazzyProperty(childSections, NSMutableArray);
 synthesizeLazzyProperty(pathParameters, NSMutableArray);
 synthesizeLazzyProperty(services, NSMutableArray);
 synthesizeLazzyProperty(queryParameters, NSMutableArray);
+synthesizeLazzyProperty(headParameters, NSMutableArray);
 
 - (id)initWithDictionary:(NSDictionary *)dictionary parantSection:(WADLServiceSection *)parantSection
 {
@@ -37,6 +38,8 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
     NSMutableArray *pathComponents = [[path componentsSeparatedByString:@"/"] mutableCopy];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.length > 0"];
     [pathComponents filterUsingPredicate:predicate];
+    
+    // Params
     NSArray *params = dictionary[@"param"];
     if ( [params isKindOfClass:[NSDictionary class]] ){
         params = @[params];
@@ -47,10 +50,9 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
             parameter.name = paramDict[@"_name"];
             parameter.type = classNameForXSDType( paramDict[@"_type"] );
             NSString *parameterStyle = paramDict[@"_style"];
-            if ([parameterStyle isEqualToString:@"query"]){
-                [self.queryParameters addObject:parameter];
-            }
-            else if ([parameterStyle isEqualToString:@"template"]){
+            
+            // template parameters handling
+            if ([parameterStyle isEqualToString:@"template"]) {
                 [self.pathParameters addObject:parameter];
                 for (int i = 0; i < pathComponents.count; i++) {
                     NSString *onePathComponent = pathComponents[i];
@@ -64,15 +66,15 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
                         }
                         [pathComponents replaceObjectAtIndex:i withObject:@"%@"];
                         break;
-                    }//if ( range.location != NSNotFound )
-                }//for (int i = 0; i < pathComponents.count; i++)
+                    }
+                }
             }
-        }//for (NSDictionary *paramDict in params)
+        }
         [self.pathParameters sortUsingComparator:^NSComparisonResult(WADLServicePathParameter *obj1, WADLServicePathParameter *obj2) {
             return [@([path rangeOfString:obj1.name].location) compare:@([path rangeOfString:obj2.name].location)];
         }];
-        
-    }//else if ([parameterStyle isEqualToString:@"template"])
+    }
+    
     self.path = [pathComponents componentsJoinedByString:@"/"];
 
     // Child sections
@@ -87,14 +89,36 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
     
     // Methods
     NSArray *methodsArray = dictionary[@"method"];
-    if ( [methodsArray isKindOfClass:[NSDictionary class]] ){
+    if ( [methodsArray isKindOfClass:[NSDictionary class]] ) {
         methodsArray = @[methodsArray];
     }
     for (NSDictionary *methodDict in methodsArray) {
         NSString *httpMethod = methodDict[@"_name"];
-        if ( [kSupportedHTTPMethodsArray containsObject:httpMethod] ){
-            WADLService *service = [[WADLService alloc] initWithDictionary:methodDict parantSection:self];
+        if ( [kSupportedHTTPMethodsArray containsObject:httpMethod] ) {
+            WADLService *service = [[WADLService alloc] initWithDictionary:methodDict parentSection:self];
             [self.services addObject:service];
+        }
+        
+        NSDictionary *request = methodDict[@"request"];
+        NSArray *params = request[@"param"];
+        if ( [params isKindOfClass:[NSDictionary class]] ) {
+            params = @[params];
+        }
+        if ( params.count ) {
+            for (NSDictionary *paramDict in params) {
+                WADLServicePathParameter *parameter = [WADLServicePathParameter new];
+                parameter.name = paramDict[@"_name"];
+                parameter.type = classNameForXSDType( paramDict[@"_type"] );
+                NSString *parameterStyle = paramDict[@"_style"];
+                
+                // query and header parameters handling
+                if ([parameterStyle isEqualToString:@"query"]) {
+                    [self.queryParameters addObject:parameter];
+                }
+                else if ([parameterStyle isEqualToString:@"header"]) {
+                    [self.headParameters addObject:parameter];
+                }
+            }
         }
     }
 }
@@ -103,7 +127,7 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
 {
     NSString *fullPath = self.path;
     if ( self.parantServiceSection ){
-        fullPath = [self.parantServiceSection.fullPath stringByAppendingPathComponent:self.path];
+        fullPath = [[self.parantServiceSection fullPath] stringByAppendingPathComponent:self.path];
     }
     return fullPath;
 }
@@ -150,9 +174,26 @@ synthesizeLazzyProperty(queryParameters, NSMutableArray);
     return pathName;
 }
 
+-(NSString *)shortPathName
+{
+    NSMutableCharacterSet *separateChars = [[[NSCharacterSet alphanumericCharacterSet] invertedSet] mutableCopy];
+    [separateChars removeCharactersInString:@"_%@"];
+    NSMutableArray *pathComponents = [[[self fullPath] componentsSeparatedByCharactersInSet:separateChars] mutableCopy];
+    for (int i = 0; i < pathComponents.count; i++) {
+        if ( [pathComponents[i] isEqualToString:@"%@"] ){
+            [pathComponents replaceObjectAtIndex:i withObject:@""];
+        }
+        NSString *pathComponent = pathComponents[i];
+        pathComponent = [pathComponent uppercaseFirstCharacterString];
+        [pathComponents replaceObjectAtIndex:i withObject:pathComponent];
+    }
+    NSString *pathName = [pathComponents componentsJoinedByString:@""];
+    return pathName;
+}
+
 - (NSDictionary *)allPathNamesToPaths
 {
-    NSMutableDictionary *pathNamesToPaths = [NSMutableDictionary dictionaryWithObjectsAndKeys: self.fullPath, self.pathName, nil];
+    NSMutableDictionary *pathNamesToPaths = [NSMutableDictionary dictionaryWithObjectsAndKeys: [self fullPath], [self pathName], nil];
     for (WADLServiceSection *child in _childSections) {
         [pathNamesToPaths addEntriesFromDictionary:[child allPathNamesToPaths]];
     }
