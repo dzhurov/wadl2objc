@@ -11,6 +11,7 @@
 @interface XSDObject : NSObject
 
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *extension;
 @property (nonatomic, strong) NSMutableArray *dependencies;
 @property (nonatomic, strong) NSMutableArray *properties;
 @property (nonatomic, strong) NSMutableArray *weekRelations;

@@ -36,8 +36,6 @@
 
 - (id)initWithData:(NSData *)data
 {
-    
-    
     self = [super init];
     if ( self ){
         NSError *error = nil;
@@ -87,7 +85,16 @@
     for (NSDictionary *oneComplexType in complexTypes) {
         NSString *name = oneComplexType[@"name"];
         XSDObject *xsdObj = xsdObjects[name];
+        
         NSArray *properties = [oneComplexType valueForKeyPath:@"xs:sequence.xs:element"];
+        
+        NSDictionary *extension = [oneComplexType valueForKeyPath:@"xs:complexContent.xs:extension"];
+        if (extension) {
+            NSString *extensionType = extension[@"base"];
+            xsdObj.extension = formattedType(extensionType);
+            properties = [extension valueForKeyPath:@"xs:sequence.xs:element"];
+        }
+        
         if ( [properties isKindOfClass:[NSDictionary class]] ){
             properties = @[properties]; //singularity of TBXML+NSDictionary
         }
@@ -179,6 +186,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL needForSimpleTypes = NO;
     NSString *className = [@"_" stringByAppendingString:object.name];
+    NSString *classExtension = object.extension?object.extension:@"XSDBaseEntity";
     NSString *fileName = [NSString stringWithFormat:@"%@.h", className];
     NSString *filePath = [path  stringByAppendingPathComponent:fileName];
     if ( [fileManager fileExistsAtPath:filePath] ){
@@ -190,6 +198,8 @@
         }
     }
     NSMutableString *includes = [NSMutableString string];
+    [includes appendFormat:@"#import \"%@.h\"\n", classExtension];
+    
     for (NSObject *dependency in object.dependencies) {
         if ( [dependency isKindOfClass: [XSDObject class]] ){
             [includes appendFormat:@"#import \"%@.h\"\n", ((XSDObject*)dependency).name];
@@ -229,7 +239,8 @@
     if (error){
         NSLog(@"ERROR: %@", error);
     }
-    NSString *contentString = [NSString stringWithFormat:_hFileFormat, className, self.version, includes, className, propertiesList];
+    
+    NSString *contentString = [NSString stringWithFormat:_hFileFormat, className, self.version, includes, className, classExtension, propertiesList];
     [contentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
         NSLog(@"ERROR: %@", error);
@@ -237,6 +248,7 @@
     else{
         NSLog(@"generated: %@", filePath);
     }
+    
 }
 
 - (void)writeMachineMFileObject:(XSDObject*)object toPath:(NSString*)path

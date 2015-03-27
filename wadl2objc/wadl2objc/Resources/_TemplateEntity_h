@@ -7,9 +7,8 @@
 //  DO NOT MODIFY THIS CLASS
 
 #import <Foundation/Foundation.h>
-#import "XSDBaseEntity.h"
 %@
-@interface %@ : XSDBaseEntity
+@interface %@ : %@
 %@
 
 @end
