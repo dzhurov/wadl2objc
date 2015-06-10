@@ -14,11 +14,11 @@
 
 @property (nonatomic,strong) NSString *path;
 @property (nonatomic, strong) WADLServiceSection *parantServiceSection;
-@property (nonatomic, strong) NSMutableArray/*<WADLServiceSection>*/ *childSections;
-@property (nonatomic, strong) NSMutableArray/*<WADLServicePathParameter>*/ *pathParameters;
-@property (nonatomic, strong) NSMutableArray/*<WADLServicePathParameter>*/ *queryParameters;
-@property (nonatomic, strong) NSMutableArray/*<WADLServicePathParameter>*/ *headParameters;
-@property (nonatomic, strong) NSMutableArray/*<WADLService>*/ *services;
+@property (nonatomic, strong) NSMutableArray/*!<WADLServiceSection>*/ *childSections;
+@property (nonatomic, strong) NSMutableArray/*!<WADLServicePathParameter>*/ *pathParameters;
+@property (nonatomic, strong) NSMutableArray/*!<WADLServicePathParameter>*/ *queryParameters;
+@property (nonatomic, strong) NSMutableArray/*!<WADLServicePathParameter>*/ *headParameters;
+@property (nonatomic, strong) NSMutableArray/*!<WADLService>*/ *services;
 
 - (NSString*)fullPath;
 - (NSArray*)urlPathAndMethods; 

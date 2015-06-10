@@ -11,10 +11,10 @@
 #define synthesizeLazzyProperty(propertyName, propertyType) \
 - (propertyType *)propertyName \
 { \
-if ( !_##propertyName ){ \
-_##propertyName = [[propertyType alloc] init]; \
-} \
-return _##propertyName; \
+    if ( !_##propertyName ){ \
+        _##propertyName = [[propertyType alloc] init]; \
+    } \
+    return _##propertyName; \
 } \
 
 @interface Utilities : NSObject
