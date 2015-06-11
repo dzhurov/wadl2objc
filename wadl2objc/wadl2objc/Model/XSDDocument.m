@@ -50,6 +50,7 @@
 {
     NSDictionary *dict = dictionary[kRootElementKey];
     self.version = dict[@"version"];
+    self.namespace = dict[@"targetNamespace"];
     
     // Simple Types (enums)
     NSArray *simpleTypes = dict[kSimpleTypesKey];
@@ -76,7 +77,7 @@
     for (NSDictionary *oneComplexType in complexTypes) {
         NSString *name = oneComplexType[@"name"];
         XSDObject *xsdObj = [XSDObject new];
-        xsdObj.name = formattedType(name);
+        xsdObj.name =  formattedType(name);
         [xsdObjects setObject:xsdObj forKey:name];
     }
     
@@ -119,7 +120,7 @@
                     NSLog(@"unexpected reference '%@' of object '%@'", refString, name);
                 }
             }
-            else if ([typeString hasPrefix:@"xs:"]){
+            else if ([typeString hasPrefix:@"xs:"]){ // XSD standard type (eg xs:int xs:date, xs:string)
                 xsdProperty.type = classNameForXSDType(typeString);
                 xsdProperty.dockComment = dockCommentForXSDType(typeString);
             }
@@ -149,6 +150,71 @@
 }
 
 #pragma mark - Generationg files
+
+//- (void)setXSDObjectsFromArray:(NSArray *)complexTypes
+//{
+//    for (NSDictionary *oneComplexType in complexTypes) {
+//        NSString *name = oneComplexType[@"name"];
+//        XSDObject *xsdObj = xsdObjects[name];
+//        
+//        NSArray *properties = [oneComplexType valueForKeyPath:@"xs:sequence.xs:element"];
+//        
+//        NSDictionary *extension = [oneComplexType valueForKeyPath:@"xs:complexContent.xs:extension"];
+//        if (extension) {
+//            NSString *extensionType = extension[@"base"];
+//            xsdObj.extension = formattedType(extensionType);
+//            properties = [extension valueForKeyPath:@"xs:sequence.xs:element"];
+//        }
+//        
+//        if ( [properties isKindOfClass:[NSDictionary class]] ){
+//            properties = @[properties]; //singularity of TBXML+NSDictionary
+//        }
+//        for (NSDictionary *oneProperty in properties) {
+//            XSDObjectProperty *xsdProperty = [XSDObjectProperty new];
+//            NSString *propName = oneProperty[@"name"];
+//            xsdProperty.name = propName;
+//            if ( oneProperty[@"maxOccurs"] ){ // is an array
+//                xsdProperty.isCollection = YES;
+//            }
+//            
+//            NSString *typeString = oneProperty[@"type"];
+//            if (!typeString){
+//                NSString *refString = oneProperty[@"ref"];
+//                XSDObject *refObject = xsdObjects[refString];
+//                if (refObject){
+//                    [xsdObj.dependencies addObject:refObject];
+//                    xsdProperty.type = refObject.name;
+//                    xsdProperty.name = refString;
+//                }
+//                else{
+//                    NSLog(@"unexpected reference '%@' of object '%@'", refString, name);
+//                }
+//            }
+//            else if ([typeString hasPrefix:@"xs:"]){ // XSD standard type (eg xs:int xs:date, xs:string)
+//                xsdProperty.type = classNameForXSDType(typeString);
+//                xsdProperty.dockComment = dockCommentForXSDType(typeString);
+//            }
+//            else{
+//                XSDSimpleType *simpleType = xsdSimpleTypes[typeString];
+//                if (simpleType){
+//                    [xsdObj.dependencies addObject:simpleType];
+//                    xsdProperty.type = simpleType.name;
+//                    xsdProperty.simpleType = simpleType;
+//                }
+//                else{
+//                    XSDObject *refObject = xsdObjects[typeString];
+//                    if (refObject){
+//                        [xsdObj.dependencies addObject:refObject];
+//                        xsdProperty.type = refObject.name ;
+//                    }
+//                    else
+//                        NSLog(@"unexpected property '%@' of object '%@'", typeString, name);
+//                }
+//            }
+//            [xsdObj.properties addObject:xsdProperty];
+//        }
+//    }
+//}
 
 - (void)writeObjectsToPath:(NSString *)path
 {

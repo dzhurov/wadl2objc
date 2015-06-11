@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *version; 
 @property (nonatomic, strong) NSArray *objects;
 @property (nonatomic, strong) NSArray *simpleTypes;
+@property (nonatomic, strong) NSString *namespace;
 
 - (id)initWithData:(NSData*)data;
 - (void)setXSDDictionary: (NSDictionary*)dictionary;

@@ -94,6 +94,7 @@
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7E1B156217CF5AE600C96204 /* XSDEnums_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_h; sourceTree = "<group>"; };
 		7E1B156317CF5AE600C96204 /* XSDEnums_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_m; sourceTree = "<group>"; };
+		7E3630E31B288FFA001A32DE /* WADL_mapping.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WADL_mapping.plist; sourceTree = "<group>"; };
 		7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = _TemplateEntity_h; sourceTree = "<group>"; };
 		7E5F6E2C17CCDCF20068D508 /* _TemplateEntity_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _TemplateEntity_m; sourceTree = "<group>"; };
 		7EC7DCBB17D096ED003CE122 /* TemplateEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TemplateEntity_h; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				0A2810A517C9F733001C7306 /* main.m */,
+				7E3630E31B288FFA001A32DE /* WADL_mapping.plist */,
 				0A2B108D180A991A00E5E19E /* NSString+FirstCharacter.h */,
 				0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */,
 				0A2810A917C9F733001C7306 /* wadl2objc.1 */,
@@ -429,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 299F2A9C49544AAD86124F87 /* Pods.xcconfig */;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/BUILD";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "wadl2objc/wadl2objc-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -439,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 299F2A9C49544AAD86124F87 /* Pods.xcconfig */;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/BUILD";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "wadl2objc/wadl2objc-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";

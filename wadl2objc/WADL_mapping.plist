@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>XSD Objects Fields</key>
+	<dict>
+		<key>release</key>
+		<string>aRelease</string>
+		<key>retain</key>
+		<string>aRetain</string>
+		<key>description</key>
+		<string>aDescription</string>
+	</dict>
+	<key>Namespaces</key>
+	<dict>
+		<key></key>
+		<dict>
+			<key>Name</key>
+			<string>No Workspace </string>
+			<key>prefix</key>
+			<string>XSD</string>
+		</dict>
+		<key>http://sample.namespace.com/</key>
+		<dict>
+			<key>Name</key>
+			<string>Sample Namespace</string>
+			<key>prefix</key>
+			<string>SN</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

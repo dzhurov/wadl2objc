@@ -32,8 +32,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 {
     self = [super init];
     if ( self ){
-        NSDictionary *xmlDicti = [NSDictionary dictionaryWithXMLData:data];
-        [self setWADLDictionary:xmlDicti];
+        NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLData:data];
+        [self setWADLDictionary:xmlDict];
     }
     return self;
 }

@@ -35,6 +35,23 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
     self.xsdPath = [self argsArray:argsArray popArgumentForKey:kXSDPathArgumentKey];
     self.outputPath = [self argsArray:argsArray popArgumentForKey:kOutputPathArgumentKey];
     
+    // Mapping
+    self.mappingPlistPath = [self argsArray:argsArray popArgumentForKey:kMappingPlistPathArgumentKey];
+    if (self.mappingPlistPath){
+        NSError *plistError;
+        NSPropertyListFormat format;
+        NSData *plistData = [NSData dataWithContentsOfFile: self.mappingPlistPath];
+        if (plistData){
+            self.mapping = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:&format error:&plistError];
+            if (plistError){
+                NSLog(@"ERROR: %@", plistError);
+            }
+        }
+        else{
+            NSLog(@"WARNING: --mapping-plist: %@ - No such file", self.mappingPlistPath);
+        }
+    }
+    
     if ( argsArray.count ){
         NSLog(@"Unexpected parameters: %@", argsArray);
         return NO;
@@ -45,6 +62,39 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
     }
     
     return NO;
+}
+
+- (NSString *)classNameForObjectType:(NSString *)objectType fromNamespace:(NSString *)namespace
+{
+    NSDictionary *namespaceDescription = self.mapping[namespace];
+    if (namespaceDescription){
+        NSString *className = [NSString stringWithFormat:@"%@%@%@", safeString(namespaceDescription[@"prefix"]), objectType, safeString(namespaceDescription[@"suffix"]) ];
+        return className;
+    }
+    else{
+        NSLog(@"WARNING: There is no description for targetNamespace: %@. Please, provide name and prefix or suffix for current namespace in %@", namespace, self.mappingPlistPath);
+        NSMutableDictionary *newMapping = [self.mapping mutableCopy];
+        newMapping[namespace] = @{@"prefix" : @"",
+                                  @"suffix" : @"",
+                                  @"name"   : @""};
+        NSString *errorDescription = nil;
+        NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:newMapping
+                                                                       format:NSPropertyListXMLFormat_v1_0
+                                                             errorDescription:&errorDescription];
+        if (errorDescription){
+            NSLog(@"ERROR: Cannot add namespase to mapping.plist\nDescription: %@", errorDescription);
+        }
+        else{
+            NSError *error = nil;
+            if ([plistData writeToFile:self.mappingPlistPath options:0 error:&error]){
+                self.mapping = newMapping;
+            }
+            else{
+                NSLog(@"ERROR: %@", error);
+            }
+        }
+    }
+    return objectType;
 }
 
 @end

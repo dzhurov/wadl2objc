@@ -17,6 +17,8 @@
     return _##propertyName; \
 } \
 
+#define safeString(aString) (aString ? aString : @"")
+
 @interface Utilities : NSObject
 
 + (NSString*)NSStringBase64FromData: (NSData *)data;
