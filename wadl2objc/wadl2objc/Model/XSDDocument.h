@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XSDNamespase.h"
 
-
+#define kDefaultEnumManagerClassname @"XSDEnums"
 
 @interface XSDDocument : NSObject
 
 @property (nonatomic, strong) NSString *version; 
 @property (nonatomic, strong) NSArray *objects;
 @property (nonatomic, strong) NSArray *simpleTypes;
-@property (nonatomic, strong) NSString *namespace;
+@property (nonatomic, strong) XSDNamespase *targetNamespace;
 
 - (id)initWithData:(NSData*)data;
 - (void)setXSDDictionary: (NSDictionary*)dictionary;

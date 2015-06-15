@@ -32,8 +32,28 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
     self.applicationPath = argsArray[0];
     [argsArray removeObjectAtIndex:0];
     self.wadlPath = [self argsArray:argsArray popArgumentForKey:kWADLPathArgumentKey];
-    self.xsdPath = [self argsArray:argsArray popArgumentForKey:kXSDPathArgumentKey];
     self.outputPath = [self argsArray:argsArray popArgumentForKey:kOutputPathArgumentKey];
+
+    // XSD Paths
+    NSMutableArray *xsdPaths = [NSMutableArray new];
+    NSInteger indexOfXSDParam = [argsArray indexOfObject:kXSDPathArgumentKey];
+    if (indexOfXSDParam != NSNotFound){
+        while (indexOfXSDParam < argsArray.count - 1) {
+            [argsArray removeObjectAtIndex:indexOfXSDParam];
+            NSString *anXSDPath = argsArray[indexOfXSDParam];
+            // new kind of parameters marker
+            if ([anXSDPath hasPrefix:@"--"]){
+                break;
+            }
+            else{
+                [xsdPaths addObject:anXSDPath];
+            }
+        }
+    }
+    else{
+        NSLog(@"Missing parameter: %@ ", kXSDPathArgumentKey);
+    }
+    self.xsdPaths = xsdPaths;
     
     // Mapping
     self.mappingPlistPath = [self argsArray:argsArray popArgumentForKey:kMappingPlistPathArgumentKey];
@@ -57,26 +77,31 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
         return NO;
     }
     
-    if (_wadlPath && _xsdPath && _outputPath){
+    if (_wadlPath && _xsdPaths.count && _outputPath){
         return YES;
     }
     
     return NO;
 }
 
-- (NSString *)classNameForObjectType:(NSString *)objectType fromNamespace:(NSString *)namespace
+- (NSString *)classNameForObjectType:(NSString *)objectType fromNamespace:(NSString *)identifier
 {
-    NSDictionary *namespaceDescription = self.mapping[namespace];
-    if (namespaceDescription){
-        NSString *className = [NSString stringWithFormat:@"%@%@%@", safeString(namespaceDescription[@"prefix"]), objectType, safeString(namespaceDescription[@"suffix"]) ];
-        return className;
-    }
-    else{
-        NSLog(@"WARNING: There is no description for targetNamespace: %@. Please, provide name and prefix or suffix for current namespace in %@", namespace, self.mappingPlistPath);
+    XSDNamespase *namespace = [self namespaceForIdentifier:identifier];
+    
+    NSString *className = [NSString stringWithFormat:@"%@%@%@", safeString(namespace.objcPrefix), objectType, safeString(namespace.objcSuffix) ];
+    return className;
+}
+
+- (XSDNamespase*)namespaceForIdentifier:(NSString*)identifier
+{
+    NSDictionary *namespaceDescription = self.mapping[@"Namespaces"][identifier];
+    if (!namespaceDescription){
+        NSLog(@"WARNING: There is no description for targetNamespace: %@. Please, provide name and prefix or suffix for current namespace in %@", identifier, self.mappingPlistPath);
+        namespaceDescription = @{@"prefix" : @"",
+                                 @"suffix" : @"",
+                                 @"name"   : @""};
         NSMutableDictionary *newMapping = [self.mapping mutableCopy];
-        newMapping[namespace] = @{@"prefix" : @"",
-                                  @"suffix" : @"",
-                                  @"name"   : @""};
+        newMapping[@"Namespaces"][identifier] = namespaceDescription;
         NSString *errorDescription = nil;
         NSData *plistData = [NSPropertyListSerialization dataFromPropertyList:newMapping
                                                                        format:NSPropertyListXMLFormat_v1_0
@@ -94,7 +119,14 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
             }
         }
     }
-    return objectType;
+    
+    XSDNamespase *namespace = [XSDNamespase new];
+    namespace.namespaceId = identifier;
+    namespace.name = namespaceDescription[@"name"];
+    namespace.objcPrefix = namespaceDescription[@"prefix"];
+    namespace.objcSuffix = namespaceDescription[@"suffix"];
+    return namespace;
 }
+
 
 @end

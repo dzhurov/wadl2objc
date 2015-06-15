@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CWLSynthesizeSingleton.h"
+#import "XSDNamespase.h"
 
 #define kWADLPathArgumentKey    @"--wadl:"
 #define kXSDPathArgumentKey     @"--xsd:"
@@ -16,12 +17,13 @@
 
 @interface SettingsManager : NSObject
 @property (nonatomic, strong) NSString *wadlPath;
-@property (nonatomic, strong) NSString *xsdPath;
+@property (nonatomic, strong) NSArray *xsdPaths;
 @property (nonatomic, strong) NSString *outputPath;
 @property (nonatomic, strong) NSString *applicationPath;
 @property (nonatomic, strong) NSString *mappingPlistPath;
 @property (nonatomic, strong) NSDictionary *mapping;
 
+- (XSDNamespase*)namespaceForIdentifier:(NSString*)identifier;
 - (NSString*)classNameForObjectType:(NSString*)objectType fromNamespace:(NSString *)namespace;
 
 CWL_DECLARE_SINGLETON_FOR_CLASS(SettingsManager);

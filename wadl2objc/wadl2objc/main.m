@@ -11,7 +11,9 @@
 #import "SettingsManager.h"
 #import "XSDDocument.h"
 #import "WADLDocument.h"
+#import "XSDSimpleTypes.h"
 
+/// $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 void showHelp();
 
 int main(int argc, const char * argv[])
@@ -34,13 +36,19 @@ int main(int argc, const char * argv[])
             return EXIT_FAILURE;
         }
         
-        NSData *xsdData = [NSData dataWithContentsOfFile:settingMgr.xsdPath];
-        XSDDocument *xsdDoc = nil; //[[XSDDocument alloc] initWithData: xsdData];
-        [xsdDoc writeObjectsToPath:[settingMgr.outputPath stringByAppendingPathComponent:@"XSDObjects"]];
+        NSMutableArray *xsdDocuments = [NSMutableArray arrayWithCapacity:settingMgr.xsdPaths.count];
+        for (NSString *anXSDPath in settingMgr.xsdPaths) {
+            NSData *xsdData = [NSData dataWithContentsOfFile:anXSDPath];
+            XSDDocument *xsdDoc = [[XSDDocument alloc] initWithData: xsdData];
+            [xsdDoc writeObjectsToPath:[settingMgr.outputPath stringByAppendingPathComponent:@"XSDObjects"]];
+        }
+        
+        XSDSimpleTypes *simpleTypes = [[XSDSimpleTypes alloc] initWithXSDDocuments:xsdDocuments];
+        [simpleTypes writeObjectsToPath:[settingMgr.outputPath stringByAppendingPathComponent:@"XSDObjects"]];
         
         NSData *wadlData = [NSData dataWithContentsOfFile:settingMgr.wadlPath];
-        WADLDocument *wadlDoc = [[WADLDocument alloc] initWithData:xsdData];
-        wadlDoc.xsdDocument = xsdDoc;
+        WADLDocument *wadlDoc = [[WADLDocument alloc] initWithData:wadlData];
+        wadlDoc.xsdDocuments = xsdDocuments;
         [wadlDoc writeObjectsToPath:settingMgr.outputPath];
     }
     return 0;

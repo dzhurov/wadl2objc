@@ -22,4 +22,12 @@
     return result;
 }
 
+- (BOOL)isEqual:(XSDSimpleType*)object
+{
+    if ([object isKindOfClass:[XSDSimpleType class]]){
+        return [self.name isEqualToString:object.name];
+    }
+    return NO;
+}
+
 @end

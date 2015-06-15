@@ -16,6 +16,7 @@
 - (void)writeObjectsToPath:(NSString *)path;
 
 @property (nonatomic, strong) NSMutableArray *wadlServiceSections;
-@property (nonatomic, strong) XSDDocument *xsdDocument;
+/*! [XSDDocument]*/
+@property (nonatomic, strong) NSArray *xsdDocuments;
 
 @end

@@ -32,6 +32,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 {
     self = [super init];
     if ( self ){
+        
         NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLData:data];
         [self setWADLDictionary:xmlDict];
     }
@@ -110,12 +111,16 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     NSRange endOfImports = [contentOfFile rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet] options:0 range:NSMakeRange(lastImportRange.location, contentOfFile.length - lastImportRange.location)];
     NSRange allImportsRange = NSMakeRange(0, endOfImports.length + endOfImports.location);
     NSMutableString *importsNeedToAppend = [NSMutableString stringWithCapacity:1024];
-    for (XSDObject *object in _xsdDocument.objects) {
-        NSString *importObjectString = [NSString stringWithFormat:@"#import \"%@.h\"", object.name];
-        if ( [contentOfFile rangeOfString:importObjectString options:0 range:allImportsRange].location == NSNotFound ){
-            [importsNeedToAppend appendFormat:@"%@\n", importObjectString];
+    // Dependencies
+    for (XSDDocument *doc in self.xsdDocuments) {
+        for (XSDObject *object in doc.objects) {
+            NSString *importObjectString = [NSString stringWithFormat:@"#import \"%@.h\"", object.name];
+            if ( [contentOfFile rangeOfString:importObjectString options:0 range:allImportsRange].location == NSNotFound ){
+                [importsNeedToAppend appendFormat:@"%@\n", importObjectString];
+            }
         }
     }
+    
     contentOfFile = [contentOfFile stringByReplacingCharactersInRange:NSMakeRange(allImportsRange.location + allImportsRange.length, 0) withString:importsNeedToAppend];
     [contentOfFile writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error)

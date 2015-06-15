@@ -28,6 +28,8 @@
 		7E3CF89E17FC242400ECCC95 /* TemplateEntity_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EC7DCBC17D096ED003CE122 /* TemplateEntity_m */; };
 		7E3CF89F17FC242400ECCC95 /* XSDEnums_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E1B156217CF5AE600C96204 /* XSDEnums_h */; };
 		7E3CF8A017FC242400ECCC95 /* XSDEnums_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E1B156317CF5AE600C96204 /* XSDEnums_m */; };
+		7E6132041B2F1EBE008CEDF1 /* XSDSimpleTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6132031B2F1EBE008CEDF1 /* XSDSimpleTypes.m */; };
+		7E7DAA241B2B173B00205151 /* XSDNamespase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7DAA231B2B173B00205151 /* XSDNamespase.m */; };
 		7EC7DCBD17D096ED003CE122 /* TemplateEntity_m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7DCBC17D096ED003CE122 /* TemplateEntity_m */; };
 		7EC7DCBF17D0BCB6003CE122 /* XSDEnums_m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B156317CF5AE600C96204 /* XSDEnums_m */; };
 		7ECDDEEC1806E91E00987FDE /* WADLServiceSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECDDEEB1806E91E00987FDE /* WADLServiceSection.m */; };
@@ -97,6 +99,10 @@
 		7E3630E31B288FFA001A32DE /* WADL_mapping.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WADL_mapping.plist; sourceTree = "<group>"; };
 		7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = _TemplateEntity_h; sourceTree = "<group>"; };
 		7E5F6E2C17CCDCF20068D508 /* _TemplateEntity_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _TemplateEntity_m; sourceTree = "<group>"; };
+		7E6132021B2F1EBE008CEDF1 /* XSDSimpleTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDSimpleTypes.h; sourceTree = "<group>"; };
+		7E6132031B2F1EBE008CEDF1 /* XSDSimpleTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDSimpleTypes.m; sourceTree = "<group>"; };
+		7E7DAA221B2B173B00205151 /* XSDNamespase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSDNamespase.h; sourceTree = "<group>"; };
+		7E7DAA231B2B173B00205151 /* XSDNamespase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSDNamespase.m; sourceTree = "<group>"; };
 		7EC7DCBB17D096ED003CE122 /* TemplateEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TemplateEntity_h; sourceTree = "<group>"; };
 		7EC7DCBC17D096ED003CE122 /* TemplateEntity_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TemplateEntity_m; sourceTree = "<group>"; };
 		7ECDDEEA1806E91E00987FDE /* WADLServiceSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLServiceSection.h; sourceTree = "<group>"; };
@@ -247,6 +253,10 @@
 			children = (
 				0A964DC617CB6313003655C4 /* XSDDocument.h */,
 				0A964DC717CB6313003655C4 /* XSDDocument.m */,
+				7E6132021B2F1EBE008CEDF1 /* XSDSimpleTypes.h */,
+				7E6132031B2F1EBE008CEDF1 /* XSDSimpleTypes.m */,
+				7E7DAA221B2B173B00205151 /* XSDNamespase.h */,
+				7E7DAA231B2B173B00205151 /* XSDNamespase.m */,
 				0A964DD217CBA663003655C4 /* XSDTypes.h */,
 				0A964DD317CBA663003655C4 /* XSDTypes.m */,
 				0A964DC917CB6BFD003655C4 /* XSDObject.h */,
@@ -350,10 +360,12 @@
 				7ECDDEEF1806ECA800987FDE /* WADLService.m in Sources */,
 				7ECDDEEC1806E91E00987FDE /* WADLServiceSection.m in Sources */,
 				0A2810D917C9F8C1001C7306 /* TBXML+NSDictionary.m in Sources */,
+				7E6132041B2F1EBE008CEDF1 /* XSDSimpleTypes.m in Sources */,
 				7ECDDEF21806ED3D00987FDE /* WADLServicePathParameter.m in Sources */,
 				0A964DC317CB531C003655C4 /* SettingsManager.m in Sources */,
 				0A964DC817CB6313003655C4 /* XSDDocument.m in Sources */,
 				0A964DCB17CB6BFD003655C4 /* XSDObject.m in Sources */,
+				7E7DAA241B2B173B00205151 /* XSDNamespase.m in Sources */,
 				0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */,
 				7ECDDEF81806FE4F00987FDE /* Utilities.m in Sources */,
 				0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */,

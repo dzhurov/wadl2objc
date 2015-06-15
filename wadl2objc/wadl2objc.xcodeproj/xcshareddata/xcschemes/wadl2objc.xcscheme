@@ -64,11 +64,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--xsd: ../wadl/xsd0.xsd"
+            argument = "--xsd: ../wadl/xsd0.xsd ../wadl/xsd1.xsd"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--wadl: ../application.wadl"
+            argument = "--wadl: ../wadl/application.wadl"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

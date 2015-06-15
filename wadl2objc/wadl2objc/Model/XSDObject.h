@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XSDNamespase.h"
 
 @interface XSDObject : NSObject
+
+@property (nonatomic, strong) XSDNamespase *namespace;
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *extension;
