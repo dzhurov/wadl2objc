@@ -25,7 +25,12 @@
 {
     self = [super init];
     if (self) {
-        self.simpleTypes = [xsdDocuments valueForKey:@"simpleTypes.@distinctUnionOfArrays.self"];
+        NSMutableArray *simpleTypes = [NSMutableArray new];
+        for (XSDDocument *doc in xsdDocuments) {
+            [simpleTypes addObjectsFromArray:doc.simpleTypes];
+        }
+        
+        self.simpleTypes = [[NSSet setWithArray: simpleTypes] allObjects];
         self.xsdVersion = [(XSDDocument*)[xsdDocuments firstObject] version];
     }
     return self;

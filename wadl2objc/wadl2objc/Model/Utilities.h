@@ -24,3 +24,20 @@
 + (NSString*)NSStringBase64FromData: (NSData *)data;
 
 @end
+
+@interface NSString (XMLPrefix)
+
+- (NSString*)stringBySplittingXMLPrefix:(out NSString **)prefix;
+
+@end
+
+@interface NSDictionary (XMLPrefix)
+
+- (id)objectForKeyIgnoringXMLPrefix:(NSString*)key;
+
+/*! @return dictionary with objects and keys without prefix. E.g.
+  @{@"xmlns:ns1": @"namespaceIdentifier:1"} for prefix "xmlns" will return :
+  @{@"ns1": @"namespaceIdentifier:1"}*/
+- (NSDictionary*)objectsForKeysWithPrefix:(NSString*)prefix;
+
+@end

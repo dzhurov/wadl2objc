@@ -76,3 +76,61 @@ static char base_64EncodingTable[64] = {
 }
 
 @end
+
+@implementation NSString (XMLPrefix)
+
+- (NSString *)stringBySplittingXMLPrefix:(out NSString **)prefix
+{
+    NSArray *typeSections = [self componentsSeparatedByString:@":"];
+    
+    // type has prefix for namespace e.g. ns1:anElement
+    if (typeSections.count == 2){
+        if (prefix){
+            *prefix = typeSections[0];
+        }
+        return typeSections[1];
+    }
+    // There is no prefix: anElement
+    else if (typeSections.count == 1){
+        if (prefix){
+            *prefix = nil;
+        }
+        return typeSections[0];
+    }
+    else{
+        NSLog(@"ERROR: Unexpected number of parts separated by ':' for object: %@", self);
+    }
+    return [self copy];
+}
+
+@end
+
+
+@implementation NSDictionary (XMLPrefix)
+
+- (id)objectForKeyIgnoringXMLPrefix:(NSString*)theKey
+{
+    for (NSString *key in [self allKeys]) {
+        if ([[key stringBySplittingXMLPrefix:nil] isEqualToString:theKey]){
+            return self[key];
+        }
+    }
+    return nil;
+}
+
+- (NSDictionary *)objectsForKeysWithPrefix:(NSString *)prefix
+{
+    NSMutableDictionary *resultDict = [NSMutableDictionary new];
+    for (NSString *key in [self allKeys]) {
+        NSString *aPrefix;
+        NSString *resultKey = [key stringBySplittingXMLPrefix:&aPrefix];
+        if ([aPrefix isEqualToString:prefix]){
+            [resultDict setObject:self[key] forKey:resultKey];
+        }
+    }
+    return resultDict;
+}
+
+@end
+
+

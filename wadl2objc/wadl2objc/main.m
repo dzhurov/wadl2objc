@@ -41,6 +41,7 @@ int main(int argc, const char * argv[])
             NSData *xsdData = [NSData dataWithContentsOfFile:anXSDPath];
             XSDDocument *xsdDoc = [[XSDDocument alloc] initWithData: xsdData];
             [xsdDoc writeObjectsToPath:[settingMgr.outputPath stringByAppendingPathComponent:@"XSDObjects"]];
+            [xsdDocuments addObject:xsdDoc];
         }
         
         XSDSimpleTypes *simpleTypes = [[XSDSimpleTypes alloc] initWithXSDDocuments:xsdDocuments];
@@ -59,5 +60,5 @@ void showHelp()
 {
     printf("Hello, my dear friend!\n");
     printf("to use this stuff you have to have .wadl and .xsd files\n");
-    printf("Run this app with parameters --wadl: <wadl_file_path> --xsd: <xsd_file_path> --output-dir: <output_dir> --mapping-plist: <WADL_mapping.plist>\n");
+    printf("Run this app with parameters --wadl: <wadl_file_path> --xsd: <xsd_file_path_1> <xsd_file_path_2> ... --output-dir: <output_dir> --mapping-plist: <WADL_mapping.plist>\n");
 }

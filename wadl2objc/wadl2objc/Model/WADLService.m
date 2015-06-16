@@ -26,20 +26,16 @@
 {
     self.name = dictionary[@"_id"];
     self.method = dictionary[@"_name"];
-    NSDictionary *responseDict = dictionary[@"response"];
-    NSDictionary *responseRepDict = responseDict[@"representation"];
-    if ( !responseRepDict ){
-        responseRepDict = responseDict[@"ns2:representation"];
+    NSDictionary *responseDict = [dictionary dictionaryWithValuesForKeys:@[@"response"]];;
+   
+    // Handle Multiple response objects depends of
+    if (responseDict[@"response"] ){
+        self.responseRepresentation = [WADLServiceRepresentation serviceRepresentationWithDictionary:responseDict service:self];
     }
-    if ( [responseRepDict isKindOfClass:[NSArray class]] ){
-        NSArray *repArray = (NSArray*)responseRepDict;
-        responseRepDict = repArray.count ? repArray[0] : nil;
-    }
-    NSString *responseElement = responseRepDict[@"_element"];
     
-    self.responseObjectClass = responseElement;
-    NSString *requestElement = [dictionary valueForKeyPath:@"request.ns2:representation._element"];
-    self.requestObjectClass = requestElement;
+    //TODO: replace ns2 with something normal thing
+    NSDictionary *requestDict = [dictionary dictionaryWithValuesForKeys:@[@"request"]];
+    self.requestRepresentation = [WADLServiceRepresentation serviceRepresentationWithDictionary:requestDict service:self];
 }
 
 - (NSArray *)allQueryParameters
@@ -89,11 +85,13 @@
 {
     WADLServiceSection *parentSection = self.parentServiceSection;
     BOOL needCapitalize = NO;
+    
+    // TODO: replace NSoperation with abstract return object
     NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation *)%@%@",[[parentSection shortPathName] lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
-    if ( self.requestObjectClass ){
-        NSString *parameterName = self.requestObjectClass;
+    if ( self.requestRepresentation ){
+        NSString *parameterName = self.requestRepresentation.objcClassName;
         parameterName = [parameterName lowercaseFirstCharacterString];
-        [methodDeclaration appendFormat:@":(%@ *)%@ ",self.requestObjectClass, parameterName];
+        [methodDeclaration appendFormat:@":(%@ *)%@ ",self.requestRepresentation.objcClassName, parameterName];
     }
     else{
         [methodDeclaration appendString:@"With"];
@@ -107,7 +105,7 @@
             needCapitalize = NO;
         }
     }
-    NSString *responseObject = self.responseObjectClass ? [self.responseObjectClass stringByAppendingString:@" *"] : @"id ";
+    NSString *responseObject = self.responseRepresentation.objcClassName ? [self.responseRepresentation.objcClassName stringByAppendingString:@" *"] : @"id ";
     if (needCapitalize)
         [methodDeclaration appendFormat:@"ResponseBlock:(void(^)(%@response, NSError *error))responseBlock", responseObject];
     else

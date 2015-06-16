@@ -8,17 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
+@class WADLDocument;
+
 @interface WADLServiceSection : NSObject
 
-- (id)initWithDictionary:(NSDictionary*)dictionary parantSection:(WADLServiceSection*)parantSection;
+- (instancetype)initWithDictionary:(NSDictionary*)dictionary wadlDocument:(WADLDocument*)wadlDocument;
+- (instancetype)initWithDictionary:(NSDictionary*)dictionary parantSection:(WADLServiceSection*)parantSection;
 
 @property (nonatomic,strong) NSString *path;
-@property (nonatomic, strong) WADLServiceSection *parantServiceSection;
-@property (nonatomic, strong) NSMutableArray/*!<WADLServiceSection>*/ *childSections;
-@property (nonatomic, strong) NSMutableArray/*!<WADLServicePathParameter>*/ *pathParameters;
-@property (nonatomic, strong) NSMutableArray/*!<WADLServicePathParameter>*/ *queryParameters;
-@property (nonatomic, strong) NSMutableArray/*!<WADLServicePathParameter>*/ *headParameters;
-@property (nonatomic, strong) NSMutableArray/*!<WADLService>*/ *services;
+@property (nonatomic, weak) WADLDocument *wadlDocument;
+@property (nonatomic, weak) WADLServiceSection *parantServiceSection;
+/*![WADLServiceSection]*/
+@property (nonatomic, strong) NSMutableArray *childSections;
+/*![WADLServicePathParameter]*/
+@property (nonatomic, strong) NSMutableArray *pathParameters;
+/*![WADLServicePathParameter]*/
+@property (nonatomic, strong) NSMutableArray *queryParameters;
+/*![WADLServicePathParameter]*/
+@property (nonatomic, strong) NSMutableArray *headParameters;
+/*![WADLService]*/
+@property (nonatomic, strong) NSMutableArray *services;
 
 - (NSString*)fullPath;
 - (NSArray*)urlPathAndMethods; 
@@ -26,4 +35,5 @@
 - (NSString*)pathName;
 - (NSString*)shortPathName;
 - (NSDictionary*)allPathNamesToPaths;
+- (WADLServiceSection*)rootServiceSection;
 @end

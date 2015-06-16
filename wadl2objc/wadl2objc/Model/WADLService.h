@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WADLServiceRepresentation.h"
 
 @class WADLServiceSection;
 @interface WADLService : NSObject
 
 - (id)initWithDictionary:(NSDictionary*)dictionary parentSection:(WADLServiceSection*)parantSection;
 
-@property (nonatomic, strong) WADLServiceSection *parentServiceSection;
+@property (nonatomic, weak) WADLServiceSection *parentServiceSection;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *method; // GET, PUT, POST, DELETE
-@property (nonatomic, strong) NSString *requestObjectClass;
-@property (nonatomic, strong) NSString *responseObjectClass;
+@property (nonatomic, strong) WADLServiceRepresentation *requestRepresentation;
+@property (nonatomic, strong) WADLServiceRepresentation *responseRepresentation;
 
 - (NSArray *)allQueryParameters;
 - (NSArray *)allPathParameters;

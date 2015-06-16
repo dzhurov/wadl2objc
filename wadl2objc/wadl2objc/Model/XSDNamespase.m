@@ -13,7 +13,7 @@
 
 - (NSString *)classNameForXSDType:(NSString *)objectType
 {
-    NSString *className = [NSString stringWithFormat:@"%@%@%@", safeString(self.objcPrefix), formattedType(objectType), safeString(self.objcSuffix) ];
+    NSString *className = [NSString stringWithFormat:@"%@%@%@", safeString(self.objcPrefix), formattedType([objectType stringBySplittingXMLPrefix:nil]), safeString(self.objcSuffix) ];
     return className;
 }
 

@@ -2,66 +2,75 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>http://tuxmobile.tmw.com/payments</key>
-	<dict>
-		<key>prefix</key>
-		<string></string>
-		<key>suffix</key>
-		<string></string>
-		<key>name</key>
-		<string></string>
-	</dict>
 	<key>Namespaces</key>
 	<dict>
 		<key></key>
 		<dict>
-			<key>prefix</key>
-			<string></string>
 			<key>Name</key>
 			<string></string>
+			<key>prefix</key>
+			<string></string>
+		</dict>
+		<key>http://sample.namespace.com/</key>
+		<dict>
+			<key>Name</key>
+			<string>Sample Namespace</string>
+			<key>prefix</key>
+			<string>SN</string>
 		</dict>
 		<key>http://tuxmobile.tmw.com/payments</key>
 		<dict>
+			<key>name</key>
+			<string>Payments</string>
 			<key>prefix</key>
 			<string>Pay_</string>
 			<key>suffix</key>
 			<string></string>
+		</dict>
+		<key>http://wadl.dev.java.net/2009/02</key>
+		<dict>
 			<key>name</key>
-			<string>Payments</string>
-		</dict>
-		<key>http://sample.namespace.com/</key>
-		<dict>
-			<key>prefix</key>
-			<string>SN</string>
-			<key>Name</key>
-			<string>Sample Namespace</string>
-		</dict>
-		<key>http://www.w3.org/2001/XMLSchema</key>
-		<dict>
+			<string></string>
 			<key>prefix</key>
 			<string></string>
 			<key>suffix</key>
 			<string></string>
+		</dict>
+		<key>http://www.w3.org/2001/XMLSchema</key>
+		<dict>
 			<key>name</key>
+			<string></string>
+			<key>prefix</key>
+			<string></string>
+			<key>suffix</key>
 			<string></string>
 		</dict>
 	</dict>
 	<key>XSD Objects Fields</key>
 	<dict>
-		<key>retain</key>
-		<string>aRetain</string>
-		<key>release</key>
-		<string>aRelease</string>
 		<key>description</key>
 		<string>aDescription</string>
+		<key>release</key>
+		<string>aRelease</string>
+		<key>retain</key>
+		<string>aRetain</string>
 	</dict>
-	<key>http://www.w3.org/2001/XMLSchema</key>
+	<key>http://tuxmobile.tmw.com/payments</key>
 	<dict>
+		<key>name</key>
+		<string></string>
 		<key>prefix</key>
 		<string></string>
 		<key>suffix</key>
 		<string></string>
+	</dict>
+	<key>http://www.w3.org/2001/XMLSchema</key>
+	<dict>
 		<key>name</key>
+		<string></string>
+		<key>prefix</key>
+		<string></string>
+		<key>suffix</key>
 		<string></string>
 	</dict>
 </dict>

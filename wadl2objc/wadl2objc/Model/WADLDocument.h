@@ -18,5 +18,6 @@
 @property (nonatomic, strong) NSMutableArray *wadlServiceSections;
 /*! [XSDDocument]*/
 @property (nonatomic, strong) NSArray *xsdDocuments;
+@property (nonatomic, strong) NSDictionary *globalNamespaces;
 
 @end

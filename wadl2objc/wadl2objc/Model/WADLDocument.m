@@ -34,6 +34,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     if ( self ){
         
         NSDictionary *xmlDict = [NSDictionary dictionaryWithXMLData:data];
+        
         [self setWADLDictionary:xmlDict];
     }
     return self;
@@ -41,9 +42,15 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 
 - (void)setWADLDictionary:(NSDictionary *)dictionary
 {
+    NSMutableDictionary *globalNamespaces = [[dictionary objectsForKeysWithPrefix:@"_xmlns"] mutableCopy];
+    if (dictionary[@"_xmlns"]){
+        [globalNamespaces setObject:dictionary[@"_xmlns"] forKey:@""];
+    }
+    self.globalNamespaces = globalNamespaces;
+    
     NSArray *parantServiceSectionsDicts = [dictionary valueForKeyPath:@"resources.resource"];
     for (NSDictionary *sectionDict in parantServiceSectionsDicts) {
-        WADLServiceSection *section = [[WADLServiceSection alloc] initWithDictionary:sectionDict parantSection:nil];
+        WADLServiceSection *section = [[WADLServiceSection alloc] initWithDictionary:sectionDict wadlDocument:self];
         [self.wadlServiceSections addObject:section];
     }
 }
@@ -164,8 +171,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
                     [oneMethodImplementation appendFormat:@"\t[inputParameters setValue:%@ forKey:@\"%@\"];\n", parameter.name, parameter.name];
                 }
             }
-            else if (oneService.requestObjectClass){
-                [oneMethodImplementation appendFormat:@"\tNSDictionary *inputParameters = [%@ dictionaryInfo];\n", [oneService.requestObjectClass lowercaseFirstCharacterString]];
+            else if (oneService.requestRepresentation){
+                [oneMethodImplementation appendFormat:@"\tNSDictionary *inputParameters = [%@ dictionaryInfo];\n", [oneService.requestRepresentation.xsdType lowercaseFirstCharacterString]];
             }
             else{
                 [oneMethodImplementation appendFormat:@"\tNSDictionary *inputParameters = nil;\n"];
@@ -185,7 +192,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             }
             
             //requestMethod
-            NSString *outputClass = oneService.responseObjectClass;
+            NSString *outputClass = oneService.responseRepresentation.objcClassName;
             if (outputClass){
                 outputClass = [NSString stringWithFormat:@"[%@ class]", outputClass];
             }

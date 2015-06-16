@@ -21,6 +21,16 @@ synthesizeLazzyProperty(services, NSMutableArray);
 synthesizeLazzyProperty(queryParameters, NSMutableArray);
 synthesizeLazzyProperty(headParameters, NSMutableArray);
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary wadlDocument:(WADLDocument *)wadlDocument
+{
+    self = [super init];
+    if (self){
+        self.wadlDocument = wadlDocument;
+        [self setDictionary:dictionary];
+    }
+    return self;
+}
+
 - (id)initWithDictionary:(NSDictionary *)dictionary parantSection:(WADLServiceSection *)parantSection
 {
     self = [super init];
@@ -198,5 +208,14 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
         [pathNamesToPaths addEntriesFromDictionary:[child allPathNamesToPaths]];
     }
     return pathNamesToPaths;
+}
+
+- (WADLServiceSection*)rootServiceSection
+{
+    WADLServiceSection *rootSection = self;
+    while (rootSection.parantServiceSection) {
+        rootSection = rootSection.parantServiceSection;
+    }
+    return rootSection;
 }
 @end
