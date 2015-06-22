@@ -40,6 +40,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 
 - (void)setWADLDictionary:(NSDictionary *)dictionary
 {
+    self.baseURLPath = [dictionary valueForKeyPath:@"resources._base"];
     NSArray *parantServiceSectionsDicts = [dictionary valueForKeyPath:@"resources.resource"];
     for (NSDictionary *sectionDict in parantServiceSectionsDicts) {
         WADLServiceSection *section = [[WADLServiceSection alloc] initWithDictionary:sectionDict parantSection:nil];

@@ -17,5 +17,6 @@
 
 @property (nonatomic, strong) NSMutableArray *wadlServiceSections;
 @property (nonatomic, strong) XSDDocument *xsdDocument;
+@property (nonatomic, strong) NSString *baseURLPath;
 
 @end

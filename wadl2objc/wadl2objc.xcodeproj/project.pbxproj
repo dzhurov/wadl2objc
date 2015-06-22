@@ -15,6 +15,9 @@
 		0A2810A617C9F733001C7306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810A517C9F733001C7306 /* main.m */; };
 		0A2810D917C9F8C1001C7306 /* TBXML+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */; };
 		0A2B108F180A991A00E5E19E /* NSString+FirstCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */; };
+		0A840EE81B2DAE4D008E046C /* WADLAbstractServerAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A840EE71B2DAE4D008E046C /* WADLAbstractServerAPI.m */; };
+		0A840EEB1B2DB057008E046C /* WADLAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A840EEA1B2DB057008E046C /* WADLAuthService.m */; };
+		0A840EF01B36E36E008E046C /* WADLServicesResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A840EEF1B36E36E008E046C /* WADLServicesResource.m */; };
 		0A964DC317CB531C003655C4 /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DC217CB531C003655C4 /* SettingsManager.m */; };
 		0A964DC817CB6313003655C4 /* XSDDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DC717CB6313003655C4 /* XSDDocument.m */; };
 		0A964DCB17CB6BFD003655C4 /* XSDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DCA17CB6BFD003655C4 /* XSDObject.m */; };
@@ -74,6 +77,15 @@
 		0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+NSDictionary.m"; sourceTree = "<group>"; };
 		0A2B108D180A991A00E5E19E /* NSString+FirstCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FirstCharacter.h"; sourceTree = "<group>"; };
 		0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FirstCharacter.m"; sourceTree = "<group>"; };
+		0A840EE61B2DAE4D008E046C /* WADLAbstractServerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLAbstractServerAPI.h; sourceTree = "<group>"; };
+		0A840EE71B2DAE4D008E046C /* WADLAbstractServerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLAbstractServerAPI.m; sourceTree = "<group>"; };
+		0A840EE91B2DB057008E046C /* WADLAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLAuthService.h; sourceTree = "<group>"; };
+		0A840EEA1B2DB057008E046C /* WADLAuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLAuthService.m; sourceTree = "<group>"; };
+		0A840EEC1B36E343008E046C /* application.wadl */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = application.wadl; sourceTree = "<group>"; };
+		0A840EED1B36E343008E046C /* xsd0.xsd */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = xsd0.xsd; sourceTree = "<group>"; };
+		0A840EEE1B36E36E008E046C /* WADLServicesResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLServicesResource.h; sourceTree = "<group>"; };
+		0A840EEF1B36E36E008E046C /* WADLServicesResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLServicesResource.m; sourceTree = "<group>"; };
+		0A840EF11B36E88F008E046C /* WADLRequestTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WADLRequestTask.h; sourceTree = "<group>"; };
 		0A8B6D9418425AA800A10D87 /* ServerInteractionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerInteractionManager.h; sourceTree = "<group>"; };
 		0A8B6D9518425AA800A10D87 /* ServerInteractionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ServerInteractionManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0A964DC117CB531C003655C4 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
@@ -203,10 +215,19 @@
 				7ECDDF001807ECE000987FDE /* APIConsts.h */,
 				0A8B6D9418425AA800A10D87 /* ServerInteractionManager.h */,
 				0A8B6D9518425AA800A10D87 /* ServerInteractionManager.m */,
+				0A840EF11B36E88F008E046C /* WADLRequestTask.h */,
+				0A840EE61B2DAE4D008E046C /* WADLAbstractServerAPI.h */,
+				0A840EE71B2DAE4D008E046C /* WADLAbstractServerAPI.m */,
+				0A840EE91B2DB057008E046C /* WADLAuthService.h */,
+				0A840EEA1B2DB057008E046C /* WADLAuthService.m */,
+				0A840EEE1B36E36E008E046C /* WADLServicesResource.h */,
+				0A840EEF1B36E36E008E046C /* WADLServicesResource.m */,
 				0A228317188027FE003CC315 /* XSDBaseEntity.h */,
 				0A228318188027FE003CC315 /* XSDBaseEntity.m */,
 				0A2283191880281D003CC315 /* XSDTypes.h */,
 				0A22831A1880281D003CC315 /* XSDTypes.m */,
+				0A840EEC1B36E343008E046C /* application.wadl */,
+				0A840EED1B36E343008E046C /* xsd0.xsd */,
 			);
 			name = Resources;
 			path = wadl2objc/Resources;
@@ -352,12 +373,15 @@
 				0A964DC317CB531C003655C4 /* SettingsManager.m in Sources */,
 				0A964DC817CB6313003655C4 /* XSDDocument.m in Sources */,
 				0A964DCB17CB6BFD003655C4 /* XSDObject.m in Sources */,
+				0A840EF01B36E36E008E046C /* WADLServicesResource.m in Sources */,
 				0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */,
 				7ECDDEF81806FE4F00987FDE /* Utilities.m in Sources */,
 				0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */,
 				0AA94D0B17F883B0000DE3B6 /* WADLDocument.m in Sources */,
+				0A840EEB1B2DB057008E046C /* WADLAuthService.m in Sources */,
 				0A2B108F180A991A00E5E19E /* NSString+FirstCharacter.m in Sources */,
 				0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */,
+				0A840EE81B2DAE4D008E046C /* WADLAbstractServerAPI.m in Sources */,
 				7EC7DCBD17D096ED003CE122 /* TemplateEntity_m in Sources */,
 				7EC7DCBF17D0BCB6003CE122 /* XSDEnums_m in Sources */,
 			);

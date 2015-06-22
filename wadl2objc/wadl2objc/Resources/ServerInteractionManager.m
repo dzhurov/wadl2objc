@@ -306,12 +306,20 @@
     return resultOperation;
 }
 
-- (AFHTTPRequestOperation*)makeGETRequestForURLPath: (NSString *)urlPath useToken: (BOOL)useToken inputParameters: (NSDictionary*)parameters outputClass:(Class)outputClass responseBlock:(void (^)(id, NSError *))responseBlock
+- (AFHTTPRequestOperation*)makeGETRequestForURLPath: (NSString *)urlPath
+                                           useToken: (BOOL)useToken
+                                    inputParameters: (NSDictionary*)parameters
+                                        outputClass:(Class)outputClass
+                                      responseBlock:(void (^)(id, NSError *))responseBlock
 {
     return [self makeRequestWithMethod:RequestMethodGET URLPath:urlPath useToken:useToken inputParameters:parameters outputClass:outputClass responseBlock:responseBlock];
 }
 
-- (AFHTTPRequestOperation*)makePOSTRequestForURLPath: (NSString *)urlPath useToken: (BOOL)useToken inputParameters: (NSDictionary*)parameters outputClass:(Class)outputClass responseBlock:(void (^)(id, NSError *))responseBlock
+- (AFHTTPRequestOperation*)makePOSTRequestForURLPath: (NSString *)urlPath
+                                            useToken: (BOOL)useToken
+                                     inputParameters: (NSDictionary*)parameters
+                                         outputClass:(Class)outputClass
+                                       responseBlock:(void (^)(id, NSError *))responseBlock
 {
     return [self makeRequestWithMethod:RequestMethodPOST URLPath:urlPath useToken:useToken inputParameters:parameters outputClass:outputClass responseBlock:responseBlock];
 }
