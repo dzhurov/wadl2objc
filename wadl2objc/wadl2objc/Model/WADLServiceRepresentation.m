@@ -57,9 +57,12 @@
     }
     
     
-    self.xsdTypeWithNSPrefix = representationDict[@"_element"];
+    self.xsdTypeWithNameSapcePrefix = representationDict[@"_element"];
+    if (!self.xsdTypeWithNameSapcePrefix)
+        return NO;
+    
     NSString *elementPrefix;
-    self.xsdType = [self.xsdTypeWithNSPrefix stringBySplittingXMLPrefix:&elementPrefix];
+    self.xsdType = [self.xsdTypeWithNameSapcePrefix stringBySplittingXMLPrefix:&elementPrefix];
     if (!elementPrefix){
         elementPrefix = @"";
     }
@@ -69,7 +72,13 @@
     }
     self.namespaceId = namespaceId;
     XSDNamespase *namespace = [[SettingsManager sharedSettingsManager] namespaceForIdentifier:namespaceId];
-    self.objcClassName = [namespace classNameForXSDType:self.xsdType];
+    if ( !namespace ){
+        NSLog(@"ERROR: Cannot find namespace for identifier: %@", namespaceId);
+        self.objcClassName = [self.xsdType uppercaseFirstCharacterString];
+    }
+    else{
+        self.objcClassName = [namespace classNameForXSDType:self.xsdType];
+    }
     
     return YES;
 }

@@ -21,7 +21,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, weak) WADLService *service;
 @property (nonatomic) WADLServiceRepresentationType representationType;
 @property (nonatomic, strong) NSString *objcClassName;
-@property (nonatomic, strong) NSString *xsdTypeWithNSPrefix;
+@property (nonatomic, strong) NSString *xsdTypeWithNameSapcePrefix;
 @property (nonatomic, strong) NSString *xsdType;
 @property (nonatomic, strong) NSString *namespaceId;
 

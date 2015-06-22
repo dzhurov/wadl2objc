@@ -88,8 +88,8 @@
     
     // TODO: replace NSoperation with abstract return object
     NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation *)%@%@",[[parentSection shortPathName] lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
-    if ( self.requestRepresentation ){
-        NSString *parameterName = self.requestRepresentation.objcClassName;
+    if ( self.requestRepresentation.objcClassName ){
+        NSString *parameterName = self.requestRepresentation.xsdType;
         parameterName = [parameterName lowercaseFirstCharacterString];
         [methodDeclaration appendFormat:@":(%@ *)%@ ",self.requestRepresentation.objcClassName, parameterName];
     }
