@@ -73,6 +73,12 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     NSString *apiConstsFilePath = [path stringByAppendingPathComponent:kApiConstsFile];
     [self writeAPIConstToPath:apiConstsFilePath];
     
+    //
+    for (WADLServiceSection *rootSection in _wadlServiceSections) {
+        
+    }
+    
+    
     NSString *simHeaderFilePath = [path stringByAppendingPathComponent:kSIMHeader];
     [self writeServerInteractionManagerHeaderFileToPath:simHeaderFilePath];
     NSString *simMethodFilePath = [path stringByAppendingPathComponent:kSIMMethod];

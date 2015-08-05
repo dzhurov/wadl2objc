@@ -10,6 +10,8 @@
 
 @interface WADLServicesResource : NSObject
 
-- (instancetype)initWithWADLServerAPI:(WADLAbstractServerAPI*)serverAPI;
+- (instancetype)initWithWADLServerAPI:(WADLAbstractServerAPI *)serverAPI;
+
+@property (nonatomic, readonly) WADLAbstractServerAPI *serverAPI;
 
 @end
