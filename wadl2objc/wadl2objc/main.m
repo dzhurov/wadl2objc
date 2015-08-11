@@ -11,18 +11,19 @@
 #import "SettingsManager.h"
 #import "XSDDocument.h"
 #import "WADLDocument.h"
+#import "DataManager.h"
 
 void showHelp();
 
 int main(int argc, const char * argv[])
 {
-
     @autoreleasepool {
         
         if ( argc <= 1 ){
             showHelp();
             return EXIT_SUCCESS;
         }
+        
         NSMutableArray *args = [NSMutableArray arrayWithCapacity:argc];
         for (int i = 0; i < argc; i++) {
             NSString *argument = [NSString stringWithUTF8String:argv[i]];
@@ -34,14 +35,25 @@ int main(int argc, const char * argv[])
             return EXIT_FAILURE;
         }
         
-        NSData *xsdData = [NSData dataWithContentsOfFile:settingMgr.xsdPath];
-        XSDDocument *xsdDoc = [[XSDDocument alloc] initWithData: xsdData];
-        [xsdDoc writeObjectsToPath:[settingMgr.outputPath stringByAppendingPathComponent:@"XSDObjects"]];
+        [[DataManager sharedDataManager] receiveWadlAndXsdDataCompletionBlock:^(NSData *wadlData, NSData *xsdData, NSError *error) {
+           
+            if (error) {
+                NSLog(@"%@", error);
+                exit(EXIT_FAILURE);
+            }
+            
+            XSDDocument *xsdDoc = [[XSDDocument alloc] initWithData: xsdData];
+            [xsdDoc writeObjectsToPath:[settingMgr.outputPath stringByAppendingPathComponent:@"XSDObjects"]];
+            
+            WADLDocument *wadlDoc = [[WADLDocument alloc] initWithData:wadlData];
+            wadlDoc.xsdDocument = xsdDoc;
+            [wadlDoc writeObjectsToPath:settingMgr.outputPath];
+            
+            exit(EXIT_SUCCESS);
+        }];
         
-        NSData *wadlData = [NSData dataWithContentsOfFile:settingMgr.wadlPath];
-        WADLDocument *wadlDoc = [[WADLDocument alloc] initWithData:wadlData];
-        wadlDoc.xsdDocument = xsdDoc;
-        [wadlDoc writeObjectsToPath:settingMgr.outputPath];
+        [[NSRunLoop currentRunLoop] run];
+
     }
     return 0;
 }
@@ -52,4 +64,5 @@ void showHelp()
     printf("Hello, my dear friend!\n");
     printf("to use this stuff you have to have .wadl and .xsd files\n");
     printf("Run this app with parameters --wadl: <wadl_file_path> --xsd: <xsd_file_path> --output-dir: <output_dir>\n");
+    printf("Or with parameters --wadlURL: <url_to_wadl> --xsdURL: <url_to_xsd> --output-dir: <output_dir>\n");
 }
