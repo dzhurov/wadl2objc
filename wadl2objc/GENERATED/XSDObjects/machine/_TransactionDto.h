@@ -12,6 +12,7 @@
 #import "CustomerDto.h"
 #import "LineItemDto.h"
 #import "TaxExemptionDto.h"
+#import "MessageDto.h"
 #import "XSDEnums.h"
 
 @interface _TransactionDto : XSDBaseEntity
@@ -26,5 +27,7 @@
 @property(nonatomic, strong) TaxExemptionDto *taxExemption;
 @property(nonatomic) RestTransactionType transactionType;
 @property(nonatomic, strong) NSString *uuid;
+/*![MessageDto]*/
+@property(nonatomic, strong) NSArray *messages;
 
 @end

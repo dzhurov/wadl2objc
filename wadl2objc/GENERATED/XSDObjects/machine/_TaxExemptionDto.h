@@ -30,8 +30,6 @@
 @property(nonatomic, strong) NSString *issuedBy;
 @property(nonatomic, strong) NSString *lastName;
 @property(nonatomic, strong) SignatureDto *signature;
-/*! BOOL */
-@property(nonatomic, strong) NSNumber *signatureCaptured;
 @property(nonatomic) UsaStateCode state;
 
 @end

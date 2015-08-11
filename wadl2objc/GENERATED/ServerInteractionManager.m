@@ -200,6 +200,14 @@
 #pragma mark - Generated Services
 
 #pragma mark DashboardReportsAdoption
+- (NSOperation *)dashboardReportsAdoptionWeddingGroupsWeddingGroupAdoption:(ReservationAdoptionRequestDto *)reservationAdoptionRequestDto responseBlock:(void(^)(ReservationAdoptionDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionWeddingGroupsURLPath];
+	NSDictionary *inputParameters = [reservationAdoptionRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationAdoptionDto class] responseBlock:responseBlock];
+}
+
 - (NSOperation *)dashboardReportsAdoptionCommittedReservationsCommittedReservationsAdoption:(ReservationAdoptionRequestDto *)reservationAdoptionRequestDto responseBlock:(void(^)(ReservationAdoptionDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionCommittedReservationsURLPath];
@@ -208,34 +216,10 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationAdoptionDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)dashboardReportsAdoptionWeeklyCommittedReportXlsxWeeklyCommittedReportWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionWeeklyCommittedReportXlsxURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardReportsAdoptionWeeklyWeddingReportXlsxWeeklyWeddingReportWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionWeeklyWeddingReportXlsxURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
 - (NSOperation *)dashboardReportsAdoptionStatsExcelXlsStatsReportWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionStatsExcelXlsURLPath];
 	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardReportsAdoptionSendWeeklyReportsSendWeeklyReports:(SendWeeklyReportsDto *)sendWeeklyReportsDto responseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionSendWeeklyReportsURLPath];
-	NSDictionary *inputParameters = [sendWeeklyReportsDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
@@ -248,12 +232,28 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationAdoptionDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)dashboardReportsAdoptionWeddingGroupsWeddingGroupAdoption:(ReservationAdoptionRequestDto *)reservationAdoptionRequestDto responseBlock:(void(^)(ReservationAdoptionDto *response, NSError *error))responseBlock
+- (NSOperation *)dashboardReportsAdoptionSendWeeklyReportsSendWeeklyReports:(SendWeeklyReportsDto *)sendWeeklyReportsDto responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionWeddingGroupsURLPath];
-	NSDictionary *inputParameters = [reservationAdoptionRequestDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionSendWeeklyReportsURLPath];
+	NSDictionary *inputParameters = [sendWeeklyReportsDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationAdoptionDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardReportsAdoptionWeeklyGroupReportXlsxWeeklyWeddingReportWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionWeeklyGroupReportXlsxURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardReportsAdoptionWeeklyCommittedReportXlsxWeeklyCommittedReportWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsAdoptionWeeklyCommittedReportXlsxURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
 
@@ -266,14 +266,6 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthStoreStateDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)dashboardQueryTuxoracleReservationFindTuxOracleReservationByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardQueryTuxoracleReservationReservationNoURLPath, reservationNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
 - (NSOperation *)dashboardQueryPosReservationFindPosReservationByNo:(DashboardQueryPosReservationDto *)dashboardQueryPosReservationDto responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardQueryPosReservationURLPath];
@@ -282,40 +274,16 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
+- (NSOperation *)dashboardQueryTuxoracleReservationFindTuxOracleReservationByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardQueryTuxoracleReservationReservationNoURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
 
 #pragma mark Transaction
-- (NSOperation *)transactionEditMarkdownEditMarkdown:(MarkdownEditRequestDto *)markdownEditRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionEditMarkdownURLPath];
-	NSDictionary *inputParameters = [markdownEditRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)transactionAddTaxExemptionAddTaxExemption:(TaxExemptionRequestDto *)taxExemptionRequestDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionAddTaxExemptionURLPath];
-	NSDictionary *inputParameters = [taxExemptionRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)transactionFillLineItemsFillLineItems:(LineItemListDto *)lineItemListDto responseBlock:(void(^)(LineItemListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionFillLineItemsURLPath];
-	NSDictionary *inputParameters = [lineItemListDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)transactionRemoveMarkdownRemoveMarkdown:(MarkdownRequestDto *)markdownRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionRemoveMarkdownURLPath];
-	NSDictionary *inputParameters = [markdownRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
-}
-
 - (NSOperation *)transactionCreateCreateTransaction:(TransactionCreationDto *)transactionCreationDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionCreateURLPath];
@@ -324,58 +292,18 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)transactionPostvoidVoidTransaction:(TransactionDto *)transactionDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
+- (NSOperation *)transactionEditMarkdownEditMarkdown:(MarkdownEditRequestDto *)markdownEditRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionPostvoidURLPath];
-	NSDictionary *inputParameters = [transactionDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)transactionSetCustomerSaveCustomerInTransaction:(TransactionDto *)transactionDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionSetCustomerURLPath];
-	NSDictionary *inputParameters = [transactionDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)transactionAddFeeAddFee:(AddFeeRequestDto *)addFeeRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionAddFeeURLPath];
-	NSDictionary *inputParameters = [addFeeRequestDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionEditMarkdownURLPath];
+	NSDictionary *inputParameters = [markdownEditRequestDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)transactionPostTuxDropoffPostTuxDropoff:(TransactionDto *)transactionDto responseBlock:(void(^)(PostTuxDepositResponseDto *response, NSError *error))responseBlock
+- (NSOperation *)transactionRemoveMarkdownRemoveMarkdown:(MarkdownRequestDto *)markdownRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionPostTuxDropoffURLPath];
-	NSDictionary *inputParameters = [transactionDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PostTuxDepositResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)transactionApplyPfDiscountApplyPfDiscount:(ApplyPfDiscountRequestDto *)applyPfDiscountRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionApplyPfDiscountURLPath];
-	NSDictionary *inputParameters = [applyPfDiscountRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)transactionRemoveTaxExemptionRemoveTaxExemption:(TaxExemptionRequestDto *)taxExemptionRequestDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionRemoveTaxExemptionURLPath];
-	NSDictionary *inputParameters = [taxExemptionRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)transactionChangeItemsLostFeeChangeItemsLostFee:(ChangeItemsLostFeeRequestDto *)changeItemsLostFeeRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionChangeItemsLostFeeURLPath];
-	NSDictionary *inputParameters = [changeItemsLostFeeRequestDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionRemoveMarkdownURLPath];
+	NSDictionary *inputParameters = [markdownRequestDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
 }
@@ -396,12 +324,76 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
 }
 
+- (NSOperation *)transactionAddFeeAddFee:(AddFeeRequestDto *)addFeeRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionAddFeeURLPath];
+	NSDictionary *inputParameters = [addFeeRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
+}
+
 - (NSOperation *)transactionChangeLateFeeChangeLateFee:(AddFeeRequestDto *)addFeeRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionChangeLateFeeURLPath];
 	NSDictionary *inputParameters = [addFeeRequestDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionApplyPfDiscountApplyPfDiscount:(ApplyPfDiscountRequestDto *)applyPfDiscountRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionApplyPfDiscountURLPath];
+	NSDictionary *inputParameters = [applyPfDiscountRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionAddTaxExemptionAddTaxExemption:(TaxExemptionRequestDto *)taxExemptionRequestDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionAddTaxExemptionURLPath];
+	NSDictionary *inputParameters = [taxExemptionRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionChangeTaxExemptionChangeTaxExemption:(TaxExemptionRequestDto *)taxExemptionRequestDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionChangeTaxExemptionURLPath];
+	NSDictionary *inputParameters = [taxExemptionRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionRemoveTaxExemptionRemoveTaxExemption:(TaxExemptionRequestDto *)taxExemptionRequestDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionRemoveTaxExemptionURLPath];
+	NSDictionary *inputParameters = [taxExemptionRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionChangeItemsLostFeeChangeItemsLostFee:(ChangeItemsLostFeeRequestDto *)changeItemsLostFeeRequestDto responseBlock:(void(^)(LineItemDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionChangeItemsLostFeeURLPath];
+	NSDictionary *inputParameters = [changeItemsLostFeeRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionSetCustomerSaveCustomerInTransaction:(TransactionDto *)transactionDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionSetCustomerURLPath];
+	NSDictionary *inputParameters = [transactionDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionPostvoidVoidTransaction:(TransactionDto *)transactionDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionPostvoidURLPath];
+	NSDictionary *inputParameters = [transactionDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)transactionCurrentGetCurrentTransactionWithResponseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
@@ -412,12 +404,20 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)transactionFillLineItemsDropoffFillLineItems:(DropoffLineItemsRequestDto *)dropoffLineItemsRequestDto responseBlock:(void(^)(LineItemListDto *response, NSError *error))responseBlock
+- (NSOperation *)transactionFillLineItemsDropoffFillLineItems:(DropoffLineItemsRequestDto *)dropoffLineItemsRequestDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionFillLineItemsDropoffURLPath];
 	NSDictionary *inputParameters = [dropoffLineItemsRequestDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[LineItemListDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionFillLineItemsFillLineItems:(TransactionDto *)transactionDto responseBlock:(void(^)(TransactionDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionFillLineItemsURLPath];
+	NSDictionary *inputParameters = [transactionDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TransactionDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)transactionPostTuxDepositPostTuxDeposit:(TransactionDto *)transactionDto responseBlock:(void(^)(PostTuxDepositResponseDto *response, NSError *error))responseBlock
@@ -426,6 +426,22 @@
 	NSDictionary *inputParameters = [transactionDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PostTuxDepositResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionPostTuxDropoffPostTuxDropoff:(TransactionDto *)transactionDto responseBlock:(void(^)(PostTuxDepositResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionPostTuxDropoffURLPath];
+	NSDictionary *inputParameters = [transactionDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PostTuxDepositResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)transactionPostTuxDropoffWithoutPaymentPostTuxDropoffWithoutCart:(DropoffWithoutPaymentRequestDto *)dropoffWithoutPaymentRequestDto responseBlock:(void(^)(DropoffWithoutPaymentResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTransactionPostTuxDropoffWithoutPaymentURLPath];
+	NSDictionary *inputParameters = [dropoffWithoutPaymentRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[DropoffWithoutPaymentResponseDto class] responseBlock:responseBlock];
 }
 
 
@@ -446,6 +462,38 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReceiptResponseDto class] responseBlock:responseBlock];
 }
 
+- (NSOperation *)receiptsDropoffDcSendDropoffDcReceipt:(DropoffDcReceiptRequestContainerDto *)dropoffDcReceiptRequestContainerDto responseBlock:(void(^)(ReceiptResponseListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReceiptsDropoffDcURLPath];
+	NSDictionary *inputParameters = [dropoffDcReceiptRequestContainerDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReceiptResponseListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)receiptsDropoffNoBalanceSendDropoffNoBalanceReceipt:(DropoffNoBalanceReceiptRequestContainerDto *)dropoffNoBalanceReceiptRequestContainerDto responseBlock:(void(^)(ReceiptResponseListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReceiptsDropoffNoBalanceURLPath];
+	NSDictionary *inputParameters = [dropoffNoBalanceReceiptRequestContainerDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReceiptResponseListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)receiptsDropoffReprintReprintDropoffReceipt:(DropoffReprintRequestDto *)dropoffReprintRequestDto responseBlock:(void(^)(ReceiptResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReceiptsDropoffReprintURLPath];
+	NSDictionary *inputParameters = [dropoffReprintRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReceiptResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)receiptsSearchDropoffReceiptsSearchDropoffReceipts:(SearchDropoffReceiptsRequestDto *)searchDropoffReceiptsRequestDto responseBlock:(void(^)(DropoffReceiptListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReceiptsSearchDropoffReceiptsURLPath];
+	NSDictionary *inputParameters = [searchDropoffReceiptsRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[DropoffReceiptListDto class] responseBlock:responseBlock];
+}
+
 
 #pragma mark DashboardReportsStores
 - (NSOperation *)dashboardReportsStoresLaunchedStoresDeleteLaunchedStore:(StoreNoDto *)storeNoDto responseBlock:(void(^)(StoreListDto *response, NSError *error))responseBlock
@@ -456,14 +504,6 @@
 	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StoreListDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)dashboardReportsStoresLaunchedStoresLaunchedStoresWithResponseBlock:(void(^)(StoreListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsStoresLaunchedStoresURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StoreListDto class] responseBlock:responseBlock];
-}
-
 - (NSOperation *)dashboardReportsStoresLaunchedStoresCreateLaunchedStore:(StoreNoDto *)storeNoDto responseBlock:(void(^)(StoreListDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsStoresLaunchedStoresURLPath];
@@ -472,14 +512,22 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StoreListDto class] responseBlock:responseBlock];
 }
 
+- (NSOperation *)dashboardReportsStoresLaunchedStoresLaunchedStoresWithResponseBlock:(void(^)(StoreListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardReportsStoresLaunchedStoresURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StoreListDto class] responseBlock:responseBlock];
+}
+
 
 #pragma mark Customer
-- (NSOperation *)customerValidateValidateCustomer:(CustomerDto *)customerDto responseBlock:(void(^)(CustomerValidationDto *response, NSError *error))responseBlock
+- (NSOperation *)customerSearchSearchCustomers:(CustomerSearchCriteriaDto *)customerSearchCriteriaDto responseBlock:(void(^)(CustomerSearchResultDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerValidateURLPath];
-	NSDictionary *inputParameters = [customerDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerSearchURLPath];
+	NSDictionary *inputParameters = [customerSearchCriteriaDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerValidationDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerSearchResultDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)customerGetCustomerWithPartyId:(NSString *)partyId responseBlock:(void(^)(CustomerDto *response, NSError *error))responseBlock
@@ -490,17 +538,9 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)customerPfEnrollPfCustomer:(CustomerDto *)customerDto responseBlock:(void(^)(CustomerDto *response, NSError *error))responseBlock
+- (NSOperation *)customerCreateCustomer:(CustomerCreateDto *)customerCreateDto responseBlock:(void(^)(CustomerDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerPfURLPath];
-	NSDictionary *inputParameters = [customerDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)customerPfCreatePfCustomer:(CustomerCreateDto *)customerCreateDto responseBlock:(void(^)(CustomerDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerPfURLPath];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerURLPath];
 	NSDictionary *inputParameters = [customerCreateDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerDto class] responseBlock:responseBlock];
@@ -514,20 +554,28 @@
 	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)customerCreateCustomer:(CustomerCreateDto *)customerCreateDto responseBlock:(void(^)(CustomerDto *response, NSError *error))responseBlock
+- (NSOperation *)customerPfCreatePfCustomer:(CustomerCreateDto *)customerCreateDto responseBlock:(void(^)(CustomerDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerURLPath];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerPfURLPath];
 	NSDictionary *inputParameters = [customerCreateDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)customerSearchSearchCustomers:(CustomerSearchCriteriaDto *)customerSearchCriteriaDto responseBlock:(void(^)(CustomerSearchResultDto *response, NSError *error))responseBlock
+- (NSOperation *)customerPfEnrollPfCustomer:(CustomerDto *)customerDto responseBlock:(void(^)(CustomerDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerSearchURLPath];
-	NSDictionary *inputParameters = [customerSearchCriteriaDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerPfURLPath];
+	NSDictionary *inputParameters = [customerDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerSearchResultDto class] responseBlock:responseBlock];
+	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)customerValidateValidateCustomer:(CustomerDto *)customerDto responseBlock:(void(^)(CustomerValidationDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceCustomerValidateURLPath];
+	NSDictionary *inputParameters = [customerDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CustomerValidationDto class] responseBlock:responseBlock];
 }
 
 
@@ -559,13 +607,87 @@
 }
 
 
+#pragma mark DashboardProperties
+- (NSOperation *)dashboardPropertiesFindPropertiesWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardPropertiesURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+
 #pragma mark Pos
+- (NSOperation *)posVersionVersionWithResponseBlock:(void(^)(PosVersionDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServicePosVersionURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PosVersionDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)posReservationPosDetailsFindPosDetailsByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationPickupDetailsDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServicePosReservationReservationNoPosDetailsURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPickupDetailsDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)posMaxRefundMaxRefundAmountBatch:(MaxRefundRequestListDto *)maxRefundRequestListDto responseBlock:(void(^)(MaxRefundListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServicePosMaxRefundURLPath];
+	NSDictionary *inputParameters = [maxRefundRequestListDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MaxRefundListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)posGiftCardValidateGiftCardValidate:(GiftCardValidateDto *)giftCardValidateDto responseBlock:(void(^)(GiftCardValidateResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServicePosGiftCardValidateURLPath];
+	NSDictionary *inputParameters = [giftCardValidateDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GiftCardValidateResponseDto class] responseBlock:responseBlock];
+}
+
 - (NSOperation *)posFreeTuxPickupPostFreeTuxPickup:(PostFreeTuxPickupRequestDto *)postFreeTuxPickupRequestDto responseBlock:(void(^)(PostTuxDepositResponseDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServicePosFreeTuxPickupURLPath];
 	NSDictionary *inputParameters = [postFreeTuxPickupRequestDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PostTuxDepositResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)posReservationPosGarmentsFindPosGarmentsByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationPosGarmentsDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServicePosReservationReservationNoPosGarmentsURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPosGarmentsDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)posTxPostPickupPostPickup:(PostPickupRequestDto *)postPickupRequestDto responseBlock:(void(^)(PostTuxDepositResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServicePosTxPostPickupURLPath];
+	NSDictionary *inputParameters = [postPickupRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PostTuxDepositResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)posReservationReservationPaymentsReservationPaymentsWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationPaymentsDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServicePosReservationReservationNoReservationPaymentsURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPaymentsDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)posReservationPaymentsReservationPaymentsBatch:(ReservationNumbersDto *)reservationNumbersDto responseBlock:(void(^)(ReservationPaymentsListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServicePosReservationPaymentsURLPath];
+	NSDictionary *inputParameters = [reservationNumbersDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPaymentsListDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)posReservationMaxRefundMaxRefundAmount:(MaxRefundRequestDto *)maxRefundRequestDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(MaxRefundListDto *response, NSError *error))responseBlock
@@ -584,182 +706,38 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPosSummaryDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)posReservationPosDetailsFindPosDetailsByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationPickupDetailsDto *response, NSError *error))responseBlock
+
+#pragma mark Questionnaire
+- (NSOperation *)questionnaireQuestionsOptionsGetAnswerOptionsWithTitle:(NSString *)title questionKey:(NSString *)questionKey responseBlock:(void(^)(StringCollectionDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServicePosReservationReservationNoPosDetailsURLPath, reservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceQuestionnaireTitleQuestionsQuestionKeyOptionsURLPath, title, questionKey];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPickupDetailsDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StringCollectionDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)posReservationPaymentsReservationPaymentsBatch:(ReservationNumbersDto *)reservationNumbersDto responseBlock:(void(^)(ReservationPaymentsListDto *response, NSError *error))responseBlock
+- (NSOperation *)questionnaireStatusSetStatus:(QuestionnaireStatusDto *)questionnaireStatusDto responseBlock:(void(^)(BaseDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServicePosReservationPaymentsURLPath];
-	NSDictionary *inputParameters = [reservationNumbersDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceQuestionnaireStatusURLPath];
+	NSDictionary *inputParameters = [questionnaireStatusDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPaymentsListDto class] responseBlock:responseBlock];
+	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[BaseDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)posVersionVersionWithResponseBlock:(void(^)(PosVersionDto *response, NSError *error))responseBlock
+- (NSOperation *)questionnaireReservationStatusGetStatusWithQuestionnaireName:(NSString *)questionnaireName reservationNo:(NSString *)reservationNo responseBlock:(void(^)(QuestionnaireStatusDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServicePosVersionURLPath];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceQuestionnaireQuestionnaireNameReservationReservationNoStatusURLPath, questionnaireName, reservationNo];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PosVersionDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[QuestionnaireStatusDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)posGiftCardValidateGiftCardValidate:(GiftCardValidateDto *)giftCardValidateDto responseBlock:(void(^)(GiftCardValidateResponseDto *response, NSError *error))responseBlock
+- (NSOperation *)questionnaireAnswersSaveAnswers:(QuestionnaireAnswerContainerDto *)questionnaireAnswerContainerDto responseBlock:(void(^)(BaseDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServicePosGiftCardValidateURLPath];
-	NSDictionary *inputParameters = [giftCardValidateDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceQuestionnaireAnswersURLPath];
+	NSDictionary *inputParameters = [questionnaireAnswerContainerDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GiftCardValidateResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)posReservationReservationPaymentsReservationPaymentsWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationPaymentsDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServicePosReservationReservationNoReservationPaymentsURLPath, reservationNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPaymentsDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)posTxPostPickupPostPickup:(PostPickupRequestDto *)postPickupRequestDto responseBlock:(void(^)(PostTuxDepositResponseDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServicePosTxPostPickupURLPath];
-	NSDictionary *inputParameters = [postPickupRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PostTuxDepositResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)posReservationPosGarmentsFindPosGarmentsByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationPosGarmentsDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServicePosReservationReservationNoPosGarmentsURLPath, reservationNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPosGarmentsDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)posMaxRefundMaxRefundAmountBatch:(MaxRefundRequestListDto *)maxRefundRequestListDto responseBlock:(void(^)(MaxRefundListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServicePosMaxRefundURLPath];
-	NSDictionary *inputParameters = [maxRefundRequestListDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MaxRefundListDto class] responseBlock:responseBlock];
-}
-
-
-#pragma mark DashboardDiagnostic
-- (NSOperation *)dashboardDiagnosticFingerprintsPrintFingerPrintsWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticFingerprintsURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticEmployeeAnonimousDiagnosticEmployeeServiceAnonimousWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticEmployeeAnonimousURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticGiftcardDiagnosticGiftCardWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticGiftcardURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticReservationDiagnosticReservationServiceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticReservationURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticVersionDiagnosticGetVersionWithResponseBlock:(void(^)(PosVersionDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticVersionURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PosVersionDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticCustomerDiagnosticCustomerServiceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticCustomerURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticTuxoracleDiagnosticTuxOracleWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticTuxoracleURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticTxwadminDiagnosticTxwAdminWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticTxwadminURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticGetcustomerDiagnosticGetCustomerWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticGetcustomerURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticEmployeeDiagnosticEmployeeServiceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticEmployeeURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticGetregisterstateDiagnosticGetRegisterStateWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticGetregisterstateURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticPrinterPrinterServiceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticPrinterURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticGetErrorGetErrorDtoWithResponseBlock:(void(^)(ErrorDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticGetErrorURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ErrorDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)dashboardDiagnosticTuxmobDiagnosticTuxMobWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticTuxmobURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[BaseDto class] responseBlock:responseBlock];
 }
 
 
@@ -789,26 +767,150 @@
 }
 
 
-#pragma mark Inventory
-- (NSOperation *)inventoryCatalogFindCatalogWithCatalogNo:(NSString *)catalogNo measurementsReservationNo:(NSString *)measurementsReservationNo responseBlock:(void(^)(CatalogItemListDto *response, NSError *error))responseBlock
+#pragma mark DashboardDiagnostic
+- (NSOperation *)dashboardDiagnosticTuxoracleDiagnosticTuxOracleWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryCatalogCatalogNoMeasurementsReservationNoURLPath, catalogNo, measurementsReservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticTuxoracleURLPath];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CatalogItemListDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)inventoryCatalogsSearchAllWithResponseBlock:(void(^)(CatalogListDto *response, NSError *error))responseBlock
+- (NSOperation *)dashboardDiagnosticGetregisterstateDiagnosticGetRegisterStateWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryCatalogsURLPath];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticGetregisterstateURLPath];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CatalogListDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticGetErrorGetErrorDtoWithResponseBlock:(void(^)(ErrorDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticGetErrorURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ErrorDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticVersionDiagnosticGetVersionWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticVersionURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticGiftcardDiagnosticGiftCardWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticGiftcardURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticFingerprintsPrintFingerPrintsWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticFingerprintsURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticTuxmobDiagnosticTuxMobWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticTuxmobURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticTxwadminDiagnosticTxwAdminWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticTxwadminURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticPrinterPrinterServiceWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticPrinterURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticCustomerDiagnosticCustomerServiceWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticCustomerURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticGetcustomerDiagnosticGetCustomerWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticGetcustomerURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticReservationDiagnosticReservationServiceWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticReservationURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticEmployeeDiagnosticEmployeeServiceWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticEmployeeURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticEmployeeAnonimousDiagnosticEmployeeServiceAnonimousWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticEmployeeAnonimousURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)dashboardDiagnosticIsdDiagnosticIsdConnectivityWithResponseBlock:(void(^)(MessageDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceDashboardDiagnosticIsdURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[MessageDto class] responseBlock:responseBlock];
+}
+
+
+#pragma mark Inventory
+- (NSOperation *)inventoryDiscountFindDiscountInfoWithCode:(NSString *)code eventType:(NSString *)eventType responseBlock:(void(^)(DiscountInfoDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryDiscountURLPath];
+	NSMutableDictionary *inputParameters = [NSMutableDictionary dictionaryWithCapacity:2];
+	[inputParameters setValue:code forKey:@"code"];
+	[inputParameters setValue:eventType forKey:@"eventType"];
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[DiscountInfoDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)inventoryStoresSearchAllStoresWithResponseBlock:(void(^)(StoresDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryStoresURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StoresDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventoryStoresPickupSearchPickupStoresWithResponseBlock:(void(^)(StoresDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryStoresPickupURLPath];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StoresDto class] responseBlock:responseBlock];
@@ -828,86 +930,6 @@
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StoreDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventoryStoresPickupSearchPickupStoresWithResponseBlock:(void(^)(StoresDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryStoresPickupURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StoresDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventoryPrintersFindPrintersForStoreWithStoreNo:(NSString *)storeNo responseBlock:(void(^)(PrintersDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryPrintersStoreNoURLPath, storeNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PrintersDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventoryPrintersFindAllPrintersWithResponseBlock:(void(^)(PrintersDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryPrintersURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PrintersDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventorySchoolsSearchAllWithIfModifiedSince:(NSString *)ifModifiedSince range:(NSString *)range responseBlock:(void(^)(SchoolListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsURLPath];
-	NSDictionary *inputParameters = nil;
-	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:2];
-	[headParameters setValue:ifModifiedSince forKey:@"If-Modified-Since"];
-	[headParameters setValue:range forKey:@"Range"];
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventorySchoolsSearchByCriteria:(SchoolDto *)schoolDto ifModifiedSince:(NSString *)ifModifiedSince range:(NSString *)range responseBlock:(void(^)(SchoolListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsURLPath];
-	NSDictionary *inputParameters = [schoolDto dictionaryInfo];
-	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:2];
-	[headParameters setValue:ifModifiedSince forKey:@"If-Modified-Since"];
-	[headParameters setValue:range forKey:@"Range"];
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventorySchoolsSearchByStateWithSchoolSt:(NSString *)schoolSt ifModifiedSince:(NSString *)ifModifiedSince range:(NSString *)range responseBlock:(void(^)(SchoolListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolStURLPath, schoolSt];
-	NSDictionary *inputParameters = nil;
-	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:2];
-	[headParameters setValue:ifModifiedSince forKey:@"If-Modified-Since"];
-	[headParameters setValue:range forKey:@"Range"];
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventorySchoolsFindBySchoolNoWithSchoolNo:(NSNumber *)schoolNo responseBlock:(void(^)(SchoolDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolNoURLPath, schoolNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventorySchoolsSearchByStateAndCityWithSchoolSt:(NSString *)schoolSt schoolCity:(NSString *)schoolCity ifModifiedSince:(NSString *)ifModifiedSince range:(NSString *)range responseBlock:(void(^)(SchoolListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolStSchoolCityURLPath, schoolSt, schoolCity];
-	NSDictionary *inputParameters = nil;
-	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:2];
-	[headParameters setValue:ifModifiedSince forKey:@"If-Modified-Since"];
-	[headParameters setValue:range forKey:@"Range"];
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)inventoryStylesFindByStyleNumberWithStyleNo:(NSString *)styleNo responseBlock:(void(^)(StyleInformationDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryStylesStyleNoURLPath, styleNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StyleInformationDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)inventoryStylesSearchByFilterWithType:(NSString *)type store:(NSString *)store responseBlock:(void(^)(StyleInformationListDto *response, NSError *error))responseBlock
@@ -933,112 +955,102 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SizeListDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)inventoryDiscountFindDiscountInfoWithCode:(NSString *)code eventType:(NSString *)eventType responseBlock:(void(^)(DiscountInfoDto *response, NSError *error))responseBlock
+- (NSOperation *)inventoryStylesFindByStyleNumberWithStyleNo:(NSString *)styleNo responseBlock:(void(^)(StyleInformationDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryDiscountURLPath];
-	NSMutableDictionary *inputParameters = [NSMutableDictionary dictionaryWithCapacity:2];
-	[inputParameters setValue:code forKey:@"code"];
-	[inputParameters setValue:eventType forKey:@"eventType"];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryStylesStyleNoURLPath, styleNo];
+	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[DiscountInfoDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[StyleInformationDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventoryCatalogFindCatalogWithCatalogNo:(NSString *)catalogNo measurementsReservationNo:(NSString *)measurementsReservationNo responseBlock:(void(^)(CatalogItemListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryCatalogCatalogNoMeasurementsReservationNoURLPath, catalogNo, measurementsReservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CatalogItemListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventoryCatalogsSearchAllWithResponseBlock:(void(^)(CatalogListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryCatalogsURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CatalogListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventorySchoolsFindBySchoolNoWithSchoolNo:(NSNumber *)schoolNo responseBlock:(void(^)(SchoolDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolNoURLPath, schoolNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventorySchoolsSearchByStateWithSchoolSt:(NSString *)schoolSt ifModifiedSince:(NSString *)ifModifiedSince range:(NSString *)range responseBlock:(void(^)(SchoolListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolStURLPath, schoolSt];
+	NSDictionary *inputParameters = nil;
+	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:2];
+	[headParameters setValue:ifModifiedSince forKey:@"If-Modified-Since"];
+	[headParameters setValue:range forKey:@"Range"];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventorySchoolsSearchByStateAndCityWithSchoolSt:(NSString *)schoolSt schoolCity:(NSString *)schoolCity ifModifiedSince:(NSString *)ifModifiedSince range:(NSString *)range responseBlock:(void(^)(SchoolListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsSchoolStSchoolCityURLPath, schoolSt, schoolCity];
+	NSDictionary *inputParameters = nil;
+	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:2];
+	[headParameters setValue:ifModifiedSince forKey:@"If-Modified-Since"];
+	[headParameters setValue:range forKey:@"Range"];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventorySchoolsSearchByCriteria:(SchoolDto *)schoolDto ifModifiedSince:(NSString *)ifModifiedSince range:(NSString *)range responseBlock:(void(^)(SchoolListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsURLPath];
+	NSDictionary *inputParameters = [schoolDto dictionaryInfo];
+	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:2];
+	[headParameters setValue:ifModifiedSince forKey:@"If-Modified-Since"];
+	[headParameters setValue:range forKey:@"Range"];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventorySchoolsSearchAllWithIfModifiedSince:(NSString *)ifModifiedSince range:(NSString *)range responseBlock:(void(^)(SchoolListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventorySchoolsURLPath];
+	NSDictionary *inputParameters = nil;
+	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:2];
+	[headParameters setValue:ifModifiedSince forKey:@"If-Modified-Since"];
+	[headParameters setValue:range forKey:@"Range"];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SchoolListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventoryPrintersFindPrintersForStoreWithStoreNo:(NSString *)storeNo responseBlock:(void(^)(PrintersDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryPrintersStoreNoURLPath, storeNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PrintersDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)inventoryPrintersFindAllPrintersWithResponseBlock:(void(^)(PrintersDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceInventoryPrintersURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[PrintersDto class] responseBlock:responseBlock];
 }
 
 
 #pragma mark Reservation
-- (NSOperation *)reservationStylesFindReservationStyleWithReservationNo:(NSString *)reservationNo lineNo:(NSNumber *)lineNo responseBlock:(void(^)(ReservationStyleDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesLineNoURLPath, reservationNo, lineNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationStylesUpdateStyle:(ReservationStyleDto *)reservationStyleDto reservationNo:(NSString *)reservationNo lineNo:(NSNumber *)lineNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesLineNoURLPath, reservationNo, lineNo];
-	NSDictionary *inputParameters = [reservationStyleDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationStylesRemoveStyleWithReservationNo:(NSString *)reservationNo lineNo:(NSNumber *)lineNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesLineNoURLPath, reservationNo, lineNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationAssignStylesToAssignStylesTo:(AssignStylesRequest *)assignStylesRequest responseBlock:(void(^)(CopyStylesResponseDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationAssignStylesToURLPath];
-	NSDictionary *inputParameters = [assignStylesRequest dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CopyStylesResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationStylesFindReservationStylesWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesURLPath, reservationNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationStylesCreateStyle:(ReservationStyleDto *)reservationStyleDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesURLPath, reservationNo];
-	NSDictionary *inputParameters = [reservationStyleDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationCopyStylesToCopyStylesTo:(ReservationNumbersDto *)reservationNumbersDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(CopyStylesResponseDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoCopyStylesToURLPath, reservationNo];
-	NSDictionary *inputParameters = [reservationNumbersDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CopyStylesResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationSizesFindReservationSizes:(StyleInformationDto *)styleInformationDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(SizeListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoSizesURLPath, reservationNo];
-	NSDictionary *inputParameters = [styleInformationDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SizeListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationSizeReservationSizeAvailability:(SizeAvailabilityRequestDto *)sizeAvailabilityRequestDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(SizeDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoSizeURLPath, reservationNo];
-	NSDictionary *inputParameters = [sizeAvailabilityRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SizeDto class] responseBlock:responseBlock];
-}
-
 - (NSOperation *)reservationValidateChangeValidate:(ChangeRequestDto *)changeRequestDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReorderValidationResponseDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoValidateChangeURLPath, reservationNo];
 	NSDictionary *inputParameters = [changeRequestDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReorderValidationResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationChangeLogisticsChangeLogistics:(ChangeLogisticsRequestDto *)changeLogisticsRequestDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoChangeLogisticsURLPath, reservationNo];
-	NSDictionary *inputParameters = [changeLogisticsRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationChangeChange:(ChangeRequestDto *)changeRequestDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoChangeURLPath, reservationNo];
-	NSDictionary *inputParameters = [changeRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
 - (NSOperation *)reservationReorderStatusReorderStatusWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReorderStatusResponseDto *response, NSError *error))responseBlock
@@ -1049,12 +1061,20 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReorderStatusResponseDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationHatpackageRemoveHatPackageWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
+- (NSOperation *)reservationChangeChange:(ChangeRequestDto *)changeRequestDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoHatpackageURLPath, reservationNo];
-	NSDictionary *inputParameters = nil;
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoChangeURLPath, reservationNo];
+	NSDictionary *inputParameters = [changeRequestDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationChangeLogisticsChangeLogistics:(ChangeLogisticsRequestDto *)changeLogisticsRequestDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoChangeLogisticsURLPath, reservationNo];
+	NSDictionary *inputParameters = [changeLogisticsRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
 - (NSOperation *)reservationHatpackageAddHatPackageWithReservationNo:(NSString *)reservationNo catalogCode:(NSString *)catalogCode responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
@@ -1073,52 +1093,100 @@
 	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationLogisticUpdateLogistic:(ReservationLogisticDto *)reservationLogisticDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock
+- (NSOperation *)reservationHatpackageRemoveHatPackageWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoLogisticURLPath, reservationNo];
-	NSDictionary *inputParameters = [reservationLogisticDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationLogisticDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationLogisticFindLogisticByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoLogisticURLPath, reservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoHatpackageURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationLogisticDto class] responseBlock:responseBlock];
+	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationSummaryFindSummaryByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
+- (NSOperation *)reservationStylesFindReservationStylesWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoSummaryURLPath, reservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationSummaryDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationSummaryUpdateSummary:(ReservationSummaryDto *)reservationSummaryDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
+- (NSOperation *)reservationStylesCreateStyle:(ReservationStyleDto *)reservationStyleDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoSummaryURLPath, reservationNo];
-	NSDictionary *inputParameters = [reservationSummaryDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesURLPath, reservationNo];
+	NSDictionary *inputParameters = [reservationStyleDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationSummaryDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationOffersDiscountAssignReservationDiscount:(ReservationOffersDto *)reservationOffersDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
+- (NSOperation *)reservationStylesRemoveStyleWithReservationNo:(NSString *)reservationNo lineNo:(NSNumber *)lineNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoOffersDiscountURLPath, reservationNo];
-	NSDictionary *inputParameters = [reservationOffersDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationOffersDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)reservationOffersDiscountDeleteReservationDiscountWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoOffersDiscountURLPath, reservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesLineNoURLPath, reservationNo, lineNo];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationOffersDto class] responseBlock:responseBlock];
+	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationStylesFindReservationStyleWithReservationNo:(NSString *)reservationNo lineNo:(NSNumber *)lineNo responseBlock:(void(^)(ReservationStyleDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesLineNoURLPath, reservationNo, lineNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationStylesUpdateStyle:(ReservationStyleDto *)reservationStyleDto reservationNo:(NSString *)reservationNo lineNo:(NSNumber *)lineNo responseBlock:(void(^)(ReservationStyleListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoStylesLineNoURLPath, reservationNo, lineNo];
+	NSDictionary *inputParameters = [reservationStyleDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationStyleListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationSizesFindReservationSizes:(StyleInformationDto *)styleInformationDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(SizeListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoSizesURLPath, reservationNo];
+	NSDictionary *inputParameters = [styleInformationDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SizeListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationSizeReservationSizeAvailability:(SizeAvailabilityRequestDto *)sizeAvailabilityRequestDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(SizeDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoSizeURLPath, reservationNo];
+	NSDictionary *inputParameters = [sizeAvailabilityRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[SizeDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationCopyStylesToCopyStylesTo:(ReservationNumbersDto *)reservationNumbersDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(CopyStylesResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoCopyStylesToURLPath, reservationNo];
+	NSDictionary *inputParameters = [reservationNumbersDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CopyStylesResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationAssignStylesToAssignStylesTo:(AssignStylesRequest *)assignStylesRequest responseBlock:(void(^)(CopyStylesResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationAssignStylesToURLPath];
+	NSDictionary *inputParameters = [assignStylesRequest dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[CopyStylesResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationOffersFindOffersByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoOffersURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationOffersDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationRemoveReservationWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
 - (NSOperation *)reservationMeasurementUpdateMeasurement:(ReservationMeasurementDto *)reservationMeasurementDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationMeasurementDto *response, NSError *error))responseBlock
@@ -1137,20 +1205,20 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationMeasurementDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationFavoritesFindFavoritesByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationFavoritesListDto *response, NSError *error))responseBlock
+- (NSOperation *)reservationOffersDiscountAssignReservationDiscount:(ReservationOffersDto *)reservationOffersDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoFavoritesURLPath, reservationNo];
-	NSDictionary *inputParameters = nil;
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoOffersDiscountURLPath, reservationNo];
+	NSDictionary *inputParameters = [reservationOffersDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationFavoritesListDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationOffersDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationRemoveReservationWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation *)reservationOffersDiscountDeleteReservationDiscountWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoURLPath, reservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoOffersDiscountURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationOffersDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)reservationCreateReservation:(ReservationCreationDto *)reservationCreationDto responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
@@ -1161,12 +1229,12 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationSummaryDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationCommitCommitReservation:(ReservationCommitDto *)reservationCommitDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation *)reservationCommitCommitReservation:(ReservationCommitDto *)reservationCommitDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationDto *response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoCommitURLPath, reservationNo];
 	NSDictionary *inputParameters = [reservationCommitDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)reservationValidateIsValidForCommitWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationValidationDto *response, NSError *error))responseBlock
@@ -1177,12 +1245,12 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationValidationDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationPosSummaryFindPosSummaryByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationPosSummaryDto *response, NSError *error))responseBlock
+- (NSOperation *)reservationFavoritesFindFavoritesByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationFavoritesListDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoPosSummaryURLPath, reservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoFavoritesURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPosSummaryDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationFavoritesListDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)reservationReferencesFindReferencesByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationReferenceListDto *response, NSError *error))responseBlock
@@ -1193,22 +1261,54 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationReferenceListDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)reservationOffersFindOffersByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationOffersDto *response, NSError *error))responseBlock
+- (NSOperation *)reservationPosSummaryFindPosSummaryByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationPosSummaryDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoOffersURLPath, reservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoPosSummaryURLPath, reservationNo];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationOffersDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationPosSummaryDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationLogisticFindLogisticByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoLogisticURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationLogisticDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationLogisticUpdateLogistic:(ReservationLogisticDto *)reservationLogisticDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationLogisticDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoLogisticURLPath, reservationNo];
+	NSDictionary *inputParameters = [reservationLogisticDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationLogisticDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationSummaryFindSummaryByNoWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoSummaryURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationSummaryDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)reservationSummaryUpdateSummary:(ReservationSummaryDto *)reservationSummaryDto reservationNo:(NSString *)reservationNo responseBlock:(void(^)(ReservationSummaryDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceReservationReservationNoSummaryURLPath, reservationNo];
+	NSDictionary *inputParameters = [reservationSummaryDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationSummaryDto class] responseBlock:responseBlock];
 }
 
 
 #pragma mark Tender
-- (NSOperation *)tenderCaptureSignatureCaptureSignature:(TenderSignatureDto *)tenderSignatureDto responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation *)tenderLookupLookup:(TenderDto *)tenderDto responseBlock:(void(^)(TenderDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTenderCaptureSignatureURLPath];
-	NSDictionary *inputParameters = [tenderSignatureDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTenderLookupURLPath];
+	NSDictionary *inputParameters = [tenderDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TenderDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)tenderAuthorizeAuthorize:(TendersAuthorizeRequestDto *)tendersAuthorizeRequestDto responseBlock:(void(^)(TendersAuthorizeRequestDto *response, NSError *error))responseBlock
@@ -1219,12 +1319,12 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TendersAuthorizeRequestDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)tenderLookupLookup:(TenderDto *)tenderDto responseBlock:(void(^)(TenderDto *response, NSError *error))responseBlock
+- (NSOperation *)tenderCaptureSignatureCaptureSignature:(TenderSignatureDto *)tenderSignatureDto responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTenderLookupURLPath];
-	NSDictionary *inputParameters = [tenderDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTenderCaptureSignatureURLPath];
+	NSDictionary *inputParameters = [tenderSignatureDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[TenderDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
 
@@ -1247,9 +1347,17 @@
 
 
 #pragma mark Testing
-- (NSOperation *)testingReservationPreparedForShipFreeTuxWithNegativeBalanceCreateForShipFreeTuxWithNegativeBalanceWithShipToStore:(NSString *)shipToStore responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation *)testingReservationShipChangeStatusToShipWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipFreeTuxWithNegativeBalanceShipToStoreURLPath, shipToStore];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationReservationNoShipURLPath, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)testingReservationPreparedForShipWithPositiveBalanceCreateForShipWithPositiveBalanceWithShipToStore:(NSString *)shipToStore responseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipWithPositiveBalanceShipToStoreURLPath, shipToStore];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
@@ -1263,65 +1371,9 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
-- (NSOperation *)testingReservationPreparedForShipWithZeroBalanceCreateForShipWithZeroBalanceWithShipToStore:(NSString *)shipToStore responseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipWithZeroBalanceShipToStoreURLPath, shipToStore];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)testingPosFindTransactionWithTransactionNumber:(NSString *)transactionNumber responseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingPosTransactionNumberURLPath, transactionNumber];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
 - (NSOperation *)testingReservationPreparedForShipWithNegativeBalanceCreateForShipWithNegativeBalanceWithShipToStore:(NSString *)shipToStore responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipWithNegativeBalanceShipToStoreURLPath, shipToStore];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)testingReservationPreparedForShipFreeTuxWithNegativeBalanceCreateForShipFreeTuxWithNegativeBalanceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipFreeTuxWithNegativeBalanceURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)testingReservationPreparedNotPayedCreateNotPayedReservationWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedNotPayedURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)testingReservationPreparedForShipFreeTuxWithZeroBalanceCreateForShipFreeTuxWithZeroBalanceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipFreeTuxWithZeroBalanceURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)testingReservationShipChangeStatusToShipWithReservationNo:(NSString *)reservationNo responseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationReservationNoShipURLPath, reservationNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)testingReservationPreparedForShipWithZeroBalanceCreateForShipWithZeroBalanceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipWithZeroBalanceURLPath];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
@@ -1335,6 +1387,22 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
+- (NSOperation *)testingReservationPreparedForShipFreeTuxWithNegativeBalanceCreateForShipFreeTuxWithNegativeBalanceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipFreeTuxWithNegativeBalanceURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)testingReservationPreparedForShipFreeTuxWithNegativeBalanceCreateForShipFreeTuxWithNegativeBalanceWithShipToStore:(NSString *)shipToStore responseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipFreeTuxWithNegativeBalanceShipToStoreURLPath, shipToStore];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
 - (NSOperation *)testingReservationPreparedForShipFreeTuxWithZeroBalanceCreateForShipFreeTuxWithZeroBalanceWithShipToStore:(NSString *)shipToStore responseBlock:(void(^)(id response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipFreeTuxWithZeroBalanceShipToStoreURLPath, shipToStore];
@@ -1343,9 +1411,41 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
-- (NSOperation *)testingReservationPreparedForShipWithPositiveBalanceCreateForShipWithPositiveBalanceWithShipToStore:(NSString *)shipToStore responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation *)testingReservationPreparedForShipFreeTuxWithZeroBalanceCreateForShipFreeTuxWithZeroBalanceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipWithPositiveBalanceShipToStoreURLPath, shipToStore];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipFreeTuxWithZeroBalanceURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)testingReservationPreparedNotPayedCreateNotPayedReservationWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedNotPayedURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)testingPosFindTransactionWithTransactionNumber:(NSString *)transactionNumber responseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingPosTransactionNumberURLPath, transactionNumber];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)testingReservationPreparedForShipWithZeroBalanceCreateForShipWithZeroBalanceWithShipToStore:(NSString *)shipToStore responseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipWithZeroBalanceShipToStoreURLPath, shipToStore];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)testingReservationPreparedForShipWithZeroBalanceCreateForShipWithZeroBalanceWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceTestingReservationPreparedForShipWithZeroBalanceURLPath];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
@@ -1353,52 +1453,20 @@
 
 
 #pragma mark Groups
-- (NSOperation *)groupsReservationsGetReservationsWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupReservationsDto *response, NSError *error))responseBlock
+- (NSOperation *)groupsGetGroupWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdReservationsURLPath, groupId];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdURLPath, groupId];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupReservationsDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)groupsOffersFreeSuitDeleteFreeSuitWithGroupId:(NSNumber *)groupId reservationNo:(NSString *)reservationNo responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
+- (NSOperation *)groupsCreateGroup:(GroupCreationDto *)groupCreationDto responseBlock:(void(^)(GroupDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersFreeSuitReservationNoURLPath, groupId, reservationNo];
-	NSDictionary *inputParameters = nil;
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsURLPath];
+	NSDictionary *inputParameters = [groupCreationDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)groupsOffersFreeSuitAssignFreeSuitWithGroupId:(NSNumber *)groupId reservationNo:(NSString *)reservationNo responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersFreeSuitReservationNoURLPath, groupId, reservationNo];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)groupsCallLogCallLog:(GroupCallLogDto *)groupCallLogDto groupId:(NSNumber *)groupId responseBlock:(void(^)(GroupCallLogListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdCallLogURLPath, groupId];
-	NSDictionary *inputParameters = [groupCallLogDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupCallLogListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)groupsWeddingCallListWeddingCallList:(WeddingGroupCallRequestDto *)weddingGroupCallRequestDto responseBlock:(void(^)(WeddingGroupCallListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsWeddingCallListURLPath];
-	NSDictionary *inputParameters = [weddingGroupCallRequestDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[WeddingGroupCallListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)groupsBridalShowCallsUpdateBridalShowCall:(BridalShowCallDto *)bridalShowCallDto groupId:(NSNumber *)groupId responseBlock:(void(^)(BridalShowCallDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsBridalShowCallsGroupIdURLPath, groupId];
-	NSDictionary *inputParameters = [bridalShowCallDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[BridalShowCallDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)groupsOffersDiscountAssignDiscount:(GroupOffersDto *)groupOffersDto groupId:(NSNumber *)groupId responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
@@ -1417,25 +1485,17 @@
 	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)groupsCallLogsGetGroupCallLogsWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupCallLogListDto *response, NSError *error))responseBlock
+- (NSOperation *)groupsOffersPromoCodeAssignPromoCode:(GroupOffersDto *)groupOffersDto groupId:(NSNumber *)groupId responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdCallLogsURLPath, groupId];
-	NSDictionary *inputParameters = nil;
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersPromoCodeURLPath, groupId];
+	NSDictionary *inputParameters = [groupOffersDto dictionaryInfo];
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupCallLogListDto class] responseBlock:responseBlock];
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)groupsWeddingCallAddWeddingCall:(WeddingGroupCallDto *)weddingGroupCallDto groupId:(NSNumber *)groupId responseBlock:(void(^)(id response, NSError *error))responseBlock
+- (NSOperation *)groupsOffersPromoCodeDeletePromoCodeWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdWeddingCallURLPath, groupId];
-	NSDictionary *inputParameters = [weddingGroupCallDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
-}
-
-- (NSOperation *)groupsOffersFreeTuxDeleteFreeTuxWithGroupId:(NSNumber *)groupId reservationNo:(NSString *)reservationNo responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersFreeTuxReservationNoURLPath, groupId, reservationNo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersPromoCodeURLPath, groupId];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
 	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
@@ -1449,20 +1509,36 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)groupsOffersPromoCodeDeletePromoCodeWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
+- (NSOperation *)groupsOffersFreeTuxDeleteFreeTuxWithGroupId:(NSNumber *)groupId reservationNo:(NSString *)reservationNo responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersPromoCodeURLPath, groupId];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersFreeTuxReservationNoURLPath, groupId, reservationNo];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
 	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)groupsOffersPromoCodeAssignPromoCode:(GroupOffersDto *)groupOffersDto groupId:(NSNumber *)groupId responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
+- (NSOperation *)groupsOffersFreeSuitAssignFreeSuitWithGroupId:(NSNumber *)groupId reservationNo:(NSString *)reservationNo responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersPromoCodeURLPath, groupId];
-	NSDictionary *inputParameters = [groupOffersDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersFreeSuitReservationNoURLPath, groupId, reservationNo];
+	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)groupsOffersFreeSuitDeleteFreeSuitWithGroupId:(NSNumber *)groupId reservationNo:(NSString *)reservationNo responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersFreeSuitReservationNoURLPath, groupId, reservationNo];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)groupsReservationsGetReservationsWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupReservationsDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdReservationsURLPath, groupId];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupReservationsDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)groupsAddReservationsAddReservationList:(AddReservationsRequestDto *)addReservationsRequestDto groupId:(NSNumber *)groupId responseBlock:(void(^)(AddReservationsResponseDto *response, NSError *error))responseBlock
@@ -1473,12 +1549,60 @@
 	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AddReservationsResponseDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)groupsGetGroupWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupDto *response, NSError *error))responseBlock
+- (NSOperation *)groupsFavoritesFindFavoritesByGroupIdWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(ReservationFavoritesListDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdURLPath, groupId];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdFavoritesURLPath, groupId];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationFavoritesListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)groupsCallLogsGetGroupCallLogsWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupCallLogListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdCallLogsURLPath, groupId];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupCallLogListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)groupsCallLogCallLog:(GroupCallLogDto *)groupCallLogDto groupId:(NSNumber *)groupId responseBlock:(void(^)(GroupCallLogListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdCallLogURLPath, groupId];
+	NSDictionary *inputParameters = [groupCallLogDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupCallLogListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)groupsWeddingCallListWeddingCallList:(WeddingGroupCallRequestDto *)weddingGroupCallRequestDto responseBlock:(void(^)(WeddingGroupCallListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsWeddingCallListURLPath];
+	NSDictionary *inputParameters = [weddingGroupCallRequestDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[WeddingGroupCallListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)groupsWeddingCallAddWeddingCall:(WeddingGroupCallDto *)weddingGroupCallDto groupId:(NSNumber *)groupId responseBlock:(void(^)(id response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdWeddingCallURLPath, groupId];
+	NSDictionary *inputParameters = [weddingGroupCallDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)groupsBridalShowCallsFindBridalShowCallList:(PageDto *)pageDto responseBlock:(void(^)(BridalShowCallListDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsBridalShowCallsURLPath];
+	NSDictionary *inputParameters = [pageDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[BridalShowCallListDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)groupsBridalShowCallsUpdateBridalShowCall:(BridalShowCallDto *)bridalShowCallDto groupId:(NSNumber *)groupId responseBlock:(void(^)(BridalShowCallDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsBridalShowCallsGroupIdURLPath, groupId];
+	NSDictionary *inputParameters = [bridalShowCallDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[BridalShowCallDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)groupsSummaryGetSummaryGroupWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupSummaryDto *response, NSError *error))responseBlock
@@ -1497,12 +1621,12 @@
 	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupSummaryDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)groupsOffersGetOffersWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
+- (NSOperation *)groupsLogisticGetLogisticsWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupLogisticDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersURLPath, groupId];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdLogisticURLPath, groupId];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupLogisticDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)groupsLogisticUpdateLogistic:(GroupLogisticDto *)groupLogisticDto groupId:(NSNumber *)groupId responseBlock:(void(^)(GroupLogisticDto *response, NSError *error))responseBlock
@@ -1513,40 +1637,24 @@
 	return [self makePUTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupLogisticDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)groupsLogisticGetLogisticsWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupLogisticDto *response, NSError *error))responseBlock
+- (NSOperation *)groupsOffersGetOffersWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(GroupOffersDto *response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdLogisticURLPath, groupId];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdOffersURLPath, groupId];
 	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupLogisticDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)groupsCreateGroup:(GroupCreationDto *)groupCreationDto responseBlock:(void(^)(GroupDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsURLPath];
-	NSDictionary *inputParameters = [groupCreationDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)groupsBridalShowCallsFindBridalShowCallList:(PageDto *)pageDto responseBlock:(void(^)(BridalShowCallListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsBridalShowCallsURLPath];
-	NSDictionary *inputParameters = [pageDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[BridalShowCallListDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)groupsFavoritesFindFavoritesByGroupIdWithGroupId:(NSNumber *)groupId responseBlock:(void(^)(ReservationFavoritesListDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceGroupsGroupIdFavoritesURLPath, groupId];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[ReservationFavoritesListDto class] responseBlock:responseBlock];
+	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[GroupOffersDto class] responseBlock:responseBlock];
 }
 
 
 #pragma mark Auth
+- (NSOperation *)authStoreOpenRegisterSession:(AuthStoreDto *)authStoreDto responseBlock:(void(^)(AuthStoreStateDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthStoreURLPath];
+	NSDictionary *inputParameters = [authStoreDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthStoreStateDto class] responseBlock:responseBlock];
+}
+
 - (NSOperation *)authStoreCloseRegisterSessionWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
 {
 	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthStoreURLPath];
@@ -1563,12 +1671,53 @@
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthStoreStateDto class] responseBlock:responseBlock];
 }
 
-- (NSOperation *)authStoreOpenRegisterSession:(AuthStoreDto *)authStoreDto responseBlock:(void(^)(AuthStoreStateDto *response, NSError *error))responseBlock
+- (NSOperation *)authDashboardSignOutDashboardCurrentUserWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
 {
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthStoreURLPath];
-	NSDictionary *inputParameters = [authStoreDto dictionaryInfo];
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthDashboardURLPath];
+	NSDictionary *inputParameters = nil;
 	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthStoreStateDto class] responseBlock:responseBlock];
+	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
+}
+
+- (NSOperation *)authDashboardAuthenticateDashboardUser:(AuthUserDto *)authUserDto responseBlock:(void(^)(AuthUserDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthDashboardURLPath];
+	NSDictionary *inputParameters = [authUserDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:NO inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthUserDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)authManagerManagerOverrideAddRole:(AuthManagerDto *)authManagerDto responseBlock:(void(^)(AuthManagerResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthManagerURLPath];
+	NSDictionary *inputParameters = [authManagerDto dictionaryInfo];
+	NSDictionary *headParameters = nil;
+	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthManagerResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)authManagerManagerOverrideRemoveRoleWithResponseBlock:(void(^)(AuthManagerResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthManagerURLPath];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthManagerResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)authManagerPermissionManagerOverrideRemovePermissionWithUserPermission:(NSString *)userPermission responseBlock:(void(^)(AuthManagerResponseDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthManagerPermissionUserPermissionURLPath, userPermission];
+	NSDictionary *inputParameters = nil;
+	NSDictionary *headParameters = nil;
+	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthManagerResponseDto class] responseBlock:responseBlock];
+}
+
+- (NSOperation *)authUserAuthenticateUser:(AuthUserDto *)authUserDto date:(NSString *)date responseBlock:(void(^)(AuthUserDto *response, NSError *error))responseBlock
+{
+	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthUserURLPath];
+	NSDictionary *inputParameters = [authUserDto dictionaryInfo];
+	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:1];
+	[headParameters setValue:date forKey:@"Date"];
+	return [self makePOSTRequestForURLPath:thePath useToken:NO inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthUserDto class] responseBlock:responseBlock];
 }
 
 - (NSOperation *)authUserSignOutCurrentUserWithDate:(NSString *)date responseBlock:(void(^)(id response, NSError *error))responseBlock
@@ -1587,55 +1736,6 @@
 	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:1];
 	[headParameters setValue:date forKey:@"Date"];
 	return [self makeGETRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthUserDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)authUserAuthenticateUser:(AuthUserDto *)authUserDto date:(NSString *)date responseBlock:(void(^)(AuthUserDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthUserURLPath];
-	NSDictionary *inputParameters = [authUserDto dictionaryInfo];
-	NSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:1];
-	[headParameters setValue:date forKey:@"Date"];
-	return [self makePOSTRequestForURLPath:thePath useToken:NO inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthUserDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)authManagerPermissionManagerOverrideRemovePermissionWithUserPermission:(NSString *)userPermission responseBlock:(void(^)(AuthManagerResponseDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthManagerPermissionUserPermissionURLPath, userPermission];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthManagerResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)authManagerManagerOverrideRemoveRoleWithResponseBlock:(void(^)(AuthManagerResponseDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthManagerURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthManagerResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)authManagerManagerOverrideAddRole:(AuthManagerDto *)authManagerDto responseBlock:(void(^)(AuthManagerResponseDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthManagerURLPath];
-	NSDictionary *inputParameters = [authManagerDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthManagerResponseDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)authDashboardAuthenticateDashboardUser:(AuthUserDto *)authUserDto responseBlock:(void(^)(AuthUserDto *response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthDashboardURLPath];
-	NSDictionary *inputParameters = [authUserDto dictionaryInfo];
-	NSDictionary *headParameters = nil;
-	return [self makePOSTRequestForURLPath:thePath useToken:NO inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:[AuthUserDto class] responseBlock:responseBlock];
-}
-
-- (NSOperation *)authDashboardSignOutDashboardCurrentUserWithResponseBlock:(void(^)(id response, NSError *error))responseBlock
-{
-	NSString *thePath = [NSString stringWithFormat: kWADLServiceAuthDashboardURLPath];
-	NSDictionary *inputParameters = nil;
-	NSDictionary *headParameters = nil;
-	return [self makeDELETERequestForURLPath:thePath useToken:YES inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:Nil responseBlock:responseBlock];
 }
 
 

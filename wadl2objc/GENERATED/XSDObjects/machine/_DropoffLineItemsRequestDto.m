@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"garmentsDtoList"];
+        keys = @[@"garmentsDtoList", @"transactionDto"];
     }
     return keys;
 }

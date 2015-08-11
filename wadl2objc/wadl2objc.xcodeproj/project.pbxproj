@@ -22,6 +22,7 @@
 		0A964DD117CBA3F9003655C4 /* XSDSimpleType.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD017CBA3F9003655C4 /* XSDSimpleType.m */; };
 		0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD317CBA663003655C4 /* XSDTypes.m */; };
 		0AA94D0B17F883B0000DE3B6 /* WADLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */; };
+		615F1DA71B78F423003FBB94 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 615F1DA61B78F423003FBB94 /* DataManager.m */; };
 		7E3CF89B17FC242400ECCC95 /* _TemplateEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */; };
 		7E3CF89C17FC242400ECCC95 /* _TemplateEntity_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2C17CCDCF20068D508 /* _TemplateEntity_m */; };
 		7E3CF89D17FC242400ECCC95 /* TemplateEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EC7DCBB17D096ED003CE122 /* TemplateEntity_h */; };
@@ -92,6 +93,8 @@
 		0AA94D0917F883B0000DE3B6 /* WADLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLDocument.h; sourceTree = "<group>"; };
 		0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLDocument.m; sourceTree = "<group>"; };
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		615F1DA51B78F423003FBB94 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		615F1DA61B78F423003FBB94 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		7E1B156217CF5AE600C96204 /* XSDEnums_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_h; sourceTree = "<group>"; };
 		7E1B156317CF5AE600C96204 /* XSDEnums_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_m; sourceTree = "<group>"; };
 		7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; path = _TemplateEntity_h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				7ECDDEF91807D52A00987FDE /* WADL */,
 				0A964DC117CB531C003655C4 /* SettingsManager.h */,
 				0A964DC217CB531C003655C4 /* SettingsManager.m */,
+				615F1DA51B78F423003FBB94 /* DataManager.h */,
+				615F1DA61B78F423003FBB94 /* DataManager.m */,
 				7ECDDEF61806FE4F00987FDE /* Utilities.h */,
 				7ECDDEF71806FE4F00987FDE /* Utilities.m */,
 			);
@@ -350,6 +355,7 @@
 				0A2810D917C9F8C1001C7306 /* TBXML+NSDictionary.m in Sources */,
 				7ECDDEF21806ED3D00987FDE /* WADLServicePathParameter.m in Sources */,
 				0A964DC317CB531C003655C4 /* SettingsManager.m in Sources */,
+				615F1DA71B78F423003FBB94 /* DataManager.m in Sources */,
 				0A964DC817CB6313003655C4 /* XSDDocument.m in Sources */,
 				0A964DCB17CB6BFD003655C4 /* XSDObject.m in Sources */,
 				0A964DCE17CB9055003655C4 /* XSDObjectProperty.m in Sources */,

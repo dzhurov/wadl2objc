@@ -13,6 +13,7 @@
 #import "GroupOffersDto.h"
 #import "GroupReservationsDto.h"
 #import "GroupCallLogListDto.h"
+#import "MessageDto.h"
 
 @interface _GroupDto : XSDBaseEntity
 
@@ -21,5 +22,7 @@
 @property(nonatomic, strong) GroupOffersDto *groupOffers;
 @property(nonatomic, strong) GroupReservationsDto *groupReservations;
 @property(nonatomic, strong) GroupCallLogListDto *callLogShortList;
+/*![MessageDto]*/
+@property(nonatomic, strong) NSArray *messages;
 
 @end

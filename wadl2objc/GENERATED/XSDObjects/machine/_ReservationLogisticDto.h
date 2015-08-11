@@ -25,5 +25,7 @@
 @property(nonatomic, strong) XSDDateTime *commitDate;
 /*![MessageDto]*/
 @property(nonatomic, strong) NSArray *messages;
+/*! BOOL */
+@property(nonatomic, strong) NSNumber *eventDateChangeAllowed;
 
 @end

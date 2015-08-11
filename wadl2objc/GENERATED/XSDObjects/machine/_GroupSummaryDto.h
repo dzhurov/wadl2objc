@@ -30,5 +30,6 @@
 @property(nonatomic) GenderType repGender;
 @property(nonatomic) PromRep promRep;
 @property(nonatomic) GroupPrimaryContactType primaryContact;
+@property(nonatomic, strong) NSString *creationApp;
 
 @end

@@ -16,7 +16,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
 {
     NSUInteger index = [argsArray indexOfObject:argumentKey];
     if (index == NSNotFound){
-        NSLog(@"Missing parameter: %@ ", argumentKey);
+        //NSLog(@"Missing parameter: %@ ", argumentKey);
         return nil;
     }
     NSString *result = argsArray[index + 1];
@@ -31,8 +31,13 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
     
     self.applicationPath = argsArray[0];
     [argsArray removeObjectAtIndex:0];
+    
     self.wadlPath = [self argsArray:argsArray popArgumentForKey:kWADLPathArgumentKey];
     self.xsdPath = [self argsArray:argsArray popArgumentForKey:kXSDPathArgumentKey];
+    
+    self.wadlURL = [self argsArray:argsArray popArgumentForKey:kWADLURLArgumentKey];
+    self.xsdPURL = [self argsArray:argsArray popArgumentForKey:kXSDURLArgumentKey];
+    
     self.outputPath = [self argsArray:argsArray popArgumentForKey:kOutputPathArgumentKey];
     
     if ( argsArray.count ){
@@ -40,7 +45,7 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
         return NO;
     }
     
-    if (_wadlPath && _xsdPath && _outputPath){
+    if (_outputPath && ( (_wadlPath && _xsdPath) || (_wadlURL && _xsdPURL) ) ){
         return YES;
     }
     
