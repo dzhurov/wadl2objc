@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "05D1B6F2F95DA550DA0DA1BAC4AB4BAE10E9B735",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CDA11EC5-EC34-4327-859A-F9E36C8B97D3" : 0,
+    "05D1B6F2F95DA550DA0DA1BAC4AB4BAE10E9B735" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "588FF102-B091-4F36-8938-57F8142D9E59",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CDA11EC5-EC34-4327-859A-F9E36C8B97D3" : "wad2lobjc",
+    "05D1B6F2F95DA550DA0DA1BAC4AB4BAE10E9B735" : "wadl2objc"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "wadl2objc",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "wadl2objc\/wadl2objc.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dzhurov\/wadl2objc",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "05D1B6F2F95DA550DA0DA1BAC4AB4BAE10E9B735"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dzhurov\/wadl2objc",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CDA11EC5-EC34-4327-859A-F9E36C8B97D3"
+    }
+  ]
+}
