@@ -22,6 +22,7 @@
 		0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD317CBA663003655C4 /* XSDTypes.m */; };
 		0AA94D0B17F883B0000DE3B6 /* WADLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */; };
 		615F1DA71B78F423003FBB94 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 615F1DA61B78F423003FBB94 /* DataManager.m */; };
+		61C6F29F1B7CE72900EF2D8C /* Xcode7Macros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */; };
 		7E3CF89B17FC242400ECCC95 /* _TemplateEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */; };
 		7E3CF89C17FC242400ECCC95 /* _TemplateEntity_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2C17CCDCF20068D508 /* _TemplateEntity_m */; };
 		7E3CF89D17FC242400ECCC95 /* TemplateEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EC7DCBB17D096ED003CE122 /* TemplateEntity_h */; };
@@ -59,6 +60,7 @@
 			dstPath = Resources;
 			dstSubfolderSpec = 16;
 			files = (
+				61C6F29F1B7CE72900EF2D8C /* Xcode7Macros.h in CopyFiles */,
 				7EAF2A4A1B7B7A4600600196 /* WADLRequestTask.h in CopyFiles */,
 				7EAF2A4B1B7B7A4600600196 /* WADLAbstractServerAPI.m in CopyFiles */,
 				7EAF2A4C1B7B7A4600600196 /* WADLServerAPI.m in CopyFiles */,

@@ -62,7 +62,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     static NSString *const kApiConstsFile = @"APIConsts.h";
     
     // Copy resources
-    NSArray *fileNames = @[kApiConstsFile, @"XSDBaseEntity.h", @"XSDBaseEntity.m", @"XSDTypes.h", @"XSDTypes.m", @"WADLRequestTask.h"];
+    NSArray *fileNames = @[kApiConstsFile, @"XSDBaseEntity.h", @"XSDBaseEntity.m", @"XSDTypes.h", @"XSDTypes.m", @"WADLRequestTask.h", @"Xcode7Macros.h"];
     
     for (NSString *fName in fileNames) {
         [self copyFileFromResourses:fName toPath:path];
