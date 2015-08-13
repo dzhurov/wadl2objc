@@ -11,7 +11,7 @@
 #import "XSDTypes.h"
 #import "WADLService.h"
 
-#define kSupportedHTTPMethodsArray @[@"GET", @"POST", @"PUT", @"DELETE"]
+#define kSupportedHTTPMethodsArray @[@"GET", @"POST", @"PUT", @"DELETE", @"HEAD"]
 
 @implementation WADLServiceSection
 
@@ -199,4 +199,11 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     }
     return pathNamesToPaths;
 }
+
+- (NSString *)className
+{
+    [super className];
+    return [NSString stringWithFormat:@"WADL%@Services", [[self shortPathName] uppercaseFirstCharacterString]];
+}
+
 @end
