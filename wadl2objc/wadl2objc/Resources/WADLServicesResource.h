@@ -1,17 +1,17 @@
 //  WADLServicesResource.h
 //  wadl2objc
 //
-//  Created by Dmitry Zhurov (zim01001) on 6/21/15.
 
 #import <Foundation/Foundation.h>
 #import "WADLRequestTask.h"
 
 @class WADLAbstractServerAPI;
+@protocol WADLServerAPIInheritor;
 
 @interface WADLServicesResource : NSObject
 
-- (instancetype)initWithWADLServerAPI:(WADLAbstractServerAPI *)serverAPI;
+- (instancetype)initWithWADLServerAPI:(WADLAbstractServerAPI<WADLServerAPIInheritor> *)serverAPI;
 
-@property (nonatomic, readonly) WADLAbstractServerAPI *serverAPI;
+@property (nonatomic, readonly) WADLAbstractServerAPI<WADLServerAPIInheritor> *serverAPI;
 
 @end

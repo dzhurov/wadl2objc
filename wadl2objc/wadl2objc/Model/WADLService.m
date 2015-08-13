@@ -89,7 +89,7 @@
 {
     WADLServiceSection *parentSection = self.parentServiceSection;
     BOOL needCapitalize = NO;
-    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation *)%@%@",[[parentSection shortPathName] lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
+    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (WADLRequestTask)%@%@",[[parentSection shortPathName] lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
     if ( self.requestObjectClass ){
         NSString *parameterName = self.requestObjectClass;
         parameterName = [parameterName lowercaseFirstCharacterString];

@@ -13,11 +13,8 @@
 @class XSDBaseEntity;
 @interface WADLAuthService : WADLServicesResource
 
+<methods_declaration>
 
 - (WADLRequestTask)authUserAuthenticateUser:(XSDBaseEntity*)authUserDto responseBlock:(void(^)(XSDBaseEntity *response, NSError *error))responseBlock;
-- (WADLRequestTask)authStoreGetRegisterSessionWithResponseBlock:(void(^)(XSDBaseEntity *response, NSError *error))responseBlock;
-- (WADLRequestTask)authStoreOpenRegisterSession:(XSDBaseEntity*)authStoreDto responseBlock:(void(^)(id *response, NSError *error))responseBlock;
-- (WADLRequestTask)authStoreCloseRegisterSessionWithResponseBlock:(void(^)(XSDBaseEntity *response, NSError *error))responseBlock;
-
 
 @end

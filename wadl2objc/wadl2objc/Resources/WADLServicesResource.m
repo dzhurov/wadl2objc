@@ -1,19 +1,19 @@
 //  WADLServicesResource.m
 //  wadl2objc
 //
-//  Created by Dmitry Zhurov (zim01001) on 6/21/15.
 
 #import "WADLServicesResource.h"
 
 @interface WADLServicesResource ()
 
-@property (nonatomic, strong) WADLAbstractServerAPI *serverAPI;
+@property (nonatomic, strong) WADLAbstractServerAPI<WADLServerAPIInheritor> *serverAPI;
 
 @end
 
+
 @implementation WADLServicesResource
 
-- (instancetype)initWithWADLServerAPI:(WADLAbstractServerAPI *)serverAPI
+- (instancetype)initWithWADLServerAPI:(WADLAbstractServerAPI<WADLServerAPIInheritor> *)serverAPI
 {
     self = [super init];
     if (self) {

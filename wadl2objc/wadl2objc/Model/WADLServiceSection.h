@@ -26,4 +26,6 @@
 - (NSString*)pathName;
 - (NSString*)shortPathName;
 - (NSDictionary*)allPathNamesToPaths;
+- (NSString*)className;
+
 @end
