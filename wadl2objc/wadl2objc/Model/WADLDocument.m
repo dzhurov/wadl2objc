@@ -53,6 +53,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 
 - (void)writeObjectsToPath:(NSString *)path
 {
+    printf("\nGenerate WADL files:\n");
+    
     //APIConsts.h
     static NSString *const kApiConstsFile = @"APIConsts.h";
     
@@ -224,8 +226,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     [contentOfFile writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error)
         NSLog(@"ERROR: %@",error);
-    
-    NSLog(@"generated: %@", filePath);
+    else
+        printf("%s; ", [[filePath lastPathComponent] UTF8String]);
 }
 
 - (void)copyFileFromResourses:(NSString*)fileName toPath:(NSString*)path

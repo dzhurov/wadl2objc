@@ -169,12 +169,34 @@
     dateFormatter.dateFormat = @"yyyy.MM.dd HH:mm:ss";
     self.currentFormattedDate = [dateFormatter stringFromDate:[NSDate date]];
     
+    [self writeMachineFilesToPath:machineFilesPath];
+    [self writeHumanFilesToPath:path];
+    [self writeSimpleTypesToPath:path];
+}
+
+-(void)writeMachineFilesToPath:(NSString*)machineFilesPath
+{
+    printf("\n%s\n", [[NSString stringWithFormat:@"Write machine files to path: %@", machineFilesPath] UTF8String]);
+    
     for (XSDObject *object in _objects) {
         [self writeMachineHFileObject:object toPath:machineFilesPath];
         [self writeMachineMFileObject:object toPath:machineFilesPath];
-        [self writeHumanFilesForObject:object toPath:path];
-        [self writeSimpleTypes:_simpleTypes toPath:path];
     }
+}
+
+-(void)writeHumanFilesToPath:(NSString*)path
+{
+    printf("\n%s\n", [[NSString stringWithFormat:@"\nWrite human files to path: %@", path] UTF8String]);
+    
+    for (XSDObject *object in _objects) {
+        [self writeHumanFilesForObject:object toPath:path];
+    }
+}
+
+-(void)writeSimpleTypesToPath:(NSString*)path
+{
+    printf("\n%s\n", [[NSString stringWithFormat:@"\nWrite simple types to path: %@", path] UTF8String]);
+    [self writeSimpleTypes:_simpleTypes toPath:path];
 }
 
 // TODO: Implement simple types parser + translators
@@ -216,7 +238,7 @@
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = nil;
         if (property.isCollection){
-            typeString = property.isCollection ? @"NSArray" : property.type;
+            typeString = property.type?[NSString stringWithFormat:@"__GENERICS(NSArray, %@*)", property.type]:@"NSArray";
             property.dockComment = [NSString stringWithFormat:@"/*![%@]*/", property.type];
         }
         else if (property.simpleType){
@@ -246,7 +268,7 @@
         NSLog(@"ERROR: %@", error);
     }
     else{
-        NSLog(@"generated: %@", filePath);
+        printf("%s", [fileName UTF8String]);
     }
     
 }
@@ -303,7 +325,7 @@
         NSLog(@"ERROR: %@", error);
     }
     else{
-        NSLog(@"generated: %@", filePath);
+        printf(",m; ");
     }
 }
 
@@ -330,7 +352,7 @@
             NSLog(@"ERROR: %@", error);
         }
         else{
-            NSLog(@"generated: %@", hFilePath);
+            printf("%s", [hFileName UTF8String]);
         }
     }
     // .m file
@@ -347,7 +369,7 @@
             NSLog(@"ERROR: %@", error);
         }
         else{
-            NSLog(@"generated: %@", mFilePath);
+            printf(",m; ");
         }
     }
 }
@@ -405,7 +427,7 @@
         return;
     }
     else{
-        NSLog(@"generated: %@", hFilePath);
+        printf("%s", [hFileName UTF8String]);
     }
     
     // .m File
@@ -424,7 +446,7 @@
         return;
     }
     else{
-        NSLog(@"generated: %@", mFilePath);
+        printf(",m; ");
     }
 }
 

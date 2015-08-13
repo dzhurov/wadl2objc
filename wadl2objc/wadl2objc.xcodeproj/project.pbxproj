@@ -93,6 +93,7 @@
 		0AA94D0917F883B0000DE3B6 /* WADLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLDocument.h; sourceTree = "<group>"; };
 		0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLDocument.m; sourceTree = "<group>"; };
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode7Macros.h; sourceTree = "<group>"; };
 		615F1DA51B78F423003FBB94 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		615F1DA61B78F423003FBB94 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		7E1B156217CF5AE600C96204 /* XSDEnums_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_h; sourceTree = "<group>"; };
@@ -158,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				0A2810A517C9F733001C7306 /* main.m */,
+				611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */,
 				0A2B108D180A991A00E5E19E /* NSString+FirstCharacter.h */,
 				0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */,
 				0A2810A917C9F733001C7306 /* wadl2objc.1 */,
