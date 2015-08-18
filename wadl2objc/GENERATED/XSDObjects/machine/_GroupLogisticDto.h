@@ -22,7 +22,7 @@
 @property(nonatomic, strong) XSDDate *returnDate;
 @property(nonatomic, strong) NSString *salesPerson;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *noPickupNotification;
 

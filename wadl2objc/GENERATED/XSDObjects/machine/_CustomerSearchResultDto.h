@@ -13,7 +13,7 @@
 @interface _CustomerSearchResultDto : XSDBaseEntity
 
 /*![CustomerDto]*/
-@property(nonatomic, strong) NSArray *customers;
+@property(nonatomic, strong) __GENERICS(NSArray, CustomerDto*) *customers;
 /*! long */
 @property(nonatomic, strong) NSNumber *totalCount;
 

@@ -16,16 +16,16 @@
 @interface _LineItemStateDto : XSDBaseEntity
 
 /*![FeeDto]*/
-@property(nonatomic, strong) NSArray *additionalFees;
+@property(nonatomic, strong) __GENERICS(NSArray, FeeDto*) *additionalFees;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *couponDiscountApplied;
 @property(nonatomic, strong) NSString *discountCoupon;
 /*![MarkdownDto]*/
-@property(nonatomic, strong) NSArray *markdowns;
+@property(nonatomic, strong) __GENERICS(NSArray, MarkdownDto*) *markdowns;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *pfDiscountApplied;
 /*![MarkdownDto]*/
-@property(nonatomic, strong) NSArray *removedMarkdowns;
+@property(nonatomic, strong) __GENERICS(NSArray, MarkdownDto*) *removedMarkdowns;
 @property(nonatomic, strong) TaxExemptionDto *taxExemptionDto;
 
 @end

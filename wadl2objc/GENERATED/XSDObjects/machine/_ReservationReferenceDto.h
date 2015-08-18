@@ -20,6 +20,6 @@
 @property(nonatomic, strong) NSString *shipToStore;
 @property(nonatomic, strong) NSString *info;
 /*![StyleInformationDto]*/
-@property(nonatomic, strong) NSArray *styles;
+@property(nonatomic, strong) __GENERICS(NSArray, StyleInformationDto*) *styles;
 
 @end

@@ -13,6 +13,6 @@
 @interface _DropoffReceiptListDto : XSDBaseEntity
 
 /*![DropoffReceiptDto]*/
-@property(nonatomic, strong) NSArray *dropoffReceipts;
+@property(nonatomic, strong) __GENERICS(NSArray, DropoffReceiptDto*) *dropoffReceipts;
 
 @end

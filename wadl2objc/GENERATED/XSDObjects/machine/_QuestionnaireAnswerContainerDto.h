@@ -15,6 +15,6 @@
 @property(nonatomic, strong) NSString *questionnaireTitle;
 @property(nonatomic, strong) NSString *reservationNo;
 /*![QuestionnaireAnswerDto]*/
-@property(nonatomic, strong) NSArray *answers;
+@property(nonatomic, strong) __GENERICS(NSArray, QuestionnaireAnswerDto*) *answers;
 
 @end

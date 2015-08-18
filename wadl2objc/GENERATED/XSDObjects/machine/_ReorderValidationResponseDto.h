@@ -15,10 +15,10 @@
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *valid;
 /*![NSNumber]*/
-@property(nonatomic, strong) NSArray *duplicateStylesWithoutReason;
+@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *duplicateStylesWithoutReason;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *changeFeeAlert;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

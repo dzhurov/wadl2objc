@@ -13,7 +13,7 @@
 @interface _ReservationRemoveItemsRequestDto : XSDBaseEntity
 
 /*![RemoveItemDto]*/
-@property(nonatomic, strong) NSArray *removeItemList;
+@property(nonatomic, strong) __GENERICS(NSArray, RemoveItemDto*) *removeItemList;
 @property(nonatomic, strong) NSString *changedBy;
 
 @end

@@ -12,6 +12,6 @@
 @interface _CustomerValidationDto : XSDBaseEntity
 
 /*![NSString]*/
-@property(nonatomic, strong) NSArray *errors;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *errors;
 
 @end

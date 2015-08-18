@@ -25,7 +25,7 @@
 @property(nonatomic) ReservationPosStatus posStatus;
 @property(nonatomic) ReservationDropOffStatus dropOffStatus;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *dropoffMessages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *dropoffMessages;
 /*! int */
 @property(nonatomic, strong) NSNumber *amountDueCents;
 /*! int */

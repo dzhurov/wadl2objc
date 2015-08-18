@@ -21,5 +21,6 @@
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *open;
 @property(nonatomic) Company company;
+@property(nonatomic) Brand brand;
 
 @end

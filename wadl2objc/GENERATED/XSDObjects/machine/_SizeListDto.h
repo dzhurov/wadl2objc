@@ -14,8 +14,8 @@
 @interface _SizeListDto : XSDBaseEntity
 
 /*![SizeDto]*/
-@property(nonatomic, strong) NSArray *suggestedSizes;
+@property(nonatomic, strong) __GENERICS(NSArray, SizeDto*) *suggestedSizes;
 /*![SizeDto]*/
-@property(nonatomic, strong) NSArray *allowedSizes;
+@property(nonatomic, strong) __GENERICS(NSArray, SizeDto*) *allowedSizes;
 
 @end

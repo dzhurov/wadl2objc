@@ -13,6 +13,6 @@
 @interface _ReservationPaymentsListDto : XSDBaseEntity
 
 /*![ReservationPaymentsDto]*/
-@property(nonatomic, strong) NSArray *reservationPayments;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationPaymentsDto*) *reservationPayments;
 
 @end

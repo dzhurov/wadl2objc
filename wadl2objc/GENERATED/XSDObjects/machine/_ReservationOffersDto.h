@@ -17,7 +17,7 @@
 @property(nonatomic, strong) NSString *discountCode;
 @property(nonatomic, strong) NSString *discountDescription;
 /*![StyleItemType]*/
-@property(nonatomic, strong) NSArray *requiredItems;
+@property(nonatomic, strong) __GENERICS(NSArray, StyleItemType*) *requiredItems;
 @property(nonatomic, strong) NSString *promotionCode;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *freeTux;
@@ -30,6 +30,6 @@
 /*! xs:decimal */
 @property(nonatomic, strong) NSDecimalNumber *discountFactor3;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

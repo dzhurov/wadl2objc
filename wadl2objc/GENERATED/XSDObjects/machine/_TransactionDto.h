@@ -20,14 +20,14 @@
 @property(nonatomic, strong) NSString *transactionId;
 @property(nonatomic, strong) XSDDateTime *submitDate;
 /*![TenderDto]*/
-@property(nonatomic, strong) NSArray *authorizedTenders;
+@property(nonatomic, strong) __GENERICS(NSArray, TenderDto*) *authorizedTenders;
 @property(nonatomic, strong) CustomerDto *customer;
 /*![LineItemDto]*/
-@property(nonatomic, strong) NSArray *lineItems;
+@property(nonatomic, strong) __GENERICS(NSArray, LineItemDto*) *lineItems;
 @property(nonatomic, strong) TaxExemptionDto *taxExemption;
 @property(nonatomic) RestTransactionType transactionType;
 @property(nonatomic, strong) NSString *uuid;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

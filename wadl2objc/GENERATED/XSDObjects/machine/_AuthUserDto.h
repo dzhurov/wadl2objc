@@ -25,15 +25,16 @@
 @property(nonatomic) Company company;
 @property(nonatomic, strong) AuthStoreStateDto *authStoreStateDto;
 /*![UserRole]*/
-@property(nonatomic, strong) NSArray *roles;
+@property(nonatomic, strong) __GENERICS(NSArray, UserRole*) *roles;
 /*![UserRole]*/
-@property(nonatomic, strong) NSArray *additionalRoles;
+@property(nonatomic, strong) __GENERICS(NSArray, UserRole*) *additionalRoles;
 /*![AuthManagerPermissionDto]*/
-@property(nonatomic, strong) NSArray *overridingManagerPermissions;
+@property(nonatomic, strong) __GENERICS(NSArray, AuthManagerPermissionDto*) *overridingManagerPermissions;
 @property(nonatomic, strong) NSString *deviceUuid;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *firstLoginOnFreshInstall;
+@property(nonatomic) ClientType clientType;
 
 @end

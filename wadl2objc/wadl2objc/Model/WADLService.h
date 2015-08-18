@@ -19,10 +19,14 @@
 @property (nonatomic, strong) NSString *requestObjectClass;
 @property (nonatomic, strong) NSString *responseObjectClass;
 
+@property (nonatomic, strong) NSString *overridenName;
+
 - (NSArray *)allQueryParameters;
 - (NSArray *)allPathParameters;
 - (NSArray *)allHeadParameters;
 - (NSString*)fullPath;
+
+//! Depends on overridenMethodName
 - (NSString*)objcMethodName;
 
 @end

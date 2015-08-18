@@ -23,6 +23,6 @@
 @property(nonatomic, strong) GroupReservationsDto *groupReservations;
 @property(nonatomic, strong) GroupCallLogListDto *callLogShortList;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

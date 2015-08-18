@@ -13,6 +13,6 @@
 @interface _DropoffWithoutPaymentResponseDto : XSDBaseEntity
 
 /*![ReservationAmountDueDto]*/
-@property(nonatomic, strong) NSArray *reservationAmountDueDtos;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationAmountDueDto*) *reservationAmountDueDtos;
 
 @end

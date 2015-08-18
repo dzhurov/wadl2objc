@@ -13,7 +13,7 @@
 @interface _WeddingGroupCallListDto : XSDBaseEntity
 
 /*![WeddingGroupCallDto]*/
-@property(nonatomic, strong) NSArray *weddingGroupCallList;
+@property(nonatomic, strong) __GENERICS(NSArray, WeddingGroupCallDto*) *weddingGroupCallList;
 @property(nonatomic, strong) XSDDate *dateRangeStart;
 @property(nonatomic, strong) XSDDate *dateRangeEnd;
 @property(nonatomic, strong) XSDDate *eventDate;

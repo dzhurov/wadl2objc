@@ -13,6 +13,6 @@
 @interface _DropoffNoBalanceReceiptRequestContainerDto : XSDBaseEntity
 
 /*![DropoffNoBalanceReceiptRequestDto]*/
-@property(nonatomic, strong) NSArray *dropoffReceiptRequestList;
+@property(nonatomic, strong) __GENERICS(NSArray, DropoffNoBalanceReceiptRequestDto*) *dropoffReceiptRequestList;
 
 @end

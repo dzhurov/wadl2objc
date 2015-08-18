@@ -14,7 +14,7 @@
 @interface _DropoffLineItemsRequestDto : XSDBaseEntity
 
 /*![ReservationPosGarmentsDto]*/
-@property(nonatomic, strong) NSArray *garmentsDtoList;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationPosGarmentsDto*) *garmentsDtoList;
 @property(nonatomic, strong) TransactionDto *transactionDto;
 
 @end

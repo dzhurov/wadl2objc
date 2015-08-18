@@ -14,9 +14,9 @@
 @interface _PostTuxDepositResponseDto : XSDBaseEntity
 
 /*![LineItemReceiptDto]*/
-@property(nonatomic, strong) NSArray *lineItemReceipts;
+@property(nonatomic, strong) __GENERICS(NSArray, LineItemReceiptDto*) *lineItemReceipts;
 /*![PaymentReceiptDto]*/
-@property(nonatomic, strong) NSArray *paymentReceipts;
+@property(nonatomic, strong) __GENERICS(NSArray, PaymentReceiptDto*) *paymentReceipts;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *hasCoupons;
 @property(nonatomic, strong) NSString *transactionId;

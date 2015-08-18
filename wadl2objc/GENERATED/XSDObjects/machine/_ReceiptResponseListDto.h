@@ -14,8 +14,8 @@
 @interface _ReceiptResponseListDto : XSDBaseEntity
 
 /*![ReceiptResponseDto]*/
-@property(nonatomic, strong) NSArray *responses;
+@property(nonatomic, strong) __GENERICS(NSArray, ReceiptResponseDto*) *responses;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

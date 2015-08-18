@@ -14,7 +14,7 @@
 @interface _ReservationAddItemsRequestDto : XSDBaseEntity
 
 /*![AddItemDto]*/
-@property(nonatomic, strong) NSArray *addItemList;
+@property(nonatomic, strong) __GENERICS(NSArray, AddItemDto*) *addItemList;
 @property(nonatomic, strong) NSString *shipToStore;
 @property(nonatomic, strong) NSString *pickComment1;
 @property(nonatomic, strong) NSString *pickComment2;

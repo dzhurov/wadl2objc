@@ -14,7 +14,7 @@
 @interface _ReservationReorderRequestDto : XSDBaseEntity
 
 /*![ReservationReorderItemDto]*/
-@property(nonatomic, strong) NSArray *reorderItemList;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationReorderItemDto*) *reorderItemList;
 @property(nonatomic, strong) NSString *shipToStore;
 @property(nonatomic, strong) NSString *pickComment1;
 @property(nonatomic, strong) NSString *pickComment2;

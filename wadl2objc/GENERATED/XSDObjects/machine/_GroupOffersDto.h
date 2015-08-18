@@ -22,7 +22,7 @@
 @property(nonatomic, strong) NSString *discountCode;
 @property(nonatomic, strong) NSString *discountDescription;
 /*![StyleItemType]*/
-@property(nonatomic, strong) NSArray *requiredItems;
+@property(nonatomic, strong) __GENERICS(NSArray, StyleItemType*) *requiredItems;
 @property(nonatomic, strong) NSString *promotionCode;
 /*! int */
 @property(nonatomic, strong) NSNumber *eligibleNumberFreeTux;
@@ -33,6 +33,6 @@
 @property(nonatomic, strong) ReservationNumbersDto *eligibleReservationForFreeTux;
 @property(nonatomic, strong) ReservationNumbersDto *eligibleReservationForFreeSuit;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

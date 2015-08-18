@@ -13,6 +13,6 @@
 @interface _SignatureDto : XSDBaseEntity
 
 /*![PointDto]*/
-@property(nonatomic, strong) NSArray *points;
+@property(nonatomic, strong) __GENERICS(NSArray, PointDto*) *points;
 
 @end

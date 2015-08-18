@@ -18,6 +18,6 @@
 @property(nonatomic, strong) NSString *styleDescription;
 @property(nonatomic, strong) NSString *rentalPrice;
 /*![StyleBlockingDto]*/
-@property(nonatomic, strong) NSArray *blockedStyles;
+@property(nonatomic, strong) __GENERICS(NSArray, StyleBlockingDto*) *blockedStyles;
 
 @end

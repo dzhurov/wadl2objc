@@ -41,7 +41,7 @@
 @property(nonatomic, strong) PromDetailDto *promDetail;
 @property(nonatomic, strong) NSString *hatPackage;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 @property(nonatomic, strong) XSDDateTime *freeSuitPrinted;
 @property(nonatomic, strong) XSDDateTime *freeSuitEmailSent;
 @property(nonatomic, strong) NSString *originalReservationNo;

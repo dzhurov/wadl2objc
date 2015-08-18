@@ -15,6 +15,6 @@
 
 @property(nonatomic, strong) ReservationPosGarmentsDto *reservationPosGarments;
 /*![ReceiptTargetDto]*/
-@property(nonatomic, strong) NSArray *receiptTargets;
+@property(nonatomic, strong) __GENERICS(NSArray, ReceiptTargetDto*) *receiptTargets;
 
 @end

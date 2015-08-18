@@ -13,6 +13,6 @@
 @interface _PrintersDto : XSDBaseEntity
 
 /*![PrinterDto]*/
-@property(nonatomic, strong) NSArray *printers;
+@property(nonatomic, strong) __GENERICS(NSArray, PrinterDto*) *printers;
 
 @end

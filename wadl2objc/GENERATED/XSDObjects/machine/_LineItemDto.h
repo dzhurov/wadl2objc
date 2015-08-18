@@ -47,9 +47,9 @@
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *disallowMarkdownAndDiscountChanges;
 /*![LineItemModifierDto]*/
-@property(nonatomic, strong) NSArray *modifiers;
+@property(nonatomic, strong) __GENERICS(NSArray, LineItemModifierDto*) *modifiers;
 /*![MarkdownDto]*/
-@property(nonatomic, strong) NSArray *markdowns;
+@property(nonatomic, strong) __GENERICS(NSArray, MarkdownDto*) *markdowns;
 /*! xs:decimal */
 @property(nonatomic, strong) NSDecimalNumber *depositAmount;
 @property(nonatomic, strong) LineItemStateDto *lineItemState;
@@ -59,10 +59,10 @@
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *freeTux;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 @property(nonatomic, strong) TaxExemptionDto *taxExemptionDto;
 /*![LineItemGarmentDto]*/
-@property(nonatomic, strong) NSArray *garments;
+@property(nonatomic, strong) __GENERICS(NSArray, LineItemGarmentDto*) *garments;
 @property(nonatomic, strong) LineItemAmountsDto *lineItemAmounts;
 
 @end

@@ -13,6 +13,6 @@
 @interface _ReceiptRequestContainerDto : XSDBaseEntity
 
 /*![ReceiptRequestDto]*/
-@property(nonatomic, strong) NSArray *receipts;
+@property(nonatomic, strong) __GENERICS(NSArray, ReceiptRequestDto*) *receipts;
 
 @end

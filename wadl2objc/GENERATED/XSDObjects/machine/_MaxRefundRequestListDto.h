@@ -13,6 +13,6 @@
 @interface _MaxRefundRequestListDto : XSDBaseEntity
 
 /*![MaxRefundRequestDto]*/
-@property(nonatomic, strong) NSArray *maxRefundRequests;
+@property(nonatomic, strong) __GENERICS(NSArray, MaxRefundRequestDto*) *maxRefundRequests;
 
 @end

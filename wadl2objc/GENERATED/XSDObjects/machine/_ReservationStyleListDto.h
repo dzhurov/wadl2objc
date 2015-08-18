@@ -15,9 +15,9 @@
 @interface _ReservationStyleListDto : XSDBaseEntity
 
 /*![ReservationStyleDto]*/
-@property(nonatomic, strong) NSArray *reservationStyleDtoList;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationStyleDto*) *reservationStyleDtoList;
 /*![StyleDto]*/
-@property(nonatomic, strong) NSArray *additionalAllowedStyles;
+@property(nonatomic, strong) __GENERICS(NSArray, StyleDto*) *additionalAllowedStyles;
 /*! xs:decimal */
 @property(nonatomic, strong) NSDecimalNumber *estimatedCost;
 /*! xs:decimal */
@@ -26,6 +26,6 @@
 @property(nonatomic, strong) NSDecimalNumber *amountDue;
 @property(nonatomic, strong) NSString *hatPackageCode;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

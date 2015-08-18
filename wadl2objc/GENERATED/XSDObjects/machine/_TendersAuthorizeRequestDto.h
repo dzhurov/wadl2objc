@@ -14,7 +14,7 @@
 @interface _TendersAuthorizeRequestDto : XSDBaseEntity
 
 /*![TenderDto]*/
-@property(nonatomic, strong) NSArray *tenders;
+@property(nonatomic, strong) __GENERICS(NSArray, TenderDto*) *tenders;
 @property(nonatomic, strong) TransactionDto *transaction;
 
 @end

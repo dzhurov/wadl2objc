@@ -13,6 +13,6 @@
 @interface _BaseDto : XSDBaseEntity
 
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

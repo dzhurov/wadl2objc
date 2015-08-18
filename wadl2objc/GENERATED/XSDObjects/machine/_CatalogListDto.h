@@ -13,6 +13,6 @@
 @interface _CatalogListDto : XSDBaseEntity
 
 /*![CatalogDto]*/
-@property(nonatomic, strong) NSArray *catalogs;
+@property(nonatomic, strong) __GENERICS(NSArray, CatalogDto*) *catalogs;
 
 @end

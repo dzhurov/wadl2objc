@@ -18,6 +18,6 @@
 @property(nonatomic, strong) NSDecimalNumber *rentalBalance;
 @property(nonatomic, strong) NSString *reservationNo;
 /*![LineItemGarmentDto]*/
-@property(nonatomic, strong) NSArray *garments;
+@property(nonatomic, strong) __GENERICS(NSArray, LineItemGarmentDto*) *garments;
 
 @end

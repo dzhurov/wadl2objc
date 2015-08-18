@@ -12,6 +12,6 @@
 @interface _StringCollectionDto : XSDBaseEntity
 
 /*![NSString]*/
-@property(nonatomic, strong) NSArray *names;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *names;
 
 @end

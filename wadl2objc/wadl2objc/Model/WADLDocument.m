@@ -347,16 +347,22 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
                                                                              encoding:NSUTF8StringEncoding
                                                                                 error:nil];
     
+    NSMutableString *improtServicesString = [NSMutableString new];
     NSMutableString *accessorsImplementations = [NSMutableString new];
     for (WADLServiceSection *rootSection in _wadlServiceSections) {
         NSString *propertyName = [rootSection.shortPathName lowercaseFirstCharacterString];
         NSString *propertyClass = rootSection.className;
+        [improtServicesString appendFormat:@"#import \"%@.h\"\n", propertyClass];
+        
         // getter
         [accessorsImplementations appendFormat:@"- (%@ *)%@\n{\n\tif ( !_%@) _%@ = [%@ new];\n\treturn _%@;\n}\n\n", propertyClass, propertyName, propertyName, propertyName, propertyClass, propertyName];
         // Static accessor
         [accessorsImplementations appendFormat:@"+ (%@ *)%@ \n{\n\t return [[self sharedServerAPI] %@]; \n}\n\n", propertyClass, propertyName, propertyName];
     }
     
+    [mContentOfFile replaceOccurrencesOfString:@"<import_services>"
+                                    withString:improtServicesString
+                                       options:0 range:NSMakeRange(0, mContentOfFile.length)];
     [mContentOfFile replaceOccurrencesOfString:@"<services_getters>"
                                     withString:accessorsImplementations
                                        options:0 range:NSMakeRange(0, mContentOfFile.length)];

@@ -14,6 +14,6 @@
 @property(nonatomic, strong) XSDDate *fromDate;
 @property(nonatomic, strong) XSDDate *toDate;
 /*![NSString]*/
-@property(nonatomic, strong) NSArray *stores;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *stores;
 
 @end

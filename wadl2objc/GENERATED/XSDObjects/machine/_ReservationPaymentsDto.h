@@ -14,7 +14,7 @@
 
 @property(nonatomic, strong) NSString *reservationNo;
 /*![PaymentInfoDto]*/
-@property(nonatomic, strong) NSArray *payments;
+@property(nonatomic, strong) __GENERICS(NSArray, PaymentInfoDto*) *payments;
 /*! xs:decimal */
 @property(nonatomic, strong) NSDecimalNumber *totalAmount;
 
