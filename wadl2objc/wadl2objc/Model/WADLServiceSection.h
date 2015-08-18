@@ -8,21 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+@class WADLServicePathParameter;
+@class WADLService;
+
 @interface WADLServiceSection : NSObject
 
 - (id)initWithDictionary:(NSDictionary*)dictionary parantSection:(WADLServiceSection*)parantSection;
 
 @property (nonatomic,strong) NSString *path;
 @property (nonatomic, strong) WADLServiceSection *parantServiceSection;
-@property (nonatomic, strong) NSMutableArray/*<WADLServiceSection>*/ *childSections;
-@property (nonatomic, strong) NSMutableArray/*<WADLServicePathParameter>*/ *pathParameters;
-@property (nonatomic, strong) NSMutableArray/*<WADLServicePathParameter>*/ *queryParameters;
-@property (nonatomic, strong) NSMutableArray/*<WADLServicePathParameter>*/ *headParameters;
-@property (nonatomic, strong) NSMutableArray/*<WADLService>*/ *services;
+@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServiceSection*) *childSections;
+@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *pathParameters;
+@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *queryParameters;
+@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *headParameters;
+@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLService*) *services;
 
 - (NSString*)fullPath;
 - (NSArray*)urlPathAndMethods; 
-- (NSArray*)allMethods;
+- (__GENERICS(NSMutableArray, WADLService*)*)allMethods;
+- (__GENERICS(NSArray, NSString*)*)allServicesClasses;
 - (NSString*)pathName;
 - (NSString*)shortPathName;
 - (NSDictionary*)allPathNamesToPaths;

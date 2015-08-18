@@ -19,10 +19,10 @@
 /*! long */
 @property(nonatomic, strong) NSNumber *tokenExpire;
 /*![UserRole]*/
-@property(nonatomic, strong) NSArray *roles;
+@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *roles;
 /*![UserRole]*/
-@property(nonatomic, strong) NSArray *additionalRoles;
+@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *additionalRoles;
 /*![AuthManagerPermissionDto]*/
-@property(nonatomic, strong) NSArray *overridingManagerPermissions;
+@property(nonatomic, strong) __GENERICS(NSArray, AuthManagerPermissionDto*) *overridingManagerPermissions;
 
 @end

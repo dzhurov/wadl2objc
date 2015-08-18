@@ -13,6 +13,6 @@
 @interface _ReservationReferenceListDto : XSDBaseEntity
 
 /*![ReservationReferenceDto]*/
-@property(nonatomic, strong) NSArray *reservationReferences;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationReferenceDto*) *reservationReferences;
 
 @end

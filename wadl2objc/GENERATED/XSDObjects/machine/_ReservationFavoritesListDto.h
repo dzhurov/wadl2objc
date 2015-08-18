@@ -13,6 +13,6 @@
 @interface _ReservationFavoritesListDto : XSDBaseEntity
 
 /*![ReservationFavoritesDto]*/
-@property(nonatomic, strong) NSArray *favorites;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationFavoritesDto*) *favorites;
 
 @end

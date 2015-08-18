@@ -12,6 +12,6 @@
 @interface _StoreListDto : XSDBaseEntity
 
 /*![NSString]*/
-@property(nonatomic, strong) NSArray *storeList;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *storeList;
 
 @end

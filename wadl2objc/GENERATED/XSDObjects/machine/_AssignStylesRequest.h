@@ -12,8 +12,8 @@
 @interface _AssignStylesRequest : XSDBaseEntity
 
 /*![NSString]*/
-@property(nonatomic, strong) NSArray *reservationsNumbers;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *reservationsNumbers;
 /*![NSString]*/
-@property(nonatomic, strong) NSArray *styleNumbers;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *styleNumbers;
 
 @end

@@ -15,6 +15,6 @@
 @property(nonatomic, strong) NSString *managerId;
 @property(nonatomic, strong) NSString *managerPassword;
 /*![UserPermissions]*/
-@property(nonatomic, strong) NSArray *permissions;
+@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *permissions;
 
 @end

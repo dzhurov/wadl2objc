@@ -13,7 +13,7 @@
 @interface _SchoolListDto : XSDBaseEntity
 
 /*![SchoolDto]*/
-@property(nonatomic, strong) NSArray *schoolDtoList;
+@property(nonatomic, strong) __GENERICS(NSArray, SchoolDto*) *schoolDtoList;
 /*! int */
 @property(nonatomic, strong) NSNumber *firstResult;
 /*! int */

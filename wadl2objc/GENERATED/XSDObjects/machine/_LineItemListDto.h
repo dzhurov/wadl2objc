@@ -16,10 +16,10 @@
 @interface _LineItemListDto : XSDBaseEntity
 
 /*![LineItemDto]*/
-@property(nonatomic, strong) NSArray *lineItems;
+@property(nonatomic, strong) __GENERICS(NSArray, LineItemDto*) *lineItems;
 @property(nonatomic, strong) CustomerDto *customer;
 @property(nonatomic) RestTransactionType transactionType;
 /*![MessageDto]*/
-@property(nonatomic, strong) NSArray *messages;
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 
 @end

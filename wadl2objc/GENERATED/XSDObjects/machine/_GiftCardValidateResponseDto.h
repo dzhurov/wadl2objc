@@ -14,7 +14,7 @@
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *valid;
 /*![NSString]*/
-@property(nonatomic, strong) NSArray *errorMessages;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *errorMessages;
 @property(nonatomic, strong) NSString *store;
 @property(nonatomic, strong) XSDDate *dateLoaded;
 

@@ -13,7 +13,7 @@
 @interface _SearchResultDto : XSDBaseEntity
 
 /*![OrderDto]*/
-@property(nonatomic, strong) NSArray *orders;
+@property(nonatomic, strong) __GENERICS(NSArray, OrderDto*) *orders;
 /*! long */
 @property(nonatomic, strong) NSNumber *totalResults;
 

@@ -13,6 +13,6 @@
 @interface _CopyStylesResponseDto : BaseDto
 
 /*![ReservationDto]*/
-@property(nonatomic, strong) NSArray *reservations;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationDto*) *reservations;
 
 @end

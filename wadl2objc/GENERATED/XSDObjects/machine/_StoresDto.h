@@ -13,6 +13,6 @@
 @interface _StoresDto : XSDBaseEntity
 
 /*![StoreDto]*/
-@property(nonatomic, strong) NSArray *stores;
+@property(nonatomic, strong) __GENERICS(NSArray, StoreDto*) *stores;
 
 @end

@@ -15,9 +15,9 @@
 @property(nonatomic, strong) NSString *discountCode;
 @property(nonatomic, strong) NSString *discountDescription;
 /*![StyleItemType]*/
-@property(nonatomic, strong) NSArray *requiredItems;
+@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *requiredItems;
 /*![EventType]*/
-@property(nonatomic, strong) NSArray *eventTypes;
+@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *eventTypes;
 @property(nonatomic, strong) XSDDate *startDate;
 @property(nonatomic, strong) XSDDate *endDate;
 

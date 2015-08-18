@@ -14,6 +14,6 @@
 
 @property(nonatomic, strong) NSString *catalogCode;
 /*![ReservationStyleDto]*/
-@property(nonatomic, strong) NSArray *styles;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationStyleDto*) *styles;
 
 @end

@@ -13,7 +13,7 @@
 @interface _GroupCallLogListDto : XSDBaseEntity
 
 /*![GroupCallLogDto]*/
-@property(nonatomic, strong) NSArray *groupCallLogList;
+@property(nonatomic, strong) __GENERICS(NSArray, GroupCallLogDto*) *groupCallLogList;
 /*! int */
 @property(nonatomic, strong) NSNumber *totalCount;
 

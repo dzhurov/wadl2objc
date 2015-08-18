@@ -13,7 +13,7 @@
 @interface _BridalShowCallListDto : XSDBaseEntity
 
 /*![BridalShowCallDto]*/
-@property(nonatomic, strong) NSArray *bridalShowCallList;
+@property(nonatomic, strong) __GENERICS(NSArray, BridalShowCallDto*) *bridalShowCallList;
 /*! long */
 @property(nonatomic, strong) NSNumber *totalResults;
 

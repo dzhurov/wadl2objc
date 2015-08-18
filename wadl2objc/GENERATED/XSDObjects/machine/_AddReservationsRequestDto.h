@@ -13,6 +13,6 @@
 @interface _AddReservationsRequestDto : XSDBaseEntity
 
 /*![ReservationCreationDto]*/
-@property(nonatomic, strong) NSArray *reservations;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationCreationDto*) *reservations;
 
 @end

@@ -14,6 +14,6 @@
 
 @property(nonatomic, strong) NSString *name;
 /*![StyleInformationDto]*/
-@property(nonatomic, strong) NSArray *styleInformations;
+@property(nonatomic, strong) __GENERICS(NSArray, StyleInformationDto*) *styleInformations;
 
 @end

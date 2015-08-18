@@ -14,9 +14,9 @@
 @interface _GroupReservationsDto : XSDBaseEntity
 
 /*![ReservationDto]*/
-@property(nonatomic, strong) NSArray *reservations;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationDto*) *reservations;
 /*![StyleDto]*/
-@property(nonatomic, strong) NSArray *additionalAllowedStyles;
+@property(nonatomic, strong) __GENERICS(NSArray, StyleDto*) *additionalAllowedStyles;
 /*! long */
 @property(nonatomic, strong) NSNumber *numReservations;
 /*! long */

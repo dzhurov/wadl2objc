@@ -60,7 +60,10 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     static NSString *const kApiConstsFile = @"APIConsts.h";
     
     // Copy resources
-    NSArray *fileNames = @[kApiConstsFile, @"XSDBaseEntity.h", @"XSDBaseEntity.m", @"XSDTypes.h", @"XSDTypes.m", @"WADLRequestTask.h"];
+    NSArray *fileNames = @[kApiConstsFile, @"XSDBaseEntity.h", @"XSDBaseEntity.m",
+                           @"XSDTypes.h", @"XSDTypes.m",
+                           @"WADLRequestTask.h", @"Xcode7Macros.h",
+                           @"WADLServicesResource.h", @"WADLServicesResource.m"];
     
     for (NSString *fName in fileNames) {
         [self copyFileFromResourses:fName toPath:path];
@@ -215,6 +218,12 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         [methodsDeclaration appendString: oneMethodDeclaration];
     }
     [hContentOfFile replaceOccurrencesOfString:@"<methods_declaration>" withString:methodsDeclaration options:0 range:NSMakeRange(0, hContentOfFile.length)];
+
+    NSMutableString *importsString = [NSMutableString new];
+    for (NSString *objectClassString in serviceSection.allServicesClasses) {
+        [importsString appendFormat:@"#import \"%@.h\"\n", objectClassString];
+    }
+    [hContentOfFile replaceOccurrencesOfString:@"<import_xsd>" withString:importsString options:0 range:NSMakeRange(0, hContentOfFile.length)];
     
     NSError *error = nil;
     [hContentOfFile writeToFile:fullPathHPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -249,7 +258,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         if ( queryParametes.count ){
             [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *queryParmeters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)queryParametes.count];
             for (WADLServicePathParameter *parameter in queryParametes) {
-                [oneMethodImplementation appendFormat:@"\t[inputParameters setValue:%@ forKey:@\"%@\"];\n", parameter.name, parameter.name];
+                [oneMethodImplementation appendFormat:@"\t[queryParmeters setValue:%@ forKey:@\"%@\"];\n", parameter.name, parameter.name];
             }
         }
         else{
@@ -345,16 +354,22 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
                                                                              encoding:NSUTF8StringEncoding
                                                                                 error:nil];
     
+    NSMutableString *importServicesString = [NSMutableString new];
     NSMutableString *accessorsImplementations = [NSMutableString new];
     for (WADLServiceSection *rootSection in _wadlServiceSections) {
         NSString *propertyName = [rootSection.shortPathName lowercaseFirstCharacterString];
         NSString *propertyClass = rootSection.className;
+        [importServicesString appendFormat:@"#import \"%@.h\"\n", propertyClass];
+        
         // getter
         [accessorsImplementations appendFormat:@"- (%@ *)%@\n{\n\tif ( !_%@) _%@ = [%@ new];\n\treturn _%@;\n}\n\n", propertyClass, propertyName, propertyName, propertyName, propertyClass, propertyName];
         // Static accessor
         [accessorsImplementations appendFormat:@"+ (%@ *)%@ \n{\n\t return [[self sharedServerAPI] %@]; \n}\n\n", propertyClass, propertyName, propertyName];
     }
     
+    [mContentOfFile replaceOccurrencesOfString:@"<import_services>"
+                                    withString:importServicesString
+                                       options:0 range:NSMakeRange(0, mContentOfFile.length)];
     [mContentOfFile replaceOccurrencesOfString:@"<services_getters>"
                                     withString:accessorsImplementations
                                        options:0 range:NSMakeRange(0, mContentOfFile.length)];

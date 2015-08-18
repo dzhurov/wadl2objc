@@ -128,6 +128,7 @@
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7E1B156217CF5AE600C96204 /* XSDEnums_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_h; sourceTree = "<group>"; };
 		7E1B156317CF5AE600C96204 /* XSDEnums_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_m; sourceTree = "<group>"; };
+		7E4660DF1B83506A009888AC /* Xcode7Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode7Macros.h; sourceTree = "<group>"; };
 		7E513D4D1B78C83800A38135 /* WADLServiceTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLServiceTemplate.h; sourceTree = "<group>"; };
 		7E513D4E1B78C83800A38135 /* WADLServiceTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLServiceTemplate.m; sourceTree = "<group>"; };
 		7E5C9FBA1B7A156700BABE83 /* NSError+Terminate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Terminate.h"; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 				0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */,
 				7E5C9FBA1B7A156700BABE83 /* NSError+Terminate.h */,
 				7E5C9FBB1B7A156700BABE83 /* NSError+Terminate.m */,
+				7E4660DF1B83506A009888AC /* Xcode7Macros.h */,
 				0A2810A917C9F733001C7306 /* wadl2objc.1 */,
 				0A964DC017CB52C2003655C4 /* Model */,
 				0A2810D517C9F8C1001C7306 /* ThirdParty */,

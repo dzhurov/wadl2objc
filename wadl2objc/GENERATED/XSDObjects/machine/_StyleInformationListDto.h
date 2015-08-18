@@ -13,6 +13,6 @@
 @interface _StyleInformationListDto : XSDBaseEntity
 
 /*![StyleInformationDto]*/
-@property(nonatomic, strong) NSArray *styleInformationDtoList;
+@property(nonatomic, strong) __GENERICS(NSArray, StyleInformationDto*) *styleInformationDtoList;
 
 @end

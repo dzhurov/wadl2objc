@@ -13,7 +13,7 @@
 @interface _AddReservationsResponseDto : XSDBaseEntity
 
 /*![ReservationSummaryDto]*/
-@property(nonatomic, strong) NSArray *reservations;
+@property(nonatomic, strong) __GENERICS(NSArray, ReservationSummaryDto*) *reservations;
 /*! long */
 @property(nonatomic, strong) NSNumber *numReservations;
 /*! long */

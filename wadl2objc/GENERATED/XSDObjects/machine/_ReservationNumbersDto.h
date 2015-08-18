@@ -12,6 +12,6 @@
 @interface _ReservationNumbersDto : XSDBaseEntity
 
 /*![NSString]*/
-@property(nonatomic, strong) NSArray *reservationsNumbers;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *reservationsNumbers;
 
 @end
