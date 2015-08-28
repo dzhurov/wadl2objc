@@ -18,14 +18,15 @@ typedef NS_ENUM(NSInteger, WADLRequestMethod) {
 };
 
 @protocol WADLServerAPIInheritor <NSObject>
-- (WADLRequestTask)makeRequestWithMethod:(WADLRequestMethod)method
-                                resource:(WADLServicesResource*)resource
-                                 URLPath:(NSString *)urlPath
-                         inputParameters:(NSDictionary*)parameters
-                    HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
-                             outputClass:(Class)outputClass
-                               isInvoked:(BOOL)isInvoked
-                           responseBlock:(void (^)(id, NSError *))responseBlock;
+- (WADLRequestTask)makeRequest:(WADLRequestMethod)method
+                      resource:(WADLServicesResource*)resource
+                    forURLPath:(NSString *)urlPath
+               queryParameters:(NSDictionary*)queryParameters
+                    bodyObject:(NSDictionary*)parameters
+          HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
+                   outputClass:(Class)outputClass
+                     isInvoked:(BOOL)isInvoked
+                 responseBlock:(void (^)(id, NSError *))responseBlock;
 
 @end
 
@@ -55,16 +56,6 @@ typedef NS_ENUM(NSInteger, WADLRequestMethod) {
  * @retval "base" value in <resources> tag in .wadl file
  */
 - (NSURL *)baseURLForServicesResource:(WADLServicesResource*)resource;
-
-- (WADLRequestTask)makeRequest:(WADLRequestMethod)method
-                      resource:(WADLServicesResource*)resource
-                    forURLPath:(NSString *)urlPath
-               queryParameters:(NSDictionary*)queryParameters
-                    bodyObject:(NSDictionary*)parameters
-          HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
-                   outputClass:(Class)outputClass
-                     isInvoked:(BOOL)isInvoked
-                 responseBlock:(void (^)(id, NSError *))responseBlock;
 
 - (NSString *)methodNameForMethod:(WADLRequestMethod)method;
 

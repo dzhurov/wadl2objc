@@ -68,18 +68,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--xsd: ../../wadl/xsd0.xsd"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--wadl: ../../wadl/application.wadl"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--wadlURL: &apos;http://engagedevapp01:8080/tuxmobile-war-2.5/services/application.wadl&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--xsdURL: &apos;http://engagedevapp01:8080/tuxmobile-war-2.5/services/application.wadl/xsd0.xsd&apos;"
+            argument = "--wadl: ../../wadl/application.wadl"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -93,113 +93,6 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     }
 }
 
-- (void)writeServerInteractionManagerHeaderFileToPath:(NSString*)path
-{
-    NSMutableString * methodsDeclaration = [NSMutableString stringWithCapacity:1024 * 4];
-    for (WADLServiceSection *rootSection in _wadlServiceSections) {
-        [methodsDeclaration appendFormat:@"\n// %@\n\n", [rootSection shortPathName]];
-        NSArray *services = [rootSection allMethods];
-        for (WADLService *oneService in services) {
-            NSString *oneMethodDeclaration = [[oneService objcMethodName] stringByAppendingFormat:@";\n"];
-            [methodsDeclaration appendString: oneMethodDeclaration];
-        }
-    }
-    [self replaceGeneratedContentOfFile:path withString:methodsDeclaration];
-    NSError *error = nil;
-    NSString *contentOfFile = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-    if (error){
-        NSLog(@"ERROR: %@", error);
-        return;
-    }
-    NSRange lastImportRange = [contentOfFile rangeOfString:@"#import" options:NSBackwardsSearch];
-    NSRange endOfImports = [contentOfFile rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet] options:0 range:NSMakeRange(lastImportRange.location, contentOfFile.length - lastImportRange.location)];
-    NSRange allImportsRange = NSMakeRange(0, endOfImports.length + endOfImports.location);
-    NSMutableString *importsNeedToAppend = [NSMutableString stringWithCapacity:1024];
-    for (XSDObject *object in _xsdDocument.objects) {
-        NSString *importObjectString = [NSString stringWithFormat:@"#import \"%@.h\"", object.name];
-        if ( [contentOfFile rangeOfString:importObjectString options:0 range:allImportsRange].location == NSNotFound ){
-            [importsNeedToAppend appendFormat:@"%@\n", importObjectString];
-        }
-    }
-    contentOfFile = [contentOfFile stringByReplacingCharactersInRange:NSMakeRange(allImportsRange.location + allImportsRange.length, 0) withString:importsNeedToAppend];
-    [contentOfFile writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    if (error)
-        NSLog(@"ERROR: %@", error);
-}
-
-- (void)writeServerInteractionManagerMethodFileToPath:(NSString*)path
-{
-    NSMutableString *methodsImplementation = [NSMutableString stringWithCapacity:1024 * 16];
-    for (WADLServiceSection *rootSection in _wadlServiceSections) {
-        [methodsImplementation appendFormat:@"\n#pragma mark %@\n", [rootSection shortPathName]];
-        NSArray *services = [rootSection allMethods];
-        for (WADLService *oneService in services) {
-            NSMutableString *oneMethodImplementation =[[oneService objcMethodName] mutableCopy];
-            
-            // need use token
-            BOOL needToUseToken = YES;
-            NSArray *loginMethodPossibleNames =  @[@"authenticate", @"login"];
-            for (NSString *possibleLoginMethodName in loginMethodPossibleNames) {
-                NSRange range = [oneMethodImplementation rangeOfString:possibleLoginMethodName options:NSCaseInsensitiveSearch];
-                if ( range.location != NSNotFound ){
-                    needToUseToken = NO;
-                    break;
-                }
-            }
-           
-            // path parameters
-            NSString *pathConstName = [NSString stringWithFormat:@"kWADLService%@URLPath", [oneService.parentServiceSection pathName]];
-            [oneMethodImplementation appendFormat:@"\n{\n\tNSString *thePath = [NSString stringWithFormat: %@", pathConstName];
-            NSArray *pathParameters = oneService.allPathParameters;
-            for (WADLServicePathParameter *parameter in pathParameters) {
-                [oneMethodImplementation appendFormat:@", %@", parameter.name];
-            }
-            [oneMethodImplementation appendFormat:@"];\n"];
-            
-            // query/input parameters
-            NSArray *queryParametes = oneService.allQueryParameters;
-            if ( queryParametes.count ){
-                [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *inputParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)queryParametes.count];
-                for (WADLServicePathParameter *parameter in queryParametes) {
-                    [oneMethodImplementation appendFormat:@"\t[inputParameters setValue:%@ forKey:@\"%@\"];\n", parameter.name, parameter.name];
-                }
-            }
-            else if (oneService.requestObjectClass){
-                [oneMethodImplementation appendFormat:@"\tNSDictionary *inputParameters = [%@ dictionaryInfo];\n", [oneService.requestObjectClass lowercaseFirstCharacterString]];
-            }
-            else{
-                [oneMethodImplementation appendFormat:@"\tNSDictionary *inputParameters = nil;\n"];
-            }
-            
-            // head parameters
-            NSArray *headParametes = oneService.allHeadParameters;
-            if ( headParametes.count ){
-                [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)headParametes.count];
-                for (WADLServicePathParameter *parameter in headParametes) {
-                    NSString *fixedName = [[parameter.name lowercaseFirstCharacterString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
-                    [oneMethodImplementation appendFormat:@"\t[headParameters setValue:%@ forKey:@\"%@\"];\n", fixedName, parameter.name];
-                }
-            }
-            else {
-                [oneMethodImplementation appendFormat:@"\tNSDictionary *headParameters = nil;\n"];
-            }
-            
-            //requestMethod
-            NSString *outputClass = oneService.responseObjectClass;
-            if (outputClass){
-                outputClass = [NSString stringWithFormat:@"[%@ class]", outputClass];
-            }
-            else{
-                outputClass = @"Nil";
-            }
-            [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:thePath useToken:%@ inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
-            [methodsImplementation appendString:oneMethodImplementation];
-        }
-    }
-    [self replaceGeneratedContentOfFile:path withString:methodsImplementation];
-
-}
-
 - (void)writeServiceSection:(WADLServiceSection*)serviceSection toPath:(NSString *)path
 {
     NSString *className = serviceSection.className;
@@ -364,7 +257,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         [importServicesString appendFormat:@"#import \"%@.h\"\n", propertyClass];
         
         // getter
-        [accessorsImplementations appendFormat:@"- (%@ *)%@\n{\n\tif ( !_%@) _%@ = [%@ new];\n\treturn _%@;\n}\n\n", propertyClass, propertyName, propertyName, propertyName, propertyClass, propertyName];
+        [accessorsImplementations appendFormat:@"- (%@ *)%@\n{\n\tif ( !_%@) _%@ = [[%@ alloc] initWithWADLServerAPI:self.child];\n\treturn _%@;\n}\n\n", propertyClass, propertyName, propertyName, propertyName, propertyClass, propertyName];
         // Static accessor
         [accessorsImplementations appendFormat:@"+ (%@ *)%@ \n{\n\t return [[self sharedServerAPI] %@]; \n}\n\n", propertyClass, propertyName, propertyName];
     }
