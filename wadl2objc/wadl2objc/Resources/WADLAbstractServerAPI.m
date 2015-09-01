@@ -72,3 +72,53 @@
 }
 
 @end
+
+
+@implementation WADLMakeRequestInvocation
+
+- (instancetype)initWithTarget:(WADLAbstractServerAPI*)target
+                 requestMethod:(WADLRequestMethod)method
+                      resource:(WADLServicesResource*)resource
+                       urlPath:(NSString*)urlPath
+               queryParameters:(NSDictionary*)queryParameters
+                    bodyObject:(NSDictionary*)bodyObject
+          HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
+                   outputClass:(Class)outputClass
+                 responseBlock:(void (^)(id, NSError *))block
+{
+    self = [super init];
+    if (self){
+        static BOOL sIsInvoked = YES;
+        _requestMethod = method;
+        _resource = resource;
+        _urlPath = urlPath;
+        _queryParameters = queryParameters;
+        _bodyObject = bodyObject;
+        _HTTPHeaderParameters = HTTPHeaderParameters;
+        _outputClass = outputClass;
+        _responseBlock = block;
+        
+        SEL selector = @selector(makeRequest:resource:forURLPath:queryParameters:bodyObject:HTTPHeaderParameters:outputClass:isInvoked:responseBlock:);
+        NSMethodSignature * signature = [target.class instanceMethodSignatureForSelector:selector];
+        _invocation = [NSInvocation invocationWithMethodSignature:signature];
+        [_invocation setTarget:target];
+        [_invocation setSelector: selector];
+        [_invocation setArgument:(void *)(&_requestMethod) atIndex:2];
+        [_invocation setArgument:(void *)(&_resource) atIndex:3];
+        [_invocation setArgument:(void *)(&_urlPath) atIndex:4];
+        [_invocation setArgument:(void *)(&_queryParameters) atIndex:5];
+        [_invocation setArgument:(void *)(&_bodyObject) atIndex:6];
+        [_invocation setArgument:(void *)(&_HTTPHeaderParameters) atIndex:7];
+        [_invocation setArgument:(void *)(&_outputClass) atIndex:8];
+        [_invocation setArgument:(void *)(&sIsInvoked) atIndex:9];
+        [_invocation setArgument:(void *)(&_responseBlock) atIndex:10];
+    }
+    return self;
+}
+
+- (void)invoke
+{
+    [_invocation invoke];
+}
+
+@end

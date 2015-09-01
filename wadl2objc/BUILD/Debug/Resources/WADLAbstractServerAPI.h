@@ -70,12 +70,15 @@ typedef NS_ENUM(NSInteger, WADLRequestMethod) {
 
 @end
 
-@interface MakeRequestInvocation : NSObject
+@interface WADLMakeRequestInvocation : NSObject
 {
+@public
     __strong NSInvocation *_invocation;
-    
+    __strong WADLServicesResource* _resource;
     __strong NSString *_urlPath;
-    __strong id _parameters;
+    __strong NSDictionary* _queryParameters;
+    __strong NSDictionary* _bodyObject;
+    
     __strong id _HTTPHeaderParameters;
     __strong Class _outputClass;
     __strong void (^_responseBlock)(id, NSError *);
@@ -83,9 +86,13 @@ typedef NS_ENUM(NSInteger, WADLRequestMethod) {
 }
 - (instancetype)initWithTarget:(WADLAbstractServerAPI*)target
                  requestMethod:(WADLRequestMethod)method
+                      resource:(WADLServicesResource*)resource
                        urlPath:(NSString*)urlPath
-                    parameters:(id)parameters
+               queryParameters:(NSDictionary*)queryParameters
+                    bodyObject:(NSDictionary*)bodyObject
           HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
-                   outputClass:(Class)outputClass responseBlock:(void (^)(id, NSError *))block;
+                   outputClass:(Class)outputClass
+                 responseBlock:(void (^)(id, NSError *))block;
 
 @end
+

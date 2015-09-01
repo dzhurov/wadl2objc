@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"reservationNo", @"eventDate", @"fitByDate", @"expectedPickupDate", @"expectedReturnDate", @"bookingStore", @"pickupStore", @"returnStore", @"salesPerson", @"createDate", @"commitDate", @"messages", @"eventDateChangeAllowed"];
+        keys = @[@"reservationNo", @"eventDate", @"fitByDate", @"expectedPickupDate", @"expectedReturnDate", @"bookingStore", @"pickupStore", @"returnStore", @"salesPerson", @"createDate", @"commitDate", @"messages"];
     }
     return keys;
 }

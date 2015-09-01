@@ -12,34 +12,56 @@
 @interface _ReservationFeesAndPayments : XSDBaseEntity
 
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *changeOrderFeesCertificates;
+@property(nonatomic, strong) NSDecimalNumber *rentalAmount;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *changeOrderFeesReceivedPayment;
+@property(nonatomic, strong) NSDecimalNumber *damageAndHandlingFees;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *damageAndHandlingCertificates;
+@property(nonatomic, strong) NSDecimalNumber *lateFees;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *damageAndHandlingReceivedPayment;
+@property(nonatomic, strong) NSDecimalNumber *rushFees;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *lateFeesCertificates;
+@property(nonatomic, strong) NSDecimalNumber *changeOrderFees;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *lateFeesReceivedPayment;
+@property(nonatomic, strong) NSDecimalNumber *lostFees;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *receivedCollectionCertificates;
+@property(nonatomic, strong) NSDecimalNumber *markdowns;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *receivedCollectionPayment;
+@property(nonatomic, strong) NSDecimalNumber *discount;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *receivedRentalCertificates;
+@property(nonatomic, strong) NSDecimalNumber *estimatedTaxes;
 /*! xs:decimal */
 @property(nonatomic, strong) NSDecimalNumber *receivedRentalPayment;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *rushFeesCertificates;
+@property(nonatomic, strong) NSDecimalNumber *receivedRentalCertificates;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *damageAndHandlingReceivedPayment;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *damageAndHandlingCertificates;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *lateFeesReceivedPayment;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *lateFeesCertificates;
 /*! xs:decimal */
 @property(nonatomic, strong) NSDecimalNumber *rushFeesReceivedPayment;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *totalReceived;
+@property(nonatomic, strong) NSDecimalNumber *rushFeesCertificates;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *changeOrderFeesReceivedPayment;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *changeOrderFeesCertificates;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *receivedCollectionPayment;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *receivedCollectionCertificates;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *totalReceivedPayment;
 /*! xs:decimal */
 @property(nonatomic, strong) NSDecimalNumber *totalReceivedCertificates;
 /*! xs:decimal */
-@property(nonatomic, strong) NSDecimalNumber *totalReceivedPayment;
+@property(nonatomic, strong) NSDecimalNumber *totalReceived;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *totalRentalPrice;
+/*! xs:decimal */
+@property(nonatomic, strong) NSDecimalNumber *estimatedAmountDue;
 
 @end

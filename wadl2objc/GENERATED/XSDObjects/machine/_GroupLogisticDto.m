@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"groupId", @"createDate", @"eventDate", @"bookingStore", @"fitByDate", @"pickupDate", @"returnDate", @"salesPerson", @"messages", @"noPickupNotification"];
+        keys = @[@"groupId", @"createDate", @"eventDate", @"bookingStore", @"fitByDate", @"pickupDate", @"returnDate", @"salesPerson", @"noPickupNotification"];
     }
     return keys;
 }
@@ -29,7 +29,6 @@
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"messages"]) return @"MessageDto";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"reservationNo", @"firstName", @"lastName", @"role", @"rentalAmount", @"fees", @"discount", @"certificates", @"receivedAmount", @"estimationTax", @"estimationAmountDue", @"bookingStore", @"pickupStore", @"eventDate", @"pickupDate", @"returnDate", @"disallowMarkdownAndDiscountChanges", @"modifiers", @"markdowns", @"depositAmount", @"lineItemState", @"groupName", @"groupId", @"freeTux", @"messages", @"taxExemptionDto", @"garments", @"lineItemAmounts"];
+        keys = @[@"reservationNo", @"firstName", @"lastName", @"role", @"rentalAmount", @"fees", @"discount", @"certificates", @"receivedAmount", @"estimationTax", @"estimationAmountDue", @"bookingStore", @"pickupStore", @"eventDate", @"pickupDate", @"returnDate", @"disallowMarkdownAndDiscountChanges", @"modifiers", @"markdowns", @"depositAmount", @"lineItemState", @"groupName", @"groupId", @"freeTux", @"messages", @"taxExemptionDto", @"garments"];
     }
     return keys;
 }

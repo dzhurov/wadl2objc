@@ -108,7 +108,9 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     
     ///Declaraction
     NSMutableString * methodsDeclaration = [NSMutableString stringWithCapacity:1024 * 4];
-    for (WADLService *oneService in serviceSection.allMethods) {
+    
+    NSArray *sortedMethods = [serviceSection.allMethods sortedArrayUsingSelector:@selector(fullPath)];
+    for (WADLService *oneService in sortedMethods) {
         NSString *oneMethodDeclaration = [[oneService objcMethodName] stringByAppendingFormat:@";\n"];
         [methodsDeclaration appendString: oneMethodDeclaration];
     }
@@ -136,7 +138,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     // Implementation
     
     NSMutableString *methodsImplementation = [NSMutableString stringWithCapacity:1024 * 16];
-    for (WADLService *oneService in serviceSection.allMethods) {
+    for (WADLService *oneService in sortedMethods) {
         NSMutableString *oneMethodImplementation =[[oneService objcMethodName] mutableCopy];
         
         // path parameters
@@ -214,8 +216,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     NSMutableString *servicesClassesDeclaration = [NSMutableString new];
     NSMutableString *ivarsDeclaration = [NSMutableString new];
     NSMutableString *servicesProperties = [NSMutableString new];
-    
-    for (WADLServiceSection *rootSection in _wadlServiceSections) {
+    NSArray *sortedServiceSections = [_wadlServiceSections sortedArrayUsingSelector:@selector(className)];
+    for (WADLServiceSection *rootSection in sortedServiceSections) {
         [servicesClassesDeclaration appendFormat:@"@class %@;\n", rootSection.className];
         [ivarsDeclaration appendFormat:@"\t%@ *_%@;\n", rootSection.className, [rootSection.shortPathName lowercaseFirstCharacterString]];
         [servicesProperties appendFormat:@"@property (nonatomic, readonly) %@ *%@;\n+ (%@*) %@;\n\n",
@@ -251,7 +253,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     
     NSMutableString *importServicesString = [NSMutableString new];
     NSMutableString *accessorsImplementations = [NSMutableString new];
-    for (WADLServiceSection *rootSection in _wadlServiceSections) {
+
+    for (WADLServiceSection *rootSection in sortedServiceSections) {
         NSString *propertyName = [rootSection.shortPathName lowercaseFirstCharacterString];
         NSString *propertyClass = rootSection.className;
         [importServicesString appendFormat:@"#import \"%@.h\"\n", propertyClass];
@@ -277,11 +280,13 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 - (void)writeAPIConstToPath: (NSString*)path
 {
     NSMutableString *definesPaths = [NSMutableString string];
-    for (WADLServiceSection *section in _wadlServiceSections) {
+    NSArray *sortedServiceSections = [_wadlServiceSections sortedArrayUsingSelector:@selector(path)];
+    for (WADLServiceSection *section in sortedServiceSections) {
         NSString *pathName = [section pathName];
         [definesPaths appendFormat:@"\n// %@\n", pathName];
         NSDictionary * pathNamesToPaths = [section allPathNamesToPaths];
-        for (NSString *onePathName in [pathNamesToPaths allKeys]) {
+        NSArray *sortedPathNames = [[pathNamesToPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        for (NSString *onePathName in sortedPathNames) {
             [definesPaths appendFormat:@"#define kWADLService%@URLPath @\"%@\"\n", onePathName, pathNamesToPaths[onePathName]];
         }
     }

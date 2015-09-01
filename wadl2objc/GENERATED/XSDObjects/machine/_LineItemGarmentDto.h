@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "XSDBaseEntity.h"
 #import "ReservationStyleDto.h"
-#import "XSDEnums.h"
 
 @interface _LineItemGarmentDto : XSDBaseEntity
 
 @property(nonatomic, strong) ReservationStyleDto *styleDto;
-@property(nonatomic) GarmentLostStatus lostStatus;
+/*! BOOL */
+@property(nonatomic, strong) NSNumber *lost;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *hotItem;
 @property(nonatomic, strong) NSString *serialNo;

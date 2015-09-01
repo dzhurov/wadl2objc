@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "XSDBaseEntity.h"
-#import "MessageDto.h"
 
 @interface _GroupLogisticDto : XSDBaseEntity
 
@@ -21,8 +20,6 @@
 @property(nonatomic, strong) XSDDate *pickupDate;
 @property(nonatomic, strong) XSDDate *returnDate;
 @property(nonatomic, strong) NSString *salesPerson;
-/*![MessageDto]*/
-@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *noPickupNotification;
 

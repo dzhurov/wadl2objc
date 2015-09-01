@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"transactionId", @"submitDate", @"authorizedTenders", @"customer", @"lineItems", @"taxExemption", @"transactionType", @"uuid", @"messages"];
+        keys = @[@"transactionId", @"submitDate", @"authorizedTenders", @"customer", @"lineItems", @"taxExemption", @"transactionType", @"uuid"];
     }
     return keys;
 }
@@ -32,7 +32,6 @@
 {
 	if ([fieldName isEqualToString:@"authorizedTenders"]) return @"TenderDto";
 	if ([fieldName isEqualToString:@"lineItems"]) return @"LineItemDto";
-	if ([fieldName isEqualToString:@"messages"]) return @"MessageDto";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

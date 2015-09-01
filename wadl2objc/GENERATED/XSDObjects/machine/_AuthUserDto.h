@@ -10,7 +10,6 @@
 #import "XSDBaseEntity.h"
 #import "AuthStoreStateDto.h"
 #import "AuthManagerPermissionDto.h"
-#import "MessageDto.h"
 #import "XSDEnums.h"
 
 @interface _AuthUserDto : XSDBaseEntity
@@ -25,16 +24,10 @@
 @property(nonatomic) Company company;
 @property(nonatomic, strong) AuthStoreStateDto *authStoreStateDto;
 /*![UserRole]*/
-@property(nonatomic, strong) __GENERICS(NSArray, UserRole*) *roles;
+@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *roles;
 /*![UserRole]*/
-@property(nonatomic, strong) __GENERICS(NSArray, UserRole*) *additionalRoles;
+@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *additionalRoles;
 /*![AuthManagerPermissionDto]*/
 @property(nonatomic, strong) __GENERICS(NSArray, AuthManagerPermissionDto*) *overridingManagerPermissions;
-@property(nonatomic, strong) NSString *deviceUuid;
-/*![MessageDto]*/
-@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
-/*! BOOL */
-@property(nonatomic, strong) NSNumber *firstLoginOnFreshInstall;
-@property(nonatomic) ClientType clientType;
 
 @end

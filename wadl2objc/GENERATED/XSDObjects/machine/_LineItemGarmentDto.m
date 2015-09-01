@@ -16,14 +16,13 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"styleDto", @"lostStatus", @"hotItem", @"serialNo", @"rentalPrice", @"retailPrice", @"amountToBeCollected"];
+        keys = @[@"styleDto", @"lost", @"hotItem", @"serialNo", @"rentalPrice", @"retailPrice", @"amountToBeCollected"];
     }
     return keys;
 }
 
 + (NSString *)enumNameForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"lostStatus"]) return @"GarmentLostStatus";
 
     return [super enumNameForMappedField:fieldName];
 }

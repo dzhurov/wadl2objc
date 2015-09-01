@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"changeOrderFeesCertificates", @"changeOrderFeesReceivedPayment", @"damageAndHandlingCertificates", @"damageAndHandlingReceivedPayment", @"lateFeesCertificates", @"lateFeesReceivedPayment", @"receivedCollectionCertificates", @"receivedCollectionPayment", @"receivedRentalCertificates", @"receivedRentalPayment", @"rushFeesCertificates", @"rushFeesReceivedPayment", @"totalReceived", @"totalReceivedCertificates", @"totalReceivedPayment"];
+        keys = @[@"rentalAmount", @"damageAndHandlingFees", @"lateFees", @"rushFees", @"changeOrderFees", @"lostFees", @"markdowns", @"discount", @"estimatedTaxes", @"receivedRentalPayment", @"receivedRentalCertificates", @"damageAndHandlingReceivedPayment", @"damageAndHandlingCertificates", @"lateFeesReceivedPayment", @"lateFeesCertificates", @"rushFeesReceivedPayment", @"rushFeesCertificates", @"changeOrderFeesReceivedPayment", @"changeOrderFeesCertificates", @"receivedCollectionPayment", @"receivedCollectionCertificates", @"totalReceivedPayment", @"totalReceivedCertificates", @"totalReceived", @"totalRentalPrice", @"estimatedAmountDue"];
     }
     return keys;
 }

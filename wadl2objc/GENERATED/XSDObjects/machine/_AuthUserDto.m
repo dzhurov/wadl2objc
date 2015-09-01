@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"userId", @"userPassword", @"token", @"tokenExpire", @"clientTime", @"deviceId", @"company", @"authStoreStateDto", @"roles", @"additionalRoles", @"overridingManagerPermissions", @"deviceUuid", @"messages", @"firstLoginOnFreshInstall", @"clientType"];
+        keys = @[@"userId", @"userPassword", @"token", @"tokenExpire", @"clientTime", @"deviceId", @"company", @"authStoreStateDto", @"roles", @"additionalRoles", @"overridingManagerPermissions"];
     }
     return keys;
 }
@@ -26,7 +26,6 @@
 	if ([fieldName isEqualToString:@"company"]) return @"Company";
 	if ([fieldName isEqualToString:@"roles"]) return @"UserRole";
 	if ([fieldName isEqualToString:@"additionalRoles"]) return @"UserRole";
-	if ([fieldName isEqualToString:@"clientType"]) return @"ClientType";
 
     return [super enumNameForMappedField:fieldName];
 }
@@ -36,7 +35,6 @@
 	if ([fieldName isEqualToString:@"roles"]) return @"UserRole";
 	if ([fieldName isEqualToString:@"additionalRoles"]) return @"UserRole";
 	if ([fieldName isEqualToString:@"overridingManagerPermissions"]) return @"AuthManagerPermissionDto";
-	if ([fieldName isEqualToString:@"messages"]) return @"MessageDto";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }
