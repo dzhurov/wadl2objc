@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"reservationNo", @"payments", @"totalAmount"];
+        keys = [@[@"reservationNo", @"payments", @"totalAmount"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"tenderType", @"encryptedBlob", @"entryMethod", @"pinRequired", @"signatureRequired", @"cvvRequired", @"cidRequired", @"cardHolderNameRequired", @"avsRequired", @"maskedAccount", @"expirationDate", @"amount", @"creditCardType", @"cardHolderName", @"sequenceNumber", @"authResponseDto", @"giftCardBalance", @"addressVerification", @"signatureDto", @"originalPaymentKey", @"managerRequired"];
+        keys = [@[@"tenderType", @"encryptedBlob", @"entryMethod", @"pinRequired", @"signatureRequired", @"cvvRequired", @"cidRequired", @"cardHolderNameRequired", @"avsRequired", @"maskedAccount", @"expirationDate", @"amount", @"creditCardType", @"cardHolderName", @"sequenceNumber", @"authResponseDto", @"giftCardBalance", @"addressVerification", @"signatureDto", @"originalPaymentKey", @"managerRequired"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

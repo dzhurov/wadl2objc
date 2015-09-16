@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"maxRefunds"];
+        keys = [@[@"maxRefunds"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

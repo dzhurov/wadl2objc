@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"bridalShowCallList", @"totalResults"];
+        keys = [@[@"bridalShowCallList", @"totalResults"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

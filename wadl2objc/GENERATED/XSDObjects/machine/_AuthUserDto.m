@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"userId", @"userPassword", @"token", @"tokenExpire", @"clientTime", @"deviceId", @"company", @"authStoreStateDto", @"roles", @"additionalRoles", @"overridingManagerPermissions"];
+        keys = [@[@"userId", @"userPassword", @"token", @"tokenExpire", @"clientTime", @"deviceId", @"company", @"authStoreStateDto", @"roles", @"additionalRoles", @"overridingManagerPermissions"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

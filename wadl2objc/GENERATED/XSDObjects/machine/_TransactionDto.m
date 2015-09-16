@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"transactionId", @"submitDate", @"authorizedTenders", @"customer", @"lineItems", @"taxExemption", @"transactionType", @"uuid"];
+        keys = [@[@"transactionId", @"submitDate", @"authorizedTenders", @"customer", @"lineItems", @"taxExemption", @"transactionType", @"uuid"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

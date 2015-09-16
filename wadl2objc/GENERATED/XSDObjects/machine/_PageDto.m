@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"firstResultNumber", @"maxResultNumber"];
+        keys = [@[@"firstResultNumber", @"maxResultNumber"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

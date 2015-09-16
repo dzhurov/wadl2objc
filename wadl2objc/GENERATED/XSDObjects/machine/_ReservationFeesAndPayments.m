@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"rentalAmount", @"damageAndHandlingFees", @"lateFees", @"rushFees", @"changeOrderFees", @"lostFees", @"markdowns", @"discount", @"estimatedTaxes", @"receivedRentalPayment", @"receivedRentalCertificates", @"damageAndHandlingReceivedPayment", @"damageAndHandlingCertificates", @"lateFeesReceivedPayment", @"lateFeesCertificates", @"rushFeesReceivedPayment", @"rushFeesCertificates", @"changeOrderFeesReceivedPayment", @"changeOrderFeesCertificates", @"receivedCollectionPayment", @"receivedCollectionCertificates", @"totalReceivedPayment", @"totalReceivedCertificates", @"totalReceived", @"totalRentalPrice", @"estimatedAmountDue"];
+        keys = [@[@"rentalAmount", @"damageAndHandlingFees", @"lateFees", @"rushFees", @"changeOrderFees", @"lostFees", @"markdowns", @"discount", @"estimatedTaxes", @"receivedRentalPayment", @"receivedRentalCertificates", @"damageAndHandlingReceivedPayment", @"damageAndHandlingCertificates", @"lateFeesReceivedPayment", @"lateFeesCertificates", @"rushFeesReceivedPayment", @"rushFeesCertificates", @"changeOrderFeesReceivedPayment", @"changeOrderFeesCertificates", @"receivedCollectionPayment", @"receivedCollectionCertificates", @"totalReceivedPayment", @"totalReceivedCertificates", @"totalReceived", @"totalRentalPrice", @"estimatedAmountDue"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

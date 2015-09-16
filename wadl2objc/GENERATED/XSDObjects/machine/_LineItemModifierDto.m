@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"modifierCertificateValue", @"modifierOriginalValue", @"modifierReceivedValue", @"modifierStatus", @"modifierType", @"modifierValue"];
+        keys = [@[@"modifierCertificateValue", @"modifierOriginalValue", @"modifierReceivedValue", @"modifierStatus", @"modifierType", @"modifierValue"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

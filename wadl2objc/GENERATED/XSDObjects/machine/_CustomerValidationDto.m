@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"errors"];
+        keys = [@[@"errors"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

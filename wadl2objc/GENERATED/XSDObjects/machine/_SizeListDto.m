@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"suggestedSizes", @"allowedSizes"];
+        keys = [@[@"suggestedSizes", @"allowedSizes"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"errorMessage", @"validDiscount", @"validForCommit"];
+        keys = [@[@"errorMessage", @"validDiscount", @"validForCommit"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

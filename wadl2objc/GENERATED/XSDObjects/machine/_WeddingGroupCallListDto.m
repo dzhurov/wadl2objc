@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"weddingGroupCallList", @"dateRangeStart", @"dateRangeEnd", @"eventDate"];
+        keys = [@[@"weddingGroupCallList", @"dateRangeStart", @"dateRangeEnd", @"eventDate"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }

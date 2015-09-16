@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = @[@"reservationNo", @"chest", @"overarm", @"coatSleeve", @"waist", @"hip", @"outSeam", @"neck", @"shirtSleeve", @"height", @"weight", @"shoes", @"measuredBy"];
+        keys = [@[@"reservationNo", @"chest", @"overarm", @"coatSleeve", @"waist", @"hip", @"outSeam", @"neck", @"shirtSleeve", @"height", @"weight", @"shoes", @"measuredBy"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }
