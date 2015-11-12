@@ -30,7 +30,6 @@
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"requiredItems"]) return @"StyleItemType";
 	if ([fieldName isEqualToString:@"messages"]) return @"MessageDto";
 
     return [super classNameOfMembersForMappedField:fieldName];

@@ -30,7 +30,6 @@
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"permissions"]) return @"UserPermissions";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

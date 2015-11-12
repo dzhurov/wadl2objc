@@ -31,7 +31,6 @@
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"doNotContactModes"]) return @"PreferredContactMode";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

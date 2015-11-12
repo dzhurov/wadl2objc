@@ -33,7 +33,6 @@
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"availableTenderTypes"]) return @"TenderType";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

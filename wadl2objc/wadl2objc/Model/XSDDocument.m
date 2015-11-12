@@ -305,7 +305,7 @@
         [enumsConditionsList appendFormat:kCheckForTextFieldFormat, oneSimpleTypeProperty.name, oneSimpleTypeProperty.type];
     }
         // Arrays
-    predicate = [NSPredicate predicateWithFormat:@"isCollection == YES"];
+    predicate = [NSPredicate predicateWithFormat:@"isCollection == YES AND simpleType == NIL"];
     NSArray *collectionTypes = [object.properties filteredArrayUsingPredicate:predicate];
     NSMutableString *collectionsConditionsList = [NSMutableString string];
     for (XSDObjectProperty *property in collectionTypes) {

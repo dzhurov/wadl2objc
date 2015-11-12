@@ -31,8 +31,6 @@
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
-	if ([fieldName isEqualToString:@"roles"]) return @"UserRole";
-	if ([fieldName isEqualToString:@"additionalRoles"]) return @"UserRole";
 	if ([fieldName isEqualToString:@"overridingManagerPermissions"]) return @"AuthManagerPermissionDto";
 
     return [super classNameOfMembersForMappedField:fieldName];
