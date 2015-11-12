@@ -422,7 +422,7 @@
         return;
     }
     NSString *enumsDeclarationString = [enumsDeclaration componentsJoinedByString:[NSString stringWithFormat:@"\n"]];
-    NSString *hContentString = [NSString stringWithFormat:hTemplateFormat, _currentFormattedDate, _version, enumsDeclarationString];
+    NSString *hContentString = [NSString stringWithFormat:hTemplateFormat, _version, enumsDeclarationString];
     [hContentString writeToFile:hFilePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
         NSLog(@"ERROR: %@", error);
@@ -441,7 +441,7 @@
         NSLog(@"ERROR: %@", error);
         return;
     }
-    NSString *mContentString = [NSString stringWithFormat:mTemplateFormat, _currentFormattedDate, _version, enumsDictProperties, enumsDictionaries];
+    NSString *mContentString = [NSString stringWithFormat:mTemplateFormat, _version, enumsDictProperties, enumsDictionaries];
     [mContentString writeToFile:mFilePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
         NSLog(@"ERROR: %@", error);

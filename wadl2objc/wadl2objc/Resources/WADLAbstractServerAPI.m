@@ -16,7 +16,7 @@
     static dispatch_once_t once;
     static WADLAbstractServerAPI *sharedInstance;
     dispatch_once(&once, ^{
-        NSAssert(self conformsToProtocol:@protocol(WADLServerAPIInheritor)],
+        NSAssert([self conformsToProtocol:@protocol(WADLServerAPIInheritor)],
                  @"WADLAbstractServerAPI is an abstract class. It must be inherited for use. Inheritor must conform to protocol WADLAbstractServerAPI");
         sharedInstance = [[self alloc] init];
     });
