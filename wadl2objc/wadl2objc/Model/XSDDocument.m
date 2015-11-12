@@ -238,7 +238,7 @@
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = nil;
         if (property.isCollection){
-            typeString = property.type?[NSString stringWithFormat:@"__GENERICS(NSArray, %@*)", (property.simpleType ? @"NSNumber" : property.type)]:@"NSArray";
+            typeString = property.type?[NSString stringWithFormat:@"__GENERICS(NSArray, %@*)", (property.simpleType ? property.simpleType.baseType : property.type)]:@"NSArray";
             property.dockComment = [NSString stringWithFormat:@"/*![%@]*/", property.type];
         }
         else if (property.simpleType){
