@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "XSDBaseEntity.h"
 #import "ReservationPosGarmentsDto.h"
+#import "TransactionDto.h"
 
 @interface _DropoffLineItemsRequestDto : XSDBaseEntity
 
 /*![ReservationPosGarmentsDto]*/
 @property(nonatomic, strong) __GENERICS(NSArray, ReservationPosGarmentsDto*) *garmentsDtoList;
+@property(nonatomic, strong) TransactionDto *transactionDto;
 
 @end

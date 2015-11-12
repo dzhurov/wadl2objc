@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = [@[@"tenderType", @"encryptedBlob", @"entryMethod", @"pinRequired", @"signatureRequired", @"cvvRequired", @"cidRequired", @"cardHolderNameRequired", @"avsRequired", @"maskedAccount", @"expirationDate", @"amount", @"creditCardType", @"cardHolderName", @"sequenceNumber", @"authResponseDto", @"giftCardBalance", @"addressVerification", @"signatureDto", @"originalPaymentKey", @"managerRequired"] arrayByAddingObjectsFromArray:[super mappedKeys]];
+        keys = [@[@"tenderType", @"availableTenderTypes", @"encryptedBlob", @"entryMethod", @"encryptedPin", @"pinSerialNumber", @"pinRequired", @"signatureRequired", @"cvvRequired", @"cidRequired", @"cardHolderNameRequired", @"avsRequired", @"maskedAccount", @"expirationDate", @"amount", @"creditCardType", @"cardHolderName", @"sequenceNumber", @"authResponseDto", @"giftCardBalance", @"addressVerification", @"signatureDto", @"originalPaymentKey", @"managerRequired", @"tenderTypeChosen"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }
@@ -24,6 +24,7 @@
 + (NSString *)enumNameForMappedField:(NSString*)fieldName
 {
 	if ([fieldName isEqualToString:@"tenderType"]) return @"TenderType";
+	if ([fieldName isEqualToString:@"availableTenderTypes"]) return @"TenderType";
 	if ([fieldName isEqualToString:@"entryMethod"]) return @"EntryMethod";
 	if ([fieldName isEqualToString:@"creditCardType"]) return @"CreditCardType";
 
@@ -32,6 +33,7 @@
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
+	if ([fieldName isEqualToString:@"availableTenderTypes"]) return @"TenderType";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

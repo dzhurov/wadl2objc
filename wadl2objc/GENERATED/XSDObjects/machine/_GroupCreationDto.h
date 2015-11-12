@@ -34,5 +34,6 @@
 @property(nonatomic, strong) NSString *bookingStore;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *noPickupNotification;
+@property(nonatomic, strong) NSString *appointmentId;
 
 @end

@@ -16,6 +16,7 @@
 #import "MessageDto.h"
 #import "TaxExemptionDto.h"
 #import "LineItemGarmentDto.h"
+#import "LineItemAmountsDto.h"
 #import "XSDEnums.h"
 
 @interface _LineItemDto : XSDBaseEntity
@@ -62,5 +63,8 @@
 @property(nonatomic, strong) TaxExemptionDto *taxExemptionDto;
 /*![LineItemGarmentDto]*/
 @property(nonatomic, strong) __GENERICS(NSArray, LineItemGarmentDto*) *garments;
+@property(nonatomic, strong) LineItemAmountsDto *lineItemAmounts;
+/*! BOOL */
+@property(nonatomic, strong) NSNumber *taxesCalculated;
 
 @end

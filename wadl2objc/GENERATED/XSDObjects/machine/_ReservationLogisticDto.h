@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XSDBaseEntity.h"
 #import "MessageDto.h"
+#import "XSDEnums.h"
 
 @interface _ReservationLogisticDto : XSDBaseEntity
 
@@ -25,5 +26,9 @@
 @property(nonatomic, strong) XSDDateTime *commitDate;
 /*![MessageDto]*/
 @property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *messages;
+/*! BOOL */
+@property(nonatomic, strong) NSNumber *eventDateChangeAllowed;
+@property(nonatomic) BookingSource createSource;
+@property(nonatomic) BookingSource commitSource;
 
 @end

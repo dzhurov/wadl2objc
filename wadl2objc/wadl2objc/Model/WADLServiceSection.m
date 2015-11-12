@@ -126,7 +126,8 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
 - (void)processDuplicatedMethodNames:(__GENERICS(NSMutableArray, WADLService*)*)allMethods
 {
     __GENERICS(NSMutableArray, __GENERICS(NSMutableArray, WADLService*)*) *duplicatedNamesServices = [NSMutableArray new];
-    NSArray *sortedServices = [allMethods sortedArrayUsingSelector:@selector(overridenName)];
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"overridenName" ascending:YES];
+    NSArray *sortedServices = [allMethods sortedArrayUsingDescriptors:@[descriptor]];
     
     WADLService *previousService = nil;
     BOOL subarrayAdded = NO;

@@ -46,5 +46,6 @@
 @property(nonatomic, strong) XSDDateTime *freeSuitEmailSent;
 @property(nonatomic, strong) NSString *originalReservationNo;
 @property(nonatomic) GroupType groupType;
+@property(nonatomic) BookingSource createSource;
 
 @end

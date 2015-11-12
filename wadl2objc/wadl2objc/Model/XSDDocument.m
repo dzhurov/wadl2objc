@@ -383,7 +383,8 @@
     NSMutableArray *enumsDeclaration = [NSMutableArray arrayWithCapacity:simpleTypes.count];
     NSMutableString *enumsDictionaries = [NSMutableString string];
     NSMutableString *enumsDictProperties = [NSMutableString string];
-    NSArray *sortedSimpleTypes = [simpleTypes sortedArrayUsingSelector:@selector(name)];
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortedSimpleTypes = [simpleTypes sortedArrayUsingDescriptors:@[descriptor]];
     for (XSDSimpleType *oneSimpleType in sortedSimpleTypes) {
 
         NSString *firstEnum = [oneSimpleType.name stringByAppendingString:oneSimpleType.options[0]];

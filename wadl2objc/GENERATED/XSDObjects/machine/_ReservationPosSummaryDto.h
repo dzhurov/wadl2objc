@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XSDBaseEntity.h"
+#import "MessageDto.h"
 #import "XSDEnums.h"
 
 @interface _ReservationPosSummaryDto : XSDBaseEntity
@@ -18,10 +19,13 @@
 @property(nonatomic, strong) NSString *firstName;
 @property(nonatomic, strong) NSString *lastName;
 @property(nonatomic, strong) NSString *customerPhone;
+@property(nonatomic, strong) NSString *email;
 @property(nonatomic) ReservationPickupStatus pickupStatus;
 @property(nonatomic) ReservationStatus status;
 @property(nonatomic) ReservationPosStatus posStatus;
 @property(nonatomic) ReservationDropOffStatus dropOffStatus;
+/*![MessageDto]*/
+@property(nonatomic, strong) __GENERICS(NSArray, MessageDto*) *dropoffMessages;
 /*! int */
 @property(nonatomic, strong) NSNumber *amountDueCents;
 /*! int */
@@ -34,5 +38,7 @@
 @property(nonatomic, strong) XSDDate *pickupActualDate;
 @property(nonatomic, strong) NSString *returnStore;
 @property(nonatomic, strong) XSDDate *returnExpectedDate;
+/*! BOOL */
+@property(nonatomic, strong) NSNumber *freeTux;
 
 @end

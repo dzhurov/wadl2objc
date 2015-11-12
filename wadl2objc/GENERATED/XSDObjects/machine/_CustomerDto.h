@@ -26,6 +26,6 @@
 @property(nonatomic, strong) XSDDate *birthday;
 @property(nonatomic, strong) NSString *usageCode;
 /*![PreferredContactMode]*/
-@property(nonatomic, strong) __GENERICS(NSArray, NSNumber*) *doNotContactModes;
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *doNotContactModes;
 
 @end

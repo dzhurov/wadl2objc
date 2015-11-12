@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = [@[@"storeNumber", @"registerNumber", @"lastTxNumber", @"storeProcessDate", @"lastTxDateTime", @"deviceId", @"open", @"company"] arrayByAddingObjectsFromArray:[super mappedKeys]];
+        keys = [@[@"storeNumber", @"registerNumber", @"lastTxNumber", @"storeProcessDate", @"lastTxDateTime", @"deviceId", @"open", @"company", @"brand"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }
@@ -24,6 +24,7 @@
 + (NSString *)enumNameForMappedField:(NSString*)fieldName
 {
 	if ([fieldName isEqualToString:@"company"]) return @"Company";
+	if ([fieldName isEqualToString:@"brand"]) return @"Brand";
 
     return [super enumNameForMappedField:fieldName];
 }

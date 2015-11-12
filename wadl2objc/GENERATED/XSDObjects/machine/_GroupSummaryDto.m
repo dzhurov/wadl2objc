@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = [@[@"groupId", @"eventDate", @"groupStatus", @"groupType", @"eventType", @"groupName", @"schoolNo", @"representative1", @"representative2", @"groupComment", @"bookingDate", @"repGender", @"promRep", @"primaryContact"] arrayByAddingObjectsFromArray:[super mappedKeys]];
+        keys = [@[@"groupId", @"eventDate", @"groupStatus", @"groupType", @"eventType", @"groupName", @"schoolNo", @"representative1", @"representative2", @"groupComment", @"bookingDate", @"repGender", @"promRep", @"primaryContact", @"creationApp", @"bookingSource"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }
@@ -29,6 +29,7 @@
 	if ([fieldName isEqualToString:@"repGender"]) return @"GenderType";
 	if ([fieldName isEqualToString:@"promRep"]) return @"PromRep";
 	if ([fieldName isEqualToString:@"primaryContact"]) return @"GroupPrimaryContactType";
+	if ([fieldName isEqualToString:@"bookingSource"]) return @"BookingSource";
 
     return [super enumNameForMappedField:fieldName];
 }

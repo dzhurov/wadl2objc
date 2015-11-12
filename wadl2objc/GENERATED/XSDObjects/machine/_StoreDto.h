@@ -22,11 +22,11 @@
 @property(nonatomic) UsaStateCode state;
 @property(nonatomic, strong) NSString *district;
 @property(nonatomic, strong) NSString *region;
+@property(nonatomic, strong) NSString *company;
+@property(nonatomic, strong) NSString *brand;
 @property(nonatomic) StoreStatus status;
 @property(nonatomic, strong) NSString *storeType;
 @property(nonatomic, strong) NSString *hub;
-@property(nonatomic, strong) NSString *company;
-@property(nonatomic, strong) NSString *brand;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *pickupAllowed;
 /*! BOOL */

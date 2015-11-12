@@ -109,7 +109,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     ///Declaraction
     NSMutableString * methodsDeclaration = [NSMutableString stringWithCapacity:1024 * 4];
     
-    NSArray *sortedMethods = [serviceSection.allMethods sortedArrayUsingSelector:@selector(fullPath)];
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"fullPath" ascending:YES];
+    NSArray *sortedMethods = [serviceSection.allMethods sortedArrayUsingDescriptors:@[descriptor]];
     for (WADLService *oneService in sortedMethods) {
         NSString *oneMethodDeclaration = [[oneService objcMethodName] stringByAppendingFormat:@";\n"];
         [methodsDeclaration appendString: oneMethodDeclaration];
@@ -216,7 +217,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     NSMutableString *servicesClassesDeclaration = [NSMutableString new];
     NSMutableString *ivarsDeclaration = [NSMutableString new];
     NSMutableString *servicesProperties = [NSMutableString new];
-    NSArray *sortedServiceSections = [_wadlServiceSections sortedArrayUsingSelector:@selector(className)];
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"className" ascending:YES];
+    NSArray *sortedServiceSections = [_wadlServiceSections sortedArrayUsingDescriptors:@[descriptor]];
     for (WADLServiceSection *rootSection in sortedServiceSections) {
         [servicesClassesDeclaration appendFormat:@"@class %@;\n", rootSection.className];
         [ivarsDeclaration appendFormat:@"\t%@ *_%@;\n", rootSection.className, [rootSection.shortPathName lowercaseFirstCharacterString]];
@@ -280,7 +282,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 - (void)writeAPIConstToPath: (NSString*)path
 {
     NSMutableString *definesPaths = [NSMutableString string];
-    NSArray *sortedServiceSections = [_wadlServiceSections sortedArrayUsingSelector:@selector(path)];
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"path" ascending:YES];
+    NSArray *sortedServiceSections = [_wadlServiceSections sortedArrayUsingDescriptors:@[descriptor]];
     for (WADLServiceSection *section in sortedServiceSections) {
         NSString *pathName = [section pathName];
         [definesPaths appendFormat:@"\n// %@\n", pathName];

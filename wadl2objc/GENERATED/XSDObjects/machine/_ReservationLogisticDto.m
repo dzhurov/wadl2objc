@@ -16,13 +16,15 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = [@[@"reservationNo", @"eventDate", @"fitByDate", @"expectedPickupDate", @"expectedReturnDate", @"bookingStore", @"pickupStore", @"returnStore", @"salesPerson", @"createDate", @"commitDate", @"messages"] arrayByAddingObjectsFromArray:[super mappedKeys]];
+        keys = [@[@"reservationNo", @"eventDate", @"fitByDate", @"expectedPickupDate", @"expectedReturnDate", @"bookingStore", @"pickupStore", @"returnStore", @"salesPerson", @"createDate", @"commitDate", @"messages", @"eventDateChangeAllowed", @"createSource", @"commitSource"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }
 
 + (NSString *)enumNameForMappedField:(NSString*)fieldName
 {
+	if ([fieldName isEqualToString:@"createSource"]) return @"BookingSource";
+	if ([fieldName isEqualToString:@"commitSource"]) return @"BookingSource";
 
     return [super enumNameForMappedField:fieldName];
 }

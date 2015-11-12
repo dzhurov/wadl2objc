@@ -16,7 +16,7 @@
 {
     static NSArray *keys = nil;
     if ( !keys ){
-        keys = [@[@"groupId", @"createDate", @"eventDate", @"bookingStore", @"fitByDate", @"pickupDate", @"returnDate", @"salesPerson", @"noPickupNotification"] arrayByAddingObjectsFromArray:[super mappedKeys]];
+        keys = [@[@"groupId", @"createDate", @"eventDate", @"bookingStore", @"fitByDate", @"pickupDate", @"returnDate", @"salesPerson", @"messages", @"noPickupNotification"] arrayByAddingObjectsFromArray:[super mappedKeys]];
     }
     return keys;
 }
@@ -29,6 +29,7 @@
 
 + (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
 {
+	if ([fieldName isEqualToString:@"messages"]) return @"MessageDto";
 
     return [super classNameOfMembersForMappedField:fieldName];
 }

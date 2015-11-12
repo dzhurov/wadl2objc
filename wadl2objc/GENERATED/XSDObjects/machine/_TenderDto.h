@@ -15,9 +15,13 @@
 @interface _TenderDto : XSDBaseEntity
 
 @property(nonatomic) TenderType tenderType;
+/*![TenderType]*/
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *availableTenderTypes;
 /*! Base64 string */
 @property(nonatomic, strong) NSString/*base64*/ *encryptedBlob;
 @property(nonatomic) EntryMethod entryMethod;
+@property(nonatomic, strong) NSString *encryptedPin;
+@property(nonatomic, strong) NSString *pinSerialNumber;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *pinRequired;
 /*! BOOL */
@@ -46,5 +50,7 @@
 @property(nonatomic, strong) NSString *originalPaymentKey;
 /*! BOOL */
 @property(nonatomic, strong) NSNumber *managerRequired;
+/*! BOOL */
+@property(nonatomic, strong) NSNumber *tenderTypeChosen;
 
 @end

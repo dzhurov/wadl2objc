@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "XSDBaseEntity.h"
-#import "DateTime.h"
 #import "GroupRepresentativeDto.h"
 #import "GroupRepresentativeDto.h"
 #import "XSDEnums.h"
@@ -19,7 +18,7 @@
 @property(nonatomic) ReservationStatus reservationStatus;
 @property(nonatomic, strong) NSString *groupName;
 @property(nonatomic, strong) XSDDate *eventDate;
-@property(nonatomic, strong) DateTime *createDate;
+@property(nonatomic, strong) XSDDateTime *createDate;
 @property(nonatomic) EventType eventType;
 @property(nonatomic, strong) NSString *bookingStore;
 /*! long */
