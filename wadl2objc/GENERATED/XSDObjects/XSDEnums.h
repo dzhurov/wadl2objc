@@ -75,17 +75,19 @@ typedef NS_ENUM(NSUInteger, AuthResponseType) {
 	AuthResponseTypeREFERRED,
 	AuthResponseTypePARTIAL,
 	AuthResponseTypeREVERSAL_FAILED,
+	AuthResponseTypeREVERSAL_PASSED,
 	AuthResponseTypeUNKNOWN,
  
 };
 static NSString *const kAuthResponseTypeEnumName = @"AuthResponseType";
-static const NSUInteger kAuthResponseTypeCount = 7;
+static const NSUInteger kAuthResponseTypeCount = 8;
 static NSString *const kAuthResponseTypeAPPROVEDString = @"APPROVED";
 static NSString *const kAuthResponseTypeDECLINEDString = @"DECLINED";
 static NSString *const kAuthResponseTypeDECLINED_REFERREDString = @"DECLINED_REFERRED";
 static NSString *const kAuthResponseTypeREFERREDString = @"REFERRED";
 static NSString *const kAuthResponseTypePARTIALString = @"PARTIAL";
 static NSString *const kAuthResponseTypeREVERSAL_FAILEDString = @"REVERSAL_FAILED";
+static NSString *const kAuthResponseTypeREVERSAL_PASSEDString = @"REVERSAL_PASSED";
 static NSString *const kAuthResponseTypeUNKNOWNString = @"UNKNOWN";
 
 typedef NS_ENUM(NSUInteger, BookingSource) { 
@@ -106,17 +108,27 @@ static NSString *const kBookingSourceUNKNOWNString = @"UNKNOWN";
 
 typedef NS_ENUM(NSUInteger, Brand) { 
 	BrandTMW = 1, 
-	BrandJAB,
+	BrandJABN,
+	BrandJABO,
+	BrandJABU,
+	BrandJABF,
 	BrandMWTUX,
 	BrandMWOUT,
+	BrandMCY,
+	BrandUNKNOWN,
  
 };
 static NSString *const kBrandEnumName = @"Brand";
-static const NSUInteger kBrandCount = 4;
+static const NSUInteger kBrandCount = 9;
 static NSString *const kBrandTMWString = @"TMW";
-static NSString *const kBrandJABString = @"JAB";
+static NSString *const kBrandJABNString = @"JABN";
+static NSString *const kBrandJABOString = @"JABO";
+static NSString *const kBrandJABUString = @"JABU";
+static NSString *const kBrandJABFString = @"JABF";
 static NSString *const kBrandMWTUXString = @"MWTUX";
 static NSString *const kBrandMWOUTString = @"MWOUT";
+static NSString *const kBrandMCYString = @"MCY";
+static NSString *const kBrandUNKNOWNString = @"UNKNOWN";
 
 typedef NS_ENUM(NSUInteger, BridalShowDispositionCode) { 
 	BridalShowDispositionCodeDONE = 1, 
@@ -163,16 +175,20 @@ static NSString *const kCallLogTalkedToSPONSORString = @"SPONSOR";
 static NSString *const kCallLogTalkedToQUINCE_AND_SPONSORString = @"QUINCE_AND_SPONSOR";
 
 typedef NS_ENUM(NSUInteger, ClientType) { 
-	ClientTypeTUX_MOBILE = 1, 
-	ClientTypeTUX_ONLINE,
+	ClientTypeMACYS = 1, 
+	ClientTypeTUXMOBIL,
+	ClientTypeTXONLINE,
 	ClientTypeDASHBOARD,
+	ClientTypeSERVER_JOB,
  
 };
 static NSString *const kClientTypeEnumName = @"ClientType";
-static const NSUInteger kClientTypeCount = 3;
-static NSString *const kClientTypeTUX_MOBILEString = @"TUX_MOBILE";
-static NSString *const kClientTypeTUX_ONLINEString = @"TUX_ONLINE";
+static const NSUInteger kClientTypeCount = 5;
+static NSString *const kClientTypeMACYSString = @"MACYS";
+static NSString *const kClientTypeTUXMOBILString = @"TUXMOBIL";
+static NSString *const kClientTypeTXONLINEString = @"TXONLINE";
 static NSString *const kClientTypeDASHBOARDString = @"DASHBOARD";
+static NSString *const kClientTypeSERVER_JOBString = @"SERVER_JOB";
 
 typedef NS_ENUM(NSUInteger, Company) { 
 	CompanyTMW = 1, 
@@ -600,6 +616,24 @@ static NSString *const kPaymentTypeCHECK_REQUESTString = @"CHECK_REQUEST";
 static NSString *const kPaymentTypeGIFT_CERTString = @"GIFT_CERT";
 static NSString *const kPaymentTypeCASHString = @"CASH";
 
+typedef NS_ENUM(NSUInteger, Permission) { 
+	PermissionPF_SIGNUP_DISABLED = 1, 
+	PermissionCUSTOMER_SEARCH_DISABLED,
+	PermissionPAYMENT_SCREEN_DISABLED,
+	PermissionFIND_YOUR_STYLE_DISABLED,
+	PermissionVIEW_SKU_DETAILS,
+	PermissionFIT_QUESTIONNAIRE_ENABLED,
+ 
+};
+static NSString *const kPermissionEnumName = @"Permission";
+static const NSUInteger kPermissionCount = 6;
+static NSString *const kPermissionPF_SIGNUP_DISABLEDString = @"PF_SIGNUP_DISABLED";
+static NSString *const kPermissionCUSTOMER_SEARCH_DISABLEDString = @"CUSTOMER_SEARCH_DISABLED";
+static NSString *const kPermissionPAYMENT_SCREEN_DISABLEDString = @"PAYMENT_SCREEN_DISABLED";
+static NSString *const kPermissionFIND_YOUR_STYLE_DISABLEDString = @"FIND_YOUR_STYLE_DISABLED";
+static NSString *const kPermissionVIEW_SKU_DETAILSString = @"VIEW_SKU_DETAILS";
+static NSString *const kPermissionFIT_QUESTIONNAIRE_ENABLEDString = @"FIT_QUESTIONNAIRE_ENABLED";
+
 typedef NS_ENUM(NSUInteger, PreferredContactMode) { 
 	PreferredContactModeALL_FORMS = 1, 
 	PreferredContactModePHONE,
@@ -685,49 +719,43 @@ static NSString *const kReceiptTargetTypePRINTERString = @"PRINTER";
 static NSString *const kReceiptTargetTypeEMAILString = @"EMAIL";
 
 typedef NS_ENUM(NSUInteger, ReceiptType) { 
-	ReceiptTypePOST_DEPOSIT = 1, 
-	ReceiptTypeRENTAL_IND,
+	ReceiptTypeRENTAL_IND = 1, 
 	ReceiptTypeRENTAL_GROUP_CUSTOMER,
 	ReceiptTypeRENTAL_GROUP_STORE,
 	ReceiptTypeCOUPON_FREE_SUIT,
-	ReceiptTypePOST_DEPOSIT_R2R_COUPON,
 	ReceiptTypeCOUPON_FREE_RENTAL,
 	ReceiptTypeCOUPON_RETAIL,
 	ReceiptTypeRENTAL_IND_COUPON,
 	ReceiptTypeWEDDING_CALL_LIST,
 	ReceiptTypeBRIDAL_SHOW_CALL_LIST,
-	ReceiptTypePICKUP,
-	ReceiptTypeDROPOFF,
 	ReceiptTypeDROPOFF_DC,
 	ReceiptTypeDROPOFF_NO_BALANCE,
-	ReceiptTypePICKUP_R2R_COUPON,
 	ReceiptTypeDROPOFF_R2R_COUPON,
 	ReceiptTypeAPPOINTMENTS,
 	ReceiptTypeTEST_PAGE,
+	ReceiptTypeSKU_DETAILS,
+	ReceiptTypeTRANSACTION,
 	ReceiptTypeUNRESOLVED,
  
 };
 static NSString *const kReceiptTypeEnumName = @"ReceiptType";
-static const NSUInteger kReceiptTypeCount = 20;
-static NSString *const kReceiptTypePOST_DEPOSITString = @"POST_DEPOSIT";
+static const NSUInteger kReceiptTypeCount = 17;
 static NSString *const kReceiptTypeRENTAL_INDString = @"RENTAL_IND";
 static NSString *const kReceiptTypeRENTAL_GROUP_CUSTOMERString = @"RENTAL_GROUP_CUSTOMER";
 static NSString *const kReceiptTypeRENTAL_GROUP_STOREString = @"RENTAL_GROUP_STORE";
 static NSString *const kReceiptTypeCOUPON_FREE_SUITString = @"COUPON_FREE_SUIT";
-static NSString *const kReceiptTypePOST_DEPOSIT_R2R_COUPONString = @"POST_DEPOSIT_R2R_COUPON";
 static NSString *const kReceiptTypeCOUPON_FREE_RENTALString = @"COUPON_FREE_RENTAL";
 static NSString *const kReceiptTypeCOUPON_RETAILString = @"COUPON_RETAIL";
 static NSString *const kReceiptTypeRENTAL_IND_COUPONString = @"RENTAL_IND_COUPON";
 static NSString *const kReceiptTypeWEDDING_CALL_LISTString = @"WEDDING_CALL_LIST";
 static NSString *const kReceiptTypeBRIDAL_SHOW_CALL_LISTString = @"BRIDAL_SHOW_CALL_LIST";
-static NSString *const kReceiptTypePICKUPString = @"PICKUP";
-static NSString *const kReceiptTypeDROPOFFString = @"DROPOFF";
 static NSString *const kReceiptTypeDROPOFF_DCString = @"DROPOFF_DC";
 static NSString *const kReceiptTypeDROPOFF_NO_BALANCEString = @"DROPOFF_NO_BALANCE";
-static NSString *const kReceiptTypePICKUP_R2R_COUPONString = @"PICKUP_R2R_COUPON";
 static NSString *const kReceiptTypeDROPOFF_R2R_COUPONString = @"DROPOFF_R2R_COUPON";
 static NSString *const kReceiptTypeAPPOINTMENTSString = @"APPOINTMENTS";
 static NSString *const kReceiptTypeTEST_PAGEString = @"TEST_PAGE";
+static NSString *const kReceiptTypeSKU_DETAILSString = @"SKU_DETAILS";
+static NSString *const kReceiptTypeTRANSACTIONString = @"TRANSACTION";
 static NSString *const kReceiptTypeUNRESOLVEDString = @"UNRESOLVED";
 
 typedef NS_ENUM(NSUInteger, RepresentativeRole) { 
@@ -946,6 +974,32 @@ static const NSUInteger kSchoolStatusCount = 2;
 static NSString *const kSchoolStatusACTIVEString = @"ACTIVE";
 static NSString *const kSchoolStatusINACTIVEString = @"INACTIVE";
 
+typedef NS_ENUM(NSUInteger, SkuDetailType) { 
+	SkuDetailTypeRENTAL = 1, 
+	SkuDetailTypeDEPOSIT,
+	SkuDetailTypeDAMAGE_HANDLING,
+	SkuDetailTypeRUSH_FEE,
+	SkuDetailTypeCHANGE_ORDER_FEE,
+	SkuDetailTypeCANCELLATION_FEE,
+	SkuDetailTypeLATE_FEE,
+	SkuDetailTypeLOST_ITEM_FEE,
+	SkuDetailTypeRETAIL_ITEM,
+	SkuDetailTypeUNRESOLVED,
+ 
+};
+static NSString *const kSkuDetailTypeEnumName = @"SkuDetailType";
+static const NSUInteger kSkuDetailTypeCount = 10;
+static NSString *const kSkuDetailTypeRENTALString = @"RENTAL";
+static NSString *const kSkuDetailTypeDEPOSITString = @"DEPOSIT";
+static NSString *const kSkuDetailTypeDAMAGE_HANDLINGString = @"DAMAGE_HANDLING";
+static NSString *const kSkuDetailTypeRUSH_FEEString = @"RUSH_FEE";
+static NSString *const kSkuDetailTypeCHANGE_ORDER_FEEString = @"CHANGE_ORDER_FEE";
+static NSString *const kSkuDetailTypeCANCELLATION_FEEString = @"CANCELLATION_FEE";
+static NSString *const kSkuDetailTypeLATE_FEEString = @"LATE_FEE";
+static NSString *const kSkuDetailTypeLOST_ITEM_FEEString = @"LOST_ITEM_FEE";
+static NSString *const kSkuDetailTypeRETAIL_ITEMString = @"RETAIL_ITEM";
+static NSString *const kSkuDetailTypeUNRESOLVEDString = @"UNRESOLVED";
+
 typedef NS_ENUM(NSUInteger, StoreStatus) { 
 	StoreStatusOPEN = 1, 
 	StoreStatusCLOSED,
@@ -1043,14 +1097,16 @@ typedef NS_ENUM(NSUInteger, TenderType) {
 	TenderTypeCASH,
 	TenderTypeGIFT_CARD,
 	TenderTypeDEBIT_CARD,
+	TenderTypeACCOUNTS_RECEIVABLE,
  
 };
 static NSString *const kTenderTypeEnumName = @"TenderType";
-static const NSUInteger kTenderTypeCount = 4;
+static const NSUInteger kTenderTypeCount = 5;
 static NSString *const kTenderTypeCREDIT_CARDString = @"CREDIT_CARD";
 static NSString *const kTenderTypeCASHString = @"CASH";
 static NSString *const kTenderTypeGIFT_CARDString = @"GIFT_CARD";
 static NSString *const kTenderTypeDEBIT_CARDString = @"DEBIT_CARD";
+static NSString *const kTenderTypeACCOUNTS_RECEIVABLEString = @"ACCOUNTS_RECEIVABLE";
 
 typedef NS_ENUM(NSUInteger, UsaStateCode) { 
 	UsaStateCodeAK = 1, 

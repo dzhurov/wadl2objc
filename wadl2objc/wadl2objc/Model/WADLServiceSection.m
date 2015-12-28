@@ -204,7 +204,7 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     NSMutableSet *set = [NSMutableSet setWithArray:responseObjects];
     [set addObjectsFromArray:requestObjects];
     [set removeObject:[NSNull null]];
-    return [set allObjects];
+    return [[set allObjects] sortedArrayUsingSelector:@selector(compare:)];
 }
 
 - (NSArray *)urlPathAndMethods

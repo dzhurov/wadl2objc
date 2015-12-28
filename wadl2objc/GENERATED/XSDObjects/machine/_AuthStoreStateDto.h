@@ -22,5 +22,7 @@
 @property(nonatomic, strong) NSNumber *open;
 @property(nonatomic) Company company;
 @property(nonatomic) Brand brand;
+/*![Permission]*/
+@property(nonatomic, strong) __GENERICS(NSArray, NSString*) *contentPermissions;
 
 @end

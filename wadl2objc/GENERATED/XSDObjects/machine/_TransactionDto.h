@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XSDBaseEntity.h"
 #import "TenderDto.h"
+#import "SkuDetailDto.h"
 #import "CustomerDto.h"
 #import "LineItemDto.h"
 #import "TaxExemptionDto.h"
@@ -21,6 +22,8 @@
 @property(nonatomic, strong) XSDDateTime *submitDate;
 /*![TenderDto]*/
 @property(nonatomic, strong) __GENERICS(NSArray, TenderDto*) *authorizedTenders;
+/*![SkuDetailDto]*/
+@property(nonatomic, strong) __GENERICS(NSArray, SkuDetailDto*) *skuDetails;
 @property(nonatomic, strong) CustomerDto *customer;
 /*![LineItemDto]*/
 @property(nonatomic, strong) __GENERICS(NSArray, LineItemDto*) *lineItems;

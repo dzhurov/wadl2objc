@@ -26,6 +26,7 @@
 
 // DashboardDiagnostic
 #define kWADLServiceDashboardDiagnosticURLPath @"dashboard/diagnostic"
+#define kWADLServiceDashboardDiagnosticAddressURLPath @"dashboard/diagnostic/address"
 #define kWADLServiceDashboardDiagnosticCustomerURLPath @"dashboard/diagnostic/customer"
 #define kWADLServiceDashboardDiagnosticEmployeeURLPath @"dashboard/diagnostic/employee"
 #define kWADLServiceDashboardDiagnosticEmployeeAnonimousURLPath @"dashboard/diagnostic/employeeAnonimous"
@@ -242,6 +243,7 @@
 #define kWADLServiceTransactionPostvoidURLPath @"transaction/postvoid"
 #define kWADLServiceTransactionRemoveMarkdownURLPath @"transaction/removeMarkdown"
 #define kWADLServiceTransactionRemoveTaxExemptionURLPath @"transaction/removeTaxExemption"
+#define kWADLServiceTransactionSearchByStoreURLPath @"transaction/searchByStore"
 #define kWADLServiceTransactionSetCustomerURLPath @"transaction/setCustomer"
 
 #pragma mark -
