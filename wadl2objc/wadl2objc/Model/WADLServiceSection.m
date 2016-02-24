@@ -11,7 +11,7 @@
 #import "XSDTypes.h"
 #import "WADLService.h"
 
-#define kSupportedHTTPMethodsArray @[@"GET", @"POST", @"PUT", @"DELETE"]
+#define kSupportedHTTPMethodsArray @[@"GET", @"POST", @"PUT", @"DELETE", @"HEAD"]
 
 @implementation WADLServiceSection
 
@@ -133,6 +133,60 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     }
 }
 
+- (void)processDuplicatedMethodNames:(__GENERICS(NSMutableArray, WADLService*)*)allMethods
+{
+    __GENERICS(NSMutableArray, __GENERICS(NSMutableArray, WADLService*)*) *duplicatedNamesServices = [NSMutableArray new];
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"overridenName" ascending:YES];
+    NSArray *sortedServices = [allMethods sortedArrayUsingDescriptors:@[descriptor]];
+    
+    WADLService *previousService = nil;
+    BOOL subarrayAdded = NO;
+    
+    for (int i =0; i < sortedServices.count; i++) {
+        if ([previousService.overridenName isEqualToString:[sortedServices[i] overridenName]]){
+            if ( !subarrayAdded ){
+                [duplicatedNamesServices addObject:[NSMutableArray new]];
+                [[duplicatedNamesServices lastObject] addObject:previousService];
+            }
+            [[duplicatedNamesServices lastObject] addObject:sortedServices[i]];
+        }
+        else{
+            previousService = sortedServices[i];
+            subarrayAdded = NO;
+        }
+    }
+    
+    
+    for (NSArray *sameNamesServices in duplicatedNamesServices) {
+        int backwardPathLevel = 0;
+        do {
+            for (WADLService *service in sameNamesServices) {
+                NSArray *paths = [service.fullPath componentsSeparatedByString:@"/"];
+                NSMutableString *pathsPrefix = [NSMutableString stringWithString:@"_"];
+                for (int i = 0; i <= backwardPathLevel; i++) {
+                    if (backwardPathLevel > paths.count - 1)
+                        break;
+                    [pathsPrefix insertString:[paths[paths.count - 1 - i] uppercaseFirstCharacterString] atIndex:0];
+                }
+                service.overridenName = [[pathsPrefix lowercaseFirstCharacterString] stringByAppendingString: service.name];
+            }
+            backwardPathLevel ++;
+            
+                  // This is all names                                    // This is all UNIQUE names
+        } while ([[allMethods valueForKeyPath:@"overridenName"] count] > [[allMethods valueForKeyPath:@"@distinctUnionOfObjects.overridenName"] count]);
+    }
+}
+
+- (NSString *)fullPathWithoutFirstComponent
+{
+    NSString *fullPath = self.fullPath;
+    NSMutableArray *components = [[fullPath componentsSeparatedByString:@"/"] mutableCopy];
+    if ( !components.count )
+        return fullPath;
+    [components removeObjectAtIndex:0];
+    return [components componentsJoinedByString:@"/"];
+}
+
 - (NSString *)fullPath
 {
     NSString *fullPath = self.path;
@@ -142,13 +196,25 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     return fullPath;
 }
 
-- (NSArray *)allMethods
+- (__GENERICS(NSMutableArray, WADLService*) *)allMethods
 {
     NSMutableArray *allMethods = [NSMutableArray arrayWithArray:_services];
     for (WADLServiceSection *childSection in _childSections) {
         [allMethods addObjectsFromArray:childSection.allMethods];
     }
+    [self processDuplicatedMethodNames:allMethods];
+    
     return allMethods;
+}
+
+- (__GENERICS(NSArray, NSString*)*)allServicesClasses
+{
+    __GENERICS(NSArray, NSString*) *responseObjects = [self.allMethods valueForKeyPath:@"responseObjectClass"];
+    __GENERICS(NSArray, NSString*) *requestObjects = [self.allMethods valueForKeyPath:@"requestObjectClass"];
+    NSMutableSet *set = [NSMutableSet setWithArray:responseObjects];
+    [set addObjectsFromArray:requestObjects];
+    [set removeObject:[NSNull null]];
+    return [[set allObjects] sortedArrayUsingSelector:@selector(compare:)];
 }
 
 - (NSArray *)urlPathAndMethods
@@ -218,4 +284,11 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     }
     return rootSection;
 }
+
+- (NSString *)className
+{
+    [super className];
+    return [NSString stringWithFormat:@"WADL%@Services", [[self shortPathName] uppercaseFirstCharacterString]];
+}
+
 @end

@@ -19,5 +19,6 @@
 /*! [XSDDocument]*/
 @property (nonatomic, strong) NSArray *xsdDocuments;
 @property (nonatomic, strong) NSDictionary *globalNamespaces;
+@property (nonatomic, strong) NSString *baseURLPath;
 
 @end

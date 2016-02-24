@@ -64,11 +64,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--wadl: &apos;$(SRCROOT)/wadl/application.wadl&apos;"
+            argument = "--wadlURL: &apos;http://engagedevapp01:8080/tuxmobile-war/services/application.wadl&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--xsd: &apos;$(SRCROOT)/wadl/xsd0.xsd&apos;"
+            argument = "--xsdURL: &apos;http://engagedevapp01:8080/tuxmobile-war/services/application.wadl/xsd0.xsd&apos;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

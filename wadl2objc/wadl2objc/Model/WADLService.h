@@ -20,10 +20,14 @@
 @property (nonatomic, strong) WADLServiceRepresentation *requestRepresentation;
 @property (nonatomic, strong) WADLServiceRepresentation *responseRepresentation;
 
+@property (nonatomic, strong) NSString *overridenName;
+
 - (NSArray *)allQueryParameters;
 - (NSArray *)allPathParameters;
 - (NSArray *)allHeadParameters;
 - (NSString*)fullPath;
+
+//! Depends on overridenMethodName
 - (NSString*)objcMethodName;
 
 @end

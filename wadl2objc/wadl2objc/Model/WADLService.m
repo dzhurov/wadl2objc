@@ -85,9 +85,7 @@
 {
     WADLServiceSection *parentSection = self.parentServiceSection;
     BOOL needCapitalize = NO;
-    
-    // TODO: replace NSoperation with abstract return object
-    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (NSOperation *)%@%@",[[parentSection shortPathName] lowercaseFirstCharacterString], [self.name uppercaseFirstCharacterString]];
+    NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (WADLRequestTask)%@",[self.overridenName lowercaseFirstCharacterString]];
     if ( self.requestRepresentation.objcClassName ){
         NSString *parameterName = self.requestRepresentation.xsdType;
         parameterName = [parameterName lowercaseFirstCharacterString];
@@ -97,6 +95,7 @@
         [methodDeclaration appendString:@"With"];
         needCapitalize = YES;
     }
+
     for (NSArray *parameters in @[ [self allPathParameters], [self allQueryParameters], [self allHeadParameters] ]) {
         for (WADLServicePathParameter *pathParam in parameters) {
             NSString *name = [[pathParam.name lowercaseFirstCharacterString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -114,5 +113,12 @@
     return methodDeclaration;
 }
 
+- (NSString *)overridenName
+{
+    if ( !_overridenName ){
+        _overridenName = self.name;
+    }
+    return _overridenName;
+}
 
 @end

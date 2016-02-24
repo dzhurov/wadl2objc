@@ -12,12 +12,16 @@
 
 #define kWADLPathArgumentKey    @"--wadl:"
 #define kXSDPathArgumentKey     @"--xsd:"
+#define kWADLURLArgumentKey    @"--wadlURL:"
+#define kXSDURLArgumentKey     @"--xsdURL:"
 #define kOutputPathArgumentKey  @"--output-dir:"
 #define kMappingPlistPathArgumentKey @"--mapping-plist:"
 
 @interface SettingsManager : NSObject
 @property (nonatomic, strong) NSString *wadlPath;
 @property (nonatomic, strong) NSArray *xsdPaths;
+@property (nonatomic, strong) NSString *wadlURL;
+@property (nonatomic, strong) NSString *xsdPURL;
 @property (nonatomic, strong) NSString *outputPath;
 @property (nonatomic, strong) NSString *applicationPath;
 @property (nonatomic, strong) NSString *mappingPlistPath;

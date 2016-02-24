@@ -13,9 +13,11 @@
 #import "WADLService.h"
 #import "WADLServicePathParameter.h"
 #import "XSDObject.h"
+#import "NSError+Terminate.h"
 
-#define kPragmaGeneratedPartMarker @"#pragma mark - Generated Services"
-#define kPragmaEndGeneratedPartMarker @"#pragma mark -"
+#define kPragmaGeneratedPartMarker      @"#pragma mark - Generated Services"
+#define kPragmaEndGeneratedPartMarker   @"#pragma mark -"
+#define kResourcesFolderPath            @"./Resources"
 
 @interface WADLDocument()
 
@@ -48,6 +50,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     }
     self.globalNamespaces = globalNamespaces;
     
+    self.baseURLPath = [dictionary valueForKeyPath:@"resources._base"];
     NSArray *parantServiceSectionsDicts = [dictionary valueForKeyPath:@"resources.resource"];
     for (NSDictionary *sectionDict in parantServiceSectionsDicts) {
         WADLServiceSection *section = [[WADLServiceSection alloc] initWithDictionary:sectionDict wadlDocument:self];
@@ -61,17 +64,16 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 
 - (void)writeObjectsToPath:(NSString *)path
 {
+    printf("\nGenerate WADL files:\n");
+    
     //APIConsts.h
     static NSString *const kApiConstsFile = @"APIConsts.h";
     
-    //ServerInteractionManager.h
-    static NSString *const kSIMHeader = @"ServerInteractionManager.h";
-    
-    //ServerInteractionManager.m
-    static NSString *const kSIMMethod = @"ServerInteractionManager.m";
-    
     // Copy resources
-    NSArray *fileNames = @[kApiConstsFile, kSIMHeader, kSIMMethod, @"XSDBaseEntity.h", @"XSDBaseEntity.m", @"XSDTypes.h", @"XSDTypes.m"];
+    NSArray *fileNames = @[kApiConstsFile, @"XSDBaseEntity.h", @"XSDBaseEntity.m",
+                           @"XSDTypes.h", @"XSDTypes.m",
+                           @"WADLRequestTask.h", @"Xcode7Macros.h",
+                           @"WADLServicesResource.h", @"WADLServicesResource.m"];
     
     for (NSString *fName in fileNames) {
         [self copyFileFromResourses:fName toPath:path];
@@ -80,10 +82,13 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     NSString *apiConstsFilePath = [path stringByAppendingPathComponent:kApiConstsFile];
     [self writeAPIConstToPath:apiConstsFilePath];
     
-    NSString *simHeaderFilePath = [path stringByAppendingPathComponent:kSIMHeader];
-    [self writeServerInteractionManagerHeaderFileToPath:simHeaderFilePath];
-    NSString *simMethodFilePath = [path stringByAppendingPathComponent:kSIMMethod];
-    [self writeServerInteractionManagerMethodFileToPath:simMethodFilePath];
+    // WADLServiceResource inheritors
+    for (WADLServiceSection *rootSection in _wadlServiceSections) {
+        [self writeServiceSection:rootSection toPath:path];
+    }
+    // WADLAbstractServerAPI.h & WADLAbstractServerAPI.m
+    [self writeAbstractServerAPIToPath:path];
+
 }
 
 - (void)fillPathToService
@@ -96,125 +101,203 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     }
 }
 
-- (void)writeServerInteractionManagerHeaderFileToPath:(NSString*)path
+- (void)writeServiceSection:(WADLServiceSection*)serviceSection toPath:(NSString *)path
 {
+    NSString *className = serviceSection.className;
+    NSString *fullPathHPath = [[path stringByAppendingPathComponent:className] stringByAppendingString:@".h"];
+    NSString *fullPathMPath = [[path stringByAppendingPathComponent:className] stringByAppendingString:@".m"];
+    
+// .h file (Header)
+    NSMutableString *hContentOfFile = [[NSMutableString alloc] initWithContentsOfFile:[kResourcesFolderPath stringByAppendingPathComponent:@"WADLServiceTemplate.h"]
+                                                                      encoding:NSUTF8StringEncoding
+                                                                         error:nil];
+    // Class name
+    [hContentOfFile replaceOccurrencesOfString:@"<service_class_name>" withString:className options:0 range:NSMakeRange(0, hContentOfFile.length)];
+    
+    ///Declaraction
     NSMutableString * methodsDeclaration = [NSMutableString stringWithCapacity:1024 * 4];
-    for (WADLServiceSection *rootSection in _wadlServiceSections) {
-        [methodsDeclaration appendFormat:@"\n// %@\n\n", [rootSection shortPathName]];
-        NSArray *services = [rootSection allMethods];
-        for (WADLService *oneService in services) {
-            NSString *oneMethodDeclaration = [[oneService objcMethodName] stringByAppendingFormat:@";\n"];
-            [methodsDeclaration appendString: oneMethodDeclaration];
-        }
+    
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"fullPath" ascending:YES];
+    NSArray *sortedMethods = [serviceSection.allMethods sortedArrayUsingDescriptors:@[descriptor]];
+    for (WADLService *oneService in sortedMethods) {
+        NSString *oneMethodDeclaration = [[oneService objcMethodName] stringByAppendingFormat:@";\n"];
+        [methodsDeclaration appendString: oneMethodDeclaration];
     }
-    [self replaceGeneratedContentOfFile:path withString:methodsDeclaration];
+    [hContentOfFile replaceOccurrencesOfString:@"<methods_declaration>" withString:methodsDeclaration options:0 range:NSMakeRange(0, hContentOfFile.length)];
+
+    NSMutableString *importsString = [NSMutableString new];
+    for (NSString *objectClassString in serviceSection.allServicesClasses) {
+        [importsString appendFormat:@"#import \"%@.h\"\n", objectClassString];
+    }
+    [hContentOfFile replaceOccurrencesOfString:@"<import_xsd>" withString:importsString options:0 range:NSMakeRange(0, hContentOfFile.length)];
+    
     NSError *error = nil;
-    NSString *contentOfFile = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-    if (error){
-        NSLog(@"ERROR: %@", error);
-        return;
-    }
-    NSRange lastImportRange = [contentOfFile rangeOfString:@"#import" options:NSBackwardsSearch];
-    NSRange endOfImports = [contentOfFile rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet] options:0 range:NSMakeRange(lastImportRange.location, contentOfFile.length - lastImportRange.location)];
-    NSRange allImportsRange = NSMakeRange(0, endOfImports.length + endOfImports.location);
-    NSMutableString *importsNeedToAppend = [NSMutableString stringWithCapacity:1024];
-    // Dependencies
-    for (XSDDocument *doc in self.xsdDocuments) {
-        for (XSDObject *object in doc.objects) {
-            NSString *importObjectString = [NSString stringWithFormat:@"#import \"%@.h\"", object.name];
-            if ( [contentOfFile rangeOfString:importObjectString options:0 range:allImportsRange].location == NSNotFound ){
-                [importsNeedToAppend appendFormat:@"%@\n", importObjectString];
+    [hContentOfFile writeToFile:fullPathHPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (error) [error terminate];
+    NSLog(@"%@.h generated",className);
+    
+// .m file
+    NSMutableString *mContentOfFile = [[NSMutableString alloc] initWithContentsOfFile:[kResourcesFolderPath stringByAppendingPathComponent:@"WADLServiceTemplate.m"]
+                                                                             encoding:NSUTF8StringEncoding
+                                                                                error:nil];
+    
+    // Class name
+    [mContentOfFile replaceOccurrencesOfString:@"<service_class_name>" withString:className options:0 range:NSMakeRange(0, mContentOfFile.length)];
+    
+    // Implementation
+    
+    NSMutableString *methodsImplementation = [NSMutableString stringWithCapacity:1024 * 16];
+    for (WADLService *oneService in sortedMethods) {
+        NSMutableString *oneMethodImplementation =[[oneService objcMethodName] mutableCopy];
+        
+        // path parameters
+        NSString *pathConstName = [NSString stringWithFormat:@"kWADLService%@URLPath", [oneService.parentServiceSection pathName]];
+        [oneMethodImplementation appendFormat:@"\n{\n\tNSString *thePath = [NSString stringWithFormat: %@", pathConstName];
+        NSArray *pathParameters = oneService.allPathParameters;
+        for (WADLServicePathParameter *parameter in pathParameters) {
+            [oneMethodImplementation appendFormat:@", %@", parameter.name];
+        }
+        [oneMethodImplementation appendFormat:@"];\n"];
+        
+        // query parameters
+        NSArray *queryParametes = oneService.allQueryParameters;
+        if ( queryParametes.count ){
+            [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *queryParmeters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)queryParametes.count];
+            for (WADLServicePathParameter *parameter in queryParametes) {
+                [oneMethodImplementation appendFormat:@"\t[queryParmeters setValue:%@ forKey:@\"%@\"];\n", parameter.name, parameter.name];
             }
         }
+        else{
+            [oneMethodImplementation appendFormat:@"\tNSDictionary *queryParmeters = nil;\n"];
+        }
+        // Body
+        if (oneService.requestRepresentation){
+            [oneMethodImplementation appendFormat:@"\tNSDictionary *bodyObject = [%@ dictionaryInfo];\n", [oneService.requestRepresentation.xsdType lowercaseFirstCharacterString]];
+        }
+        else{
+            [oneMethodImplementation appendFormat:@"\tNSDictionary *bodyObject = nil;\n"];
+        }
+        
+        // head parameters
+        NSArray *headParametes = oneService.allHeadParameters;
+        if ( headParametes.count ){
+            [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)headParametes.count];
+            for (WADLServicePathParameter *parameter in headParametes) {
+                NSString *fixedName = [[parameter.name lowercaseFirstCharacterString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                [oneMethodImplementation appendFormat:@"\t[headParameters setValue:%@ forKey:@\"%@\"];\n", fixedName, parameter.name];
+            }
+        }
+        else {
+            [oneMethodImplementation appendFormat:@"\tNSDictionary *headParameters = nil;\n"];
+        }
+        
+        //requestMethod
+        NSString *outputClass = oneService.responseRepresentation.objcClassName;
+        if (outputClass){
+            outputClass = [NSString stringWithFormat:@"[%@ class]", outputClass];
+        }
+        else{
+            outputClass = @"Nil";
+        }
+        
+        [oneMethodImplementation appendFormat:@"\treturn [self.serverAPI makeRequest:WADLRequestMethod%@ resource:self forURLPath:thePath queryParameters:queryParmeters bodyObject:bodyObject HTTPHeaderParameters:headParameters outputClass:%@ isInvoked:NO responseBlock:responseBlock];\n}\n\n", oneService.method, outputClass];
+        
+        [methodsImplementation appendString:oneMethodImplementation];
     }
+    [mContentOfFile replaceOccurrencesOfString:@"<methods_implementation>" withString:methodsImplementation options:0 range:NSMakeRange(0, mContentOfFile.length)];
     
-    contentOfFile = [contentOfFile stringByReplacingCharactersInRange:NSMakeRange(allImportsRange.location + allImportsRange.length, 0) withString:importsNeedToAppend];
-    [contentOfFile writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    if (error)
-        NSLog(@"ERROR: %@", error);
+    [mContentOfFile writeToFile:fullPathMPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (error) [error terminate];
+    NSLog(@"%@.m generated",className);
 }
 
-- (void)writeServerInteractionManagerMethodFileToPath:(NSString*)path
+- (void)writeAbstractServerAPIToPath:(NSString*)path
 {
-    NSMutableString *methodsImplementation = [NSMutableString stringWithCapacity:1024 * 16];
-    for (WADLServiceSection *rootSection in _wadlServiceSections) {
-        [methodsImplementation appendFormat:@"\n#pragma mark %@\n", [rootSection shortPathName]];
-        NSArray *services = [rootSection allMethods];
-        for (WADLService *oneService in services) {
-            NSMutableString *oneMethodImplementation =[[oneService objcMethodName] mutableCopy];
-            
-            // need use token
-            BOOL needToUseToken = YES;
-            NSArray *loginMethodPossibleNames =  @[@"authenticate", @"login"];
-            for (NSString *possibleLoginMethodName in loginMethodPossibleNames) {
-                NSRange range = [oneMethodImplementation rangeOfString:possibleLoginMethodName options:NSCaseInsensitiveSearch];
-                if ( range.location != NSNotFound ){
-                    needToUseToken = NO;
-                    break;
-                }
-            }
-           
-            // path parameters
-            NSString *pathConstName = [NSString stringWithFormat:@"kWADLService%@URLPath", [oneService.parentServiceSection pathName]];
-            [oneMethodImplementation appendFormat:@"\n{\n\tNSString *thePath = [NSString stringWithFormat: %@", pathConstName];
-            NSArray *pathParameters = oneService.allPathParameters;
-            for (WADLServicePathParameter *parameter in pathParameters) {
-                [oneMethodImplementation appendFormat:@", %@", parameter.name];
-            }
-            [oneMethodImplementation appendFormat:@"];\n"];
-            
-            // query/input parameters
-            NSArray *queryParametes = oneService.allQueryParameters;
-            if ( queryParametes.count ){
-                [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *inputParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)queryParametes.count];
-                for (WADLServicePathParameter *parameter in queryParametes) {
-                    [oneMethodImplementation appendFormat:@"\t[inputParameters setValue:%@ forKey:@\"%@\"];\n", parameter.name, parameter.name];
-                }
-            }
-            else if (oneService.requestRepresentation){
-                [oneMethodImplementation appendFormat:@"\tNSDictionary *inputParameters = [%@ dictionaryInfo];\n", [oneService.requestRepresentation.xsdType lowercaseFirstCharacterString]];
-            }
-            else{
-                [oneMethodImplementation appendFormat:@"\tNSDictionary *inputParameters = nil;\n"];
-            }
-            
-            // head parameters
-            NSArray *headParametes = oneService.allHeadParameters;
-            if ( headParametes.count ){
-                [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)headParametes.count];
-                for (WADLServicePathParameter *parameter in headParametes) {
-                    NSString *fixedName = [[parameter.name lowercaseFirstCharacterString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
-                    [oneMethodImplementation appendFormat:@"\t[headParameters setValue:%@ forKey:@\"%@\"];\n", fixedName, parameter.name];
-                }
-            }
-            else {
-                [oneMethodImplementation appendFormat:@"\tNSDictionary *headParameters = nil;\n"];
-            }
-            
-            //requestMethod
-            NSString *outputClass = oneService.responseRepresentation.objcClassName;
-            if (outputClass){
-                outputClass = [NSString stringWithFormat:@"[%@ class]", outputClass];
-            }
-            else{
-                outputClass = @"Nil";
-            }
-            [oneMethodImplementation appendFormat:@"\treturn [self make%@RequestForURLPath:thePath useToken:%@ inputParameters:inputParameters HTTPHeaderParameters:headParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, (needToUseToken?@"YES":@"NO"), outputClass];
-            [methodsImplementation appendString:oneMethodImplementation];
-        }
+    NSString *const kAbstractAPIClassName = @"WADLAbstractServerAPI";
+    NSString *fullHPath = [[path stringByAppendingPathComponent:kAbstractAPIClassName] stringByAppendingString:@".h"];
+    NSString *fullMPath = [[path stringByAppendingPathComponent:kAbstractAPIClassName] stringByAppendingString:@".m"];
+// .h file
+    NSMutableString *hContentOfFile = [[NSMutableString alloc] initWithContentsOfFile:[kResourcesFolderPath stringByAppendingPathComponent:@"WADLAbstractServerAPI.h"]
+                                                                             encoding:NSUTF8StringEncoding
+                                                                                error:nil];
+    
+    // Services (ivars, gettes, static accessors)
+    NSMutableString *servicesClassesDeclaration = [NSMutableString new];
+    NSMutableString *ivarsDeclaration = [NSMutableString new];
+    NSMutableString *servicesProperties = [NSMutableString new];
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"className" ascending:YES];
+    NSArray *sortedServiceSections = [_wadlServiceSections sortedArrayUsingDescriptors:@[descriptor]];
+    for (WADLServiceSection *rootSection in sortedServiceSections) {
+        [servicesClassesDeclaration appendFormat:@"@class %@;\n", rootSection.className];
+        [ivarsDeclaration appendFormat:@"\t%@ *_%@;\n", rootSection.className, [rootSection.shortPathName lowercaseFirstCharacterString]];
+        [servicesProperties appendFormat:@"@property (nonatomic, readonly) %@ *%@;\n+ (%@*) %@;\n\n",
+          rootSection.className,
+          [rootSection.shortPathName lowercaseFirstCharacterString],
+          rootSection.className,
+          [rootSection.shortPathName lowercaseFirstCharacterString]
+        ];
     }
-    [self replaceGeneratedContentOfFile:path withString:methodsImplementation];
+    
+    [hContentOfFile replaceOccurrencesOfString:@"<services_classes_declaration>"
+                                    withString:servicesClassesDeclaration
+                                       options:0
+                                         range:NSMakeRange(0, hContentOfFile.length)];
+    [hContentOfFile replaceOccurrencesOfString:@"<services_ivars>"
+                                    withString:ivarsDeclaration
+                                       options:0
+                                         range:NSMakeRange(0, hContentOfFile.length)];
+    [hContentOfFile replaceOccurrencesOfString:@"<services_definition>"
+                                    withString:servicesProperties
+                                       options:0
+                                         range:NSMakeRange(0, hContentOfFile.length)];
+    
+    NSError *error = nil;
+    [hContentOfFile writeToFile:fullHPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (error) [error terminate];
+    NSLog(@"%@.h generated",kAbstractAPIClassName);
+    
+// .m file
+    NSMutableString *mContentOfFile = [[NSMutableString alloc] initWithContentsOfFile:[kResourcesFolderPath stringByAppendingPathComponent:@"WADLAbstractServerAPI.m"]
+                                                                             encoding:NSUTF8StringEncoding
+                                                                                error:nil];
+    
+    NSMutableString *importServicesString = [NSMutableString new];
+    NSMutableString *accessorsImplementations = [NSMutableString new];
 
+    for (WADLServiceSection *rootSection in sortedServiceSections) {
+        NSString *propertyName = [rootSection.shortPathName lowercaseFirstCharacterString];
+        NSString *propertyClass = rootSection.className;
+        [importServicesString appendFormat:@"#import \"%@.h\"\n", propertyClass];
+        
+        // getter
+        [accessorsImplementations appendFormat:@"- (%@ *)%@\n{\n\tif ( !_%@) _%@ = [[%@ alloc] initWithWADLServerAPI:self.child];\n\treturn _%@;\n}\n\n", propertyClass, propertyName, propertyName, propertyName, propertyClass, propertyName];
+        // Static accessor
+        [accessorsImplementations appendFormat:@"+ (%@ *)%@ \n{\n\t return [[self sharedServerAPI] %@]; \n}\n\n", propertyClass, propertyName, propertyName];
+    }
+    
+    [mContentOfFile replaceOccurrencesOfString:@"<import_services>"
+                                    withString:importServicesString
+                                       options:0 range:NSMakeRange(0, mContentOfFile.length)];
+    [mContentOfFile replaceOccurrencesOfString:@"<services_getters>"
+                                    withString:accessorsImplementations
+                                       options:0 range:NSMakeRange(0, mContentOfFile.length)];
+    
+    [mContentOfFile writeToFile:fullMPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (error) [error terminate];
+    NSLog(@"%@.m generated",kAbstractAPIClassName);
 }
 
 - (void)writeAPIConstToPath: (NSString*)path
 {
     NSMutableString *definesPaths = [NSMutableString string];
-    for (WADLServiceSection *section in _wadlServiceSections) {
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"path" ascending:YES];
+    NSArray *sortedServiceSections = [_wadlServiceSections sortedArrayUsingDescriptors:@[descriptor]];
+    for (WADLServiceSection *section in sortedServiceSections) {
         NSString *pathName = [section pathName];
         [definesPaths appendFormat:@"\n// %@\n", pathName];
         NSDictionary * pathNamesToPaths = [section allPathNamesToPaths];
-        for (NSString *onePathName in [pathNamesToPaths allKeys]) {
+        NSArray *sortedPathNames = [[pathNamesToPaths allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        for (NSString *onePathName in sortedPathNames) {
             [definesPaths appendFormat:@"#define kWADLService%@URLPath @\"%@\"\n", onePathName, pathNamesToPaths[onePathName]];
         }
     }
@@ -236,8 +319,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     [contentOfFile writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error)
         NSLog(@"ERROR: %@",error);
-    
-    NSLog(@"generated: %@", filePath);
+    else
+        printf("%s; ", [[filePath lastPathComponent] UTF8String]);
 }
 
 - (void)copyFileFromResourses:(NSString*)fileName toPath:(NSString*)path
@@ -246,11 +329,11 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 
     NSString *simFilePath = [path stringByAppendingPathComponent:fileName];
     if ( ![fileManager fileExistsAtPath:simFilePath]) {
-        NSString *simTemplateFilePath = [@"./Resources" stringByAppendingPathComponent:fileName];
+        NSString *simTemplateFilePath = [kResourcesFolderPath stringByAppendingPathComponent:fileName];
         NSError *error = nil;
         [fileManager copyItemAtPath:simTemplateFilePath toPath:simFilePath error:&error];
         if (error){
-            NSLog(@"ERROR: %@", error);
+            [error terminate];
             return;
         }
     }

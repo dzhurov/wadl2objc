@@ -26,6 +26,7 @@
 #define kObjectSummaryKey           @"xs:element"
 #define kNameKey                    @"name"
 
+#define kEnumFormat @"typedef NS_ENUM(NSUInteger, %@) { \n\t%@ = 1, \n%@ \n};"
 #define kCheckForTextFieldFormat @"\tif ([fieldName isEqualToString:@\"%@\"]) return @\"%@\";\n"
 
 @interface XSDDocument ()
@@ -255,6 +256,31 @@
     }
 }
 
+-(void)writeMachineFilesToPath:(NSString*)machineFilesPath
+{
+    printf("\n%s\n", [[NSString stringWithFormat:@"Write machine files to path: %@", machineFilesPath] UTF8String]);
+    
+    for (XSDObject *object in _objects) {
+        [self writeMachineHFileObject:object toPath:machineFilesPath];
+        [self writeMachineMFileObject:object toPath:machineFilesPath];
+    }
+}
+
+-(void)writeHumanFilesToPath:(NSString*)path
+{
+    printf("\n%s\n", [[NSString stringWithFormat:@"\nWrite human files to path: %@", path] UTF8String]);
+    
+    for (XSDObject *object in _objects) {
+        [self writeHumanFilesForObject:object toPath:path];
+    }
+}
+
+-(void)writeSimpleTypesToPath:(NSString*)path
+{
+    printf("\n%s\n", [[NSString stringWithFormat:@"\nWrite simple types to path: %@", path] UTF8String]);
+    [self writeSimpleTypes:_simpleTypes toPath:path];
+}
+
 // TODO: Implement simple types parser + translators
 
 #pragma mark Machine files
@@ -294,7 +320,7 @@
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = nil;
         if (property.isCollection){
-            typeString = property.isCollection ? @"NSArray" : property.type;
+            typeString = property.type?[NSString stringWithFormat:@"NSArray<%@*>", (property.simpleType ? property.simpleType.baseType : property.type)]:@"NSArray";
             property.dockComment = [NSString stringWithFormat:@"/*![%@]*/", property.type];
         }
         else if (property.simpleType){
@@ -324,7 +350,7 @@
         NSLog(@"ERROR: %@", error);
     }
     else{
-        NSLog(@"generated: %@", filePath);
+        printf("%s", [fileName UTF8String]);
     }
     
 }
@@ -361,7 +387,7 @@
         [enumsConditionsList appendFormat:kCheckForTextFieldFormat, oneSimpleTypeProperty.name, oneSimpleTypeProperty.type];
     }
         // Arrays
-    predicate = [NSPredicate predicateWithFormat:@"isCollection == YES"];
+    predicate = [NSPredicate predicateWithFormat:@"isCollection == YES AND simpleType == NIL"];
     NSArray *collectionTypes = [object.properties filteredArrayUsingPredicate:predicate];
     NSMutableString *collectionsConditionsList = [NSMutableString string];
     for (XSDObjectProperty *property in collectionTypes) {
@@ -381,7 +407,7 @@
         NSLog(@"ERROR: %@", error);
     }
     else{
-        NSLog(@"generated: %@", filePath);
+        printf(",m; ");
     }
 }
 
@@ -408,7 +434,7 @@
             NSLog(@"ERROR: %@", error);
         }
         else{
-            NSLog(@"generated: %@", hFilePath);
+            printf("%s", [hFileName UTF8String]);
         }
     }
     // .m file
@@ -425,8 +451,86 @@
             NSLog(@"ERROR: %@", error);
         }
         else{
-            NSLog(@"generated: %@", mFilePath);
+            printf(",m; ");
         }
+    }
+}
+
+#pragma mark Enums
+
+- (void)writeSimpleTypes:(NSArray*)simpleTypes toPath:(NSString*)path
+{
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSMutableArray *enumsDeclaration = [NSMutableArray arrayWithCapacity:simpleTypes.count];
+    NSMutableString *enumsDictionaries = [NSMutableString string];
+    NSMutableString *enumsDictProperties = [NSMutableString string];
+    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortedSimpleTypes = [simpleTypes sortedArrayUsingDescriptors:@[descriptor]];
+    for (XSDSimpleType *oneSimpleType in sortedSimpleTypes) {
+
+        NSString *firstEnum = [oneSimpleType.name stringByAppendingString:oneSimpleType.options[0]];
+        NSMutableString *nextEnums = [NSMutableString string];
+        NSMutableString *keyValueString = [NSMutableString string];
+        NSMutableString *constStringsDeclaration = [NSMutableString string];
+        [constStringsDeclaration appendFormat:@"static NSString *const k%@EnumName = @\"%@\";\n", oneSimpleType.name, oneSimpleType.name];
+        [constStringsDeclaration appendFormat:@"static const NSUInteger k%@Count = %lu;\n", oneSimpleType.name, (unsigned long)oneSimpleType.options.count];
+        for (int i = 0; i < oneSimpleType.options.count; i++) {
+            NSString *enumOptionName = [oneSimpleType.name stringByAppendingString:oneSimpleType.options[i]];
+            NSString *stringConstName = [NSString stringWithFormat:@"k%@String", enumOptionName];
+            [constStringsDeclaration appendFormat:@"static NSString *const %@ = @\"%@\";\n", stringConstName, oneSimpleType.options[i]];
+            [keyValueString appendFormat:@"@(%@) : %@", enumOptionName, stringConstName];
+            if (i < oneSimpleType.options.count - 1){
+                [keyValueString appendString:@", "];
+            }
+            if (i == 0)
+                continue;
+            [nextEnums appendFormat:@"\t%@,\n", enumOptionName];
+        }
+        [enumsDictProperties appendFormat:@"@property(nonatomic, strong) NSDictionary *%@Dictionary;\n", oneSimpleType.name];
+        [enumsDictionaries appendString:[NSString stringWithFormat:@"\t\t_%@Dictionary = @{ %@ };\n",oneSimpleType.name, keyValueString]];
+        NSString * oneEnumDecl = [NSString stringWithFormat:kEnumFormat, oneSimpleType.name, firstEnum, nextEnums];
+        [enumsDeclaration addObject:oneEnumDecl];
+        [enumsDeclaration addObject:constStringsDeclaration];
+    }
+    // .h File
+    NSString *hFileName = [NSString stringWithFormat:@"%@.h", kDefaultEnumManagerClassname];
+    NSString *hFilePath = [path  stringByAppendingPathComponent:hFileName];
+    NSString *hTemplateFilePath = [@"./Resources" stringByAppendingPathComponent:@"XSDEnums_h"];
+    NSError *error = nil;
+    NSString *hTemplateFormat = [NSString stringWithContentsOfFile:hTemplateFilePath encoding:NSUTF8StringEncoding error: &error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+        return;
+    }
+    NSString *enumsDeclarationString = [enumsDeclaration componentsJoinedByString:[NSString stringWithFormat:@"\n"]];
+    NSString *hContentString = [NSString stringWithFormat:hTemplateFormat, _version, enumsDeclarationString];
+    [hContentString writeToFile:hFilePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+        return;
+    }
+    else{
+        printf("%s", [hFileName UTF8String]);
+    }
+    
+    // .m File
+    NSString *mFileName = [NSString stringWithFormat:@"%@.m", kDefaultEnumManagerClassname];
+    NSString *mFilePath = [path  stringByAppendingPathComponent:mFileName];
+    NSString *mTemplateFilePath = [@"./Resources" stringByAppendingPathComponent:@"XSDEnums_m"];
+    NSString *mTemplateFormat = [NSString stringWithContentsOfFile:mTemplateFilePath encoding:NSUTF8StringEncoding error: &error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+        return;
+    }
+    NSString *mContentString = [NSString stringWithFormat:mTemplateFormat, _version, enumsDictProperties, enumsDictionaries];
+    [mContentString writeToFile:mFilePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
+    if (error){
+        NSLog(@"ERROR: %@", error);
+        return;
+    }
+    else{
+        printf(",m; ");
     }
 }
 
