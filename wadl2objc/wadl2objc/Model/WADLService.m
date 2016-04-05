@@ -9,8 +9,12 @@
 #import "WADLService.h"
 #import "WADLServiceSection.h"
 #import "WADLServicePathParameter.h"
+#import "XSDTypes.h"
 
 @implementation WADLService
+
+synthesizeLazzyProperty(queryParameters, NSMutableArray);
+synthesizeLazzyProperty(headParameters, NSMutableArray);
 
 - (id)initWithDictionary:(NSDictionary*)dictionary parentSection:(WADLServiceSection*)parentSection
 {
@@ -40,18 +44,28 @@
     self.responseObjectClass = responseElement;
     NSString *requestElement = [dictionary valueForKeyPath:@"request.ns2:representation._element"];
     self.requestObjectClass = requestElement;
-}
 
-- (NSArray *)allQueryParameters
-{
-    NSMutableArray *queryParams = [NSMutableArray array];
-    WADLServiceSection *section = self.parentServiceSection;
-    while (section) {
-        NSArray *nextParameters = section.queryParameters;
-        [queryParams insertObjects:nextParameters atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nextParameters.count)]];
-        section = section.parantServiceSection;
+    NSDictionary *request = dictionary[@"request"];
+    NSArray *params = request[@"param"];
+    if ( [params isKindOfClass:[NSDictionary class]] ) {
+        params = @[params];
     }
-    return queryParams;
+    if ( params.count ) {
+        for (NSDictionary *paramDict in params) {
+            WADLServicePathParameter *parameter = [WADLServicePathParameter new];
+            parameter.name = paramDict[@"_name"];
+            parameter.type = classNameForXSDType( paramDict[@"_type"] );
+            NSString *parameterStyle = paramDict[@"_style"];
+            
+            // query and header parameters handling
+            if ([parameterStyle isEqualToString:@"query"]) {
+                [self.queryParameters addObject:parameter];
+            }
+            else if ([parameterStyle isEqualToString:@"header"]) {
+                [self.headParameters addObject:parameter];
+            }
+        }
+    }
 }
 
 - (NSArray *)allPathParameters
@@ -60,18 +74,6 @@
     WADLServiceSection *section = self.parentServiceSection;
     while (section) {
         NSArray *nextParameters = section.pathParameters;
-        [pathParams insertObjects:nextParameters atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nextParameters.count)]];
-        section = section.parantServiceSection;
-    }
-    return pathParams;
-}
-
-- (NSArray *)allHeadParameters
-{
-    NSMutableArray *pathParams = [NSMutableArray array];
-    WADLServiceSection *section = self.parentServiceSection;
-    while (section) {
-        NSArray *nextParameters = section.headParameters;
         [pathParams insertObjects:nextParameters atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, nextParameters.count)]];
         section = section.parantServiceSection;
     }
@@ -87,7 +89,6 @@
 
 - (NSString *)objcMethodName
 {
-    WADLServiceSection *parentSection = self.parentServiceSection;
     BOOL needCapitalize = NO;
     NSMutableString *methodDeclaration = [NSMutableString stringWithFormat:@"- (WADLRequestTask)%@",[self.overridenName lowercaseFirstCharacterString]];
     if ( self.requestObjectClass ){
@@ -99,7 +100,7 @@
         [methodDeclaration appendString:@"With"];
         needCapitalize = YES;
     }
-    for (NSArray *parameters in @[ [self allPathParameters], [self allQueryParameters], [self allHeadParameters] ]) {
+    for (NSArray *parameters in @[ [self allPathParameters], self.queryParameters, self.headParameters ]) {
         for (WADLServicePathParameter *pathParam in parameters) {
             NSString *name = [[pathParam.name lowercaseFirstCharacterString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
             NSString *methodPart = needCapitalize ? [name uppercaseFirstCharacterString] : name;

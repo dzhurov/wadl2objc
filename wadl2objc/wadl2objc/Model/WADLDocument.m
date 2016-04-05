@@ -62,10 +62,14 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     static NSString *const kApiConstsFile = @"APIConsts.h";
     
     // Copy resources
-    NSArray *fileNames = @[kApiConstsFile, @"XSDBaseEntity.h", @"XSDBaseEntity.m",
-                           @"XSDTypes.h", @"XSDTypes.m",
-                           @"WADLRequestTask.h", @"Xcode7Macros.h",
-                           @"WADLServicesResource.h", @"WADLServicesResource.m"];
+    NSArray *fileNames = @[kApiConstsFile,
+                           @"XSDBaseEntity.h",
+                           @"XSDBaseEntity.m",
+                           @"XSDTypes.h",
+                           @"XSDTypes.m",
+                           @"WADLRequestTask.h",
+                           @"WADLServicesResource.h",
+                           @"WADLServicesResource.m"];
     
     for (NSString *fName in fileNames) {
         [self copyFileFromResourses:fName toPath:path];
@@ -109,8 +113,11 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     ///Declaraction
     NSMutableString * methodsDeclaration = [NSMutableString stringWithCapacity:1024 * 4];
     
-    NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"fullPath" ascending:YES];
-    NSArray *sortedMethods = [serviceSection.allMethods sortedArrayUsingDescriptors:@[descriptor]];
+    NSMutableArray<WADLService *> *sortedMethods = [[NSMutableArray alloc] initWithArray:serviceSection.allMethods];
+    [sortedMethods sortUsingComparator:^NSComparisonResult(WADLService * _Nonnull obj1, WADLService *  _Nonnull obj2) {
+        return [obj1.name compare:obj2.name options:0];
+    }];
+    
     for (WADLService *oneService in sortedMethods) {
         NSString *oneMethodDeclaration = [[oneService objcMethodName] stringByAppendingFormat:@";\n"];
         [methodsDeclaration appendString: oneMethodDeclaration];
@@ -152,7 +159,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         [oneMethodImplementation appendFormat:@"];\n"];
         
         // query parameters
-        NSArray *queryParametes = oneService.allQueryParameters;
+        NSArray *queryParametes = oneService.queryParameters;
         if ( queryParametes.count ){
             [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *queryParmeters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)queryParametes.count];
             for (WADLServicePathParameter *parameter in queryParametes) {
@@ -171,7 +178,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         }
         
         // head parameters
-        NSArray *headParametes = oneService.allHeadParameters;
+        NSArray *headParametes = oneService.headParameters;
         if ( headParametes.count ){
             [oneMethodImplementation appendFormat:@"\tNSMutableDictionary *headParameters = [NSMutableDictionary dictionaryWithCapacity:%lu];\n", (unsigned long)headParametes.count];
             for (WADLServicePathParameter *parameter in headParametes) {

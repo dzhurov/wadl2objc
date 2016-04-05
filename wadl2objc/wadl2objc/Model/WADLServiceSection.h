@@ -19,8 +19,6 @@
 @property (nonatomic, strong) WADLServiceSection *parantServiceSection;
 @property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServiceSection*) *childSections;
 @property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *pathParameters;
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *queryParameters;
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *headParameters;
 @property (nonatomic, strong) __GENERICS(NSMutableArray, WADLService*) *services;
 
 - (NSString*)fullPath;

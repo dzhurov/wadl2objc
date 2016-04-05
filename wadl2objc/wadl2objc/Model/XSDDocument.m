@@ -222,9 +222,23 @@
     NSMutableString *includes = [NSMutableString string];
     [includes appendFormat:@"#import \"%@.h\"\n", classExtension];
     
+    [object.dependencies sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        
+        if ( [obj1 isKindOfClass: [XSDObject class]] && [obj2 isKindOfClass: [XSDObject class]] ){
+            NSString *name1 = ((XSDObject*)obj1).name;
+            NSString *name2 = ((XSDObject*)obj2).name;
+            return [name1 compare:name2 options:0];
+        }
+        return NSOrderedSame;
+    }];
+    
     for (NSObject *dependency in object.dependencies) {
         if ( [dependency isKindOfClass: [XSDObject class]] ){
-            [includes appendFormat:@"#import \"%@.h\"\n", ((XSDObject*)dependency).name];
+            NSString *newImport = [NSString stringWithFormat:@"#import \"%@.h\"", ((XSDObject*)dependency).name];
+            NSRange range = [includes rangeOfString:newImport];
+            if (range.location == NSNotFound) {
+                [includes appendFormat:@"%@\n", newImport];
+            }
         }
         else if ( [dependency isKindOfClass:[XSDSimpleType class]] )
         {
@@ -234,11 +248,23 @@
     if ( needForSimpleTypes )
         [includes appendFormat:@"#import \"%@.h\"\n", kDefaultEnumManagerClassname];
     // Properties list
+    
+    
+    [object.properties sortUsingComparator:^NSComparisonResult(XSDObjectProperty * _Nonnull obj1, XSDObjectProperty *  _Nonnull obj2) {
+        
+        if ( [obj1 isKindOfClass: [XSDObject class]] && [obj2 isKindOfClass: [XSDObject class]] ){
+            NSString *name1 = ((XSDObject*)obj1).name;
+            NSString *name2 = ((XSDObject*)obj2).name;
+            return [name1 compare:name2 options:0];
+        }
+        return [obj1.name compare:obj2.name options:0];
+    }];
+    
     NSMutableString *propertiesList = [NSMutableString string];
     for (XSDObjectProperty *property in object.properties) {
         NSString *typeString = nil;
         if (property.isCollection){
-            typeString = property.type?[NSString stringWithFormat:@"__GENERICS(NSArray, %@*)", (property.simpleType ? property.simpleType.baseType : property.type)]:@"NSArray";
+            typeString = property.type?[NSString stringWithFormat:@"NSArray<%@ *>", (property.simpleType ? property.simpleType.baseType : property.type)]:@"NSArray";
             property.dockComment = [NSString stringWithFormat:@"/*![%@]*/", property.type];
         }
         else if (property.simpleType){
@@ -270,7 +296,6 @@
     else{
         printf("%s", [fileName UTF8String]);
     }
-    
 }
 
 - (void)writeMachineMFileObject:(XSDObject*)object toPath:(NSString*)path

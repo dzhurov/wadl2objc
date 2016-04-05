@@ -18,8 +18,6 @@
 synthesizeLazzyProperty(childSections, NSMutableArray);
 synthesizeLazzyProperty(pathParameters, NSMutableArray);
 synthesizeLazzyProperty(services, NSMutableArray);
-synthesizeLazzyProperty(queryParameters, NSMutableArray);
-synthesizeLazzyProperty(headParameters, NSMutableArray);
 
 - (id)initWithDictionary:(NSDictionary *)dictionary parantSection:(WADLServiceSection *)parantSection
 {
@@ -35,6 +33,7 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
 {
     // Path
     NSString *path = dictionary[@"_path"];
+    
     NSMutableArray *pathComponents = [[path componentsSeparatedByString:@"/"] mutableCopy];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.length > 0"];
     [pathComponents filterUsingPredicate:predicate];
@@ -97,28 +96,6 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
         if ( [kSupportedHTTPMethodsArray containsObject:httpMethod] ) {
             WADLService *service = [[WADLService alloc] initWithDictionary:methodDict parentSection:self];
             [self.services addObject:service];
-        }
-        
-        NSDictionary *request = methodDict[@"request"];
-        NSArray *params = request[@"param"];
-        if ( [params isKindOfClass:[NSDictionary class]] ) {
-            params = @[params];
-        }
-        if ( params.count ) {
-            for (NSDictionary *paramDict in params) {
-                WADLServicePathParameter *parameter = [WADLServicePathParameter new];
-                parameter.name = paramDict[@"_name"];
-                parameter.type = classNameForXSDType( paramDict[@"_type"] );
-                NSString *parameterStyle = paramDict[@"_style"];
-                
-                // query and header parameters handling
-                if ([parameterStyle isEqualToString:@"query"]) {
-                    [self.queryParameters addObject:parameter];
-                }
-                else if ([parameterStyle isEqualToString:@"header"]) {
-                    [self.headParameters addObject:parameter];
-                }
-            }
         }
     }
 }

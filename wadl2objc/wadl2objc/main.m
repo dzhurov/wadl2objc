@@ -48,8 +48,7 @@ int main(int argc, const char * argv[])
             WADLDocument *wadlDoc = [[WADLDocument alloc] initWithData:wadlData];
             wadlDoc.xsdDocument = xsdDoc;
             [wadlDoc writeObjectsToPath:settingMgr.outputPath];
-            
-            printf("\n\nIMPORTANT! \nDon't forget import Xcode7Macros.h to your project. Take a look here https://gist.github.com/smileyborg/d513754bc1cf41678054");
+
             exit(EXIT_SUCCESS);
         }];
         

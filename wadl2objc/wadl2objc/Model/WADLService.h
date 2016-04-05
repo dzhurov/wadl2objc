@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class WADLServiceSection;
+@class WADLServiceSection, WADLServicePathParameter;
 @interface WADLService : NSObject
 
 - (id)initWithDictionary:(NSDictionary*)dictionary parentSection:(WADLServiceSection*)parantSection;
@@ -21,9 +21,10 @@
 
 @property (nonatomic, strong) NSString *overridenName;
 
-- (NSArray *)allQueryParameters;
+@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *queryParameters;
+@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *headParameters;
+
 - (NSArray *)allPathParameters;
-- (NSArray *)allHeadParameters;
 - (NSString*)fullPath;
 
 //! Depends on overridenMethodName
