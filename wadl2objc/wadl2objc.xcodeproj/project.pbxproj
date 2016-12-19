@@ -22,7 +22,6 @@
 		0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD317CBA663003655C4 /* XSDTypes.m */; };
 		0AA94D0B17F883B0000DE3B6 /* WADLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */; };
 		615F1DA71B78F423003FBB94 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 615F1DA61B78F423003FBB94 /* DataManager.m */; };
-		61C6F29F1B7CE72900EF2D8C /* Xcode7Macros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */; };
 		7E3CF89B17FC242400ECCC95 /* _TemplateEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */; };
 		7E3CF89C17FC242400ECCC95 /* _TemplateEntity_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2C17CCDCF20068D508 /* _TemplateEntity_m */; };
 		7E3CF89D17FC242400ECCC95 /* TemplateEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EC7DCBB17D096ED003CE122 /* TemplateEntity_h */; };
@@ -60,7 +59,6 @@
 			dstPath = Resources;
 			dstSubfolderSpec = 16;
 			files = (
-				61C6F29F1B7CE72900EF2D8C /* Xcode7Macros.h in CopyFiles */,
 				7EAF2A4A1B7B7A4600600196 /* WADLRequestTask.h in CopyFiles */,
 				7EAF2A4B1B7B7A4600600196 /* WADLAbstractServerAPI.m in CopyFiles */,
 				7EAF2A4C1B7B7A4600600196 /* WADLServerAPI.m in CopyFiles */,
@@ -129,12 +127,10 @@
 		0AA94D0917F883B0000DE3B6 /* WADLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLDocument.h; sourceTree = "<group>"; };
 		0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLDocument.m; sourceTree = "<group>"; };
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode7Macros.h; sourceTree = "<group>"; };
 		615F1DA51B78F423003FBB94 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		615F1DA61B78F423003FBB94 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		7E1B156217CF5AE600C96204 /* XSDEnums_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_h; sourceTree = "<group>"; };
 		7E1B156317CF5AE600C96204 /* XSDEnums_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_m; sourceTree = "<group>"; };
-		7E4660DF1B83506A009888AC /* Xcode7Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode7Macros.h; sourceTree = "<group>"; };
 		7E513D4D1B78C83800A38135 /* WADLServiceTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLServiceTemplate.h; sourceTree = "<group>"; };
 		7E513D4E1B78C83800A38135 /* WADLServiceTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLServiceTemplate.m; sourceTree = "<group>"; };
 		7E5C9FBA1B7A156700BABE83 /* NSError+Terminate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Terminate.h"; sourceTree = "<group>"; };
@@ -202,12 +198,10 @@
 			isa = PBXGroup;
 			children = (
 				0A2810A517C9F733001C7306 /* main.m */,
-				611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */,
 				0A2B108D180A991A00E5E19E /* NSString+FirstCharacter.h */,
 				0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */,
 				7E5C9FBA1B7A156700BABE83 /* NSError+Terminate.h */,
 				7E5C9FBB1B7A156700BABE83 /* NSError+Terminate.m */,
-				7E4660DF1B83506A009888AC /* Xcode7Macros.h */,
 				0A2810A917C9F733001C7306 /* wadl2objc.1 */,
 				0A964DC017CB52C2003655C4 /* Model */,
 				0A2810D517C9F8C1001C7306 /* ThirdParty */,

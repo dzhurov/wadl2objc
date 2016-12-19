@@ -16,20 +16,16 @@
 
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(DataManager);
 
--(void)writeLoadingDotsInLog:(NSTimer*)sender
-{
-    printf(".");
-}
-
 -(void)downloadDataByURLString:(NSString*)urlString completionHandler:(void (^)(NSData *data, NSError *error))completionHandler
 {
     NSURLSession *session = [NSURLSession sharedSession];
+    
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         if (error) {
-            printf("completed with error :( \n");
+            ERROR_LOG(@"completed with error :( \n");
         } else {
-            printf("completed successfully :) \n");
+            SUCCESS_LOG(@"completed successfully :) \n");
         }
         
         if (completionHandler) {

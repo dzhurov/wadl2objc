@@ -10,10 +10,10 @@
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "588FF102-B091-4F36-8938-57F8142D9E59",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "CDA11EC5-EC34-4327-859A-F9E36C8B97D3" : "wad2lobjc",
-    "05D1B6F2F95DA550DA0DA1BAC4AB4BAE10E9B735" : "wadl2objc"
+    "05D1B6F2F95DA550DA0DA1BAC4AB4BAE10E9B735" : "wadl2objc\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "wadl2objc",
-  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "wadl2objc\/wadl2objc.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {

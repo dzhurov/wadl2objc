@@ -56,7 +56,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
 
 - (void)writeObjectsToPath:(NSString *)path
 {
-    printf("\nGenerate WADL files:\n");
+    WARNING_LOG("Generate WADL files");
     
     //APIConsts.h
     static NSString *const kApiConstsFile = @"APIConsts.h";
@@ -133,7 +133,6 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     NSError *error = nil;
     [hContentOfFile writeToFile:fullPathHPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) [error terminate];
-    NSLog(@"%@.h generated",className);
     
 // .m file
     NSMutableString *mContentOfFile = [[NSMutableString alloc] initWithContentsOfFile:[kResourcesFolderPath stringByAppendingPathComponent:@"WADLServiceTemplate.m"]
@@ -207,7 +206,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     
     [mContentOfFile writeToFile:fullPathMPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) [error terminate];
-    NSLog(@"%@.m generated",className);
+    printf("%s.h,m; ",[className UTF8String]);
 }
 
 - (void)writeAbstractServerAPIToPath:(NSString*)path
@@ -253,7 +252,6 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     NSError *error = nil;
     [hContentOfFile writeToFile:fullHPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) [error terminate];
-    NSLog(@"%@.h generated",kAbstractAPIClassName);
     
 // .m file
     NSMutableString *mContentOfFile = [[NSMutableString alloc] initWithContentsOfFile:[kResourcesFolderPath stringByAppendingPathComponent:@"WADLAbstractServerAPI.m"]
@@ -283,7 +281,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     
     [mContentOfFile writeToFile:fullMPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) [error terminate];
-    NSLog(@"%@.m generated",kAbstractAPIClassName);
+    printf("%s.h,m; ",[kAbstractAPIClassName UTF8String]);
 }
 
 - (void)writeAPIConstToPath: (NSString*)path
@@ -317,7 +315,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     NSError *error = nil;
     [contentOfFile writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error)
-        NSLog(@"ERROR: %@",error);
+        ERROR_LOG(@"ERROR: %@",error);
     else
         printf("%s; ", [[filePath lastPathComponent] UTF8String]);
 }

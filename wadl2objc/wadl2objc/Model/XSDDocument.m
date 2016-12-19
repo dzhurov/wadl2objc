@@ -160,7 +160,7 @@
     if ( ![fileManager fileExistsAtPath:machineFilesPath] ){
         [fileManager createDirectoryAtPath:machineFilesPath withIntermediateDirectories:YES attributes:nil error: &error];
         if ( error ){
-            NSLog(@"Error: %@",error);
+            ERROR_LOG(@"%@",error);
             return;
         }
     }
@@ -169,14 +169,17 @@
     dateFormatter.dateFormat = @"yyyy.MM.dd HH:mm:ss";
     self.currentFormattedDate = [dateFormatter stringFromDate:[NSDate date]];
     
+    SUCCESS_LOG("%s\n", [[NSString stringWithFormat:@"Processing path: %@", machineFilesPath] UTF8String]);
     [self writeMachineFilesToPath:machineFilesPath];
     [self writeHumanFilesToPath:path];
     [self writeSimpleTypesToPath:path];
+    
+    [self removeOldMachineFilesFromPath:machineFilesPath];
 }
 
 -(void)writeMachineFilesToPath:(NSString*)machineFilesPath
 {
-    printf("\n%s\n", [[NSString stringWithFormat:@"Write machine files to path: %@", machineFilesPath] UTF8String]);
+    WARNING_LOG("Writing machine files\n");
     
     for (XSDObject *object in _objects) {
         [self writeMachineHFileObject:object toPath:machineFilesPath];
@@ -186,7 +189,7 @@
 
 -(void)writeHumanFilesToPath:(NSString*)path
 {
-    printf("\n%s\n", [[NSString stringWithFormat:@"\nWrite human files to path: %@", path] UTF8String]);
+    WARNING_LOG("Writing human files\n");
     
     for (XSDObject *object in _objects) {
         [self writeHumanFilesForObject:object toPath:path];
@@ -195,8 +198,54 @@
 
 -(void)writeSimpleTypesToPath:(NSString*)path
 {
-    printf("\n%s\n", [[NSString stringWithFormat:@"\nWrite simple types to path: %@", path] UTF8String]);
+    WARNING_LOG("Writing simple types\n");
+    
     [self writeSimpleTypes:_simpleTypes toPath:path];
+}
+
+-(void)removeOldMachineFilesFromPath:(NSString*)path
+{
+    WARNING_LOG("Removing machine files\n");
+   
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSArray<NSString*> *content = [fileManager contentsOfDirectoryAtPath:path error:&error];
+    
+    if (error) {
+        ERROR_LOG(@"%@", error);
+        return;
+    }
+    
+    __block NSMutableArray *currentFilesName = [NSMutableArray new];
+    [_objects enumerateObjectsUsingBlock:^(XSDObject *object, NSUInteger idx, BOOL * _Nonnull stop) {
+        [currentFilesName addObject:[NSString stringWithFormat:@"_%@.h", object.name]];
+        [currentFilesName addObject:[NSString stringWithFormat:@"_%@.m", object.name]];
+    }];
+    
+    NSMutableArray<NSString*> *fileNamesToRemove = [content mutableCopy];
+    [fileNamesToRemove removeObjectsInArray:currentFilesName];
+    
+    if (fileNamesToRemove.count == 0) {
+        SUCCESS_LOG(@"Nothing to remove");
+        return;
+    }
+    
+    __block BOOL success = YES;
+    __block NSMutableArray *removedFiles = [NSMutableArray new];
+    [fileNamesToRemove enumerateObjectsUsingBlock:^(NSString * _Nonnull fileName, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSError *err = nil;
+        NSString *filePath = [path stringByAppendingPathComponent:fileName];
+        if (![fileManager removeItemAtPath:filePath error:&err]) {
+            ERROR_LOG(@"%@", err);
+            success = NO;
+        } else {
+            [removedFiles addObject:fileName];
+        }
+    }];
+    
+    NSString *message = [NSString stringWithFormat:@"Removed %ld file%@", removedFiles.count, removedFiles.count==0?@"":@"s"];
+    SUCCESS_LOG(@"%@ %@", message, removedFiles);
 }
 
 // TODO: Implement simple types parser + translators
@@ -215,7 +264,7 @@
         NSError *error = nil;
         [fileManager removeItemAtPath:filePath error: &error];
         if (error){
-            NSLog(@"Error: %@",error);
+            ERROR_LOG(@"%@",error);
             return;
         }
     }
@@ -285,13 +334,13 @@
     NSError *error = nil;
     NSString *_hFileFormat = [NSString stringWithContentsOfFile:_hFilePath encoding:NSUTF8StringEncoding error: &error];
     if (error){
-        NSLog(@"ERROR: %@", error);
+        ERROR_LOG(@"%@", error);
     }
     
     NSString *contentString = [NSString stringWithFormat:_hFileFormat, className, self.version, includes, className, classExtension, propertiesList];
     [contentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
-        NSLog(@"ERROR: %@", error);
+        ERROR_LOG(@"%@", error);
     }
     else{
         printf("%s", [fileName UTF8String]);
@@ -308,7 +357,7 @@
         NSError *error = nil;
         [fileManager removeItemAtPath:filePath error: &error];
         if (error){
-            NSLog(@"Error: %@",error);
+            ERROR_LOG(@"%@",error);
             return;
         }
     }
@@ -342,12 +391,12 @@
     NSError *error = nil;
     NSString *_mFileFormat = [NSString stringWithContentsOfFile:_mFilePath encoding:NSUTF8StringEncoding error: &error];
     if (error){
-        NSLog(@"ERROR: %@", error);
+        ERROR_LOG(@"%@", error);
     }
     NSString *contentString = [NSString stringWithFormat:_mFileFormat, className, self.version, className, className,fieldsNamesStringKindOfObjects, enumsConditionsList, collectionsConditionsList];
     [contentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
-        NSLog(@"ERROR: %@", error);
+        ERROR_LOG(@"%@", error);
     }
     else{
         printf(",m; ");
@@ -369,12 +418,12 @@
         NSError *error = nil;
         NSString *hFileFormat = [NSString stringWithContentsOfFile:hTemplateFilePath encoding:NSUTF8StringEncoding error: &error];
         if (error){
-            NSLog(@"ERROR: %@", error);
+            ERROR_LOG(@"%@", error);
         }
         NSString *contentString = [NSString stringWithFormat: hFileFormat, object.name, _currentFormattedDate, _version, object.name, object.name, object.name];
         [contentString writeToFile:hFilePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
         if (error){
-            NSLog(@"ERROR: %@", error);
+            ERROR_LOG(@"%@", error);
         }
         else{
             printf("%s", [hFileName UTF8String]);
@@ -386,12 +435,12 @@
         NSError *error = nil;
         NSString *mFileFormat = [NSString stringWithContentsOfFile:mTemplateFilePath encoding:NSUTF8StringEncoding error: &error];
         if (error){
-            NSLog(@"ERROR: %@", error);
+            ERROR_LOG(@"%@", error);
         }
         NSString *contentString = [NSString stringWithFormat: mFileFormat, object.name, _currentFormattedDate, _version, object.name, object.name, object.name];
         [contentString writeToFile:mFilePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
         if (error){
-            NSLog(@"ERROR: %@", error);
+            ERROR_LOG(@"%@", error);
         }
         else{
             printf(",m; ");
@@ -443,14 +492,14 @@
     NSError *error = nil;
     NSString *hTemplateFormat = [NSString stringWithContentsOfFile:hTemplateFilePath encoding:NSUTF8StringEncoding error: &error];
     if (error){
-        NSLog(@"ERROR: %@", error);
+        ERROR_LOG(@"%@", error);
         return;
     }
     NSString *enumsDeclarationString = [enumsDeclaration componentsJoinedByString:[NSString stringWithFormat:@"\n"]];
     NSString *hContentString = [NSString stringWithFormat:hTemplateFormat, _version, enumsDeclarationString];
     [hContentString writeToFile:hFilePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
-        NSLog(@"ERROR: %@", error);
+        ERROR_LOG(@"%@", error);
         return;
     }
     else{
@@ -463,13 +512,13 @@
     NSString *mTemplateFilePath = [@"./Resources" stringByAppendingPathComponent:@"XSDEnums_m"];
     NSString *mTemplateFormat = [NSString stringWithContentsOfFile:mTemplateFilePath encoding:NSUTF8StringEncoding error: &error];
     if (error){
-        NSLog(@"ERROR: %@", error);
+        ERROR_LOG(@"%@", error);
         return;
     }
     NSString *mContentString = [NSString stringWithFormat:mTemplateFormat, _version, enumsDictProperties, enumsDictionaries];
     [mContentString writeToFile:mFilePath atomically:YES encoding:NSUTF8StringEncoding error: &error];
     if (error){
-        NSLog(@"ERROR: %@", error);
+        ERROR_LOG(@"%@", error);
         return;
     }
     else{

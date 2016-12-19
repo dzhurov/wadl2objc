@@ -7,4 +7,9 @@
     #import "Utilities.h"
     #import "NSString+FirstCharacter.h"
     #import "Xcode7Macros.h"
+
+#define SUCCESS_LOG(fmt, ...) NSLog((@"\n✅ " fmt), ##__VA_ARGS__)
+#define WARNING_LOG(fmt, ...) NSLog((@"\n⚠️ " fmt), ##__VA_ARGS__)
+#define ERROR_LOG(fmt, ...) NSLog((@"\n❌ " fmt), ##__VA_ARGS__)
+
 #endif
