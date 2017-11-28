@@ -25,7 +25,6 @@ typedef NS_ENUM(NSInteger, WADLRequestMethod) {
                     bodyObject:(NSDictionary*)parameters
           HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
                    outputClass:(Class)outputClass
-                     isInvoked:(BOOL)isInvoked
                  responseBlock:(void (^)(id, NSError *))responseBlock;
 
 @end
