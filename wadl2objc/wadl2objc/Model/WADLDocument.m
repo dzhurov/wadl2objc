@@ -172,6 +172,9 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         if (oneService.requestObjectClass){
             [oneMethodImplementation appendFormat:@"\tNSDictionary *bodyObject = [%@ dictionaryInfo];\n", [oneService.requestObjectClass lowercaseFirstCharacterString]];
         }
+        else if ([oneService.method isEqualToString:@"POST"] || [oneService.method isEqualToString:@"PUT"]) {
+            [oneMethodImplementation appendFormat:@"\tNSDictionary *bodyObject = [NSDictionary new];\n"];
+        }
         else{
             [oneMethodImplementation appendFormat:@"\tNSDictionary *bodyObject = nil;\n"];
         }
