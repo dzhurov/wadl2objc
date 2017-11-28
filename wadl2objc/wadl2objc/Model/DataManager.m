@@ -60,6 +60,10 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(DataManager);
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:[[SettingsManager sharedSettingsManager] xsdPaths].count];
         for (NSString *path in [[SettingsManager sharedSettingsManager] xsdPaths]) {
             NSData *xsdData = [NSData dataWithContentsOfFile:path];
+            if ( !xsdData ){
+                NSLog(@"File: %@ doesn't exist", path);
+                exit(EXIT_FAILURE);
+            }
             [array addObject:xsdData];
         }
         if (completionBlock) {

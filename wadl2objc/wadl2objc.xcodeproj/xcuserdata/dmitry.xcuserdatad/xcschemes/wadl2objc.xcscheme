@@ -63,15 +63,19 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--output-dir: /Users/dmitry/Development/wad2lobjc/wadl2objc/GENERATED"
+            argument = "--output-dir: ../../GENERATED"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--wadl: /Users/dmitry/Development/wadl2objc/wadl2objc/wadl/application.wadl"
+            argument = "--wadl: ../../wadl/application.wadl"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--xsd: /Users/dmitry/Development/wadl2objc/wadl2objc/wadl/xsd0.xsd"
+            argument = "--xsd: ../../wadl/xsd0.xml"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--mapping-plist: ./WADL_mapping.plist"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

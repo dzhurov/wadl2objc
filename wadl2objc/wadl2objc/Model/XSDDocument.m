@@ -15,6 +15,7 @@
 #import "XSDTypes.h"
 #import "XSDNamespase.h"
 #import "SettingsManager.h"
+#import "NSError+Terminate.h"
 
 #define kDefaultMachineFolderName   @"machine"
 #define kDefaultSimpleTypesFileName @"XSDSimpleTypes"
@@ -218,8 +219,6 @@
 
 - (void)writeObjectsToPath:(NSString *)path
 {
-    
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     // Folders for namespaces
@@ -242,6 +241,10 @@
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"yyyy.MM.dd HH:mm:ss";
     self.currentFormattedDate = [dateFormatter stringFromDate:[NSDate date]];
+    
+    [self writeSimpleTypesToPath:path];
+    [self copyXSDFileToPath:path];
+    [self writeMappingAssistantToPath:path];
     
     for (XSDObject *object in _objects) {
         NSString *namespacePath = path;
@@ -280,8 +283,6 @@
     printf("\n%s\n", [[NSString stringWithFormat:@"\nWrite simple types to path: %@", path] UTF8String]);
     [self writeSimpleTypes:_simpleTypes toPath:path];
 }
-
-// TODO: Implement simple types parser + translators
 
 #pragma mark Machine files
 
@@ -407,7 +408,7 @@
         NSLog(@"ERROR: %@", error);
     }
     else{
-        printf(",m; ");
+        printf(",m;\n");
     }
 }
 
@@ -451,7 +452,7 @@
             NSLog(@"ERROR: %@", error);
         }
         else{
-            printf(",m; ");
+            printf(",m; \n");
         }
     }
 }
@@ -530,7 +531,64 @@
         return;
     }
     else{
-        printf(",m; ");
+        printf(",m;\n");
+    }
+}
+
+#pragma mark Other files
+
+- (void)copyXSDFileToPath:(NSString*)path
+{
+    NSArray *filesToCopy = @[@"XSDBaseEntity.h", @"XSDBaseEntity.m",
+                             @"XSDTypes.h", @"XSDTypes.m"];
+
+    for (NSString *fileName in filesToCopy) {
+        [self copyFileFromResourses:fileName toPath:path override:NO];
+    }
+}
+
+- (void)writeMappingAssistantToPath:(NSString*)path
+{
+    __block NSMutableString *xsdToObjcEnumiration = [NSMutableString new];
+    __block NSMutableString *objcToXsdEnumiration = [NSMutableString new];
+    
+    NSString *const kMappingAssistantClassName = @"XSDMappingAssistant";
+    NSString *hFilePath = [kMappingAssistantClassName stringByAppendingString:@".h"];
+    NSString *mFilePath = [kMappingAssistantClassName stringByAppendingString:@".m"];
+    [self copyFileFromResourses:hFilePath toPath:path override:NO];
+    NSError *error = nil;
+    NSMutableString *contentOfFile = [NSMutableString stringWithContentsOfFile:[kResourcesFolderPath stringByAppendingPathComponent:mFilePath]
+                                                                      encoding:NSUTF8StringEncoding
+                                                                         error:&error];
+    [error terminate];
+
+    [[[SettingsManager sharedSettingsManager] xsdToObjcFieldsMapping] enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+        [xsdToObjcEnumiration appendFormat:@"\"%@\" : \"%@\"\n\t\t\t\t\t\t\t\t\t\t\t\t", key, obj];
+        [objcToXsdEnumiration appendFormat:@"\"%@\" : \"%@\"\n\t\t\t\t\t\t\t\t\t\t\t\t", obj, key];
+    }];
+    [contentOfFile replaceOccurrencesOfString:@"<#xsd_to_objc_fields#>" withString:xsdToObjcEnumiration options:0 range:NSMakeRange(0, contentOfFile.length)];
+    [contentOfFile replaceOccurrencesOfString:@"<#objc_to_xsd_fields#>" withString:xsdToObjcEnumiration options:0 range:NSMakeRange(0, contentOfFile.length)];
+    
+    [contentOfFile writeToFile:[path stringByAppendingPathComponent:mFilePath]
+                    atomically:YES
+                      encoding:NSUTF8StringEncoding
+                         error:&error];
+    [error terminate];
+}
+
+- (void)copyFileFromResourses:(NSString*)fileName toPath:(NSString*)path override:(BOOL)override
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *simFilePath = [path stringByAppendingPathComponent:fileName];
+    if ( ![fileManager fileExistsAtPath:simFilePath] || override) {
+        NSString *simTemplateFilePath = [kResourcesFolderPath stringByAppendingPathComponent:fileName];
+        NSError *error = nil;
+        [fileManager copyItemAtPath:simTemplateFilePath toPath:simFilePath error:&error];
+        if (error){
+            [error terminate];
+            return;
+        }
     }
 }
 

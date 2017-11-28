@@ -133,9 +133,9 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     }
 }
 
-- (void)processDuplicatedMethodNames:(__GENERICS(NSMutableArray, WADLService*)*)allMethods
+- (void)processDuplicatedMethodNames:(NSMutableArray<WADLService*>*)allMethods
 {
-    __GENERICS(NSMutableArray, __GENERICS(NSMutableArray, WADLService*)*) *duplicatedNamesServices = [NSMutableArray new];
+    NSMutableArray<NSMutableArray<WADLService*>*> *duplicatedNamesServices = [NSMutableArray new];
     NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"overridenName" ascending:YES];
     NSArray *sortedServices = [allMethods sortedArrayUsingDescriptors:@[descriptor]];
     
@@ -196,7 +196,7 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     return fullPath;
 }
 
-- (__GENERICS(NSMutableArray, WADLService*) *)allMethods
+- (NSMutableArray<WADLService*> *)allMethods
 {
     NSMutableArray *allMethods = [NSMutableArray arrayWithArray:_services];
     for (WADLServiceSection *childSection in _childSections) {
@@ -207,10 +207,10 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     return allMethods;
 }
 
-- (__GENERICS(NSArray, NSString*)*)allServicesClasses
+- (NSArray<NSString*>*)allServicesClasses
 {
-    __GENERICS(NSArray, NSString*) *responseObjects = [self.allMethods valueForKeyPath:@"responseObjectClass"];
-    __GENERICS(NSArray, NSString*) *requestObjects = [self.allMethods valueForKeyPath:@"requestObjectClass"];
+    NSArray<NSString*> *responseObjects = [self.allMethods valueForKeyPath:@"responseRepresentation.objcClassName"];
+    NSArray<NSString*> *requestObjects = [self.allMethods valueForKeyPath:@"requestRepresentation.objcClassName"];
     NSMutableSet *set = [NSMutableSet setWithArray:responseObjects];
     [set addObjectsFromArray:requestObjects];
     [set removeObject:[NSNull null]];

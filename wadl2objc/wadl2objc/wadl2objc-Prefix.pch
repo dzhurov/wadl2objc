@@ -6,5 +6,7 @@
     #import <Foundation/Foundation.h>
     #import "Utilities.h"
     #import "NSString+FirstCharacter.h"
-    #import "Xcode7Macros.h"
+
+    #define kResourcesFolderPath            @"./Resources"
+
 #endif

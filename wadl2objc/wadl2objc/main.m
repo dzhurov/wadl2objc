@@ -54,7 +54,6 @@ int main(int argc, const char * argv[])
             wadlDoc.xsdDocuments = xsdDocs;
             [wadlDoc writeObjectsToPath:settingMgr.outputPath];
             
-            printf("\n\nIMPORTANT! \nDon't forget import Xcode7Macros.h to your project. Take a look here https://gist.github.com/smileyborg/d513754bc1cf41678054");
             exit(EXIT_SUCCESS);
         }];
         
@@ -67,7 +66,8 @@ int main(int argc, const char * argv[])
 void showHelp()
 {
     printf("Hello, my dear friend!\n");
-    printf("to use this stuff you have to have .wadl and .xsd files\n");
+    printf("to use this stuff you need .wadl and .xsd files\n");
     printf("Run this app with parameters --wadl: <wadl_file_path> --xsd: <xsd_file_path_1> <xsd_file_path_2> ... --output-dir: <output_dir> --mapping-plist: <WADL_mapping.plist>\n");
     printf("Or with parameters --wadlURL: <url_to_wadl> --xsdURL: <url_to_xsd> --output-dir: <output_dir>\n");
+    printf("You can provide --folderReference parameter if you whant to add all generated stuff like folder reference. It make you easier to add new files in project");
 }

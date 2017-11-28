@@ -17,7 +17,6 @@
 
 #define kPragmaGeneratedPartMarker      @"#pragma mark - Generated Services"
 #define kPragmaEndGeneratedPartMarker   @"#pragma mark -"
-#define kResourcesFolderPath            @"./Resources"
 
 @interface WADLDocument()
 
@@ -70,9 +69,8 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     static NSString *const kApiConstsFile = @"APIConsts.h";
     
     // Copy resources
-    NSArray *fileNames = @[kApiConstsFile, @"XSDBaseEntity.h", @"XSDBaseEntity.m",
-                           @"XSDTypes.h", @"XSDTypes.m",
-                           @"WADLRequestTask.h", @"Xcode7Macros.h",
+    NSArray *fileNames = @[kApiConstsFile,
+                           @"WADLRequestTask.h",
                            @"WADLServicesResource.h", @"WADLServicesResource.m"];
     
     for (NSString *fName in fileNames) {

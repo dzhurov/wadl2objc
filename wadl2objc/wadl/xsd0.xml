@@ -1,0 +1,100 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="RoutesCollection" type="routesCollection"/>
+
+  <xs:element name="Route" type="route"/>
+  
+  <xs:element name="RouteProperties" type="routeProperties"/>
+
+  <xs:element name="RouteSegment" type="routeSegment"/>
+
+  <xs:element name="RoutePoint" type="routePoint"/>
+
+  <xs:element name="Price" type="price"/>
+
+
+  <xs:complexType name="routesCollection">
+    <xs:sequence>
+        <xs:element name="routes" type="route" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="providerType">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="car_sharing"/>
+        <xs:enumeration value="private_bike"/>
+        <xs:enumeration value="public_transport"/>
+        <xs:enumeration value="taxi"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="travelMode">
+      <xs:restriction base="xs:string">
+          <xs:enumeration value="bus"/>
+          <xs:enumeration value="change"/>
+          <xs:enumeration value="subway"/>
+          <xs:enumeration value="cycling"/>
+          <xs:enumeration value="parking"/>
+          <xs:enumeration value="driving"/>
+          <xs:enumeration value="setup"/>
+          <xs:enumeration value="walking"/>
+      </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="route">
+      <xs:sequence>
+          <xs:element name="type" type="providerType" minOccurs="0"/>
+          <xs:element name="provider" type="xs:string" minOccurs="0"/>
+          <xs:element name="segments" type="routeSegment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="properties" type="routeProperties" nillable="true" minOccurs="0"/>
+          <xs:element name="price" type="price" nillable="true" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="routeSegment">
+      <xs:sequence>
+          <xs:element name="name" type="xs:string" minOccurs="0"/>
+          <xs:element name="num_stops" type="xs:int" minOccurs="0"/>
+          <xs:element name="stops" type="routePoint" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="travel_mode" type="travelMode" nillable="true" minOccurs="0"/>
+          <xs:element name="price" type="price" nillable="true" minOccurs="0"/>
+          <xs:element name="description" type="xs:string" nillable="true" minOccurs="0"/>
+          <xs:element name="color" type="xs:string" nillable="true" minOccurs="0"/>
+          <xs:element name="icon_url" type="xs:string" nillable="true" minOccurs="0"/>
+          <xs:element name="polyline" type="xs:string" nillable="true" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="routeProperties">
+    <xs:sequence>
+        <xs:element name="address" type="xs:string" minOccurs="0"/>
+        <xs:element name="model" type="xs:string" minOccurs="0"/>
+        <xs:element name="license_plate" type="xs:string" minOccurs="0"/>
+        <xs:element name="fuel_level" type="xs:int" minOccurs="0"/>
+        <xs:element name="engine_type" type="xs:string" minOccurs="0"/>
+        <xs:element name="internal_cleanliness" type="xs:string" minOccurs="0"/>
+        <xs:element name="description" type="xs:string" minOccurs="0"/>
+        <xs:element name="seats" type="xs:int" minOccurs="0"/>
+        <xs:element name="doors" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="price">
+    <xs:sequence>
+        <xs:element name="currency" type="xs:string" minOccurs="0"/>
+        <xs:element name="amount" type="xs:decimal" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="routePoint">
+    <xs:sequence>
+        <xs:element name="lat" type="xs:float" minOccurs="0"/>
+        <xs:element name="lng" type="xs:float" minOccurs="0"/>
+        <xs:element name="datetime" type="xs:dateTime" minOccurs="0"/>
+        <xs:element name="name" type="xs:string" minOccurs="0"/>
+        <xs:element name="properties" type="routeProperties" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>

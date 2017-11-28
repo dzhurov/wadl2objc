@@ -1,5 +1,5 @@
 //
-//  XSDBaseEntity.h
+//
 //
 //  Created by Dmitry Zhurov on 26.10.12.
 //  Copyright (c) 2012 Dmitry Zhurov. All rights reserved.
@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XSDTypes.h"
-#import "XSDEnums.h" 
+#import "XSDObjects/XSDEnums.h"
 
 @interface XSDBaseEntity : NSObject <NSCopying, NSCoding>
 
@@ -25,6 +25,9 @@
 - (NSMutableDictionary*)dictionaryInfo;
 
 - (void)setMappedFieldsDictionary:(NSDictionary *)dict;
+
++ (NSDateFormatter *)dateFormatter;
++ (NSDateFormatter *)dateTimeFormatter;
 
 /*! Reloads by Machine inheritors */
 + (NSArray *)mappedKeys;

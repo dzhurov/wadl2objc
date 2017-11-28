@@ -10,6 +10,8 @@
 
 @implementation SettingsManager
 
+@synthesize xsdToObjcFieldsMapping = _xsdToObjcFieldsMapping;
+
 CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
 
 - (NSString *)argsArray:(NSMutableArray*)argsArray popArgumentForKey:(NSString*)argumentKey
@@ -30,6 +32,8 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
     NSMutableArray *argsArray = [NSMutableArray arrayWithArray:args];
     
     self.applicationPath = argsArray[0];
+    NSLog(@"Application path: %@", self.applicationPath);
+    
     [argsArray removeObjectAtIndex:0];
     
     self.wadlPath = [self argsArray:argsArray popArgumentForKey:kWADLPathArgumentKey];
@@ -46,7 +50,6 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
             }
             else{
                 [xsdPaths addObject:anXSDPath];
-                [argsArray removeObject:anXSDPath];
             }
         }
     }
@@ -132,5 +135,15 @@ CWL_SYNTHESIZE_SINGLETON_FOR_CLASS(SettingsManager);
     return namespace;
 }
 
+- (NSDictionary<NSString *,NSString *> *)xsdToObjcFieldsMapping
+{
+    if ( !_xsdToObjcFieldsMapping ){
+        _xsdToObjcFieldsMapping = self.mapping[@"XSD Objects Fields"];
+        if ( !_xsdToObjcFieldsMapping ){
+            _xsdToObjcFieldsMapping = @{};
+        }
+    }
+    return _xsdToObjcFieldsMapping;
+}
 
 @end

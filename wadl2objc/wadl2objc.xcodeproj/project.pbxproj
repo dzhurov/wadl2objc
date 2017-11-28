@@ -14,6 +14,9 @@
 		0A2810A617C9F733001C7306 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810A517C9F733001C7306 /* main.m */; };
 		0A2810D917C9F8C1001C7306 /* TBXML+NSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */; };
 		0A2B108F180A991A00E5E19E /* NSString+FirstCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */; };
+		0A2C6D0E1C80A8AD00907F7F /* XSDMappingAssistant.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A2C6D0B1C807FBE00907F7F /* XSDMappingAssistant.h */; };
+		0A2C6D0F1C80A8AD00907F7F /* XSDMappingAssistant.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A2C6D0C1C807FBE00907F7F /* XSDMappingAssistant.m */; };
+		0A2C6D111C80A8D100907F7F /* WADL_mapping.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A2C6D071C7F54A700907F7F /* WADL_mapping.plist */; };
 		0A964DC317CB531C003655C4 /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DC217CB531C003655C4 /* SettingsManager.m */; };
 		0A964DC817CB6313003655C4 /* XSDDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DC717CB6313003655C4 /* XSDDocument.m */; };
 		0A964DCB17CB6BFD003655C4 /* XSDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DCA17CB6BFD003655C4 /* XSDObject.m */; };
@@ -22,21 +25,20 @@
 		0A964DD417CBA663003655C4 /* XSDTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A964DD317CBA663003655C4 /* XSDTypes.m */; };
 		0AA94D0B17F883B0000DE3B6 /* WADLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */; };
 		615F1DA71B78F423003FBB94 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 615F1DA61B78F423003FBB94 /* DataManager.m */; };
-		61C6F29F1B7CE72900EF2D8C /* Xcode7Macros.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */; };
 		7E3CF89B17FC242400ECCC95 /* _TemplateEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */; };
 		7E3CF89C17FC242400ECCC95 /* _TemplateEntity_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E5F6E2C17CCDCF20068D508 /* _TemplateEntity_m */; };
 		7E3CF89D17FC242400ECCC95 /* TemplateEntity_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EC7DCBB17D096ED003CE122 /* TemplateEntity_h */; };
 		7E3CF89E17FC242400ECCC95 /* TemplateEntity_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EC7DCBC17D096ED003CE122 /* TemplateEntity_m */; };
 		7E3CF89F17FC242400ECCC95 /* XSDEnums_h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E1B156217CF5AE600C96204 /* XSDEnums_h */; };
 		7E3CF8A017FC242400ECCC95 /* XSDEnums_m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E1B156317CF5AE600C96204 /* XSDEnums_m */; };
-		7E6132041B2F1EBE008CEDF1 /* XSDSimpleTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6132031B2F1EBE008CEDF1 /* XSDSimpleTypes.m */; };
-		7E6132071B2F2F0B008CEDF1 /* WADLServiceRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6132061B2F2F0B008CEDF1 /* WADLServiceRepresentation.m */; };
-		7E7DAA241B2B173B00205151 /* XSDNamespase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7DAA231B2B173B00205151 /* XSDNamespase.m */; };
 		7E5C9FBC1B7A156700BABE83 /* NSError+Terminate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C9FBB1B7A156700BABE83 /* NSError+Terminate.m */; };
 		7E5C9FBD1B7A4D9F00BABE83 /* WADLServerAPI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD75A15A1B7114C7006A9AD3 /* WADLServerAPI.h */; };
 		7E5C9FBF1B7A4D9F00BABE83 /* WADLServicesResource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A840EEE1B36E36E008E046C /* WADLServicesResource.h */; };
 		7E5C9FC11B7A4D9F00BABE83 /* WADLServiceTemplate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E513D4D1B78C83800A38135 /* WADLServiceTemplate.h */; };
 		7E5C9FC31B7A4DA800BABE83 /* WADLAbstractServerAPI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A840EE61B2DAE4D008E046C /* WADLAbstractServerAPI.h */; };
+		7E6132041B2F1EBE008CEDF1 /* XSDSimpleTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6132031B2F1EBE008CEDF1 /* XSDSimpleTypes.m */; };
+		7E6132071B2F2F0B008CEDF1 /* WADLServiceRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6132061B2F2F0B008CEDF1 /* WADLServiceRepresentation.m */; };
+		7E7DAA241B2B173B00205151 /* XSDNamespase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7DAA231B2B173B00205151 /* XSDNamespase.m */; };
 		7EAF2A4A1B7B7A4600600196 /* WADLRequestTask.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A840EF11B36E88F008E046C /* WADLRequestTask.h */; };
 		7EAF2A4B1B7B7A4600600196 /* WADLAbstractServerAPI.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A840EE71B2DAE4D008E046C /* WADLAbstractServerAPI.m */; };
 		7EAF2A4C1B7B7A4600600196 /* WADLServerAPI.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD75A15B1B7114C7006A9AD3 /* WADLServerAPI.m */; };
@@ -63,7 +65,8 @@
 			dstPath = Resources;
 			dstSubfolderSpec = 16;
 			files = (
-				61C6F29F1B7CE72900EF2D8C /* Xcode7Macros.h in CopyFiles */,
+				0A2C6D0E1C80A8AD00907F7F /* XSDMappingAssistant.h in CopyFiles */,
+				0A2C6D0F1C80A8AD00907F7F /* XSDMappingAssistant.m in CopyFiles */,
 				7EAF2A4A1B7B7A4600600196 /* WADLRequestTask.h in CopyFiles */,
 				7EAF2A4B1B7B7A4600600196 /* WADLAbstractServerAPI.m in CopyFiles */,
 				7EAF2A4C1B7B7A4600600196 /* WADLServerAPI.m in CopyFiles */,
@@ -89,6 +92,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0A2C6D101C80A8C100907F7F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				0A2C6D111C80A8D100907F7F /* WADL_mapping.plist in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +118,9 @@
 		0A2810D817C9F8C1001C7306 /* TBXML+NSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+NSDictionary.m"; sourceTree = "<group>"; };
 		0A2B108D180A991A00E5E19E /* NSString+FirstCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FirstCharacter.h"; sourceTree = "<group>"; };
 		0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FirstCharacter.m"; sourceTree = "<group>"; };
+		0A2C6D071C7F54A700907F7F /* WADL_mapping.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WADL_mapping.plist; sourceTree = "<group>"; };
+		0A2C6D0B1C807FBE00907F7F /* XSDMappingAssistant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XSDMappingAssistant.h; sourceTree = "<group>"; };
+		0A2C6D0C1C807FBE00907F7F /* XSDMappingAssistant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XSDMappingAssistant.m; sourceTree = "<group>"; };
 		0A840EE61B2DAE4D008E046C /* WADLAbstractServerAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLAbstractServerAPI.h; sourceTree = "<group>"; };
 		0A840EE71B2DAE4D008E046C /* WADLAbstractServerAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLAbstractServerAPI.m; sourceTree = "<group>"; };
 		0A840EE91B2DB057008E046C /* WADLAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLAuthService.h; sourceTree = "<group>"; };
@@ -132,13 +148,10 @@
 		0AA94D0917F883B0000DE3B6 /* WADLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLDocument.h; sourceTree = "<group>"; };
 		0AA94D0A17F883B0000DE3B6 /* WADLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLDocument.m; sourceTree = "<group>"; };
 		299F2A9C49544AAD86124F87 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Xcode7Macros.h; sourceTree = "<group>"; };
 		615F1DA51B78F423003FBB94 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		615F1DA61B78F423003FBB94 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		7E1B156217CF5AE600C96204 /* XSDEnums_h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_h; sourceTree = "<group>"; };
 		7E1B156317CF5AE600C96204 /* XSDEnums_m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XSDEnums_m; sourceTree = "<group>"; };
-		7E3630E31B288FFA001A32DE /* WADL_mapping.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WADL_mapping.plist; sourceTree = "<group>"; };
-		7E4660DF1B83506A009888AC /* Xcode7Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xcode7Macros.h; sourceTree = "<group>"; };
 		7E513D4D1B78C83800A38135 /* WADLServiceTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADLServiceTemplate.h; sourceTree = "<group>"; };
 		7E513D4E1B78C83800A38135 /* WADLServiceTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADLServiceTemplate.m; sourceTree = "<group>"; };
 		7E5C9FBA1B7A156700BABE83 /* NSError+Terminate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Terminate.h"; sourceTree = "<group>"; };
@@ -212,13 +225,10 @@
 			isa = PBXGroup;
 			children = (
 				0A2810A517C9F733001C7306 /* main.m */,
-				7E3630E31B288FFA001A32DE /* WADL_mapping.plist */,
-				611FEDE11B7B7C51005E7ED2 /* Xcode7Macros.h */,
 				0A2B108D180A991A00E5E19E /* NSString+FirstCharacter.h */,
 				0A2B108E180A991A00E5E19E /* NSString+FirstCharacter.m */,
 				7E5C9FBA1B7A156700BABE83 /* NSError+Terminate.h */,
 				7E5C9FBB1B7A156700BABE83 /* NSError+Terminate.m */,
-				7E4660DF1B83506A009888AC /* Xcode7Macros.h */,
 				0A2810A917C9F733001C7306 /* wadl2objc.1 */,
 				0A964DC017CB52C2003655C4 /* Model */,
 				0A2810D517C9F8C1001C7306 /* ThirdParty */,
@@ -256,6 +266,7 @@
 		0A2810DA17C9FA96001C7306 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A2C6D071C7F54A700907F7F /* WADL_mapping.plist */,
 				7E5F6E2B17CCDCF20068D508 /* _TemplateEntity_h */,
 				7E5F6E2C17CCDCF20068D508 /* _TemplateEntity_m */,
 				7EC7DCBB17D096ED003CE122 /* TemplateEntity_h */,
@@ -280,6 +291,8 @@
 				0A228318188027FE003CC315 /* XSDBaseEntity.m */,
 				0A2283191880281D003CC315 /* XSDTypes.h */,
 				0A22831A1880281D003CC315 /* XSDTypes.m */,
+				0A2C6D0B1C807FBE00907F7F /* XSDMappingAssistant.h */,
+				0A2C6D0C1C807FBE00907F7F /* XSDMappingAssistant.m */,
 				0A840EEC1B36E343008E046C /* application.wadl */,
 				0A840EED1B36E343008E046C /* xsd0.xsd */,
 			);
@@ -351,6 +364,7 @@
 				0A28109B17C9F733001C7306 /* Sources */,
 				0A28109C17C9F733001C7306 /* Frameworks */,
 				0A28109D17C9F733001C7306 /* CopyFiles */,
+				0A2C6D101C80A8C100907F7F /* CopyFiles */,
 				153778742A76428287C9C4BF /* Copy Pods Resources */,
 			);
 			buildRules = (

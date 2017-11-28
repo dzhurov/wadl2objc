@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSString *applicationPath;
 @property (nonatomic, strong) NSString *mappingPlistPath;
 @property (nonatomic, strong) NSDictionary *mapping;
+/*! mapping from xsd fileds to objc fields */
+@property (nonatomic, readonly) NSDictionary<NSString*, NSString*> *xsdToObjcFieldsMapping;
 
 - (XSDNamespase*)namespaceForIdentifier:(NSString*)identifier;
 - (NSString*)classNameForObjectType:(NSString*)objectType fromNamespace:(NSString *)namespace;

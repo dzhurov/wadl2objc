@@ -20,16 +20,16 @@
 @property (nonatomic,strong) NSString *path;
 @property (nonatomic, weak) WADLDocument *wadlDocument;
 @property (nonatomic, strong) WADLServiceSection *parantServiceSection;
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServiceSection*) *childSections;
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *pathParameters;
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *queryParameters;
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *headParameters;
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLService*) *services;
+@property (nonatomic, strong) NSMutableArray<WADLServiceSection*> *childSections;
+@property (nonatomic, strong) NSMutableArray<WADLServicePathParameter*> *pathParameters;
+@property (nonatomic, strong) NSMutableArray<WADLServicePathParameter*> *queryParameters;
+@property (nonatomic, strong) NSMutableArray<WADLServicePathParameter*> *headParameters;
+@property (nonatomic, strong) NSMutableArray<WADLService*> *services;
 
 - (NSString*)fullPath;
 - (NSArray*)urlPathAndMethods; 
-- (__GENERICS(NSMutableArray, WADLService*)*)allMethods;
-- (__GENERICS(NSArray, NSString*)*)allServicesClasses;
+- (NSMutableArray<WADLService*>*)allMethods;
+- (NSArray<NSString*>*)allServicesClasses;
 - (NSString*)pathName;
 - (NSString*)shortPathName;
 - (NSDictionary*)allPathNamesToPaths;
