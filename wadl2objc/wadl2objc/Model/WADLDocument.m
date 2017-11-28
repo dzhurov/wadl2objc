@@ -201,7 +201,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             outputClass = @"Nil";
         }
         
-        [oneMethodImplementation appendFormat:@"\treturn [self.serverAPI makeRequest:WADLRequestMethod%@ resource:self forURLPath:thePath queryParameters:queryParmeters bodyObject:bodyObject HTTPHeaderParameters:headParameters outputClass:%@ isInvoked:NO responseBlock:responseBlock];\n}\n\n", oneService.method, outputClass];
+        [oneMethodImplementation appendFormat:@"\treturn [self.serverAPI makeRequest:WADLRequestMethod%@ resource:self forURLPath:thePath queryParameters:queryParmeters bodyObject:bodyObject HTTPHeaderParameters:headParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, outputClass];
         
         [methodsImplementation appendString:oneMethodImplementation];
     }
