@@ -40,11 +40,51 @@ typedef NS_ENUM(NSInteger, WADLRequestMethod) {
 @end
 
 
-<services_classes_declaration>
+@class WADLAuthServices;
+@class WADLCustomCartServices;
+@class WADLCustomServices;
+@class WADLCustomerServices;
+@class WADLDashboardPropertiesServices;
+@class WADLFeedbackServices;
+@class WADLGroupsServices;
+@class WADLHubServices;
+@class WADLInventoryServices;
+@class WADLLogServices;
+@class WADLNotificationServices;
+@class WADLPosServices;
+@class WADLQuestionnaireServices;
+@class WADLReceiptsServices;
+@class WADLReservationServices;
+@class WADLRulesServices;
+@class WADLSearchServices;
+@class WADLSettingServices;
+@class WADLTenderServices;
+@class WADLTransactionServices;
+
 @interface WADLAbstractServerAPI : NSObject
 {
     @protected
-<services_ivars>}
+	WADLAuthServices *_auth;
+	WADLCustomCartServices *_customCart;
+	WADLCustomServices *_custom;
+	WADLCustomerServices *_customer;
+	WADLDashboardPropertiesServices *_dashboardProperties;
+	WADLFeedbackServices *_feedback;
+	WADLGroupsServices *_groups;
+	WADLHubServices *_hub;
+	WADLInventoryServices *_inventory;
+	WADLLogServices *_log;
+	WADLNotificationServices *_notification;
+	WADLPosServices *_pos;
+	WADLQuestionnaireServices *_questionnaire;
+	WADLReceiptsServices *_receipts;
+	WADLReservationServices *_reservation;
+	WADLRulesServices *_rules;
+	WADLSearchServices *_search;
+	WADLSettingServices *_setting;
+	WADLTenderServices *_tender;
+	WADLTransactionServices *_transaction;
+}
 
 @property (nonatomic, weak) id<WADLServerAPIErrorHandler> errorHanlder;
 
@@ -65,33 +105,65 @@ typedef NS_ENUM(NSInteger, WADLRequestMethod) {
 - (NSData*)serializeObject:(id)object error:(NSError **)error;
 
 #pragma Generated services
-<services_definition>
+@property (nonatomic, readonly) WADLAuthServices *auth;
++ (WADLAuthServices*) auth;
 
-@end
+@property (nonatomic, readonly) WADLCustomCartServices *customCart;
++ (WADLCustomCartServices*) customCart;
 
-@interface WADLMakeRequestInvocation : NSObject
-{
-@public
-    __strong NSInvocation *_invocation;
-    __strong WADLServicesResource* _resource;
-    __strong NSString *_urlPath;
-    __strong NSDictionary* _queryParameters;
-    __strong NSDictionary* _bodyObject;
-    
-    __strong id _HTTPHeaderParameters;
-    __strong Class _outputClass;
-    __strong void (^_responseBlock)(id, NSError *);
-    WADLRequestMethod _requestMethod;
-}
-- (instancetype)initWithTarget:(WADLAbstractServerAPI*)target
-                 requestMethod:(WADLRequestMethod)method
-                      resource:(WADLServicesResource*)resource
-                       urlPath:(NSString*)urlPath
-               queryParameters:(NSDictionary*)queryParameters
-                    bodyObject:(NSDictionary*)bodyObject
-          HTTPHeaderParameters:(NSDictionary*)HTTPHeaderParameters
-                   outputClass:(Class)outputClass
-                 responseBlock:(void (^)(id, NSError *))block;
+@property (nonatomic, readonly) WADLCustomServices *custom;
++ (WADLCustomServices*) custom;
+
+@property (nonatomic, readonly) WADLCustomerServices *customer;
++ (WADLCustomerServices*) customer;
+
+@property (nonatomic, readonly) WADLDashboardPropertiesServices *dashboardProperties;
++ (WADLDashboardPropertiesServices*) dashboardProperties;
+
+@property (nonatomic, readonly) WADLFeedbackServices *feedback;
++ (WADLFeedbackServices*) feedback;
+
+@property (nonatomic, readonly) WADLGroupsServices *groups;
++ (WADLGroupsServices*) groups;
+
+@property (nonatomic, readonly) WADLHubServices *hub;
++ (WADLHubServices*) hub;
+
+@property (nonatomic, readonly) WADLInventoryServices *inventory;
++ (WADLInventoryServices*) inventory;
+
+@property (nonatomic, readonly) WADLLogServices *log;
++ (WADLLogServices*) log;
+
+@property (nonatomic, readonly) WADLNotificationServices *notification;
++ (WADLNotificationServices*) notification;
+
+@property (nonatomic, readonly) WADLPosServices *pos;
++ (WADLPosServices*) pos;
+
+@property (nonatomic, readonly) WADLQuestionnaireServices *questionnaire;
++ (WADLQuestionnaireServices*) questionnaire;
+
+@property (nonatomic, readonly) WADLReceiptsServices *receipts;
++ (WADLReceiptsServices*) receipts;
+
+@property (nonatomic, readonly) WADLReservationServices *reservation;
++ (WADLReservationServices*) reservation;
+
+@property (nonatomic, readonly) WADLRulesServices *rules;
++ (WADLRulesServices*) rules;
+
+@property (nonatomic, readonly) WADLSearchServices *search;
++ (WADLSearchServices*) search;
+
+@property (nonatomic, readonly) WADLSettingServices *setting;
++ (WADLSettingServices*) setting;
+
+@property (nonatomic, readonly) WADLTenderServices *tender;
++ (WADLTenderServices*) tender;
+
+@property (nonatomic, readonly) WADLTransactionServices *transaction;
++ (WADLTransactionServices*) transaction;
 
 @end
 
