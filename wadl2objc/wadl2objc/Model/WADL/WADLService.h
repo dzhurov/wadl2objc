@@ -21,8 +21,8 @@
 
 @property (nonatomic, strong) NSString *overridenName;
 
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *queryParameters;
-@property (nonatomic, strong) __GENERICS(NSMutableArray, WADLServicePathParameter*) *headParameters;
+@property (nonatomic, strong) NSMutableArray<WADLServicePathParameter*> *queryParameters;
+@property (nonatomic, strong) NSMutableArray<WADLServicePathParameter*> *headParameters;
 
 - (NSArray *)allPathParameters;
 - (NSString*)fullPath;
