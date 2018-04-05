@@ -124,11 +124,20 @@ synthesizeLazzyProperty(services, NSMutableArray);
     }
     
     
-    for (NSArray *sameNamesServices in duplicatedNamesServices) {
+    for (NSArray<WADLService *> *sameNamesServices in duplicatedNamesServices) {
         int backwardPathLevel = 0;
+        NSArray *allMethodNames;
+        NSSet *uniqueMethodNames;
         do {
+            allMethodNames = [sameNamesServices valueForKeyPath:@"objcMethodName"];
+            uniqueMethodNames = [NSSet setWithArray: allMethodNames];
+            if ([allMethodNames count] == [uniqueMethodNames count]){
+                break;
+            }
+            
             for (WADLService *service in sameNamesServices) {
-                NSArray *paths = [service.fullPath componentsSeparatedByString:@"/"];
+                NSMutableArray *paths = [[service.fullPath componentsSeparatedByString:@"/"] mutableCopy];
+                [paths removeObject:@"%@"];
                 NSMutableString *pathsPrefix = [NSMutableString stringWithString:@"_"];
                 for (int i = 0; i <= backwardPathLevel; i++) {
                     if (backwardPathLevel > paths.count - 1)
@@ -138,9 +147,7 @@ synthesizeLazzyProperty(services, NSMutableArray);
                 service.overridenName = [[pathsPrefix lowercaseFirstCharacterString] stringByAppendingString: service.name];
             }
             backwardPathLevel ++;
-            
-                  // This is all names                                    // This is all UNIQUE names
-        } while ([[allMethods valueForKeyPath:@"overridenName"] count] > [[allMethods valueForKeyPath:@"@distinctUnionOfObjects.overridenName"] count]);
+        } while ([allMethodNames count] > [uniqueMethodNames count]);
     }
 }
 
