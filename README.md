@@ -38,4 +38,12 @@ In this case use parameters: `--wadlURL:` and `--xsdURL:` with URLs to needed fi
   - And that is it. This class has has minimum implementation. And requires implementation in child class. Main requirement for inheritor is confirmation of protocol [WADLServerAPIInheritor](wadl2objc/wadl2objc/Resources/WADLAbstractServerAPI.h#20) and implementation of `-makeRequest:resource:forURLPath:queryParameters:bodyObject:HTTPHeaderParameters:outputClass:responseBlock:` method, wich should do a real work. It gives you freedom to implement server interaction using any instruments you'd like (AFNetworking, NSURLSession, etc.)
 - [`WADLServicesResource`](wadl2objc/wadl2objc/Resources/WADLServicesResource.h) base class for service containder.
 - [`WADLRequestTask`](wadl2objc/wadl2objc/Resources/WADLRequestTask.h) defines macro `WADLRequestTask` wich is associates with request operation. By default is `NSURLSessionTask*`. It has flexibility to change on any class (RACSignal, AFHTTPRequestOperation, etc.)
+- [`XSDTypes`](wadl2objc/wadl2objc/Resources/XSDTypes.h) — there are two fake classes to determine different xsd types: xs:date and xs:dateTime
+
+#### What will be generated:
+- All _Data Transfer Objects_. Every entity implemented by two classes _Human_ and _Machine_ classes. Inspired by [mogenerator](https://github.com/rentzsch/mogenerator)
+  - _Human_ class inherits from Machine class, generates only once and never overrides. It's a best place for custom logic and handling setters. 
+  - _Machine_ class inherits from `XSDBaseEntity` or another Dtat Transfer Object if hierarchy described in XSD file. It's name has "\_" prefix. It has list of properties reflects fields from xsd object. Also will be generated implementations of methods: `+mappedKeys`, `+enumNameForMappedField:`, `+classNameOfMembersForMappedField:`
+- _Services_ classes — `WADLServicesResource` inheritor. It contains TODO: add excample 
+
 
