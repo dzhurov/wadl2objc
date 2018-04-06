@@ -33,3 +33,9 @@ In this case use parameters: `--wadlURL:` and `--xsdURL:` with URLs to needed fi
   - Mapping from/to `NSDictionary` and `NSArray<NSDictionary*>`
   - Default `NSDateFormatter`s for xs:date and xs:dateTime
   - [Setting](wadl2objc/wadl2objc/Resources/XSDBaseEntity.h#L77) `NSDictionary` without loosing existing _human class_ data
+- [`WADLAbstractServerAPI`](wadl2objc/wadl2objc/Resources/WADLAbstractServerAPI.h) __abstract__ singleton class. 
+  - This class will handle all generated services. You'll be able to access services as static methods, like this: `[MyServerAPI.someService doSomethingWithCompletion:...]`
+  - And that is it. This class has has minimum implementation. And requires implementation in child class. Main requirement for inheritor is confirmation of protocol [WADLServerAPIInheritor](wadl2objc/wadl2objc/Resources/WADLAbstractServerAPI.h#20) and implementation of `-makeRequest:resource:forURLPath:queryParameters:bodyObject:HTTPHeaderParameters:outputClass:responseBlock:` method, wich should do a real work. It gives you freedom to implement server interaction using any instruments you'd like (AFNetworking, NSURLSession, etc.)
+- [`WADLServicesResource`](wadl2objc/wadl2objc/Resources/WADLServicesResource.h) base class for service containder.
+- [`WADLRequestTask`](wadl2objc/wadl2objc/Resources/WADLRequestTask.h) defines macro `WADLRequestTask` wich is associates with request operation. By default is `NSURLSessionTask*`. It has flexibility to change on any class (RACSignal, AFHTTPRequestOperation, etc.)
+
