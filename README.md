@@ -27,5 +27,9 @@ In this case use two parameters `--xsd:` and `--wadl:` with related paths to .wa
 In this case use parameters: `--wadlURL:` and `--xsdURL:` with URLs to needed files. 
 
 ## What you get
-
-
+#### Base classes:
+- [`XSDBaseEntity`](wadl2objc/wadl2objc/Resources/XSDBaseEntity.h) class. Is a _Base Entity_ class wich has implemented:
+  - NSCopying protocol for all inheritors including copying of _machine classes_ properties
+  - Mapping from/to `NSDictionary` and `NSArray<NSDictionary*>`
+  - Default `NSDateFormatter`s for xs:date and xs:dateTime
+  - [Setting](wadl2objc/wadl2objc/Resources/XSDBaseEntity.h#L77) `NSDictionary` without loosing existing _human class_ data
