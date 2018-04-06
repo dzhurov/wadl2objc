@@ -267,13 +267,13 @@
 			isa = PBXGroup;
 			children = (
 				0A93530C2074F70A008661B7 /* WADLDocument.h */,
-				0A93530D2074F70A008661B7 /* WADLServicePathParameter.m */,
-				0A93530E2074F70A008661B7 /* WADLServiceSection.m */,
-				0A93530F2074F70A008661B7 /* WADLService.m */,
 				0A9353102074F70A008661B7 /* WADLDocument.m */,
 				0A9353112074F70A008661B7 /* WADLServicePathParameter.h */,
+				0A93530D2074F70A008661B7 /* WADLServicePathParameter.m */,
 				0A9353122074F70A008661B7 /* WADLService.h */,
+				0A93530F2074F70A008661B7 /* WADLService.m */,
 				0A9353132074F70A008661B7 /* WADLServiceSection.h */,
+				0A93530E2074F70A008661B7 /* WADLServiceSection.m */,
 			);
 			path = WADL;
 			sourceTree = "<group>";

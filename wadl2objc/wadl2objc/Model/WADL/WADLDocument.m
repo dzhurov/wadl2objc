@@ -79,9 +79,21 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     [self writeAPIConstToPath:apiConstsFilePath];
     
     // WADLServiceResource inheritors
-    for (WADLServiceSection *rootSection in _wadlServiceSections) {
-        [self writeServiceSection:rootSection toPath:path];
+    ///Create folder if needed
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *wadlServicesPath = [path stringByAppendingPathComponent:@"WADLServices"];
+    if ( ![fileManager fileExistsAtPath:wadlServicesPath] ){
+        NSError *error = nil;
+        [fileManager createDirectoryAtPath:wadlServicesPath withIntermediateDirectories:YES attributes:nil error: &error];
+        if ( error ){
+            ERROR_LOG(@"%@",error);
+            return;
+        }
     }
+    for (WADLServiceSection *rootSection in _wadlServiceSections) {
+        [self writeServiceSection:rootSection toPath:wadlServicesPath];
+    }
+    
     // WADLAbstractServerAPI.h & WADLAbstractServerAPI.m
     [self writeAbstractServerAPIToPath:path];
 
