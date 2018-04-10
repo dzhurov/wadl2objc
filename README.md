@@ -66,3 +66,16 @@ In this case use parameters: `--wadlURL:` and `--xsdURL:` with URLs to needed fi
 #define kWADLServiceCustomerURLPath @"customer/%@"
 #define kWADLServiceCustomerSearchURLPath @"customer/search"
 ```
+#### Bonus: 
+Only today you will get an example of [`WADLServerAPI`](wadl2objc/wadl2objc/Resources/WADLServerAPI.h) class that implements request mechanism based on `NSURLSession` __JUST FOR FREE!__
+
+#### Need more flexibility? 
+__wadl2objc__ aslo supports namespaces and fields name conversion. To manage them you need to configurate [`WADL_mapping.plist`](wadl2objc/wadl2objc/Resources/WADL_mapping.plist). And of course you can modify wadl2objc source code and add whatever you whant :)
+
+## In ~distant~ Future
+- Make things really work. Add good sample project with sample protocol. 
+- Swift support.
+- Support [Swagger](https://swagger.io) and [OpenAPI](https://www.openapis.org) protocols.
+- Generating Java for Android.
+- Migrate to Ruby.
+- Create _gem_.
