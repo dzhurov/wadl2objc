@@ -44,6 +44,22 @@ In this case use parameters: `--wadlURL:` and `--xsdURL:` with URLs to needed fi
 - All _Data Transfer Objects_. Every entity implemented by two classes _Human_ and _Machine_ classes. Inspired by [mogenerator](https://github.com/rentzsch/mogenerator)
   - _Human_ class inherits from Machine class, generates only once and never overrides. It's a best place for custom logic and handling setters. 
   - _Machine_ class inherits from `XSDBaseEntity` or another Dtat Transfer Object if hierarchy described in XSD file. It's name has "\_" prefix. It has list of properties reflects fields from xsd object. Also will be generated implementations of methods: `+mappedKeys`, `+enumNameForMappedField:`, `+classNameOfMembersForMappedField:`
-- _Services_ classes — `WADLServicesResource` inheritor. It contains TODO: add excample 
+- _Services_ classes — `WADLServicesResource` inheritor. It contains a number of requests joined by first url path. For instance we have four requests: 
+  - `/auth`
+  - `/auth/manager`
+  - `/customer`
+  - `/customer/search`
+for those requests will be generated two _Services_:
+  - `WADLAuthService`
+  - `WADLCustomerService`
+You can access them by your `WADLAbstractServerAPI` inheritor: `[MyServerAPI.auth authenticateUser:user withResponseBlock:^(AuthUserDto *response, NSError *error) {}]`
+- _Enums_. You will get all enums declared in .xsd file in Objective-C style. All enums located in [`XSDEnums.h`](wadl2objc/wadl2objc/Resources/XSDEnums_h. It also contains two static methods for mapping server enums to client ObjC scalar values and reverse: `+enumValueForObject:enumName:`, `+objectForEnumValue:enumName:`.
+- [`APIConsts`](wadl2objc/wadl2objc/Resources/APIConsts.h) — there are all requests url path templates. E.g.: ```
+// Auth
+#define kWADLServiceAuthURLPath @"auth"
+#define kWADLServiceAuthManagerURLPath @"auth/manager"
 
-
+// Customer
+#define kWADLServiceCustomerURLPath @"customer/%@"
+#define kWADLServiceCustomerSearchURLPath @"customer/search"
+```
