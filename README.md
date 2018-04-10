@@ -49,10 +49,12 @@ In this case use parameters: `--wadlURL:` and `--xsdURL:` with URLs to needed fi
   - `/auth/manager`
   - `/customer`
   - `/customer/search`
-for those requests will be generated two _Services_:
+
+  For those requests will be generated two _Services_:
   - `WADLAuthService`
   - `WADLCustomerService`
-You can access them by your `WADLAbstractServerAPI` inheritor: `[MyServerAPI.auth authenticateUser:user withResponseBlock:^(AuthUserDto *response, NSError *error) {}]`
+  
+  You can access them by your `WADLAbstractServerAPI` inheritor: `[MyServerAPI.auth authenticateUser:user withResponseBlock:^(AuthUserDto *response, NSError *error) {}]`
 - _Enums_. You will get all enums declared in .xsd file in Objective-C style. All enums located in [`XSDEnums.h`](wadl2objc/wadl2objc/Resources/XSDEnums_h. It also contains two static methods for mapping server enums to client ObjC scalar values and reverse: `+enumValueForObject:enumName:`, `+objectForEnumValue:enumName:`.
 - [`APIConsts`](wadl2objc/wadl2objc/Resources/APIConsts.h) — there are all requests url path templates. E.g.: 
 ```
