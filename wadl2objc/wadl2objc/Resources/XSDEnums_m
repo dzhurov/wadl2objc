@@ -18,13 +18,13 @@
 
 @implementation XSDEnums
 
-static XSDEnums *sharedInstanse = nil;
-
-+ (XSDEnums*)sharedInstanse
++ (instancetype)sharedInstanse
 {
-    if ( !sharedInstanse){
-        sharedInstanse = [[XSDEnums alloc] init];
-    }
+    static XSDEnums *sharedInstanse = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstanse = [[self alloc] init];
+    });
     return sharedInstanse;
 }
 
@@ -68,6 +68,22 @@ static XSDEnums *sharedInstanse = nil;
 + (id)objectForEnumValue:(NSUInteger)enumValue enumName:(NSString *)enumName
 {
     return [[self sharedInstanse] objectForEnumValue:enumValue enumName:enumName];
+}
+
++ (NSArray<NSString *> *)allStringsOfEnum:(NSString *)enumName
+{
+    NSArray<NSNumber *> *allValues = [self allValuesOfEnum:enumName];
+    NSMutableArray *stringsArray = [NSMutableArray arrayWithCapacity:allValues.count];
+    for (NSNumber *value in allValues) {
+        NSString *string = [[self sharedInstanse] objectForEnumValue:value.unsignedIntegerValue enumName:enumName];
+        [stringsArray addObject:string];
+    }
+    return [stringsArray copy];
+}
+
++ (NSArray<NSNumber *> *)allValuesOfEnum:(NSString *)enumName
+{
+    return [[[self sharedInstanse] dictionaryForEnumName:enumName].allKeys sortedArrayUsingSelector:@selector(compare:)];
 }
 
 @end

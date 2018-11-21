@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -46,7 +45,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -70,19 +68,19 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--xsd: ../../wadl/xsd0.xsd"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--wadl: ../../wadl/application.wadl"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--wadlURL:"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--wadlURL: &apos;http://engagedevapp601.tmw.com:8080/tuxmobile/services/application.wadl&apos;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--xsdURL: &apos;http://engagedevapp601.tmw.com:8080/tuxmobile/services/application.wadl/xsd0.xsd&apos;"
-            isEnabled = "YES">
+            argument = "--xsdURL:"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

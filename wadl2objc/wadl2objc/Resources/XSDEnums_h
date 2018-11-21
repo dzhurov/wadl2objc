@@ -14,5 +14,7 @@
 
 + (NSUInteger)enumValueForObject:(id)object enumName:(NSString*)enumName;
 + (id)objectForEnumValue:(NSUInteger)enumValue enumName:(NSString*)enumName;
++ (NSArray<NSString *> *)allStringsOfEnum:(NSString *)enumName;
++ (NSArray<NSNumber *> *)allValuesOfEnum:(NSString *)enumName;
 
 @end

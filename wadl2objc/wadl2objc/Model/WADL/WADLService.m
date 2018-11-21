@@ -59,6 +59,7 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
             
             // query and header parameters handling
             if ([parameterStyle isEqualToString:@"query"]) {
+                parameter.type = classNameForXSDType(kXSDString);
                 [self.queryParameters addObject:parameter];
             }
             else if ([parameterStyle isEqualToString:@"header"]) {

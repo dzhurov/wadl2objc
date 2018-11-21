@@ -79,9 +79,21 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     [self writeAPIConstToPath:apiConstsFilePath];
     
     // WADLServiceResource inheritors
-    for (WADLServiceSection *rootSection in _wadlServiceSections) {
-        [self writeServiceSection:rootSection toPath:path];
+    ///Create folder if needed
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *wadlServicesPath = [path stringByAppendingPathComponent:@"WADLServices"];
+    if ( ![fileManager fileExistsAtPath:wadlServicesPath] ){
+        NSError *error = nil;
+        [fileManager createDirectoryAtPath:wadlServicesPath withIntermediateDirectories:YES attributes:nil error: &error];
+        if ( error ){
+            ERROR_LOG(@"%@",error);
+            return;
+        }
     }
+    for (WADLServiceSection *rootSection in _wadlServiceSections) {
+        [self writeServiceSection:rootSection toPath:wadlServicesPath];
+    }
+    
     // WADLAbstractServerAPI.h & WADLAbstractServerAPI.m
     [self writeAbstractServerAPIToPath:path];
 
@@ -201,7 +213,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
             outputClass = @"Nil";
         }
         
-        [oneMethodImplementation appendFormat:@"\treturn [self.serverAPI makeRequest:WADLRequestMethod%@ resource:self forURLPath:thePath queryParameters:queryParmeters bodyObject:bodyObject HTTPHeaderParameters:headParameters outputClass:%@ isInvoked:NO responseBlock:responseBlock];\n}\n\n", oneService.method, outputClass];
+        [oneMethodImplementation appendFormat:@"\treturn [self.serverAPI makeRequest:WADLRequestMethod%@ resource:self forURLPath:thePath queryParameters:queryParmeters bodyObject:bodyObject HTTPHeaderParameters:headParameters outputClass:%@ responseBlock:responseBlock];\n}\n\n", oneService.method, outputClass];
         
         [methodsImplementation appendString:oneMethodImplementation];
     }

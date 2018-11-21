@@ -100,9 +100,9 @@ synthesizeLazzyProperty(services, NSMutableArray);
     }
 }
 
-- (void)processDuplicatedMethodNames:(__GENERICS(NSMutableArray, WADLService*)*)allMethods
+- (void)processDuplicatedMethodNames:(NSMutableArray<WADLService *>*)allMethods
 {
-    __GENERICS(NSMutableArray, __GENERICS(NSMutableArray, WADLService*)*) *duplicatedNamesServices = [NSMutableArray new];
+    NSMutableArray<NSMutableArray<WADLService *> *> *duplicatedNamesServices = [NSMutableArray new];
     NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"overridenName" ascending:YES];
     NSArray *sortedServices = [allMethods sortedArrayUsingDescriptors:@[descriptor]];
     
@@ -124,11 +124,20 @@ synthesizeLazzyProperty(services, NSMutableArray);
     }
     
     
-    for (NSArray *sameNamesServices in duplicatedNamesServices) {
+    for (NSArray<WADLService *> *sameNamesServices in duplicatedNamesServices) {
         int backwardPathLevel = 0;
+        NSArray *allMethodNames;
+        NSSet *uniqueMethodNames;
         do {
+            allMethodNames = [sameNamesServices valueForKeyPath:@"objcMethodName"];
+            uniqueMethodNames = [NSSet setWithArray: allMethodNames];
+            if ([allMethodNames count] == [uniqueMethodNames count]){
+                break;
+            }
+            
             for (WADLService *service in sameNamesServices) {
-                NSArray *paths = [service.fullPath componentsSeparatedByString:@"/"];
+                NSMutableArray *paths = [[service.fullPath componentsSeparatedByString:@"/"] mutableCopy];
+                [paths removeObject:@"%@"];
                 NSMutableString *pathsPrefix = [NSMutableString stringWithString:@"_"];
                 for (int i = 0; i <= backwardPathLevel; i++) {
                     if (backwardPathLevel > paths.count - 1)
@@ -138,9 +147,7 @@ synthesizeLazzyProperty(services, NSMutableArray);
                 service.overridenName = [[pathsPrefix lowercaseFirstCharacterString] stringByAppendingString: service.name];
             }
             backwardPathLevel ++;
-            
-                  // This is all names                                    // This is all UNIQUE names
-        } while ([[allMethods valueForKeyPath:@"overridenName"] count] > [[allMethods valueForKeyPath:@"@distinctUnionOfObjects.overridenName"] count]);
+        } while ([allMethodNames count] > [uniqueMethodNames count]);
     }
 }
 
@@ -163,7 +170,7 @@ synthesizeLazzyProperty(services, NSMutableArray);
     return fullPath;
 }
 
-- (__GENERICS(NSMutableArray, WADLService*) *)allMethods
+- (NSMutableArray<WADLService*> *)allMethods
 {
     NSMutableArray *allMethods = [NSMutableArray arrayWithArray:_services];
     for (WADLServiceSection *childSection in _childSections) {
@@ -174,10 +181,10 @@ synthesizeLazzyProperty(services, NSMutableArray);
     return allMethods;
 }
 
-- (__GENERICS(NSArray, NSString*)*)allServicesClasses
+- (NSArray<NSString *>*)allServicesClasses
 {
-    __GENERICS(NSArray, NSString*) *responseObjects = [self.allMethods valueForKeyPath:@"responseObjectClass"];
-    __GENERICS(NSArray, NSString*) *requestObjects = [self.allMethods valueForKeyPath:@"requestObjectClass"];
+    NSArray<NSString *> *responseObjects = [self.allMethods valueForKeyPath:@"responseObjectClass"];
+    NSArray<NSString *> *requestObjects = [self.allMethods valueForKeyPath:@"requestObjectClass"];
     NSMutableSet *set = [NSMutableSet setWithArray:responseObjects];
     [set addObjectsFromArray:requestObjects];
     [set removeObject:[NSNull null]];

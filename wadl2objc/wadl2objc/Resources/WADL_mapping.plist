@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Namespaces</key>
+	<dict>
+		<key></key>
+		<dict>
+			<key>prefix</key>
+			<string></string>
+			<key>suffix</key>
+			<string></string>
+			<key>name</key>
+			<string></string>
+		</dict>
+		<key>http://tuxmobile.tmw.com/payments</key>
+		<dict>
+			<key>prefix</key>
+			<string>PAY_</string>
+			<key>suffix</key>
+			<string></string>
+			<key>name</key>
+			<string>Payments</string>
+		</dict>
+		<key>http://wadl.dev.java.net/2009/02</key>
+		<dict>
+			<key>prefix</key>
+			<string></string>
+			<key>suffix</key>
+			<string></string>
+			<key>name</key>
+			<string></string>
+		</dict>
+		<key>http://www.w3.org/2001/XMLSchema</key>
+		<dict>
+			<key>prefix</key>
+			<string></string>
+			<key>suffix</key>
+			<string></string>
+			<key>name</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>XSD Objects Fields</key>
+	<dict>
+		<key>retain</key>
+		<string>aRetain</string>
+		<key>youCanAlsoUse.keyPath</key>
+		<string>forKeyPath</string>
+		<key>release</key>
+		<string>aRelease</string>
+		<key>entityForMappedFields</key>
+		<string>anEntityForMappedFields</string>
+		<key>description</key>
+		<string>aDescription</string>
+		<key>dictionaryInfo</key>
+		<string>aDictionaryInfo</string>
+		<key>com.tmw.tux.build.timestamp</key>
+		<string>buildTimestamp</string>
+		<key>com.tmw.tux.build.version</key>
+		<string>buildVersion</string>
+		<key>com.tmw.tux.build.ci.number</key>
+		<string>ciNumber</string>
+		<key>com.tmw.tux.build.ci.id</key>
+		<string>ciID</string>
+		<key>com.tmw.tux.build.ci.url</key>
+		<string>ciURL</string>
+		<key>com.tmw.tux.build.ci.tag</key>
+		<string>ciTag</string>
+		<key>com.tmw.tux.build.git.commit</key>
+		<string>gitCommit</string>
+		<key>com.tmw.tux.build.git.branch</key>
+		<string>gitBranch</string>
+	</dict>
+</dict>
+</plist>

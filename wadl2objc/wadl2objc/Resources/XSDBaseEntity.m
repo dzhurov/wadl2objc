@@ -8,8 +8,9 @@
 #import "XSDBaseEntity.h"
 #import <objc/runtime.h>
 
-__strong static NSDateFormatter const *sXSDBaseEntityDateFormatter = nil;
-__strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
+__strong static NSDateFormatter *sXSDBaseEntityDateFormatter = nil;
+__strong static NSDateFormatter *sXSDBaseEntityDateTimeFormatter = nil;
+NSString const* kXSDClassTypeKey = @"@type";
 
 @interface XSDBaseEntity ()
 {
@@ -21,14 +22,6 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
 
 #pragma mark - Static methods
 
-+ (void)load
-{
-    sXSDBaseEntityDateTimeFormatter = [[NSDateFormatter alloc] init];
-    sXSDBaseEntityDateTimeFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-    sXSDBaseEntityDateFormatter = [[NSDateFormatter alloc] init];
-    sXSDBaseEntityDateFormatter.dateFormat = @"yyyy-MM-dd";
-}
-
 + (void)setDateFormatter:(NSDateFormatter *)aDateFormatter
 {
     sXSDBaseEntityDateFormatter = aDateFormatter;
@@ -39,12 +32,46 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
     sXSDBaseEntityDateTimeFormatter = dateTimeFormatter;
 }
 
++ (NSDateFormatter *)dateFormatter
+{
+    if ( !sXSDBaseEntityDateFormatter ){
+        sXSDBaseEntityDateFormatter = [[NSDateFormatter alloc] init];
+        sXSDBaseEntityDateFormatter.dateFormat = @"yyyy-MM-dd";
+    }
+    return sXSDBaseEntityDateFormatter;
+}
+
++ (NSDateFormatter *)dateTimeFormatter
+{
+    if ( !sXSDBaseEntityDateTimeFormatter ){
+        sXSDBaseEntityDateTimeFormatter = [[NSDateFormatter alloc] init];
+        sXSDBaseEntityDateTimeFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    }
+    return sXSDBaseEntityDateTimeFormatter;
+}
+
+- (NSDateFormatter *)dateFormatter
+{
+    return [(XSDBaseEntity*)[self class] dateFormatter];
+}
+
+- (NSDateFormatter *)dateTimeFormatter
+{
+    return [(XSDBaseEntity*)[self class] dateTimeFormatter];
+}
+
 + (NSMutableArray *)objectsWithDictionariesInfoArray:(NSArray *)array
 {
     if (array.count){
         NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:array.count];
         for (NSDictionary *dictionary in array) {
-            XSDBaseEntity *entity = [[self alloc] initWithDictionaryInfo:dictionary];
+            Class theClass = self;
+            NSString *classString = dictionary[kXSDClassTypeKey];
+            if (classString) {
+                theClass = NSClassFromString(classString);
+                NSAssert([theClass isSubclassOfClass:self], @"Unexpected class name");
+            }
+            XSDBaseEntity *entity = [(XSDBaseEntity *) [theClass alloc] initWithDictionaryInfo:dictionary];
             [resultArray addObject:entity];
         }
         return resultArray;
@@ -52,9 +79,9 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
     return nil;
 }
 
-+ (NSArray*)mappedKeys;
++ (NSArray*)mappedKeys
 {
-    return nil;
+    return @[];
 }
 
 #pragma mark -
@@ -66,43 +93,6 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
         self.dictionaryInfo = dictionary;
     }
     return self;
-}
-
-- (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level
-{
-    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@ %p>(", NSStringFromClass([self class]), self];
-    NSMutableString *insetString = [NSMutableString string];
-    for (int i = 0; i < level; i++) {
-        [insetString appendFormat:@"\t"];
-    }
-    [self propertiesEnumeration:^(NSString *propertyName, NSArray *attributes) {
-        BOOL strongReference = ! [[attributes objectAtIndex:0] hasPrefix:@"T@"]; // if attribute has prefix T@ it is a obj-C object ( id )
-        if (! strongReference){
-            for (NSString *oneAttribute in attributes) {
-                if (([oneAttribute isEqualToString:@"C"] || [oneAttribute isEqualToString:@"&"])){ // Copy or Retain property
-                    strongReference = YES;
-                    break;
-                }
-            }
-        }
-        id value = [self valueForKey:propertyName];
-        if (strongReference){
-            if ( [value respondsToSelector:@selector(descriptionWithLocale:indent:)] )
-                [description appendFormat:@"\n\t%@%@ = %@", insetString, propertyName, [value descriptionWithLocale:locale indent:level + 1]];
-            else
-                [description appendFormat:@"\n\t%@%@ = %@", insetString, propertyName, value];
-        }
-        else
-            [description appendFormat:@"\n\t%@%@ = <%@ %p>(", insetString, propertyName,NSStringFromClass([value class]), value];
-    }];
-    
-    [description appendFormat:@"\n%@)", insetString];
-    return description;
-}
-
-- (NSString *)description
-{
-    return [self descriptionWithLocale:nil indent:0];
 }
 
 - (void) propertiesEnumeration: (void(^)(NSString *propertyName, NSArray *attributes))iterationBlock
@@ -131,16 +121,40 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
 
 - (BOOL)isEqual:(id)object
 {
-    if ( ![object isKindOfClass:[self class]] ) 
+    if ( ![object isKindOfClass:[self class]] )
         return NO;
     
     for (NSString *key in [[self class] mappedKeys]) {
         id selfValue = [self valueForKey:key];
         id anotherObjectValue = [object valueForKey:key];
-        if ( (selfValue != anotherObjectValue) && ![selfValue isEqual:anotherObjectValue] )
+        
+        if (([selfValue isKindOfClass:[NSString class]]) && [anotherObjectValue isKindOfClass:[NSString class]]) {
+            if (![[selfValue lowercaseString] isEqualToString:[anotherObjectValue lowercaseString]]) {
+                return NO;
+            }
+        }
+        else if ([selfValue isKindOfClass:[NSString class]] && [selfValue length] == 0 && anotherObjectValue == nil) {
+            continue;
+        }
+        else if ([anotherObjectValue isKindOfClass:[NSString class]] && [anotherObjectValue length] == 0 && selfValue == nil) {
+            continue;
+        }
+        else if ( (selfValue != anotherObjectValue) && ![selfValue isEqual:anotherObjectValue] ) {
             return NO;
+        }
     }
     return YES;
+}
+
+- (NSUInteger)hash
+{
+    NSUInteger hash = [NSStringFromClass(self.class) hash];
+    NSUInteger i = 0;
+    for (NSString *key in [[self class] mappedKeys]) {
+        id selfValue = [self valueForKey:key];
+        hash ^= [selfValue hash] << ((++i) % 16);
+    }
+    return hash;
 }
 
 #pragma mark - NSCoding
@@ -150,13 +164,13 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
     unsigned int outCount, i;
     objc_property_t *properties = class_copyPropertyList([self class], &outCount);
     for(i = 0; i < outCount; i++) {
-    	objc_property_t property = properties[i];
-    	const char *propName = property_getName(property);
-    	if(propName) {
+        objc_property_t property = properties[i];
+        const char *propName = property_getName(property);
+        if(propName) {
             NSString *propertyName = [NSString stringWithUTF8String: propName];
             id value = [self valueForKey:propertyName];
             [encoder encodeObject:value forKey:propertyName];
-    	}
+        }
     }
     free(properties);
 }
@@ -187,7 +201,7 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
 
 - (id)copyWithZone:(NSZone*)zone
 {
-	XSDBaseEntity* copy = [[[self class] allocWithZone:zone] init];
+    XSDBaseEntity* copy = [[[self class] allocWithZone:zone] init];
     for (NSString *key in [[self class] mappedKeys]) {
         
         id sourceValue = [self valueForKey:key];
@@ -211,8 +225,23 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
     NSMutableDictionary *dictInfo = [NSMutableDictionary dictionary];
     for(NSString *key in keys){
         id valueForKey = [self valueForKey:key];
-        if ( !valueForKey || [valueForKey isKindOfClass:[NSNull class]] )
+        
+        BOOL isNaN = NO;
+        if ([valueForKey isKindOfClass:[NSNumber class]]) {
+            NSNumber *numberValue = (NSNumber*)valueForKey;
+            if ([numberValue isEqualToNumber:[NSDecimalNumber notANumber]]) {
+                isNaN = YES;
+            }
+        }
+        
+        if ( !valueForKey || [valueForKey isKindOfClass:[NSNull class]] || isNaN )
             continue;
+        
+        if ([key isEqualToString:@keypath(self, xsdClassType)]) {
+            dictInfo[kXSDClassTypeKey] = valueForKey;
+            continue;
+        }
+        
         objc_property_t property = class_getProperty([self class], [key UTF8String]);
         const char *propertyAttributes = property_getAttributes(property);
         NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
@@ -233,10 +262,10 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
             valueForKey = [(XSDBaseEntity*)valueForKey dictionaryInfo];
         }
         else if ([propClass isSubclassOfClass:[XSDDate class]]){
-            valueForKey = [sXSDBaseEntityDateFormatter stringFromDate:valueForKey];
+            valueForKey = [self.dateFormatter stringFromDate:valueForKey];
         }
         else if ([propClass isSubclassOfClass:[XSDDateTime class]]){
-            valueForKey = [sXSDBaseEntityDateTimeFormatter stringFromDate:valueForKey];
+            valueForKey = [self.dateTimeFormatter stringFromDate:valueForKey];
         }
         else if ([propClass isSubclassOfClass:[NSArray class]]){
             NSString *memberClassName = [[self class] classNameOfMembersForMappedField:key];
@@ -246,10 +275,20 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
                 valueForKey = array;
             }
         }
+        else if ([propClass isSubclassOfClass:[NSDecimalNumber class]]){
+            if ( ![valueForKey isKindOfClass:[NSDecimalNumber class]] ){
+                NSDecimalNumber *decimalNumber = [NSDecimalNumber roundedDecimalNumberWithNumber:valueForKey];
+                valueForKey = decimalNumber;
+            }
+        }
         
         if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]]){
-            [dictInfo setObject:valueForKey forKey:key];
+            dictInfo[key] = valueForKey;
         }
+    }
+    NSString *classType = [self xsdClassType];
+    if (classType) {
+        dictInfo[kXSDClassTypeKey] = classType;
     }
     return dictInfo;
 }
@@ -257,7 +296,7 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
 - (void) setDictionaryInfo:(NSDictionary*)dictInfo forKeys:(NSArray*)keys
 {
     for(NSString *key in keys){
-        id valueForKey = [dictInfo objectForKey:key];
+        id valueForKey = dictInfo[key];
         if (valueForKey && ![valueForKey isKindOfClass:[NSNull class]])
         {
             objc_property_t property = class_getProperty([self class], [key UTF8String]);
@@ -280,27 +319,40 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
                 }
             }
             else if ([propClass isSubclassOfClass:[XSDBaseEntity class]]){
-                XSDBaseEntity *entity = [[propClass alloc] initWithDictionaryInfo:valueForKey];
+                XSDBaseEntity *entity = [(XSDBaseEntity *) [propClass alloc] initWithDictionaryInfo:valueForKey];
                 [self setValue:entity forKey: key];
             }
             else if ([propClass isSubclassOfClass:[XSDDate class]]){
-                NSDate *date = [sXSDBaseEntityDateFormatter dateFromString:valueForKey];
+                NSDate *date = [self.dateFormatter dateFromString:valueForKey];
                 [self setValue:date forKey: key];
             }
             else if ([propClass isSubclassOfClass:[XSDDateTime class]]){
-                NSDate *date = [sXSDBaseEntityDateTimeFormatter dateFromString:valueForKey];
+                NSDate *date = [self.dateTimeFormatter dateFromString:valueForKey];
                 [self setValue:date forKey:key];
             }
             else if ([propClass isSubclassOfClass:[NSArray class]]){
+                NSArray *array = valueForKey;
                 NSString *memberClassName = [[self class] classNameOfMembersForMappedField:key];
                 Class memberClass = NSClassFromString(memberClassName);
                 if ( [memberClass isSubclassOfClass:[XSDBaseEntity class]] ){
-                    NSArray *array = [memberClass objectsWithDictionariesInfoArray:valueForKey];
+                    array = [memberClass objectsWithDictionariesInfoArray:valueForKey];
                     [self setValue:array forKey:key];
                 }
-                else{
+                else if ([memberClass isSubclassOfClass:[NSDecimalNumber class]]){
+                    NSMutableArray *mapArray = [NSMutableArray arrayWithCapacity:array.count];
+                    [array enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+                        [mapArray addObject:[NSDecimalNumber roundedDecimalNumberWithNumber:obj]];
+                    }];
+                    [self setValue:[mapArray copy] forKey:key];
+                }
+                else {
+                    
                     [self setValue:valueForKey forKey:key];
                 }
+            }
+            else if ([propClass isSubclassOfClass:[NSDecimalNumber class]]){
+                NSDecimalNumber *decimalNumber = [NSDecimalNumber roundedDecimalNumberWithNumber:valueForKey];
+                [self setValue:decimalNumber forKey:key];
             }
             else{
                 [self setValue:valueForKey forKey:key];
@@ -354,7 +406,7 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
     return nil;
 }
 
-+ (NSString *)classNameOfMembersForMappedField:(NSString*)fieldName
++ (NSString *)classNameOfMembersForMappedField:(NSString *)fieldName
 {
     return nil;
 }
@@ -393,8 +445,13 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
             NSString *newKeyPath = [[keyComponents subarrayWithRange:NSMakeRange(1, keyComponents.count - 1)] componentsJoinedByString:@"."];
             if ( [propClass isSubclassOfClass:[XSDBaseEntity class]] ){
                 [subObject setValue:value forKeyPath:newKeyPath createIntermediateEntities:YES];
-            }
-            else{
+            } else if ([value isKindOfClass:[NSString class]] && [propClass isSubclassOfClass:[NSDecimalNumber class]]){
+                value = [NSDecimalNumber decimalNumberWithString:value];
+                [subObject setValue:value forKeyPath:newKeyPath];
+            } else if ([value isKindOfClass:[NSString class]] && [propClass isSubclassOfClass:[NSNumber class]]){
+                value = @([value doubleValue]);
+                [subObject setValue:value forKeyPath:newKeyPath];
+            } else {
                 [subObject setValue:value forKeyPath:newKeyPath];
             }
         }
@@ -403,8 +460,9 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
 
 - (void)setEntityForMappedFields:(XSDBaseEntity*)entity
 {
-    if ([self isKindOfClass:[entity class]])
-        NSLog(@"%s Classes doesn't match", __PRETTY_FUNCTION__);
+    if ( ![self isKindOfClass:[entity class]]){
+        DDLogWarn(@"%s Classes doesn't match", __PRETTY_FUNCTION__);
+    }
     
     for (NSString *fieldName in [[self class] mappedKeys]) {
         id value = [entity valueForKey:fieldName];
@@ -412,5 +470,61 @@ __strong static NSDateFormatter const *sXSDBaseEntityDateTimeFormatter = nil;
     }
 }
 
+#pragma mark - Description
+
+- (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level
+{
+    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@ %p>(", NSStringFromClass([self class]), self];
+    NSMutableString *insetString = [NSMutableString string];
+    for (int i = 0; i < level; i++) {
+        [insetString appendFormat:@"\t"];
+    }
+    [self propertiesEnumeration:^(NSString *propertyName, NSArray *attributes) {
+        if ([propertyName isEqualToString:@"description"]) {
+            return;
+        }
+#if !defined(DEBUG)
+        if ([[self descriptionIgnoreProperties] containsObject:propertyName]) {
+            return;
+        }
+#endif
+        BOOL strongReference = ! [attributes[0] hasPrefix:@"T@"]; // if attribute has prefix T@ it is a obj-C object ( id )
+        if (! strongReference){
+            for (NSString *oneAttribute in attributes) {
+                if (([oneAttribute isEqualToString:@"C"] || [oneAttribute isEqualToString:@"&"])){ // Copy or Retain property
+                    strongReference = YES;
+                    break;
+                }
+            }
+        }
+        id value = [self valueForKey:propertyName];
+        if (strongReference){
+            if ( [value respondsToSelector:@selector(descriptionWithLocale:indent:)] )
+                [description appendFormat:@"\n\t%@%@ = %@", insetString, propertyName, [value descriptionWithLocale:locale indent:level + 1]];
+            else
+                [description appendFormat:@"\n\t%@%@ = %@", insetString, propertyName, value];
+        }
+        else
+            [description appendFormat:@"\n\t%@%@ = <%@ %p>(", insetString, propertyName,NSStringFromClass([value class]), value];
+    }];
+    
+    [description appendFormat:@"\n%@)", insetString];
+    return description;
+}
+
+- (NSString *)description
+{
+    return [self descriptionWithLocale:nil indent:0];
+}
+
+-(NSArray<NSString *> *)descriptionIgnoreProperties
+{
+    return nil;
+}
+
+- (NSString *)xsdClassType
+{
+    return nil;
+}
 
 @end
