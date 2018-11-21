@@ -272,7 +272,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
         // getter
         [accessorsImplementations appendFormat:@"- (%@ *)%@\n{\n\tif ( !_%@) _%@ = [[%@ alloc] initWithWADLServerAPI:self.child];\n\treturn _%@;\n}\n\n", propertyClass, propertyName, propertyName, propertyName, propertyClass, propertyName];
         // Static accessor
-        [accessorsImplementations appendFormat:@"+ (%@ *)%@ \n{\n\t return [[self sharedServerAPI] %@]; \n}\n\n", propertyClass, propertyName, propertyName];
+        [accessorsImplementations appendFormat:@"+ (%@ *)%@ \n{\n\t return [[%@ sharedServerAPI] %@]; \n}\n\n", propertyClass, propertyName, kAbstractAPIClassName, propertyName];
     }
     
     [mContentOfFile replaceOccurrencesOfString:@"<import_services>"
