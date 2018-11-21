@@ -127,7 +127,7 @@ synthesizeLazzyProperty(wadlServiceSections, NSMutableArray);
     
     NSMutableArray<WADLService *> *sortedMethods = [[NSMutableArray alloc] initWithArray:serviceSection.allMethods];
     [sortedMethods sortUsingComparator:^NSComparisonResult(WADLService * _Nonnull obj1, WADLService *  _Nonnull obj2) {
-        return [obj1.name compare:obj2.name options:0];
+        return [[obj1 objcMethodName] compare:[obj2 objcMethodName] options:0];
     }];
     
     for (WADLService *oneService in sortedMethods) {
