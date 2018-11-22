@@ -129,7 +129,7 @@ synthesizeLazzyProperty(services, NSMutableArray);
         NSArray *allMethodNames;
         NSSet *uniqueMethodNames;
         do {
-            allMethodNames = [sameNamesServices valueForKeyPath:@"objcMethodName"];
+            allMethodNames = [sameNamesServices valueForKeyPath:@"objcSelector"];
             uniqueMethodNames = [NSSet setWithArray: allMethodNames];
             if ([allMethodNames count] == [uniqueMethodNames count]){
                 break;

@@ -118,6 +118,17 @@ synthesizeLazzyProperty(headParameters, NSMutableArray);
     return methodDeclaration;
 }
 
+- (NSString *)objcSelector
+{
+    NSString *methodName = [self objcMethodName];
+    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"[\\da-zA-Z_]+:" options:0 error:nil];
+    NSMutableString *resultString = [NSMutableString new];
+    [regex enumerateMatchesInString:methodName options:0 range:NSMakeRange(0, methodName.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        [resultString appendString:[methodName substringWithRange:result.range]];
+    }];
+    return [resultString copy];
+}
+
 - (NSString *)overridenName
 {
     if ( !_overridenName ){
