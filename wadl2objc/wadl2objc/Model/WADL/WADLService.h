@@ -29,5 +29,6 @@
 
 //! Depends on overridenMethodName
 - (NSString*)objcMethodName;
+- (NSString *)objcSelector;
 
 @end
